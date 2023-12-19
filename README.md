@@ -4,7 +4,7 @@
 
 I'm a Web Developer who loves to bring ideas to life in the browser.
 
-```javascript
+```python
 const webDeveloper = {
     name: "Aaron",
     code: ["Angular", "JavaScript", "TypeScript", "PHP", "WordPress"],
