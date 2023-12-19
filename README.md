@@ -19,11 +19,13 @@ I grew up with Windows and have a special place in my heart for it. Its my go-to
 I love working with Linux and Im always exploring new things in the vast open-source world. Favorite operating systems are:
 
 - <a href="https://ubuntu.com/" target="_blank">Ubuntu</a>
-- <a href="https://pop.system76.com/" target="_blank">Pop!\_OS</a>.
+- <a href="https://www.debian.org/" target="_blank">Debian</a>
+- <a href="https://www.archlinux.org/" target="_blank">Arch Linux</a>
+- <a href="https://www.kali.org/" target="_blank">Kali Linux</a>
 
 ## 💻 Version Control
 
-I use Git for version control - its simple, powerful, and widely used.
+I use Git for version control - its simple, powerful, and widely used. I also use GitHub for hosting my projects and collaborating with others.
 
 ## 📫 How to reach me
 
