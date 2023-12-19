@@ -8,15 +8,18 @@ Im a **Web Developer** who loves to bring ideas to life in the browser. I grew u
 
 ## 📚 I love documentation
 
-Not many developers like to write documentation. I do though. I believe that a well-documented codebase is as important as the code itself. Its like a story telling what the code can do and how it does it. I always try to write clear, concise, and useful documentation. My go-to documentation tool is [Obsidian.md](https://obsidian.md/).
+Not many developers like to write documentation. I do though. I believe that a well-documented codebase is as important as the code itself. Its like a story telling what the code can do and how it does it. I always try to write clear, concise, and useful documentation. My go-to documentation tool is <a href="https://obsidian.md/" target="_blank">Obsidian.md</a>.
 
-## 🖥️ Windows Lover
+## 🖥️ Windows Power User
 
-I grew up with Windows and have a special place in my heart for it. Its my go-to operating system for development.
+I grew up with Windows and have a special place in my heart for it. Its my go-to operating system for development. I enjoy using the Windows Subsystem for Linux (WSL) and the Windows Terminal. I also use <a href="https://docs.microsoft.com/en-us/powershell/" target="_blank">PowerShell</a> configured with <a href="https://ohmyposh.dev/" target="_blank">Oh-My-Posh</a> for my terminal.
 
 ## 🐧 Linux Enthusiast
 
-I love working with Linux and Im always exploring new things in the vast open-source world.
+I love working with Linux and Im always exploring new things in the vast open-source world. Favorite operating systems are:
+
+- <a href="https://ubuntu.com/" target="_blank">Ubuntu</a>
+- <a href="https://pop.system76.com/" target="_blank">Pop!\_OS</a>.
 
 ## 💻 Version Control
 
