@@ -17,13 +17,3 @@ class SoftwareDeveloper:
 me = SoftwareDeveloper()
 me.say_hi()
 ```
-🛠️ My favorite tools
-Code: Python, JavaScript, Java
-Tools: Git, Docker, VS Code
-Libraries: React, TensorFlow
-
-📈 My GitHub stats
-![Your Name's github stats](https://github-readme-stats.vercel.app/api?username=[Your GitHub Username]&show_icons=true&theme=radical)
-
-📫 How to reach me
-You can find and get touch with me on these sites!
