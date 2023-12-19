@@ -28,6 +28,7 @@ const webDeveloper = {
     currentFocus: "I am focusing on Angular, TypeScript and improving my documentation skills",
     funFact: "I love to play games and explore new tech gadgets."
 };
+```
 
 ## 📈 My GitHub stats
 ![Aaron's github stats](https://github-readme-stats.vercel.app/api?username=[Your GitHub Username]&show_icons=true&theme=radical)
