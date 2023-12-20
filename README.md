@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=transparent&color=auto&height=100&section=header&text=aar.one&fontSize=90)
+![header](https://capsule-render.vercel.app/api?type=transparent&color=auto&height=100&section=header&text=aar.one&fontSize=30)
 
 # Oi, World! Im Aaron 👋
 
