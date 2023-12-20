@@ -1,4 +1,4 @@
-![Header](./github-header.png)
+![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=aar.one&fontSize=90)
 
 # Oi, World! Im Aaron 👋
 
