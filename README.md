@@ -53,7 +53,7 @@ I love working with Linux and Im always exploring new things in the vast open-so
 ![Arch Linux](https://img.shields.io/badge/-Arch%20Linux-000000?style=flat&logo=arch-linux&logoColor=#1793D1)
 ![Kali Linux](https://img.shields.io/badge/-Kali%20Linux-000000?style=flat&logo=kali-linux&logoColor=#557C94)
 
-## 💻 Version Control
+## 🔄 Version Control
 
 I use Git for version control - its simple, powerful, and widely used. I also use GitHub for hosting my projects and collaborating with others.
 
