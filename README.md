@@ -8,11 +8,10 @@ Im a **Web Developer** who loves to bring ideas to life in the browser. I grew u
 
 ## 📈 My GitHub stats
 
-![aaronedev's Stats](https://github-readme-stats.vercel.app/api?username=aaronedev&theme=material-palenight&show_icons=true&hide_border=true&count_private=true)
-
-![aaronedev's Streak](https://github-readme-streak-stats.herokuapp.com/?user=aaronedev&theme=material-palenight&hide_border=true)
-
-![aaronedev's Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=aaronedev&theme=material-palenight&show_icons=true&hide_border=true&layout=compact)
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=aaronedev&theme=material-palenight&show_icons=true&hide_border=true&count_private=true" alt="aaronedev's Stats" height="165">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=aaronedev&theme=material-palenight&hide_border=true" alt="aaronedev's Streak" height="165">
+</p>
 
 ## 📚 I love documentation
 
