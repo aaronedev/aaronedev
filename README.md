@@ -1,4 +1,4 @@
-![Header](./github-header.png "Header")
+![Header](./github-header.png)
 
 # Oi, World! Im Aaron 👋
 
@@ -7,6 +7,12 @@
 Im a **Web Developer** who loves to bring ideas to life in the browser. I grew up in the 90's early 2000's and fell in love with the internet. Therefore I am excited about designing and developing websites and web applications that are **fast**, **responsive**, and **accessible** to everyone. Also, I kind of want to bring back the 90's web design aesthetic. I think it was cool. 😎
 
 ## 📈 My GitHub stats
+
+![aaronedev's Stats](https://github-readme-stats.vercel.app/api?username=aaronedev&theme=material-palenight&show_icons=true&hide_border=true&count_private=true)
+
+![aaronedev's Streak](https://github-readme-streak-stats.herokuapp.com/?user=aaronedev&theme=material-palenight&hide_border=true)
+
+![aaronedev's Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=aaronedev&theme=material-palenight&show_icons=true&hide_border=true&layout=compact)
 
 ## 📚 I love documentation
 
