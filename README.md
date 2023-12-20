@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=transparent&color=auto&height=100&section=header&text=aar.one&fontSize=30)
+[![header](https://capsule-render.vercel.app/api?type=transparent&color=auto&height=100&section=header&text=aar.one&fontSize=30)](https://aar.one)
 
 # Oi, World! Im Aaron 👋
 
@@ -6,10 +6,16 @@
 
 Im a **Web Developer** who loves to bring ideas to life in the browser. I grew up in the 90's early 2000's and fell in love with the internet. Therefore I am excited about designing and developing websites and web applications that are **fast**, **responsive**, and **accessible** to everyone. Also, I kind of want to bring back the 90's web design aesthetic. I think it was cool. 😎
 
-![Web Developer](https://img.shields.io/badge/-Web%20Developer-000000?style=flat&logo=web&logoColor=white)
-![Web Designer](https://img.shields.io/badge/-Web%20Designer-000000?style=flat&logo=web&logoColor=white)
-![Front End Developer](https://img.shields.io/badge/-Front%20End%20Developer-000000?style=flat&logo=web&logoColor=white)
-![Back End Developer](https://img.shields.io/badge/-Back%20End%20Developer-000000?style=flat&logo=web&logoColor=white)
+![JavaScript](https://img.shields.io/badge/-JavaScript-000000?style=flat&logo=javascript&logoColor=yellow)
+![TypeScript](https://img.shields.io/badge/-TypeScript-000000?style=flat&logo=typescript&logoColor=blue)
+![Angular](https://img.shields.io/badge/-Angular-000000?style=flat&logo=angular&logoColor=red)
+![PHP](https://img.shields.io/badge/-PHP-000000?style=flat&logo=php&logoColor=white)
+![WordPress](https://img.shields.io/badge/-WordPress-000000?style=flat&logo=wordpress&logoColor=blue)
+![HTML5](https://img.shields.io/badge/-HTML5-000000?style=flat&logo=html5&logoColor=orange)
+![CSS3](https://img.shields.io/badge/-CSS3-000000?style=flat&logo=css3&logoColor=blue)
+![Sass](https://img.shields.io/badge/-Sass-000000?style=flat&logo=sass&logoColor=pink)
+![Bootstrap](https://img.shields.io/badge/-Bootstrap-000000?style=flat&logo=bootstrap&logoColor=purple)
+![Firebase](https://img.shields.io/badge/-Firebase-000000?style=flat&logo=firebase&logoColor=yellow)
 
 ## 📈 My GitHub stats
 
