@@ -6,6 +6,9 @@
 
 Im a **Web Developer** who loves to bring ideas to life in the browser. I grew up in the 90's early 2000's and fell in love with the internet. Therefore I am excited about designing and developing websites and web applications that are **fast**, **responsive**, and **accessible** to everyone. Also, I kind of want to bring back the 90's web design aesthetic. I think it was cool. 😎
 
+* 💼 Got a freelance gig? Hit me up via <a href="mailto:code@aar.one">email.</a>
+* 💬 Curious? Just ask!
+
 ![JavaScript](https://img.shields.io/badge/-JavaScript-000000?style=flat&logo=javascript&logoColor=#F7DF1E)
 ![TypeScript](https://img.shields.io/badge/-TypeScript-000000?style=flat&logo=typescript&logoColor=#3178C6)
 ![Angular](https://img.shields.io/badge/-Angular-000000?style=flat&logo=angular&logoColor=#DD0031)
@@ -37,6 +40,7 @@ I grew up with Windows and have a special place in my heart for it. Its my go-to
 ![Windows](https://img.shields.io/badge/-Windows-503D4D?style=flat&logo=windows&logoColor=#0078D6)
 ![Windows Terminal](https://img.shields.io/badge/-Windows%20Terminal-000000?style=flat&logo=windows-terminal&logoColor=#4D4D4D)
 ![PowerShell](https://img.shields.io/badge/-PowerShell-000000?style=flat&logo=powershell&logoColor=#5391FE)
+![Oh-My-Posh](https://img.shields.io/badge/-Oh--My--Posh-000000?style=flat&logo=oh-my-posh&logoColor=#5391FE)
 ![WSL](https://img.shields.io/badge/-WSL-000000?style=flat&logo=windows-subsystem-for-linux&logoColor=#FCC624)
 
 ## 🐧 Linux Enthusiast
