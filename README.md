@@ -41,6 +41,7 @@ I grew up with Windows and have a special place in my heart for it. Its my go-to
 ![Windows Terminal](https://img.shields.io/badge/-Windows%20Terminal-000000?style=flat&logo=windows-terminal&logoColor=#4D4D4D)
 ![PowerShell](https://img.shields.io/badge/-PowerShell-000000?style=flat&logo=powershell&logoColor=#5391FE)
 ![Oh-My-Posh](https://img.shields.io/badge/-Oh--My--Posh-000000?style=flat&logo=oh-my-posh&logoColor=#5391FE)
+![Azure](https://img.shields.io/badge/-Azure-000000?style=flat&logo=microsoft-azure&logoColor=#0078D4)
 ![WSL](https://img.shields.io/badge/-WSL-000000?style=flat&logo=windows-subsystem-for-linux&logoColor=#FCC624)
 
 ## 🐧 Linux Enthusiast
