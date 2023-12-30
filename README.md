@@ -2,7 +2,7 @@
 
 # Oi, World! Im Aaron 👋
 
-![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=0e75b6&style=flat)
+![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=60598F&style=flat)
 
 Im a **Web Developer** who loves to bring ideas to life in the browser. I grew up in the 90's early 2000's and fell in love with the internet. Therefore I am excited about designing and developing websites and web applications that are **fast**, **responsive**, and **accessible** to everyone. Also, I kind of want to bring back the 90's web design aesthetic. I think it was cool. 😎
 
@@ -53,10 +53,3 @@ I love working with Linux and Im always exploring new things in the vast open-so
 ![Debian](https://img.shields.io/badge/-Debian-000000?style=flat&logo=debian&logoColor=#A81D33)
 ![Arch Linux](https://img.shields.io/badge/-Arch%20Linux-000000?style=flat&logo=arch-linux&logoColor=#1793D1)
 ![Kali Linux](https://img.shields.io/badge/-Kali%20Linux-000000?style=flat&logo=kali-linux&logoColor=#557C94)
-
-## 🔄 Version Control
-
-I use Git for version control - its simple, powerful, and widely used. I also use GitHub for hosting my projects and collaborating with others.
-
-![Git](https://img.shields.io/badge/-Git-000000?style=flat&logo=git&logoColor=#F05032)
-![GitHub](https://img.shields.io/badge/-GitHub-000000?style=flat&logo=github&logoColor=#181717)
