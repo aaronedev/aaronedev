@@ -44,13 +44,13 @@ Whenever I write documentation i try to follow keep in mind the following steps 
 ![Obsidian](https://img.shields.io/badge/-Obsidian-503D4D?style=flat&logo=obsidian&logoColor=#0078D6)
 ![Markdown](https://img.shields.io/badge/-Markdown-000000?style=flat&logo=markdown&logoColor=#000000)
 
-## <p align="center">⚙️ My development environment </p>
+### <p align="center">⚙️ My development environment </p>
 
-<div style="display: flex; justify-content: center; font-size: 12px;">
+<table style="font-size: 11px">
+<tr>
+<td valign="top" width="50%">
 
-<div style="flex: 1; padding: 10px;">
-
-### 🖥️ Windows Power User
+#### 🖥️ Windows Power User
   
 I grew up with Windows and have a special place in my heart for it. Its my go-to operating system for development. I enjoy using the Windows Subsystem for Linux (WSL) and the Windows Terminal. I also use <a href="https://docs.microsoft.com/en-us/powershell/" target="_blank">PowerShell</a> configured with <a href="https://ohmyposh.dev/" target="_blank">Oh-My-Posh</a> for my terminal.
   
@@ -59,11 +59,10 @@ I grew up with Windows and have a special place in my heart for it. Its my go-to
 ![Azure](https://img.shields.io/badge/-Azure-000000?style=flat&logo=microsoft-azure&logoColor=#0078D4)
 ![WSL](https://img.shields.io/badge/-WSL-000000?style=flat&logo=windows-subsystem-for-linux&logoColor=#FCC624)
 
-</div>
+</td>
+<td valign="top" width="50%">
 
-<div style="flex: 1; padding: 10px;">
-
-### 🐧 Linux Enthusiast
+#### 🐧 Linux Enthusiast
   
 I love working with Linux and Im always exploring new things in the vast open-source world.
   
@@ -73,6 +72,6 @@ I love working with Linux and Im always exploring new things in the vast open-so
 ![Arch Linux](https://img.shields.io/badge/-Arch%20Linux-000000?style=flat&logo=arch-linux&logoColor=#1793D1)
 ![Kali Linux](https://img.shields.io/badge/-Kali%20Linux-000000?style=flat&logo=kali-linux&logoColor=#557C94)
 
-</div>
-
-</div>
+</td>
+</tr>
+</table>
