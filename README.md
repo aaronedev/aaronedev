@@ -63,7 +63,7 @@ Whenever I write documentation i try to follow keep in mind the following steps 
   <tr>
   <td valign="top" width="50%">
   
-  #### 🖥️ Windows Power User
+#### 🖥️ Windows Power User
   
   ![Windows](https://img.shields.io/badge/-Windows-503D4D?style=flat&logo=windows&logoColor=#0078D6)
   ![PowerShell](https://img.shields.io/badge/-PowerShell-000000?style=flat&logo=powershell&logoColor=#5391FE)
@@ -73,7 +73,7 @@ Whenever I write documentation i try to follow keep in mind the following steps 
   </td>
   <td valign="top" width="50%">
   
-  #### 🐧 Linux Enthusiast
+#### 🐧 Linux Enthusiast
   
   I love working with Linux and Im always exploring new things in the vast open-source world.
   
