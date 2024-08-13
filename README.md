@@ -14,7 +14,9 @@ I'm a **Web Developer** who loves bringing ideas to life in the browser. I grew 
 - 💬 Got a question or just curious about something? Feel free to ask!
 
 <div class="badges-intro">
-
+<code><img width="10%" src="https://www.vectorlogo.zone/logos/python/python-ar21.svg"></code>
+<code><img width="10%" src="https://www.vectorlogo.zone/logos/linux/linux-ar21.svg"></code>
+<code><img width="10%" src="https://www.vectorlogo.zone/logos/github/github-ar21.svg"></code>
 </div>
 
 ## 🌟 Featured Projects
@@ -29,7 +31,6 @@ I'm a **Web Developer** who loves bringing ideas to life in the browser. I grew 
   <p align="center">
     <img src="https://github-readme-stats.vercel.app/api?username=aaronedev&theme=tokyonight&show_icons=true&hide_border=true&count_private=true" alt="aaronedev's Stats" height="165">
     <img src="https://github-readme-streak-stats.herokuapp.com/?user=aaronedev&theme=tokyonight&hide_border=true" alt="aaronedev's Streak" height="165">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=aaronedev&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages" height="165">
   </p>
 </div>
 
