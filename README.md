@@ -84,8 +84,3 @@ Whenever I write documentation, I try to keep the following steps in mind to ens
   </tr>
   </table>
 </div>
-
----
-
-### <p align="center">🔗 Find me on</p>
-onlyfans. lol joke, no, finde me on: github HAH! 🕺🪩
