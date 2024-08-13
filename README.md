@@ -41,6 +41,8 @@ Additionally, I'm currently diving into the world of DevOps, expanding my skill 
 
 Not many developers like to write documentation, but I do. I believe that a well-documented codebase is as important as the code itself. It’s like a story, telling what the code can do and how it works. I always try to write clear, concise, and useful documentation. My go-to documentation tool is <a href="https://obsidian.md/" target="_blank">Obsidian.md</a>.
 
+In addition to my love for documentation, *I'm currently working on a custom Obsidian theme* as part of my **Violet Void theme** series. This theme features rich, deep purple colors with transparency effects, providing a sleek and modern look. I'm already using it myself, and it looks dope! I plan to release this theme soon so others can enjoy it as well.
+
 Whenever I write documentation, I try to keep the following steps in mind to ensure the reader gets the most out of it:
 
 1. **What** is this documentation about?
