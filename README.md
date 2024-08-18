@@ -65,7 +65,7 @@ Whenever I write documentation, I try to keep the following steps in mind to ens
 
 #### 🖥️ Windows PowerUser
 
-Accelearting my workflow and productivity on Windows with the following tools and configurations:
+Accelerating my workflow and productivity on Windows with the following tools and configurations:
 
   ![Windows](https://img.shields.io/badge/-Windows-0078D6?style=flat&logo=windows&logoColor=white)
   ![PowerShell](https://img.shields.io/badge/-PowerShell-5391FE?style=flat&logo=powershell&logoColor=white)
