@@ -16,17 +16,15 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
 - 💬 Got a question or just curious about something? Feel free to ask!
 
 <div class="badges-intro">
-<code><img width="10%" src="https://www.vectorlogo.zone/logos/linux/linux-ar21.svg"></code>
-<code><img width="10%" src="https://www.vectorlogo.zone/logos/docker/docker-ar21.svg"></code>
-<code><img width="10%" src="https://www.vectorlogo.zone/logos/jenkins/jenkins-ar21.svg"></code>
-<code><img width="10%" src="https://www.vectorlogo.zone/logos/nginx/nginx-ar21.svg"></code>
+<code><img width="10%" src="https://www.vectorlogo.zone/logos/archlinux/archlinux-ar21.svg"></code>
+<code><img width="10%" src="https://www.vectorlogo.zone/logos/neovimio/neovimio-ar21.svg"></code>
 </div>
 
 ## 🌟 Featured Projects
-
-- **[Violet Void Theme](https://github.com/aaronedev/violet-void-theme)** 🟣: **Violet Void Theme** is a set of configuration files designed to give Windows an amazing visual overhaul with a sleek, violet-toned aesthetic. This theme applies consistent violet tones throughout the interface, providing a unique and cohesive look that enhances the user experience. In addition to the visual enhancements, I’ve also integrated several Linux-like functionalities into Windows, making the operating system more powerful and customizable for advanced users. Furthermore, I am working on custom glyphs to enhance the [Windows Terminal](https://github.com/microsoft/terminal) experience, making it more visually appealing and user-friendly.
-
-- I am working on a comprehensive **PowerShell profile** that integrates all my custom configurations into a powerful and cohesive setup. This profile is designed to streamline workflows and enhance productivity by leveraging the full potential of PowerShell, combined with my Violet Void Theme. Additionally, I am developing this profile to be fully featured and driven by Linux-like commands, bringing the familiarity and efficiency of Linux command-line tools to the Windows environment. Once finalized, I plan to publish this profile so that others can benefit from a fully optimized and visually appealing PowerShell environment.
+🌌 The Violet Void Journey
+- What started as a visual overhaul for Windows evolved into something much bigger. Originally, Violet Void was my attempt to bring a consistent, Linux-inspired environment to Windows – merging aesthetic polish with advanced PowerShell-driven workflows.
+- But during development, I increasingly hit technical walls that made further progress feel limiting. PowerShell was powerful, but the underlying OS kept getting in the way. That frustration turned into a decision: I made the switch to Arch Linux – and since then, I haven’t looked back.
+- While the original plan to release Violet Void for Windows has been retired, the core vision lives on. Many of the tools and ideas I built – like key remapping daemons, modular configuration layers, and UI theming – have made the transition to Linux. I’m now actively developing Violet Void for Hyprland, continuing to push for a deeply customizable and beautifully unified desktop experience.
 
 ## 📈 My GitHub stats
 
@@ -37,19 +35,8 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
   </p>
 </div>
 
-## 📃 I love documentation
-
-Not many developers like to write documentation, but I do. I believe that a well-documented codebase is as important as the code itself. It’s like a story, telling what the code can do and how it works. I always try to write clear, concise, and useful documentation. My go-to documentation tool is <a href="https://obsidian.md/" target="_blank">Obsidian.md</a>.
-
-In addition to my love for documentation, _I'm currently working on a custom Obsidian theme_ as part of my **Violet Void theme** series. This theme features rich, deep purple colors with transparency effects, providing a sleek and modern look. I'm already using it myself, and it looks dope! I plan to release this theme soon so others can enjoy it as well.
-
-Whenever I write documentation, I try to keep the following steps in mind to ensure the reader gets the most out of it:
-
-1. **What** is this documentation about?
-2. **Why** is this documentation important?
-3. **How** can the reader use this documentation?
-4. **When** should the reader use this documentation?
-5. **Who** is this documentation for?
+## 📝 Documentation with Neovim & Markdown
+I believe documentation should be as elegant as the code it describes. While I previously worked with Obsidian, I now write all my notes and docs in [Neovim](https://neovim.io/) using the [obsidian.nvim](https://github.com/obsidian-nvim/obsidian.nvim) plugin – still powered by clean, portable Markdown. It gives me a minimal yet powerful setup that's fully integrated into my workflow.
 
 ![Obsidian](https://img.shields.io/badge/-Obsidian-483699?style=flat&logo=obsidian&logoColor=white)
 ![Markdown](https://img.shields.io/badge/-Markdown-000000?style=flat&logo=markdown&logoColor=white)
