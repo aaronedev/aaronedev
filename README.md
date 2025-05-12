@@ -6,9 +6,9 @@
 
 <div class="github-introduction">
 
-I'm a **Web Developer** with a passion for bringing ideas to life in the browser. Growing up in the '90s and early 2000s, I fell in love with the internet, and that passion has driven me to design and develop websites and web applications that are **fast**, **responsive**, and **accessible** to everyone. I specialize in creating websites for clients with functionalities such as booking systems for apartments, hotels, restaurants, and more.
+I originally started out in web development, building fast and accessible applications with a focus on frontend usability. Over time, my interest expanded toward infrastructure and systems engineering, leading me to begin formal training as an IT Specialist for System Integration (Fachinformatiker für Systemintegration). Right now, I'm diving deep into network engineering, Linux system internals, and containerization technologies.
 
-Additionally, I'm currently diving into the world of DevOps, expanding my skill set to streamline development processes and improve deployment efficiency.
+Along the way, I discovered a strong preference for Podman over Docker – and I now consider myself a true Podman enthusiast, using it to build secure, rootless container environments tailored for real-world deployments.
 
 </div>
 
