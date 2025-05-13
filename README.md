@@ -16,8 +16,10 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
 - 💬 Got a question or just curious about something? Feel free to ask!
 
 <div class="badges-intro">
-<code><img width="10%" src="https://www.vectorlogo.zone/logos/archlinux/archlinux-ar21.svg"></code>
-<code><img width="10%" src="https://www.vectorlogo.zone/logos/neovimio/neovimio-ar21.svg"></code>
+<img src="https://www.vectorlogo.zone/logos/archlinux/archlinux-ar21.svg">
+<img src="https://www.vectorlogo.zone/logos/neovimio/neovimio-ar21.svg">
+<img src="https://www.vectorlogo.zone/logos/podmanio/podmanio-ar21.svg">
+<img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-ar21.svg">
 </div>
 
 ## 🌟 Featured Projects
