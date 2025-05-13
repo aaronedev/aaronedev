@@ -15,11 +15,11 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
 - 💼 Interested in working together? Reach out to me via <a href="mailto:code@aar.one">email.</a>
 - 💬 Got a question or just curious about something? Feel free to ask!
 
-<div class="badges-intro">
-<img src="https://www.vectorlogo.zone/logos/archlinux/archlinux-ar21.svg">
-<img src="https://www.vectorlogo.zone/logos/neovimio/neovimio-ar21.svg">
-<img src="https://www.vectorlogo.zone/logos/podmanio/podmanio-ar21.svg">
-<img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-ar21.svg">
+<div class="badges-intro" style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="https://www.vectorlogo.zone/logos/archlinux/archlinux-ar21.svg" width="120">
+  <img src="https://www.vectorlogo.zone/logos/neovimio/neovimio-ar21.svg" width="120">
+  <img src="https://www.vectorlogo.zone/logos/podmanio/podmanio-ar21.svg" width="120">
+  <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-official.svg" width="120">
 </div>
 
 ## 🌟 Featured Projects
@@ -47,42 +47,54 @@ I believe documentation should be as elegant as the code it describes. While I p
 
 ![Obsidian](https://img.shields.io/badge/-Obsidian-483699?style=flat&logo=obsidian&logoColor=white)
 ![Markdown](https://img.shields.io/badge/-Markdown-000000?style=flat&logo=markdown&logoColor=white)
+![Neovim](https://img.shields.io/badge/NeoVim-%2357A143?style=flat&logo=neovim&logoColor=white)
 
-### <p align="center">⚙️ My Development Environment </p>
+## 🚀 Current Focus
 
-> I started my journey with Windows and WSL, which introduced me to the incredible world of Linux. This gateway experience completely changed my perspective on computing, and I've since fallen in love with Arch Linux and Hyprland as my daily drivers. While Windows still holds a special place in my journey, the flexibility, control, and elegance of Arch has won me over for development and everyday use.
+- 🔭 I'm currently working on **enhancing my Hyprland configuration** (which is pretty massive already). I plan to release it soon.
+- ⚙️ Continously configuring my neovim setup, which is for now very minimalistic, but it just works.
+- 🌱 I'm learning **advanced network engineering concepts**, studying for my Ausbildung.
+- 🧪 Experimenting with **rootless container security patterns**.
 
-<div class="table-devenvironment">
-  <table style="font-size: 11px">
-  <tr>
-  <td valign="top" width="50%">
+## 🧰 My Tech Evolution
 
-#### 🏹 Arch Linux Enthusiast
-
-My current primary environment that I've fallen in love with:
-
-![Arch Linux](https://img.shields.io/badge/Arch%20Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white)
-![Hyprland](https://img.shields.io/badge/Hyprland-41a6b9?style=for-the-badge&logo=hyprland&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
-![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)
-![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-
-  </td>
-  <td valign="top" width="50%">
-
-#### 🪟 Windows Background
-
-My introduction to development and Linux through WSL:
-
-![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
-![WSL](https://img.shields.io/badge/WSL-0078D4?style=for-the-badge&logo=windows&logoColor=white)
-![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white)
-![VSCode](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
-![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
-![Debian](https://img.shields.io/badge/Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)
-
-  </td>
-  </tr>
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="https://img.shields.io/badge/Then-333333?style=flat&logoColor=white" alt="Then">
+      </td>
+      <td align="center">
+        <img src="https://img.shields.io/badge/Now-483699?style=flat&logoColor=white" alt="Now">
+      </td>
+      <td align="center">
+        <img src="https://img.shields.io/badge/Exploring-2B90D9?style=flat&logoColor=white" alt="Exploring">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <img src="https://img.shields.io/badge/Windows-0078D6?style=flat&logo=windows&logoColor=white" alt="Windows">
+          <img src="https://img.shields.io/badge/VS%20Code-007ACC?style=flat&logo=visual-studio-code&logoColor=white" alt="VS Code">
+          <img src="https://img.shields.io/badge/PowerShell-5391FE?style=flat&logo=powershell&logoColor=white" alt="PowerShell">
+          <img src="https://img.shields.io/badge/WSL-0078D4?style=flat&logo=windows&logoColor=white" alt="WSL">
+        </div>
+      </td>
+      <td>
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <img src="https://img.shields.io/badge/Arch%20Linux-1793D1?style=flat&logo=arch-linux&logoColor=white" alt="Arch Linux">
+          <img src="https://img.shields.io/badge/Hyprland-41a6b9?style=flat&logo=hyprland&logoColor=white" alt="Hyprland">
+          <img src="https://img.shields.io/badge/NeoVim-%2357A143?style=flat&logo=neovim&logoColor=white" alt="Neovim">
+          <img src="https://img.shields.io/badge/Podman-892CA0?style=flat&logo=podman&logoColor=white" alt="Podman">
+        </div>
+      </td>
+      <td>
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <img src="https://img.shields.io/badge/NixOS-5277C3?style=flat&logo=nixos&logoColor=white" alt="NixOS">
+          <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=kubernetes&logoColor=white" alt="Kubernetes">
+          <img src="https://img.shields.io/badge/Rust-000000?style=flat&logo=rust&logoColor=white" alt="Rust">
+        </div>
+      </td>
+    </tr>
   </table>
 </div>
