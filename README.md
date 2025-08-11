@@ -12,7 +12,7 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
 
 </div>
 
-- 💼 Interested in working together? Reach out to me via <a href="mailto:code@aar.one">email.</a>
+- 💼 Interested in working together? Reach out to me!
 - 💬 Got a question or just curious about something? Feel free to ask!
 
 <div class="badges-intro" style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
