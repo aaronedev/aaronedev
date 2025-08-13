@@ -13,8 +13,7 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
 </div>
 
 - 💼 Interested in working together? Reach out to me!
-- 💬 Got a question or just curious about something? Feel free to ask!
-
+- 💬 Got a question or just curious about something? Feel free to ask! HMU on <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">matrix</a>.
 <div class="badges-intro" style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="https://www.vectorlogo.zone/logos/archlinux/archlinux-ar21.svg" width="120">
   <img src="https://www.vectorlogo.zone/logos/neovimio/neovimio-ar21.svg" width="120">
@@ -24,13 +23,19 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
 
 ## 🌟 Featured Projects
 
-### 🌌 The Violet Void Journey
+### 🌌 Violet Void: Complete Desktop Environment
 
-Repo [here](https://github.com/aaronedev/violet-void-theme) and soon to be update to fit new Hyprland features etc.
+**Current Status**: Active development for <a href="https://hyprland.org" target="_blank">Hyprland</a> | <a href="https://github.com/aaronedev/violet-void-theme" target="_blank">violet-void-theme</a>
 
-- What started as a visual overhaul for Windows evolved into something much bigger. Originally, Violet Void was my attempt to bring a consistent, Linux-inspired environment to Windows – merging aesthetic polish with advanced PowerShell-driven workflows.
-- But during development, I increasingly hit technical walls that made further progress feel limiting. PowerShell was powerful, but the underlying OS kept getting in the way. That frustration turned into a decision: I made the switch to Arch Linux – and since then, I haven’t looked back.
-- While the original plan to release Violet Void for Windows has been retired, the core vision lives on. Many of the tools and ideas I built – like key remapping daemons, modular configuration layers, and UI theming – have made the transition to Linux. I’m now actively developing Violet Void for Hyprland, continuing to push for a deeply customizable and beautifully unified desktop experience.
+What started as Windows theming evolved into a full Linux desktop environment. The current Hyprland implementation includes:
+
+**Core Infrastructure:**
+
+- **Modular Hyprland Configuration**: 2000+ lines across 60+ applications with dynamic workspace management
+- **Automated Theme System**: Consistent color schemes across terminals, editors, browsers, and system applications
+- **Custom Scripts & Automation**: 15+ utility scripts for window management, media control, and system monitoring
+
+The project demonstrates end-to-end Linux desktop engineering - from low-level system configuration to application theming and workflow automation. Each component is designed for modularity and can be deployed independently or as part of the complete environment.
 
 ## 📈 My GitHub stats
 
