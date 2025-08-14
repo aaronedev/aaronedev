@@ -19,6 +19,7 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
   <img src="https://www.vectorlogo.zone/logos/neovimio/neovimio-ar21.svg" width="120">
   <img src="https://www.vectorlogo.zone/logos/podmanio/podmanio-ar21.svg" width="120">
   <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-official.svg" width="120">
+  <img src="./assets/logos/hyprland.svg" width="120">
 </div>
 
 ## 🌟 Featured Projects
