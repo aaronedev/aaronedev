@@ -28,6 +28,7 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
   <img src="./assets/logos/yml_dark.svg" width="120">
   <img src="./assets/logos/vue_dark.svg" width="120">
 </div>
+
 ## 🌟 Featured Projects
 
 ### 🌌 Violet Void: Complete Desktop Environment
