@@ -18,7 +18,7 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
 <div class="badges-intro" style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="https://www.vectorlogo.zone/logos/archlinux/archlinux-ar21.svg" width="120">
   <img src="https://www.vectorlogo.zone/logos/neovimio/neovimio-ar21.svg" width="120">
-  <img src="https://www.vectorlogo.zone/logos/podmanio/podmanio-ar21.svg" width="120">
+  <img src="./assets/logos/podmanio-official.svg"width="120">
   <img src="./assets/logos/hyprland.svg" width="120">
 </div>
 <div class="badges-intro" style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
