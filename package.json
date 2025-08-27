@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@uiw/react-markdown-preview": "^5.1.5"
+  }
+}
