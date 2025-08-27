@@ -23,6 +23,7 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
 </div>
 <div class="badges-intro" style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
 
+  <h2>all time favorites</h2>
   <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-official.svg" width="120">
   <img src="./assets/logos/lua_dark.svg" width="120">
   <img src="./assets/logos/yml_dark.svg" width="120">
