@@ -24,6 +24,7 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
   <img src="./assets/logos/yml_dark.svg" width="69">
   <img src="./assets/logos/vue_dark.svg" width="69">
   <img src="./assets/logos/podmanio-official.svg" width="69">
+  <img src="./assets/logos/matrix_black.svg" width="69">
 </div>
 
 ## 🌟 Featured Projects
