@@ -3,6 +3,7 @@
 # Oi, World! I'm Aaron 👋
 
 ![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=60598F&style=flat)
+[![wakatime](https://wakatime.com/badge/user/018cc02c-e893-42e6-b1c7-48cb3ef3ccfe.svg)](https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe)
 
 <div class="github-introduction">
 
