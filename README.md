@@ -1,4 +1,4 @@
-[![Header](./banner.png)](https://aar.one)
+[![Header](./violet-void-theme_welcome.png)](https://aar.one)
 
 # Oi, World! I'm Aaron 👋
 
