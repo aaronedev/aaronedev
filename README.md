@@ -24,6 +24,7 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
   <img src="./assets/logos/lua_dark.svg" width="69">
   <img src="./assets/logos/yml_dark.svg" width="69">
   <img src="./assets/logos/vue_dark.svg" width="69">
+  <img src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg" width="69">
   <img src="./assets/logos/podmanio-official.svg" width="69">
 </div>
 
@@ -34,7 +35,6 @@ Along the way, I discovered a strong preference for Podman over Docker – and I
 **Current Status**: Active development for <a href="https://hyprland.org" target="_blank">Hyprland</a> | <a href="https://github.com/aaronedev/violet-void-theme" target="_blank">violet-void-theme</a>
 
 What started as Windows theming evolved into a full Linux desktop environment. The current Hyprland implementation includes:
-
 **Core Infrastructure:**
 
 - **Modular Hyprland Configuration**: 2000+ lines across 60+ applications with dynamic workspace management
@@ -42,6 +42,15 @@ What started as Windows theming evolved into a full Linux desktop environment. T
 - **Custom Scripts & Automation**: 15+ utility scripts for window management, media control, and system monitoring
 
 The project demonstrates end-to-end Linux desktop engineering - from low-level system configuration to application theming and workflow automation. Each component is designed for modularity and can be deployed independently or as part of the complete environment.
+
+#### 🎨 violet-void Neovim Theme
+
+For neovim i crafted a high-contrast Neovim colorscheme with vibrant neon accents on a near-black background. It's designed for comfortable long coding sessions with excellent syntax highlighting.
+
+**Key Characteristics:**
+
+- **Ultra-dark base**: Deep black background (#0f0f0f) with subtle variations for UI elements
+- **Neon accent palette**: Bright, saturated colors including electric blues, vivid greens, hot pinks, and vibrant purples
 
 ## 📈 My GitHub stats
 
