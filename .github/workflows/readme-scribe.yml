@@ -17,12 +17,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-      with: {fetch-depth: 0}
+      with:
+        fetch-depth: 0
 
-    - name: Debug rate limit
-      run: |
-        test -n "$GITHUB_TOKEN" || { echo "GITHUB_TOKEN is EMPTY"; exit 1; }
-        curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/rate_limit | jq '.resources.core'
+    - name: Debug token
+      run: echo -n "$GITHUB_TOKEN" | wc -c
 
     - name: Render README with markscribe
       uses: muesli/readme-scribe@v1.6.0 # pin a release
