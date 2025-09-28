@@ -1,120 +1,103 @@
-[![Header](./assets/aaronedev.png)](https://github.com/aaronedev)
+[![Header: aaronedev](./assets/aaronedev.png "Header image for aaronedev")](https://github.com/aaronedev)
 
-# Oi, World! I'm Aaron 👋
-
+# Oi, World! I'm Aaron
 ![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=60598F&style=flat)
 [![wakatime](https://wakatime.com/badge/user/018cc02c-e893-42e6-b1c7-48cb3ef3ccfe.svg)](https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe)
 
-<div class="github-introduction">
 
-I originally started out in web development, building fast and accessible applications with a focus on frontend usability. Over time, my interest expanded toward infrastructure and systems engineering, leading me to begin formal training as an IT Specialist for System Integration (Fachinformatiker für Systemintegration). Right now, I'm diving deep into network engineering, Linux system internals, and containerization technologies.
 
-Along the way, I discovered a strong preference for Podman over Docker – and I now consider myself a true Podman enthusiast, using it to build secure, rootless container environments tailored for real-world deployments.
+![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
+![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
+![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b)
+![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
+![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b)
 
-</div>
+> Linux desktop engineering • rootless containers • Hyprland workflows
 
-- 💼 Interested in working together? Reach out to me!
-- 💬 Got a question or just curious about something? Feel free to ask! HMU on <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">matrix</a>.
+## What I do now
+- Build secure, rootless **Podman** dev setups
+- Engineer **Hyprland** desktop workflows and theming
+- Linux infra and network fundamentals for real deployments
 
-<div class="badges-intro" style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./assets/logos/arch_dark.svg" width="69">
-  <img src="./assets/logos/neovim_dark.svg" width="69">
-  <img src="./assets/logos/hyprland.svg" width="69">
-  <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-official.svg" width="69">
-  <img src="./assets/logos/lua_dark.svg" width="69">
-  <img src="./assets/logos/yml_dark.svg" width="69">
-  <img src="./assets/logos/vue_dark.svg" width="69">
-  <img src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg" width="69">
-  <img src="./assets/logos/podmanio-official.svg" width="69">
-</div>
+## I can help with
+- Hardening dev containers and CI that runs **without Docker**
+- Modular **Hyprland** configs, rules, and automation
+- **Neovim** UX: colors, LSP, performance
 
-## 🌟 Featured Projects
+---
 
-### 🌌 Violet Void: Complete Desktop Environment
+## 🌟 Featured projects
 
-**Current Status**: Active development for <a href="https://hyprland.org" target="_blank">Hyprland</a> | <a href="https://github.com/aaronedev/violet-void-theme" target="_blank">violet-void-theme</a>
+- 🎨 **Violet Void** — unified theme + Hyprland desktop
+  <https://github.com/aaronedev/violet-void-theme>
+- 🧰 **Neovim config** — high-contrast, neon-accented, long-session friendly
+  <https://github.com/aaronedev/nvim>
+- 📦 **Podman dev templates** — secure, rootless containers for day-to-day dev
+  <https://github.com/aaronedev/podman-dev-templates>
+- 🧪 **terminaltexteffects** — TTY visual effects for CLIs
+  <https://github.com/aaronedev/terminaltexteffects>
+- 🔖 **zen-floating-bookmarks** — lightweight bookmarking UX
+  <https://github.com/aaronedev/zen-floating-bookmarks>
 
-What started as Windows theming evolved into a full Linux desktop environment. The current Hyprland implementation includes:
-**Core Infrastructure:**
+---
 
-- **Modular Hyprland Configuration**: 2000+ lines across 60+ applications with dynamic workspace management
-- **Automated Theme System**: Consistent color schemes across terminals, editors, browsers, and system applications
-- **Custom Scripts & Automation**: 15+ utility scripts for window management, media control, and system monitoring
+## 📝 Docs workflow
+All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidian.nvim) on plain Markdown.
 
-The project demonstrates end-to-end Linux desktop engineering - from low-level system configuration to application theming and workflow automation. Each component is designed for modularity and can be deployed independently or as part of the complete environment.
+---
 
-#### 🎨 violet-void Neovim Theme
+## 📬 Contact
+Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
 
-For neovim i crafted a high-contrast Neovim colorscheme with vibrant neon accents on a near-black background. It's designed for comfortable long coding sessions with excellent syntax highlighting.
+---
 
-**Key Characteristics:**
+## 📈 Recent activity
+<details>
+<summary><strong>Recent repositories</strong></summary>
 
-- **Ultra-dark base**: Deep black background (#0f0f0f) with subtle variations for UI elements
-- **Neon accent palette**: Bright, saturated colors including electric blues, vivid greens, hot pinks, and vibrant purples
 
-## 📈 My GitHub stats
+- 🚀 [aaronedev/zen-container-colors](https://github.com/aaronedev/zen-container-colors) — ⭐ 1
+- 🚀 [aaronedev/zen-floating-bookmarks](https://github.com/aaronedev/zen-floating-bookmarks) — ⭐ 2 — zen-browser mod floating bookmarks 
+- 🚀 [aaronedev/nerdfont-icon-rofi-picker](https://github.com/aaronedev/nerdfont-icon-rofi-picker) — ⭐ 2 — A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.
+- 🚀 [aaronedev/violet-void-theme_telegram](https://github.com/aaronedev/violet-void-theme_telegram) — ⭐ 1 — telgram violet-void-theme
+- 🚀 [aaronedev/nvim](https://github.com/aaronedev/nvim) — ⭐ 1
+- 🚀 [aaronedev/violet-void-theme_archwiki](https://github.com/aaronedev/violet-void-theme_archwiki) — ⭐ 2 — Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥
 
-<div class="badges-githubstats">
-  <p align="center">
-    <img src="https://github-readme-stats.vercel.app/api?username=aaronedev&theme=aura&show_icons=true&hide_border=true&count_private=true" alt="aaronedev's Stats" height="165">
-    <img src="https://github-readme-streak-stats.herokuapp.com/?user=aaronedev&theme=aura&hide_border=true" alt="aaronedev's Streak" height="165">
-  </p>
-</div>
+</details>
 
-## 📝 Documentation with Neovim & Markdown
+<details>
+<summary><strong>Recent stars</strong></summary>
 
-I believe documentation should be as elegant as the code it describes. While I previously worked with Obsidian, I now write all my notes and docs in [Neovim](https://neovim.io/) using the [obsidian.nvim](https://github.com/obsidian-nvim/obsidian.nvim) plugin – still powered by clean, portable Markdown. It gives me a minimal yet powerful setup that's fully integrated into my workflow.
 
-![Obsidian](https://img.shields.io/badge/-Obsidian-483699?style=flat&logo=obsidian&logoColor=white)
-![Markdown](https://img.shields.io/badge/-Markdown-000000?style=flat&logo=markdown&logoColor=white)
-![Neovim](https://img.shields.io/badge/NeoVim-%2357A143?style=flat&logo=neovim&logoColor=white)
+- ⭐ [blueyed/smarty.vim](https://github.com/blueyed/smarty.vim) — Smarty syntax file and ftplugin for Vim
+- ⭐ [go-sprout/sprout](https://github.com/go-sprout/sprout) — From sprig to sprout - Useful template functions for Go templates with steroids
+- ⭐ [Masterminds/sprig](https://github.com/Masterminds/sprig) — Useful template functions for Go templates.
+- ⭐ [numtide/treefmt](https://github.com/numtide/treefmt) — the formatter multiplexer [maintainers=@zimbatm,@brianmcgee]
+- ⭐ [ascii-boxes/boxes](https://github.com/ascii-boxes/boxes) — Command line ASCII boxes unlimited!
+- ⭐ [jkoelker/claude-desktop-native](https://github.com/jkoelker/claude-desktop-native) — Upstream repo for the claude-desktop-native AUR package.
 
-## 🚀 Current Focus
+</details>
 
-- 🔭 I'm currently working on **enhancing my Hyprland configuration** (which is pretty massive already). I plan to release it soon.
-- ⚙️ Continously configuring my neovim setup, which is for now very minimalistic, but it just works.
-- 🌱 I'm learning **advanced network engineering concepts**, studying for my Ausbildung.
-- 🧪 Experimenting with **rootless container security patterns**.
+<details>
+<summary><strong>Recent pull requests</strong></summary>
 
-## 🧰 My Tech Evolution
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="https://img.shields.io/badge/Then-333333?style=flat&logoColor=white" alt="Then">
-      </td>
-      <td align="center">
-        <img src="https://img.shields.io/badge/Now-483699?style=flat&logoColor=white" alt="Now">
-      </td>
-      <td align="center">
-        <img src="https://img.shields.io/badge/Exploring-2B90D9?style=flat&logoColor=white" alt="Exploring">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div style="display: flex; flex-direction: column; gap: 5px;">
-          <img src="https://img.shields.io/badge/Windows-0078D6?style=flat&logo=windows&logoColor=white" alt="Windows">
-          <img src="https://img.shields.io/badge/VS%20Code-007ACC?style=flat&logo=visual-studio-code&logoColor=white" alt="VS Code">
-          <img src="https://img.shields.io/badge/PowerShell-5391FE?style=flat&logo=powershell&logoColor=white" alt="PowerShell">
-          <img src="https://img.shields.io/badge/WSL-0078D4?style=flat&logo=windows&logoColor=white" alt="WSL">
-        </div>
-      </td>
-      <td>
-        <div style="display: flex; flex-direction: column; gap: 5px;">
-          <img src="https://img.shields.io/badge/Arch%20Linux-1793D1?style=flat&logo=arch-linux&logoColor=white" alt="Arch Linux">
-          <img src="https://img.shields.io/badge/Hyprland-41a6b9?style=flat&logo=hyprland&logoColor=white" alt="Hyprland">
-          <img src="https://img.shields.io/badge/NeoVim-%2357A143?style=flat&logo=neovim&logoColor=white" alt="Neovim">
-          <img src="https://img.shields.io/badge/Podman-892CA0?style=flat&logo=podman&logoColor=white" alt="Podman">
-        </div>
-      </td>
-      <td>
-        <div style="display: flex; flex-direction: column; gap: 5px;">
-          <img src="https://img.shields.io/badge/NixOS-5277C3?style=flat&logo=nixos&logoColor=white" alt="NixOS">
-          <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=kubernetes&logoColor=white" alt="Kubernetes">
-          <img src="https://img.shields.io/badge/Rust-000000?style=flat&logo=rust&logoColor=white" alt="Rust">
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>
+- 🔨 [🐛 fix: config version fixed from 1.1.14 to 1.1.16](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/129) on [hyprland-community/hyprland-autoname-workspaces](https://github.com/hyprland-community/hyprland-autoname-workspaces) — 2 months ago
+- 🔨 [New version: Google.Chrome.Dev version 122.0.6226.2](https://github.com/microsoft/winget-pkgs/pull/133318) on [microsoft/winget-pkgs](https://github.com/microsoft/winget-pkgs) — 2 years ago
+
+</details>
+
+<details>
+<summary><strong>Recent gists</strong></summary>
+
+
+- 📓 [TerminalTextEffects (TTE) previewer script with adjustable options to cycle through all available options](https://gist.github.com/436ac07ad03c38a3164e3a494788a695) — 1 week ago
+- 📓 [](https://gist.github.com/385db160854bc3b74e81351cfc2b9696) — 1 week ago
+- 📓 [root bashrc_profile](https://gist.github.com/a0f9ca097eb50047aecc0605fdce947e) — 3 weeks ago
+- 📓 [root bashrc](https://gist.github.com/caef63daf02c3e7ddbed9ff149971238) — 3 weeks ago
+- 📓 [automatically source venv using direnv](https://gist.github.com/b443984e78b0329bc07e607065cf8add) — 3 weeks ago
+- 📓 [post-commit hook to push to all other remotes defined like codeberg or gitlab for example](https://gist.github.com/aadc30adad46f4f16163dd09b53303e4) — 3 weeks ago
+
+</details>
+
+---
