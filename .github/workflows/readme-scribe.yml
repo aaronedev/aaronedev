@@ -1,0 +1,28 @@
+---
+name: Update README
+on:
+  push:
+    branches: [main]
+  schedule:
+  - cron: "0 */6 * * *" # every 6 hours
+  workflow_dispatch: # allow manual trigger
+
+jobs:
+  markscribe:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - uses: muesli/readme-scribe@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.PROFILE_WORKFLOW }}
+      with:
+        template: templates/README.md.tpl
+        writeTo: README.md
+
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: Update generated README
+        branch: main
