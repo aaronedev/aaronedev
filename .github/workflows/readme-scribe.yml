@@ -1,48 +1,50 @@
 ---
 name: Profile README
-
 on:
   workflow_dispatch:
   schedule:
-  - cron: '0 */6 * * *' # adjust
+  - cron: '0 */6 * * *'
 
 permissions:
   contents: write
 
 jobs:
-  markscribe:
+  profile:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Render README with markscribe
       uses: muesli/readme-scribe@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ github.token }}
       with:
         template: README.md.tpl
         writeTo: README.md
+      continue-on-error: true
 
     - name: Commit markscribe changes
+      if: always()
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_message: "chore(readme): update from markscribe"
 
     - name: Update WakaTime section
+      if: always()
       uses: anmol098/waka-readme-stats@master
       with:
         WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SHOW_UPDATED_DATE: "True"
-        COMMIT_BY: "github-actions[bot]"
-        # optional toggles:
-        SHOW_PROFILE_VIEWS: "False"
+        GH_TOKEN: ${{ github.token }}
+        # optional toggles
+        SHOW_PROJECTS: "False"
         SHOW_SHORT_INFO: "False"
 
     - name: Commit WakaTime changes
+      if: always()
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_message: "chore(readme): update WakaTime stats"
