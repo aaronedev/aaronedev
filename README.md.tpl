@@ -9,37 +9,39 @@
     style="filter: hue-rotate(90deg);" />
 </a>
 
-<!-- Consistent Violet-Void palette on shields -->
+<!-- shields -->
 ![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
 ![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
 ![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b)
 ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
 ![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b)
 
-> Linux desktop engineering • rootless containers • Hyprland workflows
+> Linux desktop engineering • rootless containers • Hyprland workflows •
+> Neovim configs & Themes
 
 ## What I do now
 - Build secure, rootless **Podman** dev setups
 - Engineer **Hyprland** desktop workflows and theming
-- Linux infra and network fundamentals for real deployments
+- Ship **python-utility** apps: offline TTS tools powered by **Piper**
+  - Example: clipboard-reader aka [read-that](https://github.com/aaronedev/read-that) 📢
+ that auto-detects **EN/DE**, switches voices, and takes flags for speed, pitch, and voice
+- Bash scripting: small, composable CLI tools
+- Linux and network fundamentals for real deployments
 
 ## I can help with
-- Hardening dev containers and CI that runs **without Docker**
+- Bash Scripting and automation
+- Hardening dev containers and CI without Docker
 - Modular **Hyprland** configs, rules, and automation
 - **Neovim** UX: colors, LSP, performance
+- Offline TTS pipelines with **Piper** and clean CLI ergonomics
 
 ---
 
 ## 🌟 Featured projects
-<!-- Pin these 4–6 repos in your profile as well -->
-- 🎨 **Violet Void** — unified theme + Hyprland desktop
-  <https://github.com/aaronedev/violet-void-theme>
-- 🧰 **Neovim config** — high-contrast, neon-accented, long-session friendly
-  <https://github.com/aaronedev/nvim>
-- 📦 **Podman dev templates** — secure, rootless containers for day-to-day dev
-  <https://github.com/aaronedev/podman-dev-templates>
-- 🧪 **terminaltexteffects** — TTY visual effects for CLIs
-  <https://github.com/aaronedev/terminaltexteffects>
+- 🎨 **Violet Void ArchWiki**
+- <https://github.com/aaronedev/violet-void-theme_archwiki>
+- 🎨 **Violet Void Copyq**
+- <https://github.com/aaronedev/violet-void-theme_copyq>
 - 🔖 **zen-floating-bookmarks** — lightweight bookmarking UX
   <https://github.com/aaronedev/zen-floating-bookmarks>
 
