@@ -11,17 +11,21 @@ permissions:
 jobs:
   profile:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{ github.token }}
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+    - uses: actions/checkout@v4
+      with: {fetch-depth: 0}
+
+    - name: Debug rate limit
+      run: |
+        test -n "$GITHUB_TOKEN" || { echo "GITHUB_TOKEN is EMPTY"; exit 1; }
+        curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/rate_limit | jq '.resources.core'
 
     - name: Render README with markscribe
-      uses: muesli/readme-scribe@master
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+      uses: muesli/readme-scribe@v1.6.0 # pin a release
       with:
         template: README.md.tpl
         writeTo: README.md
@@ -39,9 +43,6 @@ jobs:
       with:
         WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
         GH_TOKEN: ${{ github.token }}
-        # optional toggles
-        SHOW_PROJECTS: "False"
-        SHOW_SHORT_INFO: "False"
 
     - name: Commit WakaTime changes
       if: always()
