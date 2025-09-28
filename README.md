@@ -1,9 +1,13 @@
 [![Header: aaronedev](./assets/aaronedev.png "Header image for aaronedev")](https://github.com/aaronedev)
 
 # Oi, World! I'm Aaron
-![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=60598F&style=flat)
-[![wakatime](https://wakatime.com/badge/user/018cc02c-e893-42e6-b1c7-48cb3ef3ccfe.svg)](https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe)
-
+![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=7745bf&)
+<a href="https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe">
+  <img
+    src="https://wakatime.com/badge/user/018cc02c-e893-42e6-b1c7-48cb3ef3ccfe.svg?style=flat"
+    alt="Total time coded since Dec 31 2023"
+    style="filter: hue-rotate(90deg);" />
+</a>
 
 
 ![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
@@ -69,12 +73,12 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 <summary><strong>Recent stars</strong></summary>
 
 
+- ⭐ [charmbracelet/readme-scribe](https://github.com/charmbracelet/readme-scribe) — A GitHub Action that automatically generates &amp; updates markdown content (like your README.md)
+- ⭐ [hyprwm/hyprtoolkit](https://github.com/hyprwm/hyprtoolkit) — A modern C&#43;&#43; Wayland-native GUI toolkit
+- ⭐ [hyprwm/hyprpwcenter](https://github.com/hyprwm/hyprpwcenter) — A GUI Pipewire control center
 - ⭐ [blueyed/smarty.vim](https://github.com/blueyed/smarty.vim) — Smarty syntax file and ftplugin for Vim
 - ⭐ [go-sprout/sprout](https://github.com/go-sprout/sprout) — From sprig to sprout - Useful template functions for Go templates with steroids
 - ⭐ [Masterminds/sprig](https://github.com/Masterminds/sprig) — Useful template functions for Go templates.
-- ⭐ [numtide/treefmt](https://github.com/numtide/treefmt) — the formatter multiplexer [maintainers=@zimbatm,@brianmcgee]
-- ⭐ [ascii-boxes/boxes](https://github.com/ascii-boxes/boxes) — Command line ASCII boxes unlimited!
-- ⭐ [jkoelker/claude-desktop-native](https://github.com/jkoelker/claude-desktop-native) — Upstream repo for the claude-desktop-native AUR package.
 
 </details>
 
