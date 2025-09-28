@@ -55,6 +55,13 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 
 ---
 
+## 📊 Coding Stats
+
+
+
+
+---
+
 ## 📈 Recent activity
 <details>
 <summary><strong>Recent repositories</strong></summary>
@@ -73,12 +80,12 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 <summary><strong>Recent stars</strong></summary>
 
 
+- ⭐ [anmol098/waka-readme-stats](https://github.com/anmol098/waka-readme-stats) — This GitHub action helps to add cool dev metrics to your github profile Readme
 - ⭐ [charmbracelet/readme-scribe](https://github.com/charmbracelet/readme-scribe) — A GitHub Action that automatically generates &amp; updates markdown content (like your README.md)
 - ⭐ [hyprwm/hyprtoolkit](https://github.com/hyprwm/hyprtoolkit) — A modern C&#43;&#43; Wayland-native GUI toolkit
 - ⭐ [hyprwm/hyprpwcenter](https://github.com/hyprwm/hyprpwcenter) — A GUI Pipewire control center
 - ⭐ [blueyed/smarty.vim](https://github.com/blueyed/smarty.vim) — Smarty syntax file and ftplugin for Vim
 - ⭐ [go-sprout/sprout](https://github.com/go-sprout/sprout) — From sprig to sprout - Useful template functions for Go templates with steroids
-- ⭐ [Masterminds/sprig](https://github.com/Masterminds/sprig) — Useful template functions for Go templates.
 
 </details>
 
