@@ -60,62 +60,9 @@ All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidia
 Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
 
 ---
-
-<details>
-  <summary>## 📊 Coding Stats</summary>
-  <!--START_SECTION:waka-->
-  <!--END_SECTION:waka-->
-</details>
-
----
-
-## 📈 Recent activity
-<details>
-<summary><strong>Recent repositories</strong></summary>
+<h2> Coding Stats </h2>
+<div>
 
 
-- 🚀 [aaronedev/zen-container-colors](https://github.com/aaronedev/zen-container-colors) — ⭐ 1
-- 🚀 [aaronedev/zen-floating-bookmarks](https://github.com/aaronedev/zen-floating-bookmarks) — ⭐ 2 — zen-browser mod floating bookmarks 
-- 🚀 [aaronedev/nerdfont-icon-rofi-picker](https://github.com/aaronedev/nerdfont-icon-rofi-picker) — ⭐ 2 — A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.
-- 🚀 [aaronedev/violet-void-theme_telegram](https://github.com/aaronedev/violet-void-theme_telegram) — ⭐ 1 — telgram violet-void-theme
-- 🚀 [aaronedev/nvim](https://github.com/aaronedev/nvim) — ⭐ 1
-- 🚀 [aaronedev/violet-void-theme_archwiki](https://github.com/aaronedev/violet-void-theme_archwiki) — ⭐ 2 — Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥
+</div>
 
-</details>
-
-<details>
-<summary><strong>Recent stars</strong></summary>
-
-
-- ⭐ [athul/waka-readme](https://github.com/athul/waka-readme) — Wakatime Weekly Metrics on your Profile Readme. 
-- ⭐ [anmol098/waka-readme-stats](https://github.com/anmol098/waka-readme-stats) — This GitHub action helps to add cool dev metrics to your github profile Readme
-- ⭐ [charmbracelet/readme-scribe](https://github.com/charmbracelet/readme-scribe) — A GitHub Action that automatically generates &amp; updates markdown content (like your README.md)
-- ⭐ [hyprwm/hyprtoolkit](https://github.com/hyprwm/hyprtoolkit) — A modern C&#43;&#43; Wayland-native GUI toolkit
-- ⭐ [hyprwm/hyprpwcenter](https://github.com/hyprwm/hyprpwcenter) — A GUI Pipewire control center
-- ⭐ [blueyed/smarty.vim](https://github.com/blueyed/smarty.vim) — Smarty syntax file and ftplugin for Vim
-
-</details>
-
-<details>
-<summary><strong>Recent pull requests</strong></summary>
-
-
-- 🔨 [🐛 fix: config version fixed from 1.1.14 to 1.1.16](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/129) on [hyprland-community/hyprland-autoname-workspaces](https://github.com/hyprland-community/hyprland-autoname-workspaces) — 3 months ago
-- 🔨 [New version: Google.Chrome.Dev version 122.0.6226.2](https://github.com/microsoft/winget-pkgs/pull/133318) on [microsoft/winget-pkgs](https://github.com/microsoft/winget-pkgs) — 2 years ago
-
-</details>
-
-<details>
-<summary><strong>Recent gists</strong></summary>
-
-
-- 📓 [TerminalTextEffects (TTE) previewer script with adjustable options to cycle through all available options](https://gist.github.com/436ac07ad03c38a3164e3a494788a695) — 1 week ago
-- 📓 [](https://gist.github.com/385db160854bc3b74e81351cfc2b9696) — 1 week ago
-- 📓 [root bashrc_profile](https://gist.github.com/a0f9ca097eb50047aecc0605fdce947e) — 3 weeks ago
-- 📓 [root bashrc](https://gist.github.com/caef63daf02c3e7ddbed9ff149971238) — 3 weeks ago
-- 📓 [automatically source venv using direnv](https://gist.github.com/b443984e78b0329bc07e607065cf8add) — 3 weeks ago
-- 📓 [post-commit hook to push to all other remotes defined like codeberg or gitlab for example](https://gist.github.com/aadc30adad46f4f16163dd09b53303e4) — 3 weeks ago
-
-</details>
-
----
