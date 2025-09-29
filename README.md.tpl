@@ -1,6 +1,8 @@
 [![Header: aaronedev](./assets/aaronedev.png "Header image for aaronedev")](https://github.com/aaronedev)
 
 # Oi, World! I'm Aaron
+
+<!-- badges -->
 ![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=7745bf&)
 <a href="https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe">
   <img
@@ -8,7 +10,9 @@
     alt="Total time coded since Dec 31 2023"
     style="filter: hue-rotate(90deg);" />
 </a>
+<!-- waka-readme.yaml workflow status -->
 [![Waka Readme](https://github.com/aaronedev/aaronedev/actions/workflows/waka-readme.yaml/badge.svg)](https://github.com/aaronedev/aaronedev/actions/workflows/waka-readme.yaml)
+
 <!-- shields -->
 ![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
 ![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
