@@ -22,23 +22,14 @@ jobs:
         writeTo: README.md
 
     - name: Restore WakaTime placeholder
-      run: |
-        if grep -q '<!--START_SECTION:waka-->' README.md && grep -q '<!--END_SECTION:waka-->' README.md; then
-          exit 0
-        fi
-        if ! grep -q '### 󱙫 WakaTime stats 󱙫' README.md; then
-          echo 'WakaTime header missing; update the template or README to include it.' >&2
-          exit 1
-        fi
-        perl -0pi -e 's/### 󱙫 WakaTime stats 󱙫\n+/### 󱙫 WakaTime stats 󱙫\n<!--START_SECTION:waka-->\n<!--END_SECTION:waka-->\n\n/' README.md
-
+      run: "if grep -q '<!--START_SECTION:waka-->' README.md && grep -q '<!--END_SECTION:waka-->' README.md; then\n  exit 0\nfi\nif ! grep -q '### \U000F166B WakaTime stats \U000F166B' README.md; then\n  echo 'WakaTime header missing; update the template or README to include it.' >&2\n  exit 1\nfi\nperl -0pi -e 's/### \U000F166B WakaTime stats \U000F166B\\n+/### \U000F166B WakaTime stats \U000F166B\\n<!--START_SECTION:waka-->\\n<!--END_SECTION:waka-->\\n\\n/' README.md\n  #magic___^_^___line\n"
     - name: Inject WakaTime metrics
       uses: anmol098/waka-readme-stats@master
       with:
         WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
         SHOW_PROFILE_VIEWS: "False"
-        SYMBOL_VERSION: "2"
+        SYMBOL_VERSION: "3"
         SHOW_TOTAL_CODE_TIME: "False"
 
     - name: Commit updates
