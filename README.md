@@ -15,7 +15,7 @@
 > Linux desktop engineering • rootless containers • Hyprland workflows •
 > Neovim configs & Themes
 
-## What I do now
+## 🔧 What I do now
 - Build secure, rootless **Podman** dev setups
 - Engineer **Hyprland** desktop workflows and theming
 - Ship **python-utility** apps: offline TTS tools powered by **Piper**
@@ -31,7 +31,7 @@
 ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
 ![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b)
 
-## I can help with
+## ⚡I can help with
 - Bash Scripting and automation
 - Hardening dev containers and CI without Docker
 - Modular **Hyprland** configs, rules, and automation
@@ -64,7 +64,35 @@ All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidia
 Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
 
 ---
-### 󱙫 WakaTime stats 󱙫
+
+## ⭐ Recent activity
+
+
+
+### 🔁 Fresh Pull Requests
+-⚫[🐛 fix: config version fixed from 1.1.14 to 1.1.16](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/129) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 3 months ago\
+  <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz,@matt-fff] </sub>
+-🟢[New version: Google.Chrome.Dev version 122.0.6226.2](https://github.com/microsoft/winget-pkgs/pull/133318) in [`microsoft/winget-pkgs`](https://github.com/microsoft/winget-pkgs) • 2 years ago\
+  <sub>The Microsoft community Windows Package Manager manifest repository</sub>
+
+
+
+
+
+### 🛠️ Latest Contributions
+- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 2 weeks ago\
+  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
+- 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 3 weeks ago\
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
+- 🔗 [`aaronedev/zen-floating-bookmarks`](https://github.com/aaronedev/zen-floating-bookmarks) • 3 weeks ago\
+  <sub>zen-browser mod floating bookmarks </sub>
+- 🔗 [`aaronedev/zen-container-colors`](https://github.com/aaronedev/zen-container-colors) • 3 weeks ago
+- 🔗 [`aaronedev/violet-void-theme_telegram`](https://github.com/aaronedev/violet-void-theme_telegram) • 1 month ago\
+  <sub>telgram violet-void-theme</sub>
+
+
+
+### ✨ WakaTime stats ✨
 <details>
   <summary>Click to expand the latest metrics</summary>
 
