@@ -93,7 +93,7 @@ _No pull request activity just yet — busy crafting something new._
 _No public commits in the last few days — check back soon._
 {{ end }}
 
-### ✨ WakaTime stats
+### ✨ WakaTime stats ✨
 <details>
   <summary>Click to expand the latest metrics</summary>
 
