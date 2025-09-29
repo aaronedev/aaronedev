@@ -4,7 +4,7 @@ name: Update README
 
 on:
   schedule:
-  - cron: "25 * * * *" # run hourly at :25
+  - cron: "0 */3 * * *" # run every 3 hours
   workflow_dispatch:
 
 jobs:
@@ -37,3 +37,4 @@ jobs:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
         SHOW_PROFILE_VIEWS: "False"
         SYMBOL_VERSION: "2"
+        SHOW_TOTAL_CODE_TIME: "False"
