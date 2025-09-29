@@ -60,9 +60,6 @@ All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidia
 Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
 
 ---
-<h2> Coding Stats </h2>
-<div>
+### 󱙫 WakaTime stats 󱙫
 <!--START_SECTION:waka-->
 <!--END_SECTION:waka-->
-</div>
-
