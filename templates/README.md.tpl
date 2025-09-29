@@ -11,7 +11,7 @@
     style="filter: hue-rotate(90deg);" />
 </a>
 <!-- waka-readme.yaml workflow status -->
-[![Waka Readme](https://github.com/aaronedev/aaronedev/actions/workflows/waka-readme.yaml/badge.svg)](https://github.com/aaronedev/aaronedev/actions/workflows/waka-readme.yaml)
+[![Waka Readme](https://github.com/aaronedev/aaronedev/actions/workflows/readme.yaml/badge.svg)](https://github.com/aaronedev/aaronedev/actions/workflows/readme.yaml)
 
 > Linux desktop engineering • rootless containers • Hyprland workflows •
 > Neovim configs & Themes
