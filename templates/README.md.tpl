@@ -15,6 +15,9 @@
 > Linux desktop engineering • rootless containers • Hyprland workflows •
 > Neovim configs & Themes
 
+## 📬 Contact
+Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
+
 ## 🔧 What I do now
 - Build secure, rootless **Podman** dev setups
 - Engineer **Hyprland** desktop workflows and theming
@@ -31,14 +34,12 @@
 ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
 ![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b)
 
-## ⚡ I can help with
+## ✨ I can help with
 - Bash Scripting and automation
 - Hardening dev containers and CI without Docker
 - Modular **Hyprland** configs, rules, and automation
 - **Neovim** UX: colors, LSP, performance
 - Offline TTS pipelines with **Piper** and clean CLI ergonomics
-
----
 
 ## 🌟 Featured projects
 - 🎨 **Violet Void Theme** — core color system powering matching themes across apps (ArchWiki, CopyQ, more)\
@@ -53,15 +54,8 @@
     [`aaronedev/zen-floating-bookmarks`](https://github.com/aaronedev/zen-floating-bookmarks)
   - zen-spotlight *(in progress)* — rapid launcher overlays for Hyprland
 
----
-
 ## 📝 Docs workflow
 All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidian.nvim) on plain Markdown.
-
----
-
-## 📬 Contact
-Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
 
 ---
 
@@ -101,5 +95,3 @@ _No public commits in the last few days — check back soon._
 <!--END_SECTION:waka-->
 
 </details>
-
----
