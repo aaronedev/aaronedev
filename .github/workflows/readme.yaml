@@ -13,19 +13,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Select token for Markscribe
-      id: select-token
-      run: |
-        if [ -n "${{ secrets.GH_TOKEN }}" ]; then
-          echo "token=${{ secrets.GH_TOKEN }}" >> "$GITHUB_OUTPUT"
-        else
-          echo "token=${{ secrets.GITHUB_TOKEN }}" >> "$GITHUB_OUTPUT"
-        fi
-
     - name: Render README
       uses: muesli/readme-scribe@master
       env:
-        GITHUB_TOKEN: ${{ steps.select-token.outputs.token }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN != '' && secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
       with:
         template: templates/README.md.tpl
         writeTo: README.md
