@@ -31,7 +31,7 @@
 ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
 ![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b)
 
-## ⚡I can help with
+## ⚡ I can help with
 - Bash Scripting and automation
 - Hardening dev containers and CI without Docker
 - Modular **Hyprland** configs, rules, and automation
