@@ -10,7 +10,6 @@
     alt="Total time coded since Dec 31 2023"
     style="filter: hue-rotate(90deg);" />
 </a>
-<!-- waka-readme.yaml workflow status -->
 [![Waka Readme](https://github.com/aaronedev/aaronedev/actions/workflows/readme.yaml/badge.svg)](https://github.com/aaronedev/aaronedev/actions/workflows/readme.yaml)
 
 > Linux desktop engineering • rootless containers • Hyprland workflows •
