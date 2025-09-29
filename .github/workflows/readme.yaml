@@ -21,6 +21,17 @@ jobs:
         template: templates/README.md.tpl
         writeTo: README.md
 
+    - name: Restore WakaTime placeholder
+      run: |
+        if grep -q '<!--START_SECTION:waka-->' README.md && grep -q '<!--END_SECTION:waka-->' README.md; then
+          exit 0
+        fi
+        if ! grep -q '### 󱙫 WakaTime stats 󱙫' README.md; then
+          echo 'WakaTime header missing; update the template or README to include it.' >&2
+          exit 1
+        fi
+        perl -0pi -e 's/### 󱙫 WakaTime stats 󱙫\n+/### 󱙫 WakaTime stats 󱙫\n<!--START_SECTION:waka-->\n<!--END_SECTION:waka-->\n\n/' README.md
+
     - name: Inject WakaTime metrics
       uses: anmol098/waka-readme-stats@master
       with:

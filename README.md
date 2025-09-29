@@ -60,5 +60,6 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 
 ---
 ### 󱙫 WakaTime stats 󱙫
-
+<!--START_SECTION:waka-->
+<!--END_SECTION:waka-->
 
