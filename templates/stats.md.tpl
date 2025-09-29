@@ -1,3 +1,4 @@
+{{ define "stats" }}
 ---
 
 ## 📈 Recent activity
@@ -41,4 +42,16 @@
 
 </details>
 
+### 󱙫 WakaTime stats 󱙫
+<details>
+  <summary>Click to expand the latest metrics</summary>
+
+<!--START_SECTION:waka-->
+<!--END_SECTION:waka-->
+
+</details>
+
 ---
+{{ end }}
+
+{{ template "stats" . }}

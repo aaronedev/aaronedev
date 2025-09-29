@@ -22,7 +22,7 @@ jobs:
         writeTo: README.md
 
     - name: Restore WakaTime placeholder
-      run: "if grep -q '<!--START_SECTION:waka-->' README.md && grep -q '<!--END_SECTION:waka-->' README.md; then\n  exit 0\nfi\nif ! grep -q '### \U000F166B WakaTime stats \U000F166B' README.md; then\n  echo 'WakaTime header missing; update the template or README to include it.' >&2\n  exit 1\nfi\nperl -0pi -e 's/### \U000F166B WakaTime stats \U000F166B\\n+/### \U000F166B WakaTime stats \U000F166B\\n<!--START_SECTION:waka-->\\n<!--END_SECTION:waka-->\\n\\n/' README.md\n  #magic___^_^___line\n"
+      run: "if grep -q '<!--START_SECTION:waka-->' README.md && grep -q '<!--END_SECTION:waka-->' README.md; then\n  exit 0\nfi\nif ! grep -q '### \U000F166B WakaTime stats \U000F166B' README.md; then\n  echo 'WakaTime header missing; update the template or README to include it.' >&2\n  exit 1\nfi\nperl -0pi -e 's/### \U000F166B WakaTime stats \U000F166B.*\\z/### \U000F166B WakaTime stats \U000F166B\\n<details>\\n  <summary>Click to expand the latest metrics<\\/summary>\\n\\n<!--START_SECTION:waka-->\\n<!--END_SECTION:waka-->\\n\\n<\\/details>\\n/s' README.md\n#magic___^_^___line\n"
     - name: Inject WakaTime metrics
       uses: anmol098/waka-readme-stats@master
       with:

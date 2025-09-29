@@ -41,12 +41,17 @@
 ---
 
 ## 🌟 Featured projects
-- 🎨 **Violet Void ArchWiki**
-- <https://github.com/aaronedev/violet-void-theme_archwiki>
-- 🎨 **Violet Void Copyq**
-- <https://github.com/aaronedev/violet-void-theme_copyq>
-- 🔖 **zen-floating-bookmarks** — lightweight bookmarking UX
-  <https://github.com/aaronedev/zen-floating-bookmarks>
+- 🎨 **Violet Void Theme** — core color system powering matching themes across apps (ArchWiki, CopyQ, more)\
+  [`aaronedev/violet-void-theme`](https://github.com/aaronedev/violet-void-theme)
+  - ArchWiki: restyles the ArchWiki with a violet void palette\
+    [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki)
+  - CopyQ: matching CopyQ theme for a cohesive desktop\
+    [`aaronedev/violet-void-theme_copyq`](https://github.com/aaronedev/violet-void-theme_copyq)
+- 🧩 **zen-mods** — modular ergonomics toolkit for Hyprland workspaces\
+  [`aaronedev/zen-mods`](https://github.com/aaronedev/zen-mods)
+  - zen-floating-bookmarks: lightweight floating bookmark UX\
+    [`aaronedev/zen-floating-bookmarks`](https://github.com/aaronedev/zen-floating-bookmarks)
+  - zen-spotlight *(in progress)* — rapid launcher overlays for Hyprland
 
 ---
 
@@ -60,6 +65,9 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 
 ---
 ### 󱙫 WakaTime stats 󱙫
+<details>
+  <summary>Click to expand the latest metrics</summary>
+
 <!--START_SECTION:waka-->
 **🐱 My GitHub Data** 
 
@@ -141,3 +149,4 @@ Stylus                   2 repos             ⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀�
  Last Updated on 29/09/2025 12:52:10 UTC
 <!--END_SECTION:waka-->
 
+</details>
