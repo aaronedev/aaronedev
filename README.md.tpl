@@ -8,8 +8,7 @@
     alt="Total time coded since Dec 31 2023"
     style="filter: hue-rotate(90deg);" />
 </a>
-[![Profile README](https://github.com/aaronedev/aaronedev/actions/workflows/readme-scribe.yml/badge.svg)](https://github.com/aaronedev/aaronedev/actions/workflows/readme-scribe.yml)
-
+[![Waka Readme](https://github.com/aaronedev/aaronedev/actions/workflows/waka-readme.yaml/badge.svg)](https://github.com/aaronedev/aaronedev/actions/workflows/waka-readme.yaml)
 <!-- shields -->
 ![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
 ![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
