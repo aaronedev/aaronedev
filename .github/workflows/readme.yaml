@@ -29,11 +29,7 @@ jobs:
           exit 0
         fi
 
-        header="$(rg -o "### .*WakaTime stats.*" templates/README.md.tpl | head -n1)"
-        if [[ -z "${header}" ]]; then
-          echo 'Unable to detect WakaTime header in templates/README.md.tpl' >&2
-          exit 1
-        fi
+        header=$(python3 -c "import re, pathlib, sys; text=pathlib.Path('templates/README.md.tpl').read_text(); match=re.search(r'^### .*WakaTime stats.*$', text, re.MULTILINE); sys.exit('Unable to detect WakaTime header in templates/README.md.tpl') if match is None else print(match.group(0), end='')")
 
         if ! grep -Fq "${header}" README.md; then
           echo "WakaTime header missing; update the template or README to include it." >&2
@@ -41,7 +37,7 @@ jobs:
         fi
 
         perl -0pi -e "s/\Q${header}\E.*\z/${header}\n<details>\n  <summary>Click to expand the latest metrics<\\/summary>\n\n<!--START_SECTION:waka-->\n<!--END_SECTION:waka-->\n\n<\\/details>\n/s" README.md
-        #magic___^_^___line
+
     - name: Inject WakaTime metrics
       uses: anmol098/waka-readme-stats@master
       with:
