@@ -60,6 +60,24 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 
 ## 📊 Coding Stats
 <!--START_SECTION:waka-->
+
+```txt
+From: 30 December 2023 - To: 28 September 2025
+
+Total Time: 2,052 hrs 20 mins
+
+YAML                       241 hrs 49 mins >>>----------------------   11.35 %
+Lua                        207 hrs 37 mins >>-----------------------   09.75 %
+Bash                       190 hrs 22 mins >>-----------------------   08.94 %
+hyprlang                   162 hrs 38 mins >>-----------------------   07.63 %
+PowerShell                 149 hrs 37 mins >>-----------------------   07.02 %
+JSON                       129 hrs 25 mins >>-----------------------   06.08 %
+Markdown                   126 hrs 27 mins >------------------------   05.94 %
+TOML                       125 hrs 51 mins >------------------------   05.91 %
+conf                       108 hrs 27 mins >------------------------   05.09 %
+Other                      78 hrs 5 mins   >------------------------   03.67 %
+```
+
 <!--END_SECTION:waka-->
 
 ---
