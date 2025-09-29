@@ -1,0 +1,39 @@
+---
+# .github/workflows/readme.yaml
+name: Update README
+
+on:
+  schedule:
+  - cron: "25 * * * *" # run hourly at :25
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Generate from template
+      uses: muesli/readme-scribe@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+      with:
+        template: "README.md.tpl"
+        writeTo: "README.md"
+
+    - name: Commit template output
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "chore: update README from template"
+        branch: main
+        commit_user_name: readme-scribe 🤖
+        commit_user_email: actions@github.com
+        commit_author: readme-scribe 🤖 <actions@github.com>
+
+    - name: Inject WakaTime metrics
+      uses: anmol098/waka-readme-stats@master
+      with:
+        WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        SHOW_PROFILE_VIEWS: "False"
+        SYMBOL_VERSION: "2"

@@ -141,5 +141,8 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+github/workflows/readme-scribe.yaml
+github/workflows/wakatime.yaml
+
 # End of https://www.toptal.com/developers/gitignore/api/node
 
