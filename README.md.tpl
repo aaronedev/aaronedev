@@ -60,13 +60,10 @@ All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidia
 Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
 
 ---
-
-## 📊 Coding Stats
 <details>
-
+<summary>## 📊 Coding Stats</summary>
 <!--START_SECTION:waka-->
 <!--END_SECTION:waka-->
-
 </details
 
 ---

@@ -61,8 +61,8 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 
 ---
 
-## 📊 Coding Stats
 <details>
+<summary>## 📊 Coding Stats</summary>
 <!--START_SECTION:waka-->
 <!--END_SECTION:waka-->
 </details
