@@ -21,18 +21,6 @@ jobs:
         template: templates/README.md.tpl
         writeTo: README.md
 
-    - name: Commit template output
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: "chore: update README from template"
-        branch: main
-        commit_user_name: readme-scribe 🤖
-        commit_user_email: actions@github.com
-        commit_author: readme-scribe 🤖 <actions@github.com>
-
-    - name: Pull latest changes
-      run: git pull origin main
-
     - name: Inject WakaTime metrics
       uses: anmol098/waka-readme-stats@master
       with:
@@ -41,3 +29,12 @@ jobs:
         SHOW_PROFILE_VIEWS: "False"
         SYMBOL_VERSION: "2"
         SHOW_TOTAL_CODE_TIME: "False"
+
+    - name: Commit updates
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "chore: update README from template"
+        branch: main
+        commit_user_name: readme-scribe 🤖
+        commit_user_email: actions@github.com
+        commit_author: readme-scribe 🤖 <actions@github.com>
