@@ -1,0 +1,6 @@
+---
+secrets:
+- WAKATIME_API_KEY
+env:
+- GH_TOKEN
+- WAKATIME_API_KEY
