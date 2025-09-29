@@ -2,16 +2,23 @@
 # .github/workflows/readme.yaml
 name: Update README
 
-on:
+"on":
   schedule:
   - cron: "0 */3 * * *" # run every 3 hours
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Sync main
+      run: git pull --ff-only origin main
 
     - name: Render README
       uses: muesli/readme-scribe@master
@@ -47,11 +54,22 @@ jobs:
         SYMBOL_VERSION: "3"
         SHOW_TOTAL_CODE_TIME: "False"
 
-    - name: Commit updates
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: "chore: update README from template"
-        branch: main
-        commit_user_name: readme-scribe 🤖
-        commit_user_email: actions@github.com
-        commit_author: readme-scribe 🤖 <actions@github.com>
+    - name: Commit and push updates
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN && secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+      run: |-
+        set -euo pipefail
+
+        if git diff --quiet HEAD -- README.md; then
+          echo "README already up to date."
+          exit 0
+        fi
+
+        git config user.name "readme-scribe 🤖"
+        git config user.email "actions@github.com"
+
+        git add README.md
+        git commit -m "chore: update README from template"
+
+        git pull --rebase origin main
+        git push origin HEAD:main
