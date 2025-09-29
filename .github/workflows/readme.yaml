@@ -16,7 +16,7 @@ jobs:
     - name: Render README
       uses: muesli/readme-scribe@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN != '' && secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN && secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
       with:
         template: templates/README.md.tpl
         writeTo: README.md
