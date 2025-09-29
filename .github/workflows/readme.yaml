@@ -7,6 +7,10 @@ name: Update README
   - cron: "0 */3 * * *" # run every 3 hours
   workflow_dispatch: {}
 
+concurrency:
+  group: readme-update
+  cancel-in-progress: true
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -71,5 +75,18 @@ jobs:
         git add README.md
         git commit -m "chore: update README from template"
 
-        git pull --rebase origin main
+        if ! git pull --rebase --autostash --strategy-option=ours origin main; then
+          echo "Rebase failed, aligning with latest origin/main" >&2
+          git rebase --abort || true
+          git fetch origin main
+          git reset --soft origin/main
+
+          if git diff --cached --quiet; then
+            echo "Template already matches remote after soft reset. Nothing to push."
+            exit 0
+          fi
+
+          git commit -m "chore: update README from template"
+        fi
+
         git push origin HEAD:main
