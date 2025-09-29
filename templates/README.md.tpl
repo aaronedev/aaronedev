@@ -70,8 +70,8 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 {{ $prs := recentPullRequests 5 }}
 {{ if $prs }}
 ### 🔁 Fresh Pull Requests
-{{ range $prs -}}
-- {{- if eq .State "OPEN" -}}🟣{{- else if eq .State "MERGED" -}}🟢{{- else -}}⚫{{- end -}} [{{ .Title }}]({{ .URL }}) in [`{{ .Repo.Name }}`]({{ .Repo.URL }}) • {{ humanize .CreatedAt }}
+{{ range $prs }}
+- {{ if eq .State "OPEN" }}🟣{{ else if eq .State "MERGED" }}🟢{{ else }}⚫{{ end }} [{{ .Title }}]({{ .URL }}) in [`{{ .Repo.Name }}`]({{ .Repo.URL }}) • {{ humanize .CreatedAt }}
   {{- if .Repo.Description }}\
   <sub>{{ .Repo.Description }}</sub>
   {{- end }}
@@ -83,7 +83,7 @@ _No pull request activity just yet — busy crafting something new._
 {{ $contribs := recentContributions 5 }}
 {{ if $contribs }}
 ### 🛠️ Latest Contributions
-{{ range $contribs -}}
+{{ range $contribs }}
 - 🔗 [`{{ .Repo.Name }}`]({{ .Repo.URL }}) • {{ humanize .OccurredAt }}
   {{- if .Repo.Description }}\
   <sub>{{ .Repo.Description }}</sub>
