@@ -15,8 +15,12 @@
 > Linux desktop engineering • rootless containers • Hyprland workflows •
 > Neovim configs & Themes
 
-## 📬 Contact
-Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
+## 📬 About me -- Contact
+- Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
+- Brieftaube: <a href="https://de.wikipedia.org/wiki/Brieftaube" target="_blank">Homing Pigeon</a> send it to cologne 50.951811223028265, 6.986298711065432
+
+> [!IMPORTANT]
+> Don't take urself too seriously, we're all pretty dumbs here.
 
 ## 🔧 What I do now
 - Build secure, rootless **Podman** dev setups
