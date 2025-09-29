@@ -30,6 +30,9 @@ jobs:
         commit_user_email: actions@github.com
         commit_author: readme-scribe 🤖 <actions@github.com>
 
+    - name: Pull latest changes
+      run: git pull origin main
+
     - name: Inject WakaTime metrics
       uses: anmol098/waka-readme-stats@master
       with:
