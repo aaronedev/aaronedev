@@ -65,13 +65,33 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 
 ---
 
-{{ template "stats" . }}
-
-{{ define "stats" }}
----
-
 ## 📈 Recent activity
-> ℹ️ Summary cards require a personal access token; run the stats workflow locally to populate them.
+
+{{ $prs := recentPullRequests 5 }}
+{{ if $prs }}
+### 🔁 Fresh Pull Requests
+{{ range $prs -}}
+- {{- if eq .State "OPEN" -}}🟣{{- else if eq .State "MERGED" -}}🟢{{- else -}}⚫{{- end -}} [{{ .Title }}]({{ .URL }}) in [`{{ .Repo.Name }}`]({{ .Repo.URL }}) • {{ humanize .CreatedAt }}
+  {{- if .Repo.Description }}\
+  <sub>{{ .Repo.Description }}</sub>
+  {{- end }}
+{{ end }}
+{{ else }}
+_No pull request activity just yet — busy crafting something new._
+{{ end }}
+
+{{ $contribs := recentContributions 5 }}
+{{ if $contribs }}
+### 🛠️ Latest Contributions
+{{ range $contribs -}}
+- 🔗 [`{{ .Repo.Name }}`]({{ .Repo.URL }}) • {{ humanize .OccurredAt }}
+  {{- if .Repo.Description }}\
+  <sub>{{ .Repo.Description }}</sub>
+  {{- end }}
+{{ end }}
+{{ else }}
+_No public commits in the last few days — check back soon._
+{{ end }}
 
 ### 󱙫 WakaTime stats 󱙫
 <details>
@@ -83,4 +103,3 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 </details>
 
 ---
-{{ end }}
