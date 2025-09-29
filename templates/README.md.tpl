@@ -15,7 +15,7 @@
 > Linux desktop engineering • rootless containers • Hyprland workflows •
 > Neovim configs & Themes
 
-## What I do now
+## 🔧 What I do now
 - Build secure, rootless **Podman** dev setups
 - Engineer **Hyprland** desktop workflows and theming
 - Ship **python-utility** apps: offline TTS tools powered by **Piper**
@@ -31,7 +31,7 @@
 ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
 ![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b)
 
-## I can help with
+## ⚡I can help with
 - Bash Scripting and automation
 - Hardening dev containers and CI without Docker
 - Modular **Hyprland** configs, rules, and automation
@@ -65,7 +65,7 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 
 ---
 
-## 📈 Recent activity
+## ⭐ Recent activity
 
 {{ $prs := recentPullRequests 5 }}
 {{ if $prs }}
@@ -93,7 +93,7 @@ _No pull request activity just yet — busy crafting something new._
 _No public commits in the last few days — check back soon._
 {{ end }}
 
-### 󱙫 WakaTime stats 󱙫
+### ✨ WakaTime stats
 <details>
   <summary>Click to expand the latest metrics</summary>
 
