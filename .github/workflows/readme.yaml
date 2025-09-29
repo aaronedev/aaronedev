@@ -13,13 +13,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Generate from template
+    - name: Render README with markscribe
       uses: muesli/readme-scribe@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        template: "README.md.tpl"
-        writeTo: "README.md"
+        template: README.md.tpl
+        writeTo: README.md
 
     - name: Commit template output
       uses: stefanzweifel/git-auto-commit-action@v4
