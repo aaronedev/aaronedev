@@ -13,13 +13,6 @@
 <!-- waka-readme.yaml workflow status -->
 [![Waka Readme](https://github.com/aaronedev/aaronedev/actions/workflows/waka-readme.yaml/badge.svg)](https://github.com/aaronedev/aaronedev/actions/workflows/waka-readme.yaml)
 
-<!-- shields -->
-![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
-![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
-![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b)
-![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
-![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b)
-
 > Linux desktop engineering • rootless containers • Hyprland workflows •
 > Neovim configs & Themes
 
@@ -31,6 +24,13 @@
  that auto-detects **EN/DE**, switches voices, and takes flags for speed, pitch, and voice
 - Bash scripting: small, composable CLI tools
 - Linux and network fundamentals for real deployments
+
+<!-- shields -->
+![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
+![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
+![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b)
+![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
+![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b)
 
 ## I can help with
 - Bash Scripting and automation
@@ -62,9 +62,12 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 ---
 
 ## 📊 Coding Stats
+<details>
 
 <!--START_SECTION:waka-->
 <!--END_SECTION:waka-->
+
+</details
 
 ---
 

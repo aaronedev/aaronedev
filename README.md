@@ -1,6 +1,8 @@
 [![Header: aaronedev](./assets/aaronedev.png "Header image for aaronedev")](https://github.com/aaronedev)
 
 # Oi, World! I'm Aaron
+
+
 ![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=7745bf&)
 <a href="https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe">
   <img
@@ -8,13 +10,8 @@
     alt="Total time coded since Dec 31 2023"
     style="filter: hue-rotate(90deg);" />
 </a>
-[![Waka Readme](https://github.com/aaronedev/aaronedev/actions/workflows/waka-readme.yaml/badge.svg)](https://github.com/aaronedev/aaronedev/actions/workflows/waka-readme.yaml)
 
-![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
-![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
-![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b)
-![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
-![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b)
+[![Waka Readme](https://github.com/aaronedev/aaronedev/actions/workflows/waka-readme.yaml/badge.svg)](https://github.com/aaronedev/aaronedev/actions/workflows/waka-readme.yaml)
 
 > Linux desktop engineering • rootless containers • Hyprland workflows •
 > Neovim configs & Themes
@@ -27,6 +24,13 @@
  that auto-detects **EN/DE**, switches voices, and takes flags for speed, pitch, and voice
 - Bash scripting: small, composable CLI tools
 - Linux and network fundamentals for real deployments
+
+
+![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
+![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
+![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b)
+![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
+![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b)
 
 ## I can help with
 - Bash Scripting and automation
@@ -58,90 +62,9 @@ Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aar
 ---
 
 ## 📊 Coding Stats
-<!--START_SECTION:waka-->
-![Code Time](http://img.shields.io/badge/Code%20Time-2%2C132%20hrs%2019%20mins-blue)
+<details>
 
-![Profile Views](http://img.shields.io/badge/Profile%20Views-26-blue)
-
-**🐱 My GitHub Data** 
-
-> 📦 4.3 MB Used in GitHub's Storage 
- > 
-> 🏆 4,875 Contributions in the Year 2025
- > 
-> 💼 Opted to Hire
- > 
-> 📜 24 Public Repositories 
- > 
-> 🔑 98 Private Repositories 
- > 
-**I'm an Early 🐤** 
-
-```text
-🌞 Morning                32 commits          ███████░░░░░░░░░░░░░░░░░░   26.02 % 
-🌆 Daytime                39 commits          ████████░░░░░░░░░░░░░░░░░   31.71 % 
-🌃 Evening                23 commits          █████░░░░░░░░░░░░░░░░░░░░   18.70 % 
-🌙 Night                  29 commits          ██████░░░░░░░░░░░░░░░░░░░   23.58 % 
-```
-📅 **I'm Most Productive on Wednesday** 
-
-```text
-Monday                   23 commits          █████░░░░░░░░░░░░░░░░░░░░   18.70 % 
-Tuesday                  15 commits          ███░░░░░░░░░░░░░░░░░░░░░░   12.20 % 
-Wednesday                33 commits          ███████░░░░░░░░░░░░░░░░░░   26.83 % 
-Thursday                 8 commits           ██░░░░░░░░░░░░░░░░░░░░░░░   06.50 % 
-Friday                   22 commits          ████░░░░░░░░░░░░░░░░░░░░░   17.89 % 
-Saturday                 5 commits           █░░░░░░░░░░░░░░░░░░░░░░░░   04.07 % 
-Sunday                   17 commits          ███░░░░░░░░░░░░░░░░░░░░░░   13.82 % 
-```
-
-
-📊 **This Week I Spent My Time On** 
-
-```text
-🕑︎ Time Zone: Europe/Berlin
-
-💬 Programming Languages: 
-Lua                      10 hrs 25 mins      ██████░░░░░░░░░░░░░░░░░░░   22.54 % 
-Markdown                 8 hrs 41 mins       █████░░░░░░░░░░░░░░░░░░░░   18.77 % 
-Bash                     3 hrs 46 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   08.15 % 
-TOML                     3 hrs 37 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   07.85 % 
-Python                   3 hrs 37 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   07.82 % 
-
-🔥 Editors: 
-Neovim                   46 hrs 22 mins      █████████████████████████   99.67 % 
-VS Code                  9 mins              ░░░░░░░░░░░░░░░░░░░░░░░░░   00.33 % 
-
-🐱‍💻 Projects: 
-dotfiles                 28 hrs 24 mins      ███████████████░░░░░░░░░░   61.06 % 
-cheatsheets              5 hrs 23 mins       ███░░░░░░░░░░░░░░░░░░░░░░   11.57 % 
-Unknown Project          3 hrs 23 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   07.31 % 
-read_that                3 hrs 18 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   07.12 % 
-read-that                2 hrs 17 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   04.93 % 
-
-💻 Operating System: 
-Linux                    46 hrs 31 mins      █████████████████████████   100.00 % 
-```
-
-**I Mostly Code in Shell** 
-
-```text
-Shell                    16 repos            ██████░░░░░░░░░░░░░░░░░░░   22.22 % 
-HTML                     8 repos             ███░░░░░░░░░░░░░░░░░░░░░░   11.11 % 
-Python                   4 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   05.56 % 
-Dockerfile               3 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   04.17 % 
-Stylus                   2 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   02.78 % 
-```
-
-
-
-**Timeline**
-
-![Lines of Code chart](https://raw.githubusercontent.com/aaronedev/aaronedev/main/assets/bar_graph.png)
-
-
- Last Updated on 29/09/2025 00:38:54 UTC
-<!--END_SECTION:waka-->
+</details
 
 ---
 
@@ -163,12 +86,12 @@ Stylus                   2 repos             █░░░░░░░░░░�
 <summary><strong>Recent stars</strong></summary>
 
 
+- ⭐ [athul/waka-readme](https://github.com/athul/waka-readme) — Wakatime Weekly Metrics on your Profile Readme. 
 - ⭐ [anmol098/waka-readme-stats](https://github.com/anmol098/waka-readme-stats) — This GitHub action helps to add cool dev metrics to your github profile Readme
 - ⭐ [charmbracelet/readme-scribe](https://github.com/charmbracelet/readme-scribe) — A GitHub Action that automatically generates &amp; updates markdown content (like your README.md)
 - ⭐ [hyprwm/hyprtoolkit](https://github.com/hyprwm/hyprtoolkit) — A modern C&#43;&#43; Wayland-native GUI toolkit
 - ⭐ [hyprwm/hyprpwcenter](https://github.com/hyprwm/hyprpwcenter) — A GUI Pipewire control center
 - ⭐ [blueyed/smarty.vim](https://github.com/blueyed/smarty.vim) — Smarty syntax file and ftplugin for Vim
-- ⭐ [go-sprout/sprout](https://github.com/go-sprout/sprout) — From sprig to sprout - Useful template functions for Go templates with steroids
 
 </details>
 
@@ -176,7 +99,7 @@ Stylus                   2 repos             █░░░░░░░░░░�
 <summary><strong>Recent pull requests</strong></summary>
 
 
-- 🔨 [🐛 fix: config version fixed from 1.1.14 to 1.1.16](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/129) on [hyprland-community/hyprland-autoname-workspaces](https://github.com/hyprland-community/hyprland-autoname-workspaces) — 2 months ago
+- 🔨 [🐛 fix: config version fixed from 1.1.14 to 1.1.16](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/129) on [hyprland-community/hyprland-autoname-workspaces](https://github.com/hyprland-community/hyprland-autoname-workspaces) — 3 months ago
 - 🔨 [New version: Google.Chrome.Dev version 122.0.6226.2](https://github.com/microsoft/winget-pkgs/pull/133318) on [microsoft/winget-pkgs](https://github.com/microsoft/winget-pkgs) — 2 years ago
 
 </details>
