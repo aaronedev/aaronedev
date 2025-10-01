@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$repo_root"
+
+preview_pid=""
+
+cleanup() {
+  if [[ -n "$preview_pid" ]] && kill -0 "$preview_pid" 2>/dev/null; then
+    kill "$preview_pid" || true
+  fi
+}
+
+run_build() {
+  markscribe templates/README.md.tpl > README.md
+  printf 'Regenerated README.md at %s\n' "$(date '+%Y-%m-%d %H:%M:%S')"
+}
+
+start_preview() {
+  if command -v gh >/dev/null 2>&1 && gh markdown-preview --help >/dev/null 2>&1; then
+    gh markdown-preview --disable-auto-open README.md >/dev/null 2>&1 &
+    preview_pid=$!
+    printf 'Started gh markdown-preview on README.md (PID %s)\n' "$preview_pid"
+  fi
+}
+
+trap cleanup EXIT
+
+run_build
+start_preview
+
+if command -v entr >/dev/null 2>&1; then
+  printf '%s\n' templates/README.md.tpl | entr -rc bash -lc "markscribe templates/README.md.tpl > README.md && printf 'Regenerated README.md at %s\\n' \"\$(date '+%Y-%m-%d %H:%M:%S')\""
+elif command -v inotifywait >/dev/null 2>&1; then
+  printf 'Watching templates/README.md.tpl with inotifywait...\n'
+  while inotifywait -e close_write templates/README.md.tpl >/dev/null 2>&1; do
+    run_build
+  done
+else
+  cat <<MSG
+Unable to find a watcher utility.
+Install either entr (https://github.com/eradman/entr) or inotify-tools (provides inotifywait).
+MSG
+  exit 1
+fi
