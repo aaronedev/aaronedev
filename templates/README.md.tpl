@@ -22,9 +22,9 @@
 > [!IMPORTANT]
 > Don't take urself too seriously, we're all pretty dumbs here.
 
-<div class="badges-githubstats" align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=aaronedev&show_icons=true&hide_border=true&count_private=true&bg_color=121212&title_color=7c60d1&text_color=f0f0f5&icon_color=319e8d&border_color=131313&border_radius=10" alt="aaronedev's Stats" height="140" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=aaronedev&hide_border=true&background=121212&border=131313&stroke=222222&ring=fd007f&fire=fd007f&currStreakNum=42ff97&currStreakLabel=29adff&sideNums=7c60d1&sideLabels=c7b8ff&dates=f0f0f5&border_radius=10" alt="aaronedev's Streak" height="140" />
+<div class="badges-githubstats">
+  <img src="https://github-readme-stats.vercel.app/api?username=aaronedev&show_icons=true&hide_border=true&count_private=true&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&text_color=f0f0f5&icon_color=319e8d&border_color=131313&border_radius=10" alt="aaronedev's github statistics" height="140" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=aaronedev&hide_border=true&background=9%2C08242130%2C0D1117&border=131313&stroke=c7b8ff&ring=fd7cff&fire=fd0098&currStreakNum=c7b8ff&currStreakLabel=7c60d1&sideNums=c7b8ff&sideLabels=7c60d1&dates=f0f0f5&border_radius=10" alt="aaronedev's github commit streak" height="140" />
 </div>
 
 ## 🔧 What I do now
