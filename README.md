@@ -111,13 +111,13 @@ All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidia
 
 > 📦 4.3 MB Used in GitHub's Storage 
  > 
-> 🏆 4,976 Contributions in the Year 2025
+> 🏆 4,986 Contributions in the Year 2025
  > 
 > 💼 Opted to Hire
  > 
 > 📜 24 Public Repositories 
  > 
-> 🔑 98 Private Repositories 
+> 🔑 99 Private Repositories 
  > 
 **I'm an Early 🐤** 
 
@@ -170,11 +170,11 @@ Linux                    36 hrs 9 mins       ⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛�
 **I Mostly Code in Shell** 
 
 ```text
-Shell                    17 repos            ⬛⬛⬛⬛⬛⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜   23.29 % 
-HTML                     8 repos             ⬛⬛⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜   10.96 % 
-Python                   4 repos             ⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜   05.48 % 
-Dockerfile               3 repos             ⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜   04.11 % 
-Stylus                   2 repos             ⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜   02.74 % 
+Shell                    18 repos            ⬛⬛⬛⬛⬛⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜   24.32 % 
+HTML                     8 repos             ⬛⬛⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜   10.81 % 
+Python                   4 repos             ⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜   05.41 % 
+Dockerfile               3 repos             ⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜   04.05 % 
+Stylus                   2 repos             ⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜   02.70 % 
 ```
 
 
@@ -184,7 +184,7 @@ Stylus                   2 repos             ⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜�
 ![Lines of Code chart](https://raw.githubusercontent.com/aaronedev/aaronedev/main/assets/bar_graph.png)
 
 
- Last Updated on 02/10/2025 12:09:23 UTC
+ Last Updated on 02/10/2025 15:07:48 UTC
 <!--END_SECTION:waka-->
 
 </details>
