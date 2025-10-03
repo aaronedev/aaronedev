@@ -57,6 +57,8 @@
     [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki)
   - CopyQ: matching CopyQ theme for a cohesive desktop\
     [`aaronedev/violet-void-theme_copyq`](https://github.com/aaronedev/violet-void-theme_copyq)
+  - Sublime tmTheme Syntax mappings which can be used for [Bat](https://github.com/sharkdp/bat) and such\
+    [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl)
 - 🧩 **zen-mods** — modular ergonomics toolkit for Hyprland workspaces\
   [`aaronedev/zen-mods`](https://github.com/aaronedev/zen-mods)
   - zen-floating-bookmarks: lightweight floating bookmark UX\
@@ -89,6 +91,8 @@ All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidia
 - 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • today\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
+- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • today
+
 - 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 4 weeks ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
@@ -96,9 +100,6 @@ All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidia
   <sub>zen-browser mod floating bookmarks </sub>
 
 - 🔗 [`aaronedev/zen-container-colors`](https://github.com/aaronedev/zen-container-colors) • 4 weeks ago
-
-- 🔗 [`aaronedev/violet-void-theme_telegram`](https://github.com/aaronedev/violet-void-theme_telegram) • 1 month ago\
-  <sub>telgram violet-void-theme</sub>
 
 
 
