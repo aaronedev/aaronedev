@@ -86,7 +86,7 @@ All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidia
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 3 weeks ago\
+- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • today\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
 - 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 4 weeks ago\
