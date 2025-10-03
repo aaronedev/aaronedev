@@ -57,6 +57,8 @@
     [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki)
   - CopyQ: matching CopyQ theme for a cohesive desktop\
     [`aaronedev/violet-void-theme_copyq`](https://github.com/aaronedev/violet-void-theme_copyq)
+  - Sublime tmTheme Syntax mappings which can be used for [Bat](https://github.com/sharkdp/bat) and such\
+    [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl)
 - 🧩 **zen-mods** — modular ergonomics toolkit for Hyprland workspaces\
   [`aaronedev/zen-mods`](https://github.com/aaronedev/zen-mods)
   - zen-floating-bookmarks: lightweight floating bookmark UX\
