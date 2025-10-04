@@ -1,6 +1,6 @@
-[![Header: aaronedev](./assets/aaronedev.png "Header image for aaronedev")](https://github.com/aaronedev)
+[![Header](https://capsule-render.vercel.app/api?type=waving&color=0:1a0f2e,50:2d1b4e,100:1a0f2e&height=300&section=header&text=Oi,%20World!%20I'm%20Aaron&fontSize=70&fontColor=f0f0f5&animation=fadeIn&fontAlignY=38&desc=Linux%20enthusiast%20•%20Hyprland%20workflows%20•%20Neovim%20configs&descSize=20&descAlignY=55)](https://github.com/aaronedev)
 
-# Oi, World! I'm Aaron
+# aka aaronedev github profile
 
 <!-- badges -->
 ![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=7745bf&)
@@ -12,8 +12,9 @@
 </a>
 [![Waka Readme](https://github.com/aaronedev/aaronedev/actions/workflows/readme.yaml/badge.svg)](https://github.com/aaronedev/aaronedev/actions/workflows/readme.yaml)
 
-> Linux desktop engineering • rootless containers • Hyprland workflows •
-> Neovim configs & Themes
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=7C60D1&center=true&vCenter=true&multiline=false&repeat=true&width=600&lines=Linux+desktop+engineering;rootless+containers;Hyprland+workflows;Neovim+configs+%26+Themes" alt="Typing SVG" />
+</p>
 
 ## 📬 About me -- Contact
 - Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
