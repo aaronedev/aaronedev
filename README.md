@@ -24,8 +24,8 @@
 > Don't take urself too seriously, we're all pretty dumbs here.
 
 <div class="badges-githubstats">
-  <img src="https://github-readme-stats.vercel.app/api?username=aaronedev&show_icons=true&hide_border=true&count_private=true&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&text_color=f0f0f5&icon_color=319e8d&border_color=131313&border_radius=10" alt="aaronedev's github statistics" height="140" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=aaronedev&hide_border=true&background=9%2C08242130%2C0D1117&border=131313&stroke=c7b8ff&ring=fd7cff&fire=fd0098&currStreakNum=c7b8ff&currStreakLabel=7c60d1&sideNums=c7b8ff&sideLabels=7c60d1&dates=f0f0f5&border_radius=10" alt="aaronedev's github commit streak" height="140" />
+  <img src="https://github-readme-stats-git-main-aaronedevs-projects.vercel.app/api?username=aaronedev&show_icons=true&hide_border=true&count_private=true&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&text_color=f0f0f5&icon_color=319e8d&border_color=131313&border_radius=10" alt="aaronedev's github statistics" height="140" />
+  <img src="https://github-readme-streak-stats-git-main-aaronedevs-projects.vercel.app/?user=aaronedev&hide_border=true&background=9%2C08242130%2C0D1117&border=131313&stroke=c7b8ff&ring=fd7cff&fire=fd0098&currStreakNum=c7b8ff&currStreakLabel=7c60d1&sideNums=c7b8ff&sideLabels=7c60d1&dates=f0f0f5&border_radius=10" alt="aaronedev's github commit streak" height="140" />
 </div>
 
 ## 🔧 What I do now
@@ -89,6 +89,8 @@ All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidia
 
 ### 🛠️ Latest Contributions
 
+- 🔗 [`aaronedev/github-readme-streak-stats`](https://github.com/aaronedev/github-readme-streak-stats) • today
+
 - 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 2 days ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
@@ -96,9 +98,6 @@ All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidia
 
 - 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 month ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
-
-- 🔗 [`aaronedev/zen-floating-bookmarks`](https://github.com/aaronedev/zen-floating-bookmarks) • 1 month ago\
-  <sub>zen-browser mod floating bookmarks </sub>
 
 - 🔗 [`aaronedev/zen-container-colors`](https://github.com/aaronedev/zen-container-colors) • 1 month ago
 
