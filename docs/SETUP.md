@@ -1,6 +1,6 @@
-# Setup Guide: Fork/Clone This Profile
+# Setup Guide: Fork This Profile
 
-This guide will show you how to fork/clone this GitHub Profile Repository and set it up on your end.
+This guide will show you how to fork this GitHub Profile Repository and set it up on your end.
 
 ## Summary
 
@@ -21,18 +21,18 @@ You will need:
 
 ## Setup in Steps
 
-### 1. Fork/Clone this repository
+### 1. Fork this repository
 
-Either fork this repository to your GitHub or
+Click the **Fork** button on GitHub to create `<your-username>/<your-username>`.
 
-Clone the repository and push it to a new repo called `<your-username>/<your-username>`
+After the fork finishes, clone **your fork** locally:
 
 ```bash
-git clone https://github.com/aaronedev/aaronedev.git
-cd aaronedev
-# Change the remote url of this repo to your own
-git remote set-url origin https://github.com/<your-username>/<your-username>.git
+git clone https://github.com/<your-username>/<your-username>.git
+cd <your-username>
 ```
+
+This fork becomes your personalized profile repo—customize it to match your brand.
 
 ### 2. Setup GitHub Secrets
 
