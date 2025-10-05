@@ -69,6 +69,14 @@
 ## 📝 Docs workflow
 All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidian.nvim) on plain Markdown.
 
+
+## 🪄 If you want to Fork this profile to use it as ur own
+
+[![templates/README.md.tpl](https://img.shields.io/badge/templates-README.md.tpl-2ea44f?logo=github&labelColor=161b22)](https://github.com/aaronedev/aaronedev/discussions/7)
+
+Check discussion page or click badge above to see install instructions if u want
+to automate the profile as I did.
+
 ---
 
 ## ⭐ Recent activity
