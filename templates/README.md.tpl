@@ -3,7 +3,7 @@
 # aka aaronedev github profile
 
 <!-- badges -->
-![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=7745bf&style=flat)
+![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=7745bf&)
 ![GitHub followers](https://img.shields.io/github/followers/aaronedev?style=flat&logo=github&label=Followers&color=7c60d1)
 ![GitHub stars](https://img.shields.io/github/stars/aaronedev?style=flat&logo=github&label=Stars&color=fd7cff)
 
