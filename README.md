@@ -89,18 +89,18 @@ All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidia
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 day ago\
+- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 2 days ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
-- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 day ago
+- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 2 days ago
 
-- 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 4 weeks ago\
+- 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 month ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
-- 🔗 [`aaronedev/zen-floating-bookmarks`](https://github.com/aaronedev/zen-floating-bookmarks) • 4 weeks ago\
+- 🔗 [`aaronedev/zen-floating-bookmarks`](https://github.com/aaronedev/zen-floating-bookmarks) • 1 month ago\
   <sub>zen-browser mod floating bookmarks </sub>
 
-- 🔗 [`aaronedev/zen-container-colors`](https://github.com/aaronedev/zen-container-colors) • 4 weeks ago
+- 🔗 [`aaronedev/zen-container-colors`](https://github.com/aaronedev/zen-container-colors) • 1 month ago
 
 
 
