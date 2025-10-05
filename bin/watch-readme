@@ -13,13 +13,13 @@ cleanup() {
 }
 
 run_build() {
-  markscribe templates/README.md.tpl > README.md
+  markscribe templates/README.md.tpl >README.md
   printf 'Regenerated README.md at %s\n' "$(date '+%Y-%m-%d %H:%M:%S')"
 }
 
 start_preview() {
   if command -v gh >/dev/null 2>&1 && gh markdown-preview --help >/dev/null 2>&1; then
-    gh markdown-preview --disable-auto-open README.md >/dev/null 2>&1 &
+    gh markdown-preview --markdown-mode --disable-auto-open README.md >/dev/null 2>&1 &
     preview_pid=$!
     printf 'Started gh markdown-preview on README.md (PID %s)\n' "$preview_pid"
   fi
