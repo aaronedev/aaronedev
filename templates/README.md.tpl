@@ -34,10 +34,6 @@
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=aaronedev&hide_border=true&background=082421&border=131313&stroke=c7b8ff&ring=fd7cff&fire=fd0098&currStreakNum=c7b8ff&currStreakLabel=7c60d1&sideNums=c7b8ff&sideLabels=7c60d1&dates=f0f0f5&border_radius=10" alt="aaronedev's github commit streak" height="140" />
 </div>
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=aaronedev&layout=compact&bg_color=0D1117&title_color=7c60d1&text_color=f0f0f5&hide_border=true&border_radius=10" alt="Top Languages" />
-</p>
-
 ## 🔧 What I do now
 - Build secure, rootless **Podman** dev setups ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
 - Engineer **Hyprland** desktop workflows and **Neovim** theming ![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff) ![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b)
@@ -46,6 +42,10 @@
  that auto-detects **EN/DE**, switches voices, and takes flags for speed, pitch, and voice
 - Bash scripting: small, composable CLI tools ![Bash](https://img.shields.io/badge/Bash-fd0098?style=flat&logo=gnu-bash&logoColor=ffffff)
 - Linux (Arch-based) and network fundamentals for real deployments ![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b) ![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
+
+<div>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=aaronedev&layout=compact&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&text_color=f0f0f5&hide_border=true&border_radius=10&border_color=131313" alt="Top Languages" />
+</div>
 
 ## ✨ I can help with
 - Bash scripting and automation ![Bash](https://img.shields.io/badge/Bash-fd0098?style=flat&logo=gnu-bash&logoColor=ffffff)
@@ -63,6 +63,72 @@
     [`aaronedev/violet-void-theme_copyq`](https://github.com/aaronedev/violet-void-theme_copyq)
   - Sublime tmTheme Syntax mappings which can be used for [Bat](https://github.com/sharkdp/bat) and such\
     [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl)
+
+<details>
+  <summary>Color palette preview</summary>
+
+  <table>
+    <tbody>
+      <tr>
+        <td align="center"><img src="https://singlecolorimage.com/get/0f0f0f/80x40" alt="#0f0f0f swatch"><br><code>bg</code><br><code>#0f0f0f</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/0e0e0e/80x40" alt="#0e0e0e swatch"><br><code>bg_dark</code><br><code>#0e0e0e</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/1b1b1b/80x40" alt="#1b1b1b swatch"><br><code>bg_dark1</code><br><code>#1b1b1b</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/191919/80x40" alt="#191919 swatch"><br><code>bg_highlight</code><br><code>#191919</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/29adff/80x40" alt="#29adff swatch"><br><code>blue</code><br><code>#29adff</code></td>
+      </tr>
+      <tr>
+        <td align="center"><img src="https://singlecolorimage.com/get/70c8ff/80x40" alt="#70c8ff swatch"><br><code>blue0</code><br><code>#70c8ff</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/b6e3ff/80x40" alt="#b6e3ff swatch"><br><code>blue1</code><br><code>#b6e3ff</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/2cbecf/80x40" alt="#2cbecf swatch"><br><code>blue2</code><br><code>#2cbecf</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/00a8a4/80x40" alt="#00a8a4 swatch"><br><code>blue5</code><br><code>#00a8a4</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/b4f9f8/80x40" alt="#b4f9f8 swatch"><br><code>blue6</code><br><code>#b4f9f8</code></td>
+      </tr>
+      <tr>
+        <td align="center"><img src="https://singlecolorimage.com/get/4b8afe/80x40" alt="#4b8afe swatch"><br><code>blue7</code><br><code>#4b8afe</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/414141/80x40" alt="#414141 swatch"><br><code>comment</code><br><code>#414141</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/00fff9/80x40" alt="#00fff9 swatch"><br><code>cyan</code><br><code>#00fff9</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/212121/80x40" alt="#212121 swatch"><br><code>dark3</code><br><code>#212121</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/242424/80x40" alt="#242424 swatch"><br><code>dark5</code><br><code>#242424</code></td>
+      </tr>
+      <tr>
+        <td align="center"><img src="https://singlecolorimage.com/get/f0f0f5/80x40" alt="#f0f0f5 swatch"><br><code>fg</code><br><code>#f0f0f5</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/303030/80x40" alt="#303030 swatch"><br><code>fg_dark</code><br><code>#303030</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/313131/80x40" alt="#313131 swatch"><br><code>fg_gutter</code><br><code>#313131</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/42ff97/80x40" alt="#42ff97 swatch"><br><code>green</code><br><code>#42ff97</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/42ffad/80x40" alt="#42ffad swatch"><br><code>green1</code><br><code>#42ffad</code></td>
+      </tr>
+      <tr>
+        <td align="center"><img src="https://singlecolorimage.com/get/08bdba/80x40" alt="#08bdba swatch"><br><code>green2</code><br><code>#08bdba</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/fd7cff/80x40" alt="#fd7cff swatch"><br><code>magenta</code><br><code>#fd7cff</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/fd0098/80x40" alt="#fd0098 swatch"><br><code>magenta2</code><br><code>#fd0098</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/ff7c7e/80x40" alt="#ff7c7e swatch"><br><code>orange</code><br><code>#ff7c7e</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/bb7cff/80x40" alt="#bb7cff swatch"><br><code>purple</code><br><code>#bb7cff</code></td>
+      </tr>
+      <tr>
+        <td align="center"><img src="https://singlecolorimage.com/get/ff004b/80x40" alt="#ff004b swatch"><br><code>red</code><br><code>#ff004b</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/ff1a67/80x40" alt="#ff1a67 swatch"><br><code>red1</code><br><code>#ff1a67</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/181818/80x40" alt="#181818 swatch"><br><code>terminal_black</code><br><code>#181818</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/319e8d/80x40" alt="#319e8d swatch"><br><code>teal</code><br><code>#319e8d</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/7c60d1/80x40" alt="#7c60d1 swatch"><br><code>yellow</code><br><code>#7c60d1</code></td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Git status colors</summary>
+
+  <table>
+    <tbody>
+      <tr>
+        <td align="center"><img src="https://singlecolorimage.com/get/4bff42/80x40" alt="#4bff42 swatch"><br><code>add</code><br><code>#4bff42</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/29ffe6/80x40" alt="#29ffe6 swatch"><br><code>change</code><br><code>#29ffe6</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/800025/80x40" alt="#800025 swatch"><br><code>delete</code><br><code>#800025</code></td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
 - 🧩 **zen-mods** — modular ergonomics toolkit for Hyprland workspaces\
   [`aaronedev/zen-mods`](https://github.com/aaronedev/zen-mods)
   - zen-floating-bookmarks: lightweight floating bookmark UX\
@@ -83,6 +149,9 @@ to automate the profile as I did.
 ---
 
 ## ⭐ Recent activity
+
+<details>
+  <summary>Click to expand recent GitHub activity</summary>
 
 {{ $prs := recentPullRequests 5 }}
 {{ if $prs }}
@@ -109,6 +178,8 @@ _No pull request activity just yet — busy crafting something new._
 {{ else }}
 _No public commits in the last few days — check back soon._
 {{ end }}
+
+</details>
 
 ### ✨ WakaTime stats ✨
 <details>
