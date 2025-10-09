@@ -21,7 +21,7 @@
 </a>
 
 [![Waka Readme](https://github.com/aaronedev/aaronedev/actions/workflows/readme.yaml/badge.svg)](https://github.com/aaronedev/aaronedev/actions/workflows/readme.yaml)
-![Matrix](https://img.shields.io/badge/Matrix-000000?style=flat&logo=matrix&logoColor=ffffff)
+[![Matrix](https://img.shields.io/badge/Matrix-000000?style=flat&logo=matrix&logoColor=ffffff)](https://matrix.to/#/@aaronedev:matrix.org)
 
 - Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
 - Brieftaube: <a href="https://de.wikipedia.org/wiki/Brieftaube" target="_blank">Homing Pigeon</a> send it to cologne 50.951811223028265, 6.986298711065432
