@@ -157,7 +157,7 @@ to automate the profile as I did.
 
 ### 🔁 Fresh Pull Requests
 
-- 🟣 [Add quit/close keybindings to preview](https://github.com/savedra1/clipse/pull/263) in [`savedra1/clipse`](https://github.com/savedra1/clipse) • today\
+- 🟣 [Add quit/close keybindings to preview](https://github.com/savedra1/clipse/pull/263) in [`savedra1/clipse`](https://github.com/savedra1/clipse) • 1 day ago\
   <sub>Configurable TUI clipboard manager for Unix</sub>
 
 - ⚫ [🐛 fix: config version fixed from 1.1.14 to 1.1.16](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/129) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 3 months ago\
@@ -172,11 +172,11 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`aaronedev/github-readme-streak-stats`](https://github.com/aaronedev/github-readme-streak-stats) • 4 days ago
+- 🔗 [`aaronedev/github-readme-streak-stats`](https://github.com/aaronedev/github-readme-streak-stats) • 5 days ago
 
-- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 6 days ago
+- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 week ago
 
-- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 6 days ago\
+- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 week ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
 - 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 month ago\
