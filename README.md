@@ -157,10 +157,10 @@ to automate the profile as I did.
 
 ### 🔁 Fresh Pull Requests
 
-- 🟣 [feat: added previewBack and previewQuit to quickly close/quit](https://github.com/savedra1/clipse/pull/264) in [`savedra1/clipse`](https://github.com/savedra1/clipse) • 2 days ago\
+- 🟣 [feat: added previewBack and previewQuit to quickly close/quit](https://github.com/savedra1/clipse/pull/264) in [`savedra1/clipse`](https://github.com/savedra1/clipse) • 3 days ago\
   <sub>Configurable TUI clipboard manager for Unix</sub>
 
-- ⚫ [Add quit/close keybindings to preview](https://github.com/savedra1/clipse/pull/263) in [`savedra1/clipse`](https://github.com/savedra1/clipse) • 3 days ago\
+- ⚫ [Add quit/close keybindings to preview](https://github.com/savedra1/clipse/pull/263) in [`savedra1/clipse`](https://github.com/savedra1/clipse) • 4 days ago\
   <sub>Configurable TUI clipboard manager for Unix</sub>
 
 - ⚫ [🐛 fix: config version fixed from 1.1.14 to 1.1.16](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/129) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 3 months ago\
