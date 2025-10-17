@@ -121,9 +121,9 @@
   <table>
     <tbody>
       <tr>
-        <td align="center"><img src="https://singlecolorimage.com/get/4bff42/80x40" alt="#4bff42 swatch"><br><code>add</code><br><code>#4bff42</code></td>
-        <td align="center"><img src="https://singlecolorimage.com/get/29ffe6/80x40" alt="#29ffe6 swatch"><br><code>change</code><br><code>#29ffe6</code></td>
-        <td align="center"><img src="https://singlecolorimage.com/get/800025/80x40" alt="#800025 swatch"><br><code>delete</code><br><code>#800025</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/144f36/80x40" alt="#144f36 swatch"><br><code>add</code><br><code>#144f36</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/004f4d/80x40" alt="#004f4d swatch"><br><code>change</code><br><code>#004f4d</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/4f0017/80x40" alt="#4f0017 swatch"><br><code>delete</code><br><code>#4f0017</code></td>
       </tr>
     </tbody>
   </table>
