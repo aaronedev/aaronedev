@@ -157,7 +157,7 @@ to automate the profile as I did.
 
 ### 🔁 Fresh Pull Requests
 
-- 🟣 [feat: added previewBack and previewQuit to quickly close/quit](https://github.com/savedra1/clipse/pull/264) in [`savedra1/clipse`](https://github.com/savedra1/clipse) • 1 week ago\
+- 🟣 [feat: added previewBack&#43;previewQuit&#43;esc to quickly close/quit](https://github.com/savedra1/clipse/pull/264) in [`savedra1/clipse`](https://github.com/savedra1/clipse) • 1 week ago\
   <sub>Configurable TUI clipboard manager for Unix</sub>
 
 - ⚫ [Add quit/close keybindings to preview](https://github.com/savedra1/clipse/pull/263) in [`savedra1/clipse`](https://github.com/savedra1/clipse) • 1 week ago\
