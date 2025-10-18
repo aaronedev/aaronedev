@@ -157,17 +157,18 @@ to automate the profile as I did.
 
 ### 🔁 Fresh Pull Requests
 
+- 🟢 [Restrict Type/Class scope to user-defined symbols](https://github.com/aaronedev/violet-void-theme_subl/pull/2) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • today
+
+- 🟢 [Rename theme to Violet Void](https://github.com/aaronedev/violet-void-theme_subl/pull/1) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • today
+
+- 🟢 [Fix script directory resolution for symlinked runs](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/2) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • today\
+  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
+
+- 🟢 [Preserve locale variables when launching rofi](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/1) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • today\
+  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
+
 - 🟣 [feat: added previewBack&#43;previewQuit&#43;esc to quickly close/quit](https://github.com/savedra1/clipse/pull/264) in [`savedra1/clipse`](https://github.com/savedra1/clipse) • 1 week ago\
   <sub>Configurable TUI clipboard manager for Unix</sub>
-
-- ⚫ [Add quit/close keybindings to preview](https://github.com/savedra1/clipse/pull/263) in [`savedra1/clipse`](https://github.com/savedra1/clipse) • 1 week ago\
-  <sub>Configurable TUI clipboard manager for Unix</sub>
-
-- ⚫ [🐛 fix: config version fixed from 1.1.14 to 1.1.16](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/129) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 3 months ago\
-  <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz,@matt-fff] </sub>
-
-- 🟢 [New version: Google.Chrome.Dev version 122.0.6226.2](https://github.com/microsoft/winget-pkgs/pull/133318) in [`microsoft/winget-pkgs`](https://github.com/microsoft/winget-pkgs) • 2 years ago\
-  <sub>The Microsoft community Windows Package Manager manifest repository</sub>
 
 
 
@@ -175,15 +176,15 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
+- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • today\
+  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
+
+- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • today
+
 - 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 1 day ago\
   <sub>Waybar config extracted from dotfiles</sub>
 
 - 🔗 [`aaronedev/github-readme-streak-stats`](https://github.com/aaronedev/github-readme-streak-stats) • 1 week ago
-
-- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 2 weeks ago\
-  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
-
-- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 2 weeks ago
 
 - 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 month ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
