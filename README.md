@@ -175,7 +175,7 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • today\
+- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 1 day ago\
   <sub>Waybar config extracted from dotfiles</sub>
 
 - 🔗 [`aaronedev/github-readme-streak-stats`](https://github.com/aaronedev/github-readme-streak-stats) • 1 week ago
