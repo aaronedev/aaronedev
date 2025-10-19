@@ -4,7 +4,7 @@ name: Update README
 
 "on":
   schedule:
-  - cron: "0 */3 * * *" # run every 3 hours
+  - cron: "0 0 * * *" # err day at 24:00
   workflow_dispatch: {}
 
 concurrency:
