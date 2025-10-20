@@ -157,14 +157,14 @@ to automate the profile as I did.
 
 ### 🔁 Fresh Pull Requests
 
-- 🟢 [Restrict Type/Class scope to user-defined symbols](https://github.com/aaronedev/violet-void-theme_subl/pull/2) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 day ago
+- 🟢 [Restrict Type/Class scope to user-defined symbols](https://github.com/aaronedev/violet-void-theme_subl/pull/2) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 2 days ago
 
-- 🟢 [Rename theme to Violet Void](https://github.com/aaronedev/violet-void-theme_subl/pull/1) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 day ago
+- 🟢 [Rename theme to Violet Void](https://github.com/aaronedev/violet-void-theme_subl/pull/1) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 2 days ago
 
-- 🟢 [Fix script directory resolution for symlinked runs](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/2) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 day ago\
+- 🟢 [Fix script directory resolution for symlinked runs](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/2) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 2 days ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
-- 🟢 [Preserve locale variables when launching rofi](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/1) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 day ago\
+- 🟢 [Preserve locale variables when launching rofi](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/1) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 2 days ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
 - 🟣 [feat: added previewBack&#43;previewQuit&#43;esc to quickly close/quit](https://github.com/savedra1/clipse/pull/264) in [`savedra1/clipse`](https://github.com/savedra1/clipse) • 1 week ago\
@@ -176,12 +176,12 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 day ago\
+- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 2 days ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
-- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 day ago
+- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 2 days ago
 
-- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 2 days ago\
+- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 3 days ago\
   <sub>Waybar config extracted from dotfiles</sub>
 
 - 🔗 [`aaronedev/github-readme-streak-stats`](https://github.com/aaronedev/github-readme-streak-stats) • 2 weeks ago
