@@ -157,7 +157,7 @@ to automate the profile as I did.
 
 ### 🔁 Fresh Pull Requests
 
-- 🟣 [feat: as requested in #48: sort icons according to window position](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/130) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 1 week ago\
+- 🟣 [feat: as requested in #48: sort icons according to window position](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/130) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 2 weeks ago\
   <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz,@matt-fff] </sub>
 
 - 🟢 [Restrict Type/Class scope to user-defined symbols](https://github.com/aaronedev/violet-void-theme_subl/pull/2) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 2 weeks ago
