@@ -181,7 +181,7 @@ to automate the profile as I did.
 
 - 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 2 weeks ago
 
-- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 2 weeks ago\
+- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 3 weeks ago\
   <sub>Waybar config extracted from dotfiles</sub>
 
 - 🔗 [`aaronedev/github-readme-streak-stats`](https://github.com/aaronedev/github-readme-streak-stats) • 1 month ago
