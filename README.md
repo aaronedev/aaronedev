@@ -157,17 +157,17 @@ to automate the profile as I did.
 
 ### 🔁 Fresh Pull Requests
 
-- 🟣 [feat: as requested in #48: sort icons according to window position](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/130) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 3 weeks ago\
+- 🟣 [feat: as requested in #48: sort icons according to window position](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/130) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 4 weeks ago\
   <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz,@matt-fff] </sub>
 
-- 🟢 [Restrict Type/Class scope to user-defined symbols](https://github.com/aaronedev/violet-void-theme_subl/pull/2) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 4 weeks ago
+- 🟢 [Restrict Type/Class scope to user-defined symbols](https://github.com/aaronedev/violet-void-theme_subl/pull/2) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 month ago
 
-- 🟢 [Rename theme to Violet Void](https://github.com/aaronedev/violet-void-theme_subl/pull/1) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 4 weeks ago
+- 🟢 [Rename theme to Violet Void](https://github.com/aaronedev/violet-void-theme_subl/pull/1) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 month ago
 
-- 🟢 [Fix script directory resolution for symlinked runs](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/2) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 4 weeks ago\
+- 🟢 [Fix script directory resolution for symlinked runs](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/2) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 month ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
-- 🟢 [Preserve locale variables when launching rofi](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/1) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 4 weeks ago\
+- 🟢 [Preserve locale variables when launching rofi](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/1) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 month ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
 
@@ -176,15 +176,15 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 2 days ago\
+- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 3 days ago\
   <sub>Waybar config extracted from dotfiles</sub>
 
-- 🔗 [`aaronedev/violet-void-theme_tridactyl`](https://github.com/aaronedev/violet-void-theme_tridactyl) • 4 days ago
+- 🔗 [`aaronedev/violet-void-theme_tridactyl`](https://github.com/aaronedev/violet-void-theme_tridactyl) • 5 days ago
 
-- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 4 weeks ago\
+- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 month ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
-- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 4 weeks ago
+- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 month ago
 
 - 🔗 [`aaronedev/github-readme-streak-stats`](https://github.com/aaronedev/github-readme-streak-stats) • 1 month ago
 
