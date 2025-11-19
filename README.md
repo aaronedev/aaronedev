@@ -157,7 +157,7 @@ to automate the profile as I did.
 
 ### 🔁 Fresh Pull Requests
 
-- 🟣 [feat: as requested in #48: sort icons according to window position](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/130) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 4 weeks ago\
+- 🟣 [feat: as requested in #48: sort icons according to window position](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/130) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 1 month ago\
   <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz,@matt-fff] </sub>
 
 - 🟢 [Restrict Type/Class scope to user-defined symbols](https://github.com/aaronedev/violet-void-theme_subl/pull/2) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 month ago
@@ -176,10 +176,10 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 4 days ago\
+- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 5 days ago\
   <sub>Waybar config extracted from dotfiles</sub>
 
-- 🔗 [`aaronedev/violet-void-theme_tridactyl`](https://github.com/aaronedev/violet-void-theme_tridactyl) • 6 days ago
+- 🔗 [`aaronedev/violet-void-theme_tridactyl`](https://github.com/aaronedev/violet-void-theme_tridactyl) • 1 week ago
 
 - 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 month ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
