@@ -176,6 +176,9 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
+- 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
+
 - 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 1 week ago\
   <sub>Waybar config extracted from dotfiles</sub>
 
@@ -185,8 +188,6 @@ to automate the profile as I did.
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
 - 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 month ago
-
-- 🔗 [`aaronedev/github-readme-streak-stats`](https://github.com/aaronedev/github-readme-streak-stats) • 1 month ago
 
 
 
