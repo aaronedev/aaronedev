@@ -11,48 +11,90 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=7C60D1&center=true&vCenter=true&multiline=false&repeat=true&width=600&lines=Linux+desktop+engineering;rootless+containers;Hyprland+workflows;Neovim+configs+%26+Themes" alt="Typing SVG" />
 </p>
 
-## 📬 About me -- Contact
+## 📬 About Me
 
-<a href="https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe">
-  <img
-    src="https://wakatime.com/badge/user/018cc02c-e893-42e6-b1c7-48cb3ef3ccfe.svg?style=flat"
-    alt="Total time coded since Dec 31 2023"
-    style="filter: hue-rotate(90deg);" />
-</a>
-
-[![Waka Readme](https://github.com/aaronedev/aaronedev/actions/workflows/readme.yaml/badge.svg)](https://github.com/aaronedev/aaronedev/actions/workflows/readme.yaml)
-[![Matrix](https://img.shields.io/badge/Matrix-000000?style=flat&logo=matrix&logoColor=ffffff)](https://matrix.to/#/@aaronedev:matrix.org)
-
-- Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
-- Brieftaube: <a href="https://de.wikipedia.org/wiki/Brieftaube" target="_blank">Homing Pigeon</a> send it to cologne 50.951811223028265, 6.986298711065432
+<div align="center">
+  <a href="https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe">
+    <img
+      src="https://wakatime.com/badge/user/018cc02c-e893-42e6-b1c7-48cb3ef3ccfe.svg?style=flat"
+      alt="Total time coded since Dec 31 2023"
+      style="filter: hue-rotate(90deg);" />
+  </a>
+  <a href="https://github.com/aaronedev/aaronedev/actions/workflows/readme.yaml">
+    <img src="https://github.com/aaronedev/aaronedev/actions/workflows/readme.yaml/badge.svg" alt="Waka Readme" />
+  </a>
+  <a href="https://matrix.to/#/@aaronedev:matrix.org">
+    <img src="https://img.shields.io/badge/Matrix-000000?style=flat&logo=matrix&logoColor=ffffff" alt="Matrix" />
+  </a>
+  <br />
+  <sub>
+    Matrix: <code>@aaronedev:matrix.org</code> • Homing Pigeon: send to cologne <code>50.95, 6.98</code>
+  </sub>
+</div>
 
 > [!IMPORTANT]
 > Don't take urself too seriously, we're all pretty dumbs here.
 
-<div class="badges-githubstats">
+<div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=aaronedev&show_icons=true&hide_border=true&count_private=true&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&text_color=f0f0f5&icon_color=319e8d&border_color=131313&border_radius=10" alt="aaronedev's github statistics" height="140" />
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=aaronedev&hide_border=true&background=082421&border=131313&stroke=c7b8ff&ring=fd7cff&fire=fd0098&currStreakNum=c7b8ff&currStreakLabel=7c60d1&sideNums=c7b8ff&sideLabels=7c60d1&dates=f0f0f5&border_radius=10" alt="aaronedev's github commit streak" height="140" />
-</div>
-
-## 🔧 What I do now
-- Build secure, rootless **Podman** dev setups ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
-- Engineer **Hyprland** desktop workflows and **Neovim** theming ![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff) ![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b)
-- Ship **python-utility** apps: offline TTS tools powered by **Piper** ![Python](https://img.shields.io/badge/Python-319e8d?style=flat&logo=python&logoColor=ffffff)
-  - Example: clipboard-reader aka [read-that](https://github.com/aaronedev/read-that) 📢
- that auto-detects **EN/DE**, switches voices, and takes flags for speed, pitch, and voice
-- Bash scripting: small, composable CLI tools ![Bash](https://img.shields.io/badge/Bash-fd0098?style=flat&logo=gnu-bash&logoColor=ffffff)
-- Linux (Arch-based) and network fundamentals for real deployments ![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b) ![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
-
-<div>
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=aaronedev&layout=compact&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&text_color=f0f0f5&hide_border=true&border_radius=10&border_color=131313" alt="Top Languages" />
 </div>
 
-## ✨ I can help with
-- Bash scripting and automation ![Bash](https://img.shields.io/badge/Bash-fd0098?style=flat&logo=gnu-bash&logoColor=ffffff)
-- Hardening dev containers and CI without Docker (rootless **Podman**) ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
-- Modular **Hyprland** configs, rules, and automation ![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
-- **Neovim** UX (Lua, LSP, performance) ![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b) ![Lua](https://img.shields.io/badge/Lua-42ff97?style=flat&logo=lua&logoColor=0b0b0b)
-- Offline TTS pipelines with **Piper** (Python) and clean CLI ergonomics ![Python](https://img.shields.io/badge/Python-319e8d?style=flat&logo=python&logoColor=ffffff)
+---
+
+<div align="center">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <h2 id="what-i-do-now">🔧 What I do now</h2>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <ul>
+            <li>Build secure, rootless <b>Podman</b> dev setups <img src="https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff" alt="Podman" /></li>
+            <li>Engineer <b>Hyprland</b> desktop workflows and <b>Neovim</b> theming <img src="https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff" alt="Hyprland" /> <img src="https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b" alt="Neovim" /></li>
+            <li>Ship <b>python-utility</b> apps: offline TTS tools powered by <b>Piper</b> <img src="https://img.shields.io/badge/Python-319e8d?style=flat&logo=python&logoColor=ffffff" alt="Python" />
+              <ul>
+                <li>Example: clipboard-reader aka <a href="https://github.com/aaronedev/read-that">read-that</a> 📢 that auto-detects <b>EN/DE</b>, switches voices, and takes flags for speed, pitch, and voice</li>
+              </ul>
+            </li>
+            <li>Bash scripting: small, composable CLI tools <img src="https://img.shields.io/badge/Bash-fd0098?style=flat&logo=gnu-bash&logoColor=ffffff" alt="Bash" /></li>
+            <li>Linux (Arch-based) and network fundamentals for real deployments <img src="https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b" alt="Linux" /> <img src="https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff" alt="Arch Linux" /></li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <h2 id="i-can-help-with">✨ I can help with</h2>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <ul>
+            <li>Bash scripting and automation <img src="https://img.shields.io/badge/Bash-fd0098?style=flat&logo=gnu-bash&logoColor=ffffff" alt="Bash" /></li>
+            <li>Hardening dev containers and CI without Docker (rootless <b>Podman</b>) <img src="https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff" alt="Podman" /></li>
+            <li>Modular <b>Hyprland</b> configs, rules, and automation <img src="https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff" alt="Hyprland" /></li>
+            <li><b>Neovim</b> UX (Lua, LSP, performance) <img src="https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b" alt="Neovim" /> <img src="https://img.shields.io/badge/Lua-42ff97?style=flat&logo=lua&logoColor=0b0b0b" alt="Lua" /></li>
+            <li>Offline TTS pipelines with <b>Piper</b> (Python) and clean CLI ergonomics <img src="https://img.shields.io/badge/Python-319e8d?style=flat&logo=python&logoColor=ffffff" alt="Python" /></li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
 
 ## 🌟 Featured projects
 - 🎨 **Violet Void Theme** — core color system powering matching themes across apps (ArchWiki, CopyQ, more)\
@@ -134,6 +176,8 @@
   - zen-floating-bookmarks: lightweight floating bookmark UX\
     [`aaronedev/zen-floating-bookmarks`](https://github.com/aaronedev/zen-floating-bookmarks)
   - zen-spotlight *(in progress)* — rapid launcher overlays for Hyprland
+
+---
 
 ## 📝 Docs workflow
 All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidian.nvim) on plain Markdown.
