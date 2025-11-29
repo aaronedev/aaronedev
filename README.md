@@ -44,7 +44,7 @@
 - Linux (Arch-based) and network fundamentals for real deployments ![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b) ![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
 
 <div>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=aaronedev&layout=compact&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&text_color=f0f0f5&hide_border=true&border_radius=10&border_color=131313" alt="Top Languages" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=aaronedev&layout=compact&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&text_color=f0f0f5&hide_border=true&border_radius=10&border_color=131313&hide=php" alt="Top Languages" />
 </div>
 
 ## ✨ I can help with
