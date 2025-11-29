@@ -176,18 +176,18 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`aaronedev/github_extension_repo_size`](https://github.com/aaronedev/github_extension_repo_size) • 2 days ago
-
-- 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 4 days ago\
+- 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
+
+- 🔗 [`aaronedev/aaronsamuel`](https://github.com/aaronedev/aaronsamuel) • 1 day ago\
+  <sub>personal contact webpage</sub>
+
+- 🔗 [`aaronedev/github_extension_repo_size`](https://github.com/aaronedev/github_extension_repo_size) • 3 days ago
 
 - 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 2 weeks ago\
   <sub>Waybar config extracted from dotfiles</sub>
 
 - 🔗 [`aaronedev/violet-void-theme_tridactyl`](https://github.com/aaronedev/violet-void-theme_tridactyl) • 2 weeks ago
-
-- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 month ago\
-  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
 
 
