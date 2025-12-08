@@ -176,17 +176,17 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`aaronedev/stylelint-template`](https://github.com/aaronedev/stylelint-template) • 5 days ago
+- 🔗 [`aaronedev/violet-void-theme_obsidian`](https://github.com/aaronedev/violet-void-theme_obsidian) • 1 day ago
+
+- 🔗 [`aaronedev/stylelint-template`](https://github.com/aaronedev/stylelint-template) • 6 days ago
 
 - 🔗 [`aaronedev/violet-void-theme_geizhals`](https://github.com/aaronedev/violet-void-theme_geizhals) • 1 week ago
-
-- 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 week ago\
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
 - 🔗 [`aaronedev/aaronsamuel`](https://github.com/aaronedev/aaronsamuel) • 1 week ago\
   <sub>personal contact webpage</sub>
 
-- 🔗 [`aaronedev/github_extension_repo_size`](https://github.com/aaronedev/github_extension_repo_size) • 1 week ago
+- 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 week ago\
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
 
 
