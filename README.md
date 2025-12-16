@@ -176,16 +176,17 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 2 days ago\
+- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • today\
+  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
+
+- 🔗 [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 3 days ago\
   <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz, @shivros] </sub>
 
-- 🔗 [`aaronedev/violet-void-theme_crackboard`](https://github.com/aaronedev/violet-void-theme_crackboard) • 3 days ago
+- 🔗 [`aaronedev/violet-void-theme_crackboard`](https://github.com/aaronedev/violet-void-theme_crackboard) • 4 days ago
 
 - 🔗 [`aaronedev/violet-void-theme_obsidian`](https://github.com/aaronedev/violet-void-theme_obsidian) • 1 week ago
 
-- 🔗 [`aaronedev/stylelint-template`](https://github.com/aaronedev/stylelint-template) • 1 week ago
-
-- 🔗 [`aaronedev/violet-void-theme_geizhals`](https://github.com/aaronedev/violet-void-theme_geizhals) • 2 weeks ago
+- 🔗 [`aaronedev/stylelint-template`](https://github.com/aaronedev/stylelint-template) • 2 weeks ago
 
 
 
