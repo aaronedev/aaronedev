@@ -160,14 +160,14 @@ to automate the profile as I did.
 - 🟢 [feat: as requested in #48: sort icons according to window position](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/130) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 1 month ago\
   <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz, @shivros] </sub>
 
-- 🟢 [Restrict Type/Class scope to user-defined symbols](https://github.com/aaronedev/violet-void-theme_subl/pull/2) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 month ago
+- 🟢 [Restrict Type/Class scope to user-defined symbols](https://github.com/aaronedev/violet-void-theme_subl/pull/2) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 2 months ago
 
-- 🟢 [Rename theme to Violet Void](https://github.com/aaronedev/violet-void-theme_subl/pull/1) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 month ago
+- 🟢 [Rename theme to Violet Void](https://github.com/aaronedev/violet-void-theme_subl/pull/1) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 2 months ago
 
-- 🟢 [Fix script directory resolution for symlinked runs](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/2) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 month ago\
+- 🟢 [Fix script directory resolution for symlinked runs](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/2) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 2 months ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
-- 🟢 [Preserve locale variables when launching rofi](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/1) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 month ago\
+- 🟢 [Preserve locale variables when launching rofi](https://github.com/aaronedev/nerdfont-icon-rofi-picker/pull/1) in [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 2 months ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
 
@@ -176,13 +176,13 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • today\
+- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 day ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
-- 🔗 [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 3 days ago\
+- 🔗 [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 4 days ago\
   <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz, @shivros] </sub>
 
-- 🔗 [`aaronedev/violet-void-theme_crackboard`](https://github.com/aaronedev/violet-void-theme_crackboard) • 4 days ago
+- 🔗 [`aaronedev/violet-void-theme_crackboard`](https://github.com/aaronedev/violet-void-theme_crackboard) • 5 days ago
 
 - 🔗 [`aaronedev/violet-void-theme_obsidian`](https://github.com/aaronedev/violet-void-theme_obsidian) • 1 week ago
 
