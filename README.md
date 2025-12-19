@@ -157,7 +157,7 @@ to automate the profile as I did.
 
 ### 🔁 Fresh Pull Requests
 
-- 🟢 [feat: as requested in #48: sort icons according to window position](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/130) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 1 month ago\
+- 🟢 [feat: as requested in #48: sort icons according to window position](https://github.com/hyprland-community/hyprland-autoname-workspaces/pull/130) in [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 2 months ago\
   <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz, @shivros] </sub>
 
 - 🟢 [Restrict Type/Class scope to user-defined symbols](https://github.com/aaronedev/violet-void-theme_subl/pull/2) in [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 2 months ago
@@ -176,13 +176,13 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 2 days ago\
+- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 3 days ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
-- 🔗 [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 5 days ago\
+- 🔗 [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 6 days ago\
   <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz, @shivros] </sub>
 
-- 🔗 [`aaronedev/violet-void-theme_crackboard`](https://github.com/aaronedev/violet-void-theme_crackboard) • 6 days ago
+- 🔗 [`aaronedev/violet-void-theme_crackboard`](https://github.com/aaronedev/violet-void-theme_crackboard) • 1 week ago
 
 - 🔗 [`aaronedev/violet-void-theme_obsidian`](https://github.com/aaronedev/violet-void-theme_obsidian) • 1 week ago
 
