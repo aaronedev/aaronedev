@@ -176,12 +176,12 @@ to automate the profile as I did.
 
 ### 🛠️ Latest Contributions
 
-- 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 2 days ago\
+- 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 3 days ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
-- 🔗 [`aaronedev/stylelint-template`](https://github.com/aaronedev/stylelint-template) • 2 days ago
+- 🔗 [`aaronedev/stylelint-template`](https://github.com/aaronedev/stylelint-template) • 3 days ago
 
-- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 5 days ago\
+- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 6 days ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
 - 🔗 [`hyprland-community/hyprland-autoname-workspaces`](https://github.com/hyprland-community/hyprland-autoname-workspaces) • 1 week ago\
