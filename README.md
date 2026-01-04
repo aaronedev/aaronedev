@@ -157,19 +157,19 @@ to automate the profile as I did.
 
 ### 🔁 Fresh Pull Requests
 
-- 🟢 [Refine Vector menu borders](https://github.com/aaronedev/violet-void-theme_archwiki/pull/15) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
+- 🟢 [Fix TOC alignment and table wrapping](https://github.com/aaronedev/violet-void-theme_archwiki/pull/24) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
-- 🟢 [Tidy empty pinned container styling](https://github.com/aaronedev/violet-void-theme_archwiki/pull/14) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
+- 🟢 [Adjust code block header label overflow handling](https://github.com/aaronedev/violet-void-theme_archwiki/pull/23) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
-- 🟢 [Add Violet‑Void styles for MediaWiki collapsible blocks](https://github.com/aaronedev/violet-void-theme_archwiki/pull/13) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
+- ⚫ [Extend form control styling to additional input types and selects](https://github.com/aaronedev/violet-void-theme_archwiki/pull/22) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
-- 🟢 [Add ArchWiki message box styling](https://github.com/aaronedev/violet-void-theme_archwiki/pull/12) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
+- ⚫ [Adjust inline code spacing in tables and headings](https://github.com/aaronedev/violet-void-theme_archwiki/pull/21) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
-- 🟢 [Style heading edit and anchor links](https://github.com/aaronedev/violet-void-theme_archwiki/pull/11) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
+- 🟢 [Scope scrollbar styling to main containers](https://github.com/aaronedev/violet-void-theme_archwiki/pull/20) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
 
@@ -181,14 +181,14 @@ to automate the profile as I did.
 - 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 day ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
-- 🔗 [`aaronedev/stylelint-template`](https://github.com/aaronedev/stylelint-template) • 2 days ago
+- 🔗 [`aaronedev/stylelint-template`](https://github.com/aaronedev/stylelint-template) • 3 days ago
 
-- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 2 days ago
+- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 3 days ago
 
-- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 2 days ago\
+- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 3 days ago\
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
-- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 2 days ago\
+- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 3 days ago\
   <sub>Waybar config extracted from dotfiles</sub>
 
 
