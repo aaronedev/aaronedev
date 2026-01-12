@@ -1,4 +1,4 @@
-[![Header](https://capsule-render.vercel.app/api?type=waving&color=0:1a0f2e,50:2d1b4e,100:1a0f2e&height=300&section=header&text=Oi,%20World!%20I'm%20Aaron&fontSize=70&fontColor=f0f0f5&animation=fadeIn&fontAlignY=38&desc=Linux%20enthusiast%20•%20Hyprland%20workflows%20•%20Neovim%20configs&descSize=20&descAlignY=55)](https://github.com/aaronedev)
+[![Header: Oi, World! I'm Aaron. Linux enthusiast • Hyprland workflows • Neovim configs](https://capsule-render.vercel.app/api?type=waving&color=0:1a0f2e,50:2d1b4e,100:1a0f2e&height=300&section=header&text=Oi,%20World!%20I'm%20Aaron&fontSize=70&fontColor=f0f0f5&animation=fadeIn&fontAlignY=38&desc=Linux%20enthusiast%20•%20Hyprland%20workflows%20•%20Neovim%20configs&descSize=20&descAlignY=55)](https://github.com/aaronedev)
 
 # aka aaronedev github profile
 
@@ -8,7 +8,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/aaronedev?style=flat&logo=github&label=Stars&color=fd7cff)
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=7C60D1&center=true&vCenter=true&multiline=false&repeat=true&width=600&lines=Linux+desktop+engineering;rootless+containers;Hyprland+workflows;Neovim+configs+%26+Themes" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=7C60D1&center=true&vCenter=true&multiline=false&repeat=true&width=600&lines=Linux+desktop+engineering;rootless+containers;Hyprland+workflows;Neovim+configs+%26+Themes" alt="Animated text displaying skills: Linux desktop engineering, rootless containers, Hyprland workflows, Neovim configs & Themes" />
 </p>
 
 ## 📬 About me -- Contact
@@ -189,3 +189,7 @@ _No public commits in the last few days — check back soon._
 <!--END_SECTION:waka-->
 
 </details>
+
+<div align="right">
+  <a href="#aka-aaronedev-github-profile">Back to Top ⬆️</a>
+</div>
