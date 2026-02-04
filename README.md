@@ -155,23 +155,7 @@ to automate the profile as I did.
 
 
 
-### 🔁 Fresh Pull Requests
-
-- 🟢 [Restore package.json metadata for build tooling](https://github.com/aaronedev/violet-void-theme_archwiki/pull/37) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 2 weeks ago\
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
-
-- 🟢 [Fix TOC alignment and table wrapping](https://github.com/aaronedev/violet-void-theme_archwiki/pull/24) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 month ago\
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
-
-- 🟢 [Adjust code block header label overflow handling](https://github.com/aaronedev/violet-void-theme_archwiki/pull/23) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 month ago\
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
-
-- ⚫ [Extend form control styling to additional input types and selects](https://github.com/aaronedev/violet-void-theme_archwiki/pull/22) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 month ago\
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
-
-- ⚫ [Adjust inline code spacing in tables and headings](https://github.com/aaronedev/violet-void-theme_archwiki/pull/21) in [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 1 month ago\
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
-
+_No pull request activity just yet — busy crafting something new._
 
 
 
@@ -188,13 +172,24 @@ to automate the profile as I did.
 - 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 3 weeks ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
-- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 month ago
+- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 1 month ago\
+  <sub>Waybar config extracted from dotfiles</sub>
 
 
 
 </details>
 
 ### ✨ WakaTime stats ✨
+<details>
+  <summary>Click to expand the latest metrics</summary>
+
+
+
+
+</details>
+
+
+### WakaTime stats
 <details>
   <summary>Click to expand the latest metrics</summary>
 
