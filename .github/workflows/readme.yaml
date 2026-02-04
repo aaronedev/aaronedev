@@ -37,21 +37,19 @@ jobs:
 
         echo "WakaTime placeholder not found, restoring..."
 
-        header=$(python3 -c "import re, pathlib, sys; text=pathlib.Path('templates/README.md.tpl').read_text(); match=re.search(r'^### .*WakaTime stats.*$', text, re.MULTILINE); sys.exit('Unable to detect WakaTime header in templates/README.md.tpl') if match is None else print(match.group(0), end='')")
-
-        if ! grep -Fq "${header}" README.md; then
-          echo "WakaTime header missing; update the template or README to include it." >&2
-          exit 1
-        fi
-
-        # Delete everything from header to end of file, then append placeholder
-        # Using line numbers to find the header and trim
-        header_line=$(grep -Fn "^${header}$" README.md | cut -d: -f1 | head -1)
-        if [ -n "$header_line" ]; then
-          head -n "$((header_line - 1))" README.md > README.md.tmp
-          printf '%s\n\n' "$header" "<details>" "  <summary>Click to expand the latest metrics</summary>" "" "<!--START_SECTION:waka-->" "<!--END_SECTION:waka-->" "" "</details>" "" >> README.md.tmp
-          mv README.md.tmp README.md
-        fi
+        # Simply append the WakaTime section at the end
+        # The WakaTime action will replace the placeholder section
+        {
+          echo ""
+          echo "### ✨ WakaTime stats ✨"
+          echo "<details>"
+          echo "  <summary>Click to expand the latest metrics</summary>"
+          echo ""
+          echo "<!--START_SECTION:waka-->"
+          echo "<!--END_SECTION:waka-->"
+          echo ""
+          echo "</details>"
+        } >> README.md
     - name: Inject WakaTime metrics
       uses: anmol098/waka-readme-stats@master
       with:
