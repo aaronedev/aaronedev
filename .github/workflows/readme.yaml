@@ -4,7 +4,7 @@ name: Update README
 
 "on":
   schedule:
-  - cron: "0 0 * * *" # err day at 24:00
+  - cron: "0 2 * * *" # Daily at 02:00 UTC (after WakaTime updates)
   workflow_dispatch: {}
 
 concurrency:
