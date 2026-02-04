@@ -28,8 +28,6 @@ jobs:
         writeTo: README.md
     - name: Restore WakaTime placeholder
       run: |
-        set -euo pipefail
-
         if grep -q '<!--START_SECTION:waka-->' README.md && grep -q '<!--END_SECTION:waka-->' README.md; then
           echo "WakaTime placeholder already exists, skipping restore."
           exit 0
@@ -37,19 +35,8 @@ jobs:
 
         echo "WakaTime placeholder not found, restoring..."
 
-        # Simply append the WakaTime section at the end
-        # The WakaTime action will replace the placeholder section
-        {
-          echo ""
-          echo "### ✨ WakaTime stats ✨"
-          echo "<details>"
-          echo "  <summary>Click to expand the latest metrics</summary>"
-          echo ""
-          echo "<!--START_SECTION:waka-->"
-          echo "<!--END_SECTION:waka-->"
-          echo ""
-          echo "</details>"
-        } >> README.md
+        # Append WakaTime section - WakaTime action will replace the placeholder
+        printf '\n\n### WakaTime stats\n<details>\n  <summary>Click to expand the latest metrics</summary>\n\n<!--START_SECTION:waka-->\n<!--END_SECTION:waka-->\n\n</details>\n' >> README.md
     - name: Inject WakaTime metrics
       uses: anmol098/waka-readme-stats@master
       with:
