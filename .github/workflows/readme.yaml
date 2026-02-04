@@ -58,6 +58,11 @@ jobs:
         SYMBOL_VERSION: "3"
         SHOW_TOTAL_CODE_TIME: "False"
 
+    - name: Update asset URLs to use Vercel
+      run: |
+        # Replace GitHub raw URLs with Vercel URLs for self-hosted assets
+        sed -i 's|https://raw.githubusercontent.com/aaronedev/aaronedev/main/assets/|https://aaronedev.vercel.app/assets/|g' README.md
+
     - name: Commit and push updates
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN && secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
