@@ -172,7 +172,8 @@ _No pull request activity just yet — busy crafting something new._
 - 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 3 weeks ago\
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
-- 🔗 [`aaronedev/violet-void-theme_subl`](https://github.com/aaronedev/violet-void-theme_subl) • 1 month ago
+- 🔗 [`aaronedev/waybar`](https://github.com/aaronedev/waybar) • 1 month ago\
+  <sub>Waybar config extracted from dotfiles</sub>
 
 
 
