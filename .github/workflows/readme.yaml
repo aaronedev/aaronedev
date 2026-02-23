@@ -14,13 +14,13 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - name: Sync main
       run: git pull --ff-only origin main
     - name: Render README
-      uses: muesli/readme-scribe@master
+      uses: muesli/readme-scribe@v3.0.0
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN && secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
       with:
@@ -38,7 +38,7 @@ jobs:
         # Append WakaTime section - WakaTime action will replace the placeholder
         printf '\n\n### WakaTime stats\n<details>\n  <summary>Click to expand the latest metrics</summary>\n\n\n\n\n</details>\n' >> README.md
     - name: Inject WakaTime metrics
-      uses: anmol098/waka-readme-stats@master
+      uses: anmol098/waka-readme-stats@v4
       with:
         WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
