@@ -186,6 +186,84 @@ _No pull request activity just yet — busy crafting something new._
   <summary>Click to expand the latest metrics</summary>
 
 <!--START_SECTION:waka-->
+**🐱 My Github Data** 
+
+> 🏆 14,575 Contributions in the Year 2026
+ > 
+> 📦 5.1 MB Used in Github's Storage 
+ > 
+> 💼 Opted to Hire
+ > 
+> 📜 91 Public Repositories 
+ > 
+> 🔑 152 Private Repositories  
+ > 
+**I'm an Early 🐤** 
+
+```text
+🌞 Morning    204 commits    █████████░░░░░░░░░░░░░░░░   36.23% 
+🌆 Daytime    117 commits    █████░░░░░░░░░░░░░░░░░░░░   20.78% 
+🌃 Evening    181 commits    ████████░░░░░░░░░░░░░░░░░   32.15% 
+🌙 Night      61 commits     ██░░░░░░░░░░░░░░░░░░░░░░░   10.83%
+
+```
+📅 **I'm Most Productive on Monday** 
+
+```text
+Monday       170 commits    ███████░░░░░░░░░░░░░░░░░░   30.2% 
+Tuesday      21 commits     █░░░░░░░░░░░░░░░░░░░░░░░░   3.73% 
+Wednesday    34 commits     █░░░░░░░░░░░░░░░░░░░░░░░░   6.04% 
+Thursday     120 commits    █████░░░░░░░░░░░░░░░░░░░░   21.31% 
+Friday       53 commits     ██░░░░░░░░░░░░░░░░░░░░░░░   9.41% 
+Saturday     67 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.9% 
+Sunday       98 commits     ████░░░░░░░░░░░░░░░░░░░░░   17.41%
+
+```
+
+
+📊 **This Week I Spent My Time On** 
+
+```text
+⌚︎ Time Zone: Europe/Berlin
+
+💬 Programming Languages: 
+TypeScript               27 hrs 2 mins       ████████░░░░░░░░░░░░░░░░░   33.39% 
+Markdown                 12 hrs 52 mins      ████░░░░░░░░░░░░░░░░░░░░░   15.9% 
+Bash                     7 hrs 15 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   8.97% 
+JavaScript               5 hrs 47 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   7.15% 
+Other                    5 hrs 45 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   7.11%
+
+🔥 Editors: 
+Neovim                   68 hrs 11 mins      █████████████████████░░░░   84.21% 
+Claude Code              8 hrs 18 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   10.27% 
+Vim                      4 hrs 28 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.52%
+
+🐱‍💻 Projects: 
+bauerstischfinder        30 hrs 26 mins      █████████░░░░░░░░░░░░░░░░   37.6% 
+dotfiles                 27 hrs 23 mins      ████████░░░░░░░░░░░░░░░░░   33.82% 
+bauerstischfinder_dev    14 hrs 26 mins      ████░░░░░░░░░░░░░░░░░░░░░   17.83% 
+opencode                 2 hrs 9 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   2.67% 
+Unknown Project          1 hr 33 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.93%
+
+💻 Operating System: 
+Linux                    80 hrs 58 mins      █████████████████████████   100.0%
+
+```
+
+**I Mostly Code in Shell** 
+
+```text
+Shell                    25 repos            ██████████░░░░░░░░░░░░░░░   42.37% 
+CSS                      7 repos             ███░░░░░░░░░░░░░░░░░░░░░░   11.86% 
+Lua                      5 repos             ██░░░░░░░░░░░░░░░░░░░░░░░   8.47% 
+Stylus                   4 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   6.78% 
+Python                   4 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   6.78%
+
+```
+
+
+
+ Last Updated on 22/06/2026
 <!--END_SECTION:waka-->
 
 
