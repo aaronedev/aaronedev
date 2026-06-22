@@ -42,7 +42,15 @@
 - Tuning agentic coding workflows: OpenCode config, reusable skills, multi-agent loops, and repo automation.
 - Expanding **Violet Void** into a cohesive theme system across apps, websites, terminals, and editor tooling.
 
+<sub>★ <em>Those dark module badges are clickable links to my actual dotfile repos.</em></sub>
+
 ## I can help with
+
+```text
+╭─ I CAN HELP WITH ─────────────────────────────╮
+│ linux desktop ux · local tools · agent loops  │
+╰───────────────────────────────────────────────╯
+```
 
 <table>
   <tbody>
@@ -69,14 +77,17 @@
   </tbody>
 </table>
 
+<sub>★ <em>Terminal banners like this are the kind of thing I make with <a href="https://github.com/aaronedev/figmix">figmix</a>: mixed FIGlet/TOIlet styles for headers, timers, and little shell-native design moments.</em></sub>
+
 ## Featured projects
-<sub>Click a project badge to open the repo.</sub>
 
 - <a href="https://github.com/aaronedev/violet-void-theme"><img src="https://img.shields.io/static/v1?label=&message=Violet%20Void%20Theme&color=7c60d1&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5" alt="Violet Void Theme" /></a> - core color system for my desktop and web setup; expanding into app, website, terminal, and editor themes.
 - <a href="https://github.com/aaronedev/transcribe-that"><img src="https://img.shields.io/static/v1?label=&message=transcribe-that&color=319e8d&labelColor=0f0f0f&style=flat&logo=python&logoColor=ffffff" alt="transcribe-that" /></a> - local-first transcription tooling for Linux workflows.
 - <a href="https://github.com/aaronedev/read-that"><img src="https://img.shields.io/static/v1?label=&message=read-that&color=42ff97&labelColor=0f0f0f&style=flat&logo=python&logoColor=ffffff" alt="read-that" /></a> - local clipboard TTS with offline EN/DE voice switching and practical CLI controls.
 - <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><img src="https://img.shields.io/static/v1?label=&message=nerdfont%20picker&color=fd7cff&labelColor=0f0f0f&style=flat&logo=gnubash&logoColor=f0f0f5" alt="nerdfont-icon-rofi-picker" /></a> - fuzzy Rofi picker for Nerd Font icons with quick clipboard copy.
 - <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><img src="https://img.shields.io/static/v1?label=&message=ArchWiki%20theme&color=29adff&labelColor=0f0f0f&style=flat&logo=archlinux&logoColor=f0f0f5" alt="violet-void-theme_archwiki" /></a> - ArchWiki restyle using the Violet Void palette; public proof on a real, high-information site.
+
+<sub>★ <em>...😅</em></sub>
 
 ## Violet Void colors
 These are the main colors for **Violet Void**, including the core palette and the git status colors I use across themes.
