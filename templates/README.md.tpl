@@ -153,30 +153,47 @@ Check discussion page or click badge above to see install instructions if u want
 ## ⭐ Recent activity
 
 <details>
-  <summary>Click to expand recent GitHub activity</summary>
+  <summary><strong>Click to expand recent GitHub activity</strong></summary>
 
-{{ $prs := recentPullRequests 5 }}
+{{ $prs := recentPullRequests 8 }}
 {{ if $prs }}
 ### 🔁 Fresh Pull Requests
+<table>
+  <tbody>
 {{ range $prs }}
-- {{ if eq .State "OPEN" }}🟣{{ else if eq .State "MERGED" }}🟢{{ else }}⚫{{ end }} [{{ .Title }}]({{ .URL }}) in [`{{ .Repo.Name }}`]({{ .Repo.URL }}) • {{ humanize .CreatedAt }}
-  {{- if .Repo.Description }}\
-  <sub>{{ .Repo.Description }}</sub>
-  {{- end }}
+    <tr>
+      <td width="32">{{ if eq .State "OPEN" }}🟣{{ else if eq .State "MERGED" }}🟢{{ else }}⚫{{ end }}</td>
+      <td>
+        <a href="{{ .URL }}"><strong>{{ .Title }}</strong></a><br>
+        <sub><a href="{{ .Repo.URL }}"><code>{{ .Repo.Name }}</code></a> • {{ humanize .CreatedAt }} • {{ .State }}</sub>
+        {{- if .Repo.Description }}<br>
+        <sub>{{ .Repo.Description }}</sub>{{ end }}
+      </td>
+    </tr>
 {{ end }}
+  </tbody>
+</table>
 {{ else }}
 _No pull request activity just yet — busy crafting something new._
 {{ end }}
 
-{{ $contribs := recentContributions 5 }}
+{{ $contribs := recentContributions 10 }}
 {{ if $contribs }}
 ### 🛠️ Latest Contributions
+<table>
+  <tbody>
 {{ range $contribs }}
-- 🔗 [`{{ .Repo.Name }}`]({{ .Repo.URL }}) • {{ humanize .OccurredAt }}
-  {{- if .Repo.Description }}\
-  <sub>{{ .Repo.Description }}</sub>
-  {{- end }}
+    <tr>
+      <td width="32">🔗</td>
+      <td>
+        <a href="{{ .Repo.URL }}"><code>{{ .Repo.Name }}</code></a> • <strong>{{ humanize .OccurredAt }}</strong>
+        {{- if .Repo.Description }}<br>
+        <sub>{{ .Repo.Description }}</sub>{{ end }}
+      </td>
+    </tr>
 {{ end }}
+  </tbody>
+</table>
 {{ else }}
 _No public commits in the last few days — check back soon._
 {{ end }}
