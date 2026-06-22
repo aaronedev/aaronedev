@@ -37,24 +37,57 @@
 
 ## Current focus
 - Shipping a TypeScript product backend/frontend stack with real deployment, CI, and data workflows.
-- Splitting my Arch/Hyprland setup into focused modules: `hypr`, `quickshell`, `nvim`, `tmux`, `bash`, `yazi`, `uwsm`, terminals, and theme packages.
+- Splitting my Arch/Hyprland setup into focused modules: [![hypr](https://img.shields.io/static/v1?label=&message=hypr&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/hypr) [![quickshell](https://img.shields.io/static/v1?label=&message=quickshell&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/quickshell) [![nvim](https://img.shields.io/static/v1?label=&message=nvim&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/nvim) [![tmux](https://img.shields.io/static/v1?label=&message=tmux&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/tmux) [![bash](https://img.shields.io/static/v1?label=&message=bash&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/bash) [![yazi](https://img.shields.io/static/v1?label=&message=yazi&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/yazi) [![uwsm](https://img.shields.io/static/v1?label=&message=uwsm&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/uwsm) plus terminals and theme packages.
 - Building local-first Python tools around speech, transcription, clipboard audio, and desktop notifications.
 - Tuning agentic coding workflows: OpenCode config, reusable skills, multi-agent loops, and repo automation.
 - Expanding **Violet Void** into a cohesive theme system across apps, websites, terminals, and editor tooling.
 
+<sub>★ <em>Those dark module badges are clickable links to my actual dotfile repos.</em></sub>
+
 ## I can help with
-- Linux desktop automation, Hyprland rules, Quickshell widgets, and shell-first workflows ![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
-- Neovim UX, Lua config, LSP wiring, terminal ergonomics, and fast editing loops ![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b) ![Lua](https://img.shields.io/badge/Lua-42ff97?style=flat&logo=lua&logoColor=0b0b0b)
-- Bash/Python utilities that feel native on Linux instead of bolted on ![Bash](https://img.shields.io/badge/Bash-fd0098?style=flat&logo=gnu-bash&logoColor=ffffff) ![Python](https://img.shields.io/badge/Python-319e8d?style=flat&logo=python&logoColor=ffffff)
-- Rootless dev environments, CI, and container workflows without Docker daemon habits ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
-- Practical agent tooling: prompts, skills, automation loops, and code-review workflows.
+
+```text
+╭─ I CAN HELP WITH ─────────────────────────────╮
+│ linux desktop ux · local tools · agent loops  │
+╰───────────────────────────────────────────────╯
+```
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Desktop UX</strong></td>
+      <td>Linux automation, Hyprland rules, Quickshell widgets, and shell-first workflows.</td>
+    </tr>
+    <tr>
+      <td><strong>Editor flow</strong></td>
+      <td>Neovim UX, Lua config, LSP wiring, terminal ergonomics, and fast editing loops.</td>
+    </tr>
+    <tr>
+      <td><strong>Local tools</strong></td>
+      <td>Bash/Python utilities that feel native on Linux instead of bolted on.</td>
+    </tr>
+    <tr>
+      <td><strong>Dev envs</strong></td>
+      <td>Rootless environments, CI, and container workflows without Docker daemon habits.</td>
+    </tr>
+    <tr>
+      <td><strong>Agent work</strong></td>
+      <td>Practical prompts, skills, automation loops, and code-review workflows.</td>
+    </tr>
+  </tbody>
+</table>
+
+<sub>★ <em>Terminal banners like this are the kind of thing I make with <a href="https://github.com/aaronedev/figmix">figmix</a>: mixed FIGlet/TOIlet styles for headers, timers, and little shell-native design moments.</em></sub>
 
 ## Featured projects
-- [**Violet Void Theme**](https://github.com/aaronedev/violet-void-theme) — core color system for my desktop and web setup; expanding into app, website, terminal, and editor themes.
-- [**transcribe-that**](https://github.com/aaronedev/transcribe-that) — local-first transcription tooling for Linux workflows.
-- [**read-that**](https://github.com/aaronedev/read-that) — local clipboard TTS with offline EN/DE voice switching and practical CLI controls.
-- [**nerdfont-icon-rofi-picker**](https://github.com/aaronedev/nerdfont-icon-rofi-picker) — fuzzy Rofi picker for Nerd Font icons with quick clipboard copy.
-- [**violet-void-theme_archwiki**](https://github.com/aaronedev/violet-void-theme_archwiki) — ArchWiki restyle using the Violet Void palette; public proof on a real, high-information site.
+
+- <a href="https://github.com/aaronedev/violet-void-theme"><img src="https://img.shields.io/static/v1?label=&message=Violet%20Void%20Theme&color=7c60d1&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5" alt="Violet Void Theme" /></a> - core color system for my desktop and web setup; expanding into app, website, terminal, and editor themes.
+- <a href="https://github.com/aaronedev/transcribe-that"><img src="https://img.shields.io/static/v1?label=&message=transcribe-that&color=319e8d&labelColor=0f0f0f&style=flat&logo=python&logoColor=ffffff" alt="transcribe-that" /></a> - local-first transcription tooling for Linux workflows.
+- <a href="https://github.com/aaronedev/read-that"><img src="https://img.shields.io/static/v1?label=&message=read-that&color=42ff97&labelColor=0f0f0f&style=flat&logo=python&logoColor=ffffff" alt="read-that" /></a> - local clipboard TTS with offline EN/DE voice switching and practical CLI controls.
+- <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><img src="https://img.shields.io/static/v1?label=&message=nerdfont%20picker&color=fd7cff&labelColor=0f0f0f&style=flat&logo=gnubash&logoColor=f0f0f5" alt="nerdfont-icon-rofi-picker" /></a> - fuzzy Rofi picker for Nerd Font icons with quick clipboard copy.
+- <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><img src="https://img.shields.io/static/v1?label=&message=ArchWiki%20theme&color=29adff&labelColor=0f0f0f&style=flat&logo=archlinux&logoColor=f0f0f5" alt="violet-void-theme_archwiki" /></a> - ArchWiki restyle using the Violet Void palette; public proof on a real, high-information site.
+
+<sub>★ <em>...😅</em></sub>
 
 ## Violet Void colors
 These are the main colors for **Violet Void**, including the core palette and the git status colors I use across themes.
@@ -163,85 +196,31 @@ _No pull request activity just yet — busy crafting something new._
 
 
 ### 🛠️ Latest Contributions
-<table>
-  <tbody>
 
-    <tr>
-      <td width="32">🔗</td>
-      <td>
-        <a href="https://github.com/aaronedev/violet-void-theme_discord"><code>aaronedev/violet-void-theme_discord</code></a> • <strong>2 weeks ago</strong>
-      </td>
-    </tr>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_discord"><code>aaronedev/violet-void-theme_discord</code></a> • <strong>2 weeks ago</strong>
 
-    <tr>
-      <td width="32">🔗</td>
-      <td>
-        <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>2 weeks ago</strong><br>
-        <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
-      </td>
-    </tr>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>2 weeks ago</strong><br>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
-    <tr>
-      <td width="32">🔗</td>
-      <td>
-        <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>1 month ago</strong><br>
-        <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
-      </td>
-    </tr>
+- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>1 month ago</strong><br>
+  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
-    <tr>
-      <td width="32">🔗</td>
-      <td>
-        <a href="https://github.com/aaronedev/violet-void-theme_crackboard"><code>aaronedev/violet-void-theme_crackboard</code></a> • <strong>3 months ago</strong>
-      </td>
-    </tr>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_crackboard"><code>aaronedev/violet-void-theme_crackboard</code></a> • <strong>3 months ago</strong>
 
-    <tr>
-      <td width="32">🔗</td>
-      <td>
-        <a href="https://github.com/aaronedev/violet-void-theme_nvim"><code>aaronedev/violet-void-theme_nvim</code></a> • <strong>3 months ago</strong><br>
-        <sub>Violet Void Neovim colorscheme with 70&#43; plugin integrations</sub>
-      </td>
-    </tr>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_nvim"><code>aaronedev/violet-void-theme_nvim</code></a> • <strong>3 months ago</strong><br>
+  <sub>Violet Void Neovim colorscheme with 70&#43; plugin integrations</sub>
 
-    <tr>
-      <td width="32">🔗</td>
-      <td>
-        <a href="https://github.com/aaronedev/violet-void-theme_fish"><code>aaronedev/violet-void-theme_fish</code></a> • <strong>3 months ago</strong>
-      </td>
-    </tr>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_fish"><code>aaronedev/violet-void-theme_fish</code></a> • <strong>3 months ago</strong>
 
-    <tr>
-      <td width="32">🔗</td>
-      <td>
-        <a href="https://github.com/aaronedev/violet-void-theme_kitty"><code>aaronedev/violet-void-theme_kitty</code></a> • <strong>3 months ago</strong>
-      </td>
-    </tr>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_kitty"><code>aaronedev/violet-void-theme_kitty</code></a> • <strong>3 months ago</strong>
 
-    <tr>
-      <td width="32">🔗</td>
-      <td>
-        <a href="https://github.com/aaronedev/violet-void-monorepo"><code>aaronedev/violet-void-monorepo</code></a> • <strong>3 months ago</strong><br>
-        <sub>Violet Void Theme Monorepo - Central hub for all Violet Void theme projects</sub>
-      </td>
-    </tr>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-monorepo"><code>aaronedev/violet-void-monorepo</code></a> • <strong>3 months ago</strong><br>
+  <sub>Violet Void Theme Monorepo - Central hub for all Violet Void theme projects</sub>
 
-    <tr>
-      <td width="32">🔗</td>
-      <td>
-        <a href="https://github.com/aaronedev/violet-void-theme_vim"><code>aaronedev/violet-void-theme_vim</code></a> • <strong>3 months ago</strong>
-      </td>
-    </tr>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_vim"><code>aaronedev/violet-void-theme_vim</code></a> • <strong>3 months ago</strong>
 
-    <tr>
-      <td width="32">🔗</td>
-      <td>
-        <a href="https://github.com/aaronedev/violet-void-theme_geizhals"><code>aaronedev/violet-void-theme_geizhals</code></a> • <strong>3 months ago</strong>
-      </td>
-    </tr>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_geizhals"><code>aaronedev/violet-void-theme_geizhals</code></a> • <strong>3 months ago</strong>
 
-  </tbody>
-</table>
 
 
 </details>
