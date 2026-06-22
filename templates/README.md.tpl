@@ -1,16 +1,32 @@
-[![Header](https://capsule-render.vercel.app/api?type=waving&color=0:1a0f2e,50:2d1b4e,100:1a0f2e&height=300&section=header&text=Oi,%20World!%20I'm%20Aaron&fontSize=70&fontColor=f0f0f5&animation=fadeIn&fontAlignY=38&desc=Linux%20enthusiast%20•%20Hyprland%20workflows%20•%20Neovim%20configs&descSize=20&descAlignY=55)](https://github.com/aaronedev)
+[![Header](https://capsule-render.vercel.app/api?type=waving&color=0:1a0f2e,50:2d1b4e,100:1a0f2e&height=300&section=header&text=Oi,%20World!%20I'm%20Aaron&fontSize=70&fontColor=f0f0f5&animation=fadeIn&fontAlignY=38&desc=Linux%20desktop%20systems%20•%20agentic%20dev%20tools%20•%20local-first%20utilities&descSize=20&descAlignY=55)](https://github.com/aaronedev)
 
-# aka aaronedev github profile
+# Aaron / aaronedev
 
-![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=7745bf&)
+I build Linux-first tools for my own workflow: Hyprland and Quickshell desktop UX, Neovim and terminal ergonomics, rootless dev environments, local voice/transcription utilities, and agent-assisted coding setups.
+
+![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=7745bf& "ahrwn is my old handle; this badge keeps the original profile-view counter.")
 ![GitHub followers](https://img.shields.io/github/followers/aaronedev?style=flat&logo=github&label=Followers&color=7c60d1)
 ![GitHub stars](https://img.shields.io/github/stars/aaronedev?style=flat&logo=github&label=Stars&color=fd7cff)
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=7C60D1&center=true&vCenter=true&multiline=false&repeat=true&width=600&lines=Linux+desktop+engineering;rootless+containers;Hyprland+workflows;Neovim+configs+%26+Themes" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=7C60D1&center=true&vCenter=true&multiline=false&repeat=true&width=680&lines=Linux+desktop+systems;Hyprland+%2B+Quickshell+workflows;Neovim+%2B+terminal+ergonomics;local+voice+%26+transcription+tools;agentic+dev+workflows" alt="Typing SVG" />
 </p>
 
-## 📬 About me -- Contact
+## Current focus
+- Shipping a TypeScript product backend/frontend stack with real deployment, CI, and data workflows.
+- Splitting my Arch/Hyprland setup into focused modules: `hypr`, `quickshell`, `nvim`, `tmux`, `bash`, `yazi`, `uwsm`, terminals, and theme packages.
+- Building local-first Python tools around speech, transcription, clipboard audio, and desktop notifications.
+- Tuning agentic coding workflows: OpenCode config, reusable skills, multi-agent loops, and repo automation.
+- Expanding **Violet Void** into a cohesive theme system across apps, websites, terminals, and editor tooling.
+
+## I can help with
+- Linux desktop automation, Hyprland rules, Quickshell widgets, and shell-first workflows ![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
+- Neovim UX, Lua config, LSP wiring, terminal ergonomics, and fast editing loops ![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b) ![Lua](https://img.shields.io/badge/Lua-42ff97?style=flat&logo=lua&logoColor=0b0b0b)
+- Bash/Python utilities that feel native on Linux instead of bolted on ![Bash](https://img.shields.io/badge/Bash-fd0098?style=flat&logo=gnu-bash&logoColor=ffffff) ![Python](https://img.shields.io/badge/Python-319e8d?style=flat&logo=python&logoColor=ffffff)
+- Rootless dev environments, CI, and container workflows without Docker daemon habits ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
+- Practical agent tooling: prompts, skills, automation loops, and code-review workflows.
+
+## 📬 Contact
 
 <a href="https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe">
   <img
@@ -52,13 +68,6 @@
 <div>
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=aaronedev&layout=compact&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&text_color=f0f0f5&hide_border=true&border_radius=10&border_color=131313" alt="Top Languages" />
 </div>
-
-## ✨ I can help with
-- Bash scripting and automation ![Bash](https://img.shields.io/badge/Bash-fd0098?style=flat&logo=gnu-bash&logoColor=ffffff)
-- Hardening dev containers and CI without Docker (rootless **Podman**) ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
-- Modular **Hyprland** configs, rules, and automation ![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
-- **Neovim** UX (Lua, LSP, performance) ![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b) ![Lua](https://img.shields.io/badge/Lua-42ff97?style=flat&logo=lua&logoColor=0b0b0b)
-- Offline TTS pipelines with **Piper** (Python) and clean CLI ergonomics ![Python](https://img.shields.io/badge/Python-319e8d?style=flat&logo=python&logoColor=ffffff)
 
 ## 🌟 Featured projects
 - 🎨 **Violet Void Theme** — core color system powering matching themes across apps (ArchWiki, CopyQ, more)\
