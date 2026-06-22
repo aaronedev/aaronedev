@@ -153,7 +153,7 @@ Check discussion page or click badge above to see install instructions if u want
 ## ⭐ Recent activity
 
 <details>
-  <summary>Click to expand recent GitHub activity</summary>
+  <summary><strong>Click to expand recent GitHub activity</strong></summary>
 
 
 
@@ -163,20 +163,85 @@ _No pull request activity just yet — busy crafting something new._
 
 
 ### 🛠️ Latest Contributions
+<table>
+  <tbody>
 
-- 🔗 [`aaronedev/violet-void-theme_discord`](https://github.com/aaronedev/violet-void-theme_discord) • 2 weeks ago
+    <tr>
+      <td width="32">🔗</td>
+      <td>
+        <a href="https://github.com/aaronedev/violet-void-theme_discord"><code>aaronedev/violet-void-theme_discord</code></a> • <strong>2 weeks ago</strong>
+      </td>
+    </tr>
 
-- 🔗 [`aaronedev/violet-void-theme_archwiki`](https://github.com/aaronedev/violet-void-theme_archwiki) • 2 weeks ago\
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
+    <tr>
+      <td width="32">🔗</td>
+      <td>
+        <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>2 weeks ago</strong><br>
+        <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
+      </td>
+    </tr>
 
-- 🔗 [`aaronedev/nerdfont-icon-rofi-picker`](https://github.com/aaronedev/nerdfont-icon-rofi-picker) • 1 month ago\
-  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
+    <tr>
+      <td width="32">🔗</td>
+      <td>
+        <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>1 month ago</strong><br>
+        <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
+      </td>
+    </tr>
 
-- 🔗 [`aaronedev/violet-void-theme_crackboard`](https://github.com/aaronedev/violet-void-theme_crackboard) • 3 months ago
+    <tr>
+      <td width="32">🔗</td>
+      <td>
+        <a href="https://github.com/aaronedev/violet-void-theme_crackboard"><code>aaronedev/violet-void-theme_crackboard</code></a> • <strong>3 months ago</strong>
+      </td>
+    </tr>
 
-- 🔗 [`aaronedev/violet-void-theme_nvim`](https://github.com/aaronedev/violet-void-theme_nvim) • 3 months ago\
-  <sub>Violet Void Neovim colorscheme with 70&#43; plugin integrations</sub>
+    <tr>
+      <td width="32">🔗</td>
+      <td>
+        <a href="https://github.com/aaronedev/violet-void-theme_nvim"><code>aaronedev/violet-void-theme_nvim</code></a> • <strong>3 months ago</strong><br>
+        <sub>Violet Void Neovim colorscheme with 70&#43; plugin integrations</sub>
+      </td>
+    </tr>
 
+    <tr>
+      <td width="32">🔗</td>
+      <td>
+        <a href="https://github.com/aaronedev/violet-void-theme_fish"><code>aaronedev/violet-void-theme_fish</code></a> • <strong>3 months ago</strong>
+      </td>
+    </tr>
+
+    <tr>
+      <td width="32">🔗</td>
+      <td>
+        <a href="https://github.com/aaronedev/violet-void-theme_kitty"><code>aaronedev/violet-void-theme_kitty</code></a> • <strong>3 months ago</strong>
+      </td>
+    </tr>
+
+    <tr>
+      <td width="32">🔗</td>
+      <td>
+        <a href="https://github.com/aaronedev/violet-void-monorepo"><code>aaronedev/violet-void-monorepo</code></a> • <strong>3 months ago</strong><br>
+        <sub>Violet Void Theme Monorepo - Central hub for all Violet Void theme projects</sub>
+      </td>
+    </tr>
+
+    <tr>
+      <td width="32">🔗</td>
+      <td>
+        <a href="https://github.com/aaronedev/violet-void-theme_vim"><code>aaronedev/violet-void-theme_vim</code></a> • <strong>3 months ago</strong>
+      </td>
+    </tr>
+
+    <tr>
+      <td width="32">🔗</td>
+      <td>
+        <a href="https://github.com/aaronedev/violet-void-theme_geizhals"><code>aaronedev/violet-void-theme_geizhals</code></a> • <strong>3 months ago</strong>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
 
 
 </details>
