@@ -2,7 +2,6 @@
 
 # aka aaronedev github profile
 
-<!-- badges -->
 ![Profile views](https://komarev.com/ghpvc/?username=ahrwn&label=Profile%20views&color=7745bf&)
 ![GitHub followers](https://img.shields.io/github/followers/aaronedev?style=flat&logo=github&label=Followers&color=7c60d1)
 ![GitHub stars](https://img.shields.io/github/stars/aaronedev?style=flat&logo=github&label=Stars&color=fd7cff)
@@ -46,8 +45,7 @@
 - Build secure, rootless **Podman** dev setups ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
 - Engineer **Hyprland** desktop workflows and **Neovim** theming ![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff) ![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b)
 - Ship **python-utility** apps: offline TTS tools powered by **Piper** ![Python](https://img.shields.io/badge/Python-319e8d?style=flat&logo=python&logoColor=ffffff)
-  - Example: clipboard-reader aka [read-that](https://github.com/aaronedev/read-that) 📢
- that auto-detects **EN/DE**, switches voices, and takes flags for speed, pitch, and voice
+  - Example: clipboard-reader aka [read-that](https://github.com/aaronedev/read-that) 📢 that auto-detects **EN/DE**, switches voices, and takes flags for speed, pitch, and voice
 - Bash scripting: small, composable CLI tools ![Bash](https://img.shields.io/badge/Bash-fd0098?style=flat&logo=gnu-bash&logoColor=ffffff)
 - Linux (Arch-based) and network fundamentals for real deployments ![Linux](https://img.shields.io/badge/Linux-00fff9?style=flat&logo=linux&logoColor=0b0b0b) ![Arch Linux](https://img.shields.io/badge/Arch_Linux-29adff?style=flat&logo=arch-linux&logoColor=ffffff)
 
@@ -101,7 +99,7 @@
       <tr>
         <td align="center"><img src="https://singlecolorimage.com/get/f0f0f5/80x40" alt="#f0f0f5 swatch"><br><code>fg</code><br><code>#f0f0f5</code></td>
         <td align="center"><img src="https://singlecolorimage.com/get/303030/80x40" alt="#303030 swatch"><br><code>fg_dark</code><br><code>#303030</code></td>
-        <td align="center"><img src="https://singlecolorimage.com/get/313131/80x40" alt="#313131 swatch"><br><code>fg_gutter</code><br><code>#313131</code></td>
+        <td align="center"><img src="https://singlecolorimage.com/get/313131/80x40" alt="#313131 swatch"><br><code>gutter</code><br><code>#313131</code></td>
         <td align="center"><img src="https://singlecolorimage.com/get/42ff97/80x40" alt="#42ff97 swatch"><br><code>green</code><br><code>#42ff97</code></td>
         <td align="center"><img src="https://singlecolorimage.com/get/42ffad/80x40" alt="#42ffad swatch"><br><code>green1</code><br><code>#42ffad</code></td>
       </tr>
@@ -146,13 +144,11 @@
 ## 📝 Docs workflow
 All notes in Neovim via [obsidian.nvim](https://github.com/obsidian-nvim/obsidian.nvim) on plain Markdown.
 
-
 ## 🪄 If you want to Fork this profile to use it as ur own
 
 [![templates/README.md.tpl](https://img.shields.io/badge/templates-README.md.tpl-2ea44f?logo=github&labelColor=161b22)](https://github.com/aaronedev/aaronedev/discussions/7)
 
-Check discussion page or click badge above to see install instructions if u want
-to automate the profile as I did.
+Check discussion page or click badge above to see install instructions if u want to automate the profile as I did.
 
 ---
 
@@ -192,8 +188,5 @@ _No public commits in the last few days — check back soon._
 ### ✨ WakaTime stats ✨
 <details>
   <summary>Click to expand the latest metrics</summary>
-
-<!--START_SECTION:waka-->
-<!--END_SECTION:waka-->
 
 </details>

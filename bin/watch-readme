@@ -1,10 +1,16 @@
-#!/usr/bin/env bash
+bin/watch-readme#!/usr/bin/env bash
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 
 preview_pid=""
+compiler_bin="readme-scribe"
+
+# Determine active binary name based on available system binaries
+if ! command -v readme-scribe >/dev/null 2>&1 && command -v markscribe >/dev/null 2>&1; then
+  compiler_bin="markscribe"
+fi
 
 cleanup() {
   if [[ -n "$preview_pid" ]] && kill -0 "$preview_pid" 2>/dev/null; then
@@ -13,8 +19,12 @@ cleanup() {
 }
 
 run_build() {
-  markscribe templates/README.md.tpl >README.md
-  printf 'Regenerated README.md at %s\n' "$(date '+%Y-%m-%d %H:%M:%S')"
+  if [[ "$compiler_bin" == "readme-scribe" ]]; then
+    readme-scribe -template templates/README.md.tpl -output README.md
+  else
+    markscribe templates/README.md.tpl >README.md
+  fi
+  printf 'Regenerated README.md via %s at %s\n' "$compiler_bin" "$(date '+%Y-%m-%d %H:%M:%S')"
 }
 
 start_preview() {
@@ -31,7 +41,11 @@ run_build
 start_preview
 
 if command -v entr >/dev/null 2>&1; then
-  printf '%s\n' templates/README.md.tpl | entr -rc bash -lc "markscribe templates/README.md.tpl > README.md && printf 'Regenerated README.md at %s\\n' \"\$(date '+%Y-%m-%d %H:%M:%S')\""
+  if [[ "$compiler_bin" == "readme-scribe" ]]; then
+    printf '%s\n' templates/README.md.tpl | entr -rc readme-scribe -template templates/README.md.tpl -output README.md
+  else
+    printf '%s\n' templates/README.md.tpl | entr -rc bash -lc "markscribe templates/README.md.tpl > README.md"
+  fi
 elif command -v inotifywait >/dev/null 2>&1; then
   printf 'Watching templates/README.md.tpl with inotifywait...\n'
   while inotifywait -e close_write templates/README.md.tpl >/dev/null 2>&1; do

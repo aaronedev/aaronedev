@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    defaults:
+      run:
+        shell: bash
     steps:
     - uses: actions/checkout@v4
       with:
@@ -26,17 +29,6 @@ jobs:
       with:
         template: templates/README.md.tpl
         writeTo: README.md
-    - name: Restore WakaTime placeholder
-      run: |
-        if grep -q '' README.md && grep -q '' README.md; then
-          echo "WakaTime placeholder already exists, skipping restore."
-          exit 0
-        fi
-
-        echo "WakaTime placeholder not found, restoring..."
-
-        # Append WakaTime section - WakaTime action will replace the placeholder
-        printf '\n\n### WakaTime stats\n<details>\n  <summary>Click to expand the latest metrics</summary>\n\n\n\n\n</details>\n' >> README.md
     - name: Inject WakaTime metrics
       uses: anmol098/waka-readme-stats@v4
       with:
@@ -47,7 +39,6 @@ jobs:
         SHOW_TOTAL_CODE_TIME: "False"
     - name: Update asset URLs to use Vercel
       run: |
-        # Replace GitHub raw URLs with Vercel URLs for self-hosted assets
         sed -i 's|https://raw.githubusercontent.com/aaronedev/aaronedev/main/assets/|https://aaronedev.vercel.app/assets/|g' README.md
     - name: Commit and push updates
       env:
