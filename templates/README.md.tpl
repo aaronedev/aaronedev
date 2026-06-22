@@ -37,24 +37,46 @@
 
 ## Current focus
 - Shipping a TypeScript product backend/frontend stack with real deployment, CI, and data workflows.
-- Splitting my Arch/Hyprland setup into focused modules: `hypr`, `quickshell`, `nvim`, `tmux`, `bash`, `yazi`, `uwsm`, terminals, and theme packages.
+- Splitting my Arch/Hyprland setup into focused modules: <a href="https://github.com/aaronedev/hypr"><img src="https://img.shields.io/static/v1?label=&message=hypr&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5" alt="hypr repository" /></a> <a href="https://github.com/aaronedev/quickshell"><img src="https://img.shields.io/static/v1?label=&message=quickshell&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5" alt="quickshell repository" /></a> <a href="https://github.com/aaronedev/nvim"><img src="https://img.shields.io/static/v1?label=&message=nvim&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5" alt="nvim repository" /></a> <a href="https://github.com/aaronedev/tmux"><img src="https://img.shields.io/static/v1?label=&message=tmux&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5" alt="tmux repository" /></a> <a href="https://github.com/aaronedev/bash"><img src="https://img.shields.io/static/v1?label=&message=bash&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5" alt="bash repository" /></a> <a href="https://github.com/aaronedev/yazi"><img src="https://img.shields.io/static/v1?label=&message=yazi&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5" alt="yazi repository" /></a> <a href="https://github.com/aaronedev/uwsm"><img src="https://img.shields.io/static/v1?label=&message=uwsm&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5" alt="uwsm repository" /></a> plus terminals and theme packages.
 - Building local-first Python tools around speech, transcription, clipboard audio, and desktop notifications.
 - Tuning agentic coding workflows: OpenCode config, reusable skills, multi-agent loops, and repo automation.
 - Expanding **Violet Void** into a cohesive theme system across apps, websites, terminals, and editor tooling.
 
 ## I can help with
-- Linux desktop automation, Hyprland rules, Quickshell widgets, and shell-first workflows ![Hyprland](https://img.shields.io/badge/Hyprland-fd0098?style=flat&logo=hyprland&logoColor=ffffff)
-- Neovim UX, Lua config, LSP wiring, terminal ergonomics, and fast editing loops ![Neovim](https://img.shields.io/badge/Neovim-42ff97?style=flat&logo=neovim&logoColor=0b0b0b) ![Lua](https://img.shields.io/badge/Lua-42ff97?style=flat&logo=lua&logoColor=0b0b0b)
-- Bash/Python utilities that feel native on Linux instead of bolted on ![Bash](https://img.shields.io/badge/Bash-fd0098?style=flat&logo=gnu-bash&logoColor=ffffff) ![Python](https://img.shields.io/badge/Python-319e8d?style=flat&logo=python&logoColor=ffffff)
-- Rootless dev environments, CI, and container workflows without Docker daemon habits ![Podman](https://img.shields.io/badge/Podman-7c60d1?style=flat&logo=podman&logoColor=ffffff)
-- Practical agent tooling: prompts, skills, automation loops, and code-review workflows.
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Desktop UX</strong></td>
+      <td>Linux automation, Hyprland rules, Quickshell widgets, and shell-first workflows.</td>
+    </tr>
+    <tr>
+      <td><strong>Editor flow</strong></td>
+      <td>Neovim UX, Lua config, LSP wiring, terminal ergonomics, and fast editing loops.</td>
+    </tr>
+    <tr>
+      <td><strong>Local tools</strong></td>
+      <td>Bash/Python utilities that feel native on Linux instead of bolted on.</td>
+    </tr>
+    <tr>
+      <td><strong>Dev envs</strong></td>
+      <td>Rootless environments, CI, and container workflows without Docker daemon habits.</td>
+    </tr>
+    <tr>
+      <td><strong>Agent work</strong></td>
+      <td>Practical prompts, skills, automation loops, and code-review workflows.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Featured projects
-- [**Violet Void Theme**](https://github.com/aaronedev/violet-void-theme) — core color system for my desktop and web setup; expanding into app, website, terminal, and editor themes.
-- [**transcribe-that**](https://github.com/aaronedev/transcribe-that) — local-first transcription tooling for Linux workflows.
-- [**read-that**](https://github.com/aaronedev/read-that) — local clipboard TTS with offline EN/DE voice switching and practical CLI controls.
-- [**nerdfont-icon-rofi-picker**](https://github.com/aaronedev/nerdfont-icon-rofi-picker) — fuzzy Rofi picker for Nerd Font icons with quick clipboard copy.
-- [**violet-void-theme_archwiki**](https://github.com/aaronedev/violet-void-theme_archwiki) — ArchWiki restyle using the Violet Void palette; public proof on a real, high-information site.
+<sub>Click a project badge to open the repo.</sub>
+
+- <a href="https://github.com/aaronedev/violet-void-theme"><img src="https://img.shields.io/static/v1?label=&message=Violet%20Void%20Theme&color=7c60d1&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5" alt="Violet Void Theme" /></a> - core color system for my desktop and web setup; expanding into app, website, terminal, and editor themes.
+- <a href="https://github.com/aaronedev/transcribe-that"><img src="https://img.shields.io/static/v1?label=&message=transcribe-that&color=319e8d&labelColor=0f0f0f&style=flat&logo=python&logoColor=ffffff" alt="transcribe-that" /></a> - local-first transcription tooling for Linux workflows.
+- <a href="https://github.com/aaronedev/read-that"><img src="https://img.shields.io/static/v1?label=&message=read-that&color=42ff97&labelColor=0f0f0f&style=flat&logo=python&logoColor=ffffff" alt="read-that" /></a> - local clipboard TTS with offline EN/DE voice switching and practical CLI controls.
+- <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><img src="https://img.shields.io/static/v1?label=&message=nerdfont%20picker&color=fd7cff&labelColor=0f0f0f&style=flat&logo=gnubash&logoColor=f0f0f5" alt="nerdfont-icon-rofi-picker" /></a> - fuzzy Rofi picker for Nerd Font icons with quick clipboard copy.
+- <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><img src="https://img.shields.io/static/v1?label=&message=ArchWiki%20theme&color=29adff&labelColor=0f0f0f&style=flat&logo=archlinux&logoColor=f0f0f5" alt="violet-void-theme_archwiki" /></a> - ArchWiki restyle using the Violet Void palette; public proof on a real, high-information site.
 
 ## Violet Void colors
 These are the main colors for **Violet Void**, including the core palette and the git status colors I use across themes.
@@ -158,21 +180,12 @@ Check discussion page or click badge above to see install instructions if u want
 {{ $prs := recentPullRequests 8 }}
 {{ if $prs }}
 ### 🔁 Fresh Pull Requests
-<table>
-  <tbody>
 {{ range $prs }}
-    <tr>
-      <td width="32">{{ if eq .State "OPEN" }}🟣{{ else if eq .State "MERGED" }}🟢{{ else }}⚫{{ end }}</td>
-      <td>
-        <a href="{{ .URL }}"><strong>{{ .Title }}</strong></a><br>
-        <sub><a href="{{ .Repo.URL }}"><code>{{ .Repo.Name }}</code></a> • {{ humanize .CreatedAt }} • {{ .State }}</sub>
-        {{- if .Repo.Description }}<br>
-        <sub>{{ .Repo.Description }}</sub>{{ end }}
-      </td>
-    </tr>
+- {{ if eq .State "OPEN" }}🟣{{ else if eq .State "MERGED" }}🟢{{ else }}⚫{{ end }} <a href="{{ .URL }}"><strong>{{ .Title }}</strong></a><br>
+  <sub><a href="{{ .Repo.URL }}"><code>{{ .Repo.Name }}</code></a> • {{ humanize .CreatedAt }} • {{ .State }}</sub>
+  {{- if .Repo.Description }}<br>
+  <sub>{{ .Repo.Description }}</sub>{{ end }}
 {{ end }}
-  </tbody>
-</table>
 {{ else }}
 _No pull request activity just yet — busy crafting something new._
 {{ end }}
@@ -180,20 +193,11 @@ _No pull request activity just yet — busy crafting something new._
 {{ $contribs := recentContributions 10 }}
 {{ if $contribs }}
 ### 🛠️ Latest Contributions
-<table>
-  <tbody>
 {{ range $contribs }}
-    <tr>
-      <td width="32">🔗</td>
-      <td>
-        <a href="{{ .Repo.URL }}"><code>{{ .Repo.Name }}</code></a> • <strong>{{ humanize .OccurredAt }}</strong>
-        {{- if .Repo.Description }}<br>
-        <sub>{{ .Repo.Description }}</sub>{{ end }}
-      </td>
-    </tr>
+- 🔗 <a href="{{ .Repo.URL }}"><code>{{ .Repo.Name }}</code></a> • <strong>{{ humanize .OccurredAt }}</strong>
+  {{- if .Repo.Description }}<br>
+  <sub>{{ .Repo.Description }}</sub>{{ end }}
 {{ end }}
-  </tbody>
-</table>
 {{ else }}
 _No public commits in the last few days — check back soon._
 {{ end }}
