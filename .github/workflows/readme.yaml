@@ -23,7 +23,7 @@ jobs:
     - name: Sync main
       run: git pull --ff-only origin main
     - name: Render README
-      uses: muesli/readme-scribe@v3.0.0
+      uses: muesli/readme-scribe@master
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN && secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
       with:
