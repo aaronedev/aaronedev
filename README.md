@@ -205,19 +205,19 @@ _No pull request activity just yet — busy crafting something new._
 - 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>1 month ago</strong><br>
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_fish"><code>aaronedev/violet-void-theme_fish</code></a> • <strong>3 months ago</strong>
+
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_crackboard"><code>aaronedev/violet-void-theme_crackboard</code></a> • <strong>3 months ago</strong>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_nvim"><code>aaronedev/violet-void-theme_nvim</code></a> • <strong>3 months ago</strong><br>
   <sub>Violet Void Neovim colorscheme with 70&#43; plugin integrations</sub>
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_fish"><code>aaronedev/violet-void-theme_fish</code></a> • <strong>3 months ago</strong>
-
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_kitty"><code>aaronedev/violet-void-theme_kitty</code></a> • <strong>3 months ago</strong>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_vim"><code>aaronedev/violet-void-theme_vim</code></a> • <strong>3 months ago</strong>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-monorepo"><code>aaronedev/violet-void-monorepo</code></a> • <strong>3 months ago</strong><br>
   <sub>Violet Void Theme Monorepo - Central hub for all Violet Void theme projects</sub>
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_vim"><code>aaronedev/violet-void-theme_vim</code></a> • <strong>3 months ago</strong>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_kitty"><code>aaronedev/violet-void-theme_kitty</code></a> • <strong>3 months ago</strong>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_geizhals"><code>aaronedev/violet-void-theme_geizhals</code></a> • <strong>3 months ago</strong>
 
