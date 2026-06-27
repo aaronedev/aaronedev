@@ -199,7 +199,7 @@ _No pull request activity just yet — busy crafting something new._
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_discord"><code>aaronedev/violet-void-theme_discord</code></a> • <strong>2 weeks ago</strong>
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>2 weeks ago</strong><br>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>3 weeks ago</strong><br>
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
 - 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>1 month ago</strong><br>
