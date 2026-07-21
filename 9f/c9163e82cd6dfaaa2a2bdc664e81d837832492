@@ -1,0 +1,19 @@
+templates/README.md.tpl
+  s_d64125b3feafb5::t_db6005d93b1667 39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "9fc9163e82cd6dfaaa2a2bdc664e81d837832492",
+  "prompts": {},
+  "sessions": {
+    "s_d64125b3feafb5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_07a73ea2affeIAqrpWhgsZW5iP",
+        "model": "MiniMax-M3"
+      },
+      "human_author": "aaronedev <mail@aaronsamuel.de>"
+    }
+  }
+}
