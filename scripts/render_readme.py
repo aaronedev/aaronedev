@@ -114,9 +114,13 @@ def _collect_activity(
     if fixture is not None:
         model: ActivityModel = privacy_reduce(normalize(_load_json(fixture)))
         return render_activity(model), model.commit_hours, model.commit_weekdays
-    token = environ.get("GH_TOKEN") or environ.get("GITHUB_TOKEN")
+    token = (
+        environ.get("README_ACTIVITY_GITHUB_PAT")
+        or environ.get("GH_TOKEN")
+        or environ.get("GITHUB_TOKEN")
+    )
     if not token:
-        raise ActivityCollectionError("missing GitHub token")
+        raise ActivityCollectionError("missing README_ACTIVITY_GITHUB_PAT")
     model = privacy_reduce(normalize(retrieve_activity(github_http, token)))
     return render_activity(model), model.commit_hours, model.commit_weekdays
 
@@ -137,9 +141,9 @@ def _collect_waka(
         return render_waka(
             stats, commit_hours=commit_hours, commit_weekdays=commit_weekdays
         )
-    api_key = environ.get("WAKATIME_API_KEY")
+    api_key = environ.get("README_WAKATIME_API_KEY") or environ.get("WAKATIME_API_KEY")
     if not api_key:
-        raise WakaCollectionError("missing WakaTime API key")
+        raise WakaCollectionError("missing README_WAKATIME_API_KEY")
     stats = retrieve_waka(waka_http, api_key)
     return render_waka(
         stats, commit_hours=commit_hours, commit_weekdays=commit_weekdays

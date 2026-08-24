@@ -7,6 +7,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -22,6 +23,7 @@ from scripts.readme_config import (  # noqa: E402
 from scripts.render_readme import (  # noqa: E402
     EXIT_COLLECTOR_FAILED,
     EXIT_OK,
+    _collect_activity,
     main,
     render_readme,
 )
@@ -207,6 +209,24 @@ class RenderReadmeTest(unittest.TestCase):
             self.assertIn("_No public commits from allowed owners._", activity)
             self.assertNotIn("_Activity temporarily unavailable._", activity)
 
+    def test_readme_activity_github_pat_is_preferred_token(self) -> None:
+        captured: list[str] = []
+
+        def fake_retrieve(_http, token: str):
+            captured.append(token)
+            return _activity_fixture()
+
+        with patch("scripts.render_readme.retrieve_activity", fake_retrieve):
+            _collect_activity(
+                None,
+                {
+                    "README_ACTIVITY_GITHUB_PAT": "purpose-pat",
+                    "GH_TOKEN": "generic-gh",
+                    "GITHUB_TOKEN": "builtin",
+                },
+            )
+        self.assertEqual(captured, ["purpose-pat"])
+
     def test_github_failure_preserves_previous_activity_bytes(self) -> None:
         previous_activity = "\nPREVIOUS-ACTIVITY-BYTES\n"
         previous_waka = "\nPREVIOUS-WAKA-BYTES\n"
@@ -222,6 +242,7 @@ class RenderReadmeTest(unittest.TestCase):
             waka_path = root / "waka.json"
             waka_path.write_text(json.dumps(_waka_fixture()), encoding="utf-8")
             env = os.environ.copy()
+            env.pop("README_ACTIVITY_GITHUB_PAT", None)
             env.pop("GH_TOKEN", None)
             env.pop("GITHUB_TOKEN", None)
             code = main(
@@ -256,6 +277,7 @@ class RenderReadmeTest(unittest.TestCase):
             activity_path = root / "activity.json"
             activity_path.write_text(json.dumps(_activity_fixture()), encoding="utf-8")
             env = os.environ.copy()
+            env.pop("README_WAKATIME_API_KEY", None)
             env.pop("WAKATIME_API_KEY", None)
             code = main(
                 [
@@ -274,8 +296,10 @@ class RenderReadmeTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = _write_repo(Path(tmp))
             env = os.environ.copy()
+            env.pop("README_ACTIVITY_GITHUB_PAT", None)
             env.pop("GH_TOKEN", None)
             env.pop("GITHUB_TOKEN", None)
+            env.pop("README_WAKATIME_API_KEY", None)
             env.pop("WAKATIME_API_KEY", None)
             code = main(["--repo-root", str(root)], environ=env)
             self.assertEqual(code, EXIT_COLLECTOR_FAILED)
