@@ -188,30 +188,8 @@ Check discussion page or click badge above to see install instructions if u want
 <details>
   <summary><strong>Click to expand recent GitHub activity</strong></summary>
 
-{{ $prs := recentPullRequests 8 }}
-{{ if $prs }}
-### 🔁 Fresh Pull Requests
-{{ range $prs }}
-- {{ if eq .State "OPEN" }}🟣{{ else if eq .State "MERGED" }}🟢{{ else }}⚫{{ end }} <a href="{{ .URL }}"><strong>{{ .Title }}</strong></a><br>
-  <sub><a href="{{ .Repo.URL }}"><code>{{ .Repo.Name }}</code></a> • {{ humanize .CreatedAt }} • {{ .State }}</sub>
-  {{- if .Repo.Description }}<br>
-  <sub>{{ .Repo.Description }}</sub>{{ end }}
-{{ end }}
-{{ else }}
-_No pull request activity just yet — busy crafting something new._
-{{ end }}
-
-{{ $contribs := recentContributions 10 }}
-{{ if $contribs }}
-### 🛠️ Latest Contributions
-{{ range $contribs }}
-- 🔗 <a href="{{ .Repo.URL }}"><code>{{ .Repo.Name }}</code></a> • <strong>{{ humanize .OccurredAt }}</strong>
-  {{- if .Repo.Description }}<br>
-  <sub>{{ .Repo.Description }}</sub>{{ end }}
-{{ end }}
-{{ else }}
-_No public commits in the last few days — check back soon._
-{{ end }}
+<!--START_SECTION:activity-->
+<!--END_SECTION:activity-->
 
 </details>
 

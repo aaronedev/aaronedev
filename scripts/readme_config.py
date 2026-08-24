@@ -1,0 +1,11 @@
+ALLOWED_OWNERS = ("aaronedev", "Violet-Void", "bauerstischfinder")
+PROFILE_REPO = "aaronedev/aaronedev"
+PR_LIMIT = 8
+CONTRIB_LIMIT = 10
+ACTIVITY_START = "<!--START_SECTION:activity-->"
+ACTIVITY_END = "<!--END_SECTION:activity-->"
+WAKA_START = "<!--START_SECTION:waka-->"
+WAKA_END = "<!--END_SECTION:waka-->"
+AUTHOR_LOGIN = "aaronedev"
+MAX_PR_PAGES = 10
+PAGE_SIZE = 100
