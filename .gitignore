@@ -149,3 +149,4 @@ github/workflows/wakatime.yaml
 .vercel
 .env*
 /tests/__pycache__
+/scripts/__pycache__
