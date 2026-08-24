@@ -36,7 +36,7 @@
 </p>
 
 ## Current focus
-- Shipping a TypeScript product backend/frontend stack with real deployment, CI, and data workflows.
+- Building Linux-first tooling, Violet Void, and a production TypeScript restaurant booking app serving **16k+ real users**.778 μs CPU P90 --> bro! 😅
 - Splitting my Arch/Hyprland setup into focused modules: [![hypr](https://img.shields.io/static/v1?label=&message=hypr&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/hypr) [![quickshell](https://img.shields.io/static/v1?label=&message=quickshell&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/quickshell) [![nvim](https://img.shields.io/static/v1?label=&message=nvim&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/nvim) [![tmux](https://img.shields.io/static/v1?label=&message=tmux&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/tmux) [![bash](https://img.shields.io/static/v1?label=&message=bash&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/bash) [![yazi](https://img.shields.io/static/v1?label=&message=yazi&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/yazi) [![uwsm](https://img.shields.io/static/v1?label=&message=uwsm&color=0f0f0f&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5)](https://github.com/aaronedev/uwsm) plus terminals and theme packages.
 - Building local-first Python tools around speech, transcription, clipboard audio, and desktop notifications.
 - Tuning agentic coding workflows: OpenCode config, reusable skills, multi-agent loops, and repo automation.
@@ -161,7 +161,7 @@ These are the main colors for **Violet Void**, including the core palette and th
 
 <div class="badges-githubstats">
   <img src="https://github-readme-stats.vercel.app/api?username=aaronedev&show_icons=true&hide_border=true&count_private=true&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&text_color=f0f0f5&icon_color=319e8d&border_color=131313&border_radius=10" alt="aaronedev's github statistics" height="140" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=aaronedev&hide_border=true&background=082421&border=131313&stroke=c7b8ff&ring=fd7cff&fire=fd0098&currStreakNum=c7b8ff&currStreakLabel=7c60d1&sideNums=c7b8ff&sideLabels=7c60d1&dates=f0f0f5&border_radius=10" alt="aaronedev's github commit streak" height="140" />
+  <img src="https://github-readme-streak-stats-aaronedevs-projects.vercel.app/?user=aaronedev&hide_border=true&background=082421&border=131313&stroke=c7b8ff&ring=fd7cff&fire=fd0098&currStreakNum=c7b8ff&currStreakLabel=7c60d1&sideNums=c7b8ff&sideLabels=7c60d1&dates=f0f0f5&border_radius=10" alt="aaronedev's github commit streak" height="140" />
 </div>
 
 <div>
@@ -197,29 +197,29 @@ _No pull request activity just yet — busy crafting something new._
 
 ### 🛠️ Latest Contributions
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_discord"><code>aaronedev/violet-void-theme_discord</code></a> • <strong>3 weeks ago</strong>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • <strong>1 week ago</strong>
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>3 weeks ago</strong><br>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>1 month ago</strong><br>
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
 
-- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>1 month ago</strong><br>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_discord"><code>aaronedev/violet-void-theme_discord</code></a> • <strong>2 months ago</strong>
+
+- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>3 months ago</strong><br>
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_fish"><code>aaronedev/violet-void-theme_fish</code></a> • <strong>3 months ago</strong>
-
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_crackboard"><code>aaronedev/violet-void-theme_crackboard</code></a> • <strong>3 months ago</strong>
-
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_nvim"><code>aaronedev/violet-void-theme_nvim</code></a> • <strong>3 months ago</strong><br>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_nvim"><code>aaronedev/violet-void-theme_nvim</code></a> • <strong>5 months ago</strong><br>
   <sub>Violet Void Neovim colorscheme with 70&#43; plugin integrations</sub>
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_vim"><code>aaronedev/violet-void-theme_vim</code></a> • <strong>3 months ago</strong>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_vim"><code>aaronedev/violet-void-theme_vim</code></a> • <strong>5 months ago</strong>
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-monorepo"><code>aaronedev/violet-void-monorepo</code></a> • <strong>3 months ago</strong><br>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-monorepo"><code>aaronedev/violet-void-monorepo</code></a> • <strong>5 months ago</strong><br>
   <sub>Violet Void Theme Monorepo - Central hub for all Violet Void theme projects</sub>
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_kitty"><code>aaronedev/violet-void-theme_kitty</code></a> • <strong>3 months ago</strong>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_kitty"><code>aaronedev/violet-void-theme_kitty</code></a> • <strong>5 months ago</strong>
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_geizhals"><code>aaronedev/violet-void-theme_geizhals</code></a> • <strong>3 months ago</strong>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_fish"><code>aaronedev/violet-void-theme_fish</code></a> • <strong>5 months ago</strong>
+
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_crackboard"><code>aaronedev/violet-void-theme_crackboard</code></a> • <strong>5 months ago</strong>
 
 
 
