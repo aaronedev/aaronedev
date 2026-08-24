@@ -232,35 +232,35 @@ _No pull request activity just yet — busy crafting something new._
 <!--START_SECTION:waka-->
 **🐱 My Github Data** 
 
-> 🏆 14,957 Contributions in the Year 2026
+> 🏆 17,967 Contributions in the Year 2026
  > 
-> 📦 5.1 MB Used in Github's Storage 
+> 📦 2.5 MB Used in Github's Storage 
  > 
 > 💼 Opted to Hire
  > 
-> 📜 91 Public Repositories 
+> 📜 94 Public Repositories 
  > 
-> 🔑 157 Private Repositories  
+> 🔑 164 Private Repositories  
  > 
 **I'm an Early 🐤** 
 
 ```text
-🌞 Morning    195 commits    ████████░░░░░░░░░░░░░░░░░   34.7% 
-🌆 Daytime    118 commits    █████░░░░░░░░░░░░░░░░░░░░   21.0% 
-🌃 Evening    188 commits    ████████░░░░░░░░░░░░░░░░░   33.45% 
-🌙 Night      61 commits     ██░░░░░░░░░░░░░░░░░░░░░░░   10.85%
+🌞 Morning    187 commits    ███████░░░░░░░░░░░░░░░░░░   30.06% 
+🌆 Daytime    222 commits    █████████░░░░░░░░░░░░░░░░   35.69% 
+🌃 Evening    186 commits    ███████░░░░░░░░░░░░░░░░░░   29.9% 
+🌙 Night      27 commits     █░░░░░░░░░░░░░░░░░░░░░░░░   4.34%
 
 ```
 📅 **I'm Most Productive on Monday** 
 
 ```text
-Monday       160 commits    ███████░░░░░░░░░░░░░░░░░░   28.47% 
-Tuesday      21 commits     █░░░░░░░░░░░░░░░░░░░░░░░░   3.74% 
-Wednesday    34 commits     █░░░░░░░░░░░░░░░░░░░░░░░░   6.05% 
-Thursday     132 commits    █████░░░░░░░░░░░░░░░░░░░░   23.49% 
-Friday       54 commits     ██░░░░░░░░░░░░░░░░░░░░░░░   9.61% 
-Saturday     67 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.92% 
-Sunday       94 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.73%
+Monday       180 commits    ███████░░░░░░░░░░░░░░░░░░   28.94% 
+Tuesday      32 commits     █░░░░░░░░░░░░░░░░░░░░░░░░   5.14% 
+Wednesday    37 commits     █░░░░░░░░░░░░░░░░░░░░░░░░   5.95% 
+Thursday     85 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.67% 
+Friday       51 commits     ██░░░░░░░░░░░░░░░░░░░░░░░   8.2% 
+Saturday     92 commits     ███░░░░░░░░░░░░░░░░░░░░░░   14.79% 
+Sunday       145 commits    █████░░░░░░░░░░░░░░░░░░░░   23.31%
 
 ```
 
@@ -271,43 +271,45 @@ Sunday       94 commits     ████░░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-TypeScript               56 hrs 31 mins      ███████████████░░░░░░░░░░   59.79% 
-Markdown                 8 hrs 31 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   9.02% 
-Lua                      4 hrs 50 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.12% 
-YAML                     4 hrs 11 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   4.43% 
-Bash                     4 hrs 10 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   4.41%
+Python                   47 hrs 28 mins      ██████████████░░░░░░░░░░░   58.44% 
+Markdown                 8 hrs 51 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   10.9% 
+Shell                    4 hrs 42 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.79% 
+Other                    4 hrs 34 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.62% 
+Bash                     2 hrs 29 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   3.07%
 
 🔥 Editors: 
-Neovim                   91 hrs 31 mins      ████████████████████████░   96.82% 
-Vim                      2 hrs 58 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   3.15% 
-Claude Code              1 min               ░░░░░░░░░░░░░░░░░░░░░░░░░   0.02%
+Neovim                   40 hrs 22 mins      ████████████░░░░░░░░░░░░░   49.69% 
+Codex Vscode             23 hrs 32 mins      ███████░░░░░░░░░░░░░░░░░░   28.96% 
+Opencode Cli             15 hrs 39 mins      ████░░░░░░░░░░░░░░░░░░░░░   19.27% 
+Vim                      1 hr 40 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   2.07% 
+Codex Exec               0 secs              ░░░░░░░░░░░░░░░░░░░░░░░░░   0.01%
 
 🐱‍💻 Projects: 
-bauerstischfinder        70 hrs 2 mins       ██████████████████░░░░░░░   74.09% 
-dotfiles                 19 hrs 21 mins      █████░░░░░░░░░░░░░░░░░░░░   20.48% 
-user                     1 hr 25 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.51% 
-aaronedev                41 mins             ░░░░░░░░░░░░░░░░░░░░░░░░░   0.73% 
-codex                    34 mins             ░░░░░░░░░░░░░░░░░░░░░░░░░   0.6%
+dotfiles                 46 hrs 52 mins      ██████████████░░░░░░░░░░░   57.68% 
+read-that                29 hrs 32 mins      █████████░░░░░░░░░░░░░░░░   36.36% 
+spritepack               1 hr 12 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.49% 
+codex-336-serial-v1      1 hr 8 mins         ░░░░░░░░░░░░░░░░░░░░░░░░░   1.4% 
+invoice-typst-template-fi48 mins             ░░░░░░░░░░░░░░░░░░░░░░░░░   1.0%
 
 💻 Operating System: 
-Linux                    94 hrs 31 mins      █████████████████████████   100.0%
+Linux                    81 hrs 15 mins      █████████████████████████   100.0%
 
 ```
 
 **I Mostly Code in Shell** 
 
 ```text
-Shell                    25 repos            ██████████░░░░░░░░░░░░░░░   40.98% 
-Lua                      10 repos            ████░░░░░░░░░░░░░░░░░░░░░   16.39% 
-CSS                      7 repos             ██░░░░░░░░░░░░░░░░░░░░░░░   11.48% 
-Python                   4 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   6.56% 
-TypeScript               4 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   6.56%
+Shell                    26 repos            ██████████░░░░░░░░░░░░░░░   41.94% 
+Lua                      9 repos             ███░░░░░░░░░░░░░░░░░░░░░░   14.52% 
+TypeScript               7 repos             ██░░░░░░░░░░░░░░░░░░░░░░░   11.29% 
+CSS                      6 repos             ██░░░░░░░░░░░░░░░░░░░░░░░   9.68% 
+Python                   4 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   6.45%
 
 ```
 
 
 
- Last Updated on 29/06/2026
+ Last Updated on 24/08/2026
 <!--END_SECTION:waka-->
 
 
