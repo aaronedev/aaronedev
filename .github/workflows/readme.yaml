@@ -3,14 +3,16 @@
 name: Update README
 "on":
   schedule:
-  - cron: "0 3 * * *" # Daily at 02:00 UTC (after WakaTime updates)
+  - cron: "0 8 * * *" # 10:00 Europe/Berlin (CEST) — GitHub cron is UTC; shifts +1h when CET applies
+  - cron: "0 13 * * *" # 15:00 Europe/Berlin (CEST)
+  - cron: "0 17 * * *" # 19:00 Europe/Berlin (CEST)
   workflow_dispatch: {}
 concurrency:
   group: readme-update
   cancel-in-progress: true
 jobs:
   update:
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(vars.CI_CHEAP_RUNNER_LABELS || vars.CI_RUNNER_LABELS || '["self-hosted","Linux","X64","aed-ci"]') }}
     permissions:
       contents: write
     defaults:
