@@ -232,7 +232,7 @@ _No pull request activity just yet — busy crafting something new._
 <!--START_SECTION:waka-->
 **🐱 My Github Data** 
 
-> 🏆 18,142 Contributions in the Year 2026
+> 🏆 18,233 Contributions in the Year 2026
  > 
 > 📦 2.5 MB Used in Github's Storage 
  > 
@@ -271,28 +271,28 @@ Sunday       145 commits    █████░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   61 hrs 29 mins      ████████████████░░░░░░░░░   64.51% 
-Markdown                 8 hrs 13 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   8.64% 
-Other                    4 hrs 57 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.2% 
-Shell                    3 hrs 35 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.76% 
-JSON                     3 hrs 14 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   3.4%
+Python                   69 hrs 59 mins      █████████████████░░░░░░░░   70.4% 
+Markdown                 6 hrs 52 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   6.91% 
+Other                    5 hrs 15 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.29% 
+Shell                    3 hrs 5 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   3.12% 
+Lua                      2 hrs 38 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   2.65%
 
 🔥 Editors: 
-Neovim                   48 hrs 17 mins      ████████████░░░░░░░░░░░░░   50.66% 
-Codex Vscode             32 hrs 59 mins      ████████░░░░░░░░░░░░░░░░░   34.6% 
-Opencode Cli             10 hrs 59 mins      ███░░░░░░░░░░░░░░░░░░░░░░   11.53% 
-Vim                      3 hrs 2 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   3.2% 
+Neovim                   54 hrs 28 mins      █████████████░░░░░░░░░░░░   54.79% 
+Codex Vscode             34 hrs 58 mins      ████████░░░░░░░░░░░░░░░░░   35.18% 
+Opencode Cli             7 hrs 6 mins        █░░░░░░░░░░░░░░░░░░░░░░░░   7.14% 
+Vim                      2 hrs 51 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   2.88% 
 Codex Exec               0 secs              ░░░░░░░░░░░░░░░░░░░░░░░░░   0.01%
 
 🐱‍💻 Projects: 
-dotfiles                 53 hrs 33 mins      ██████████████░░░░░░░░░░░   56.18% 
-read-that                29 hrs 34 mins      ███████░░░░░░░░░░░░░░░░░░   31.03% 
-fixer-id-2f8446          3 hrs 55 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   4.11% 
-controller-correction-ad71 hr 16 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.33% 
-codex-336-serial-v1      1 hr 14 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.3%
+dotfiles                 47 hrs 26 mins      ████████████░░░░░░░░░░░░░   47.71% 
+read-that                29 hrs 34 mins      ███████░░░░░░░░░░░░░░░░░░   29.75% 
+fixer-id-2f8446          14 hrs 31 mins      ███░░░░░░░░░░░░░░░░░░░░░░   14.62% 
+controller-correction-ad71 hr 16 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.27% 
+codex-336-serial-v1      1 hr 14 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.24%
 
 💻 Operating System: 
-Linux                    95 hrs 19 mins      █████████████████████████   100.0%
+Linux                    99 hrs 25 mins      █████████████████████████   100.0%
 
 ```
 
@@ -309,7 +309,7 @@ Python                   4 repos             █░░░░░░░░░░�
 
 
 
- Last Updated on 26/08/2026
+ Last Updated on 27/08/2026
 <!--END_SECTION:waka-->
 
 
