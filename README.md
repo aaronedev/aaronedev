@@ -236,7 +236,7 @@ Check discussion page or click badge above to see install instructions if u want
 <!--START_SECTION:waka-->
 **🐱 My Github Data** 
 
-> 🏆 18,233 Contributions in the Year 2026
+> 🏆 18,234 Contributions in the Year 2026
  > 
 > 📦 2.5 MB Used in Github's Storage 
  > 
@@ -275,28 +275,28 @@ Sunday       145 commits    █████░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   69 hrs 59 mins      █████████████████░░░░░░░░   70.4% 
-Markdown                 6 hrs 52 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   6.91% 
-Other                    5 hrs 15 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.29% 
-Shell                    3 hrs 5 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   3.12% 
-Lua                      2 hrs 38 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   2.65%
+Python                   70 hrs 35 mins      ████████████████░░░░░░░░░   67.38% 
+Markdown                 6 hrs 23 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   6.1% 
+Other                    4 hrs 57 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   4.74% 
+Lua                      3 hrs 19 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   3.18% 
+JavaScript               3 hrs 5 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   2.95%
 
 🔥 Editors: 
-Neovim                   54 hrs 28 mins      █████████████░░░░░░░░░░░░   54.79% 
-Codex Vscode             34 hrs 58 mins      ████████░░░░░░░░░░░░░░░░░   35.18% 
-Opencode Cli             7 hrs 6 mins        █░░░░░░░░░░░░░░░░░░░░░░░░   7.14% 
-Vim                      2 hrs 51 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   2.88% 
-Codex Exec               0 secs              ░░░░░░░░░░░░░░░░░░░░░░░░░   0.01%
+Neovim                   56 hrs 47 mins      █████████████░░░░░░░░░░░░   54.2% 
+Codex Vscode             35 hrs 55 mins      ████████░░░░░░░░░░░░░░░░░   34.28% 
+Opencode Cli             8 hrs 50 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   8.45% 
+Vim                      3 hrs 11 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   3.04% 
+Codex Exec               2 mins              ░░░░░░░░░░░░░░░░░░░░░░░░░   0.03%
 
 🐱‍💻 Projects: 
-dotfiles                 47 hrs 26 mins      ████████████░░░░░░░░░░░░░   47.71% 
-read-that                29 hrs 34 mins      ███████░░░░░░░░░░░░░░░░░░   29.75% 
-fixer-id-2f8446          14 hrs 31 mins      ███░░░░░░░░░░░░░░░░░░░░░░   14.62% 
-controller-correction-ad71 hr 16 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.27% 
-codex-336-serial-v1      1 hr 14 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.24%
+dotfiles                 47 hrs 17 mins      ███████████░░░░░░░░░░░░░░   45.13% 
+read-that                23 hrs 29 mins      █████░░░░░░░░░░░░░░░░░░░░   22.43% 
+fixer-id-2f8446          14 hrs 31 mins      ███░░░░░░░░░░░░░░░░░░░░░░   13.87% 
+codex-pr-flow-pr336-remed3 hrs 44 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.57% 
+violet-void-theme_chatgpt2 hrs 39 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   2.54%
 
 💻 Operating System: 
-Linux                    99 hrs 25 mins      █████████████████████████   100.0%
+Linux                    104 hrs 46 mins     █████████████████████████   100.0%
 
 ```
 
