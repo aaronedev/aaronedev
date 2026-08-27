@@ -190,14 +190,18 @@ Check discussion page or click badge above to see install instructions if u want
 
 
 
-_No pull request activity just yet — busy crafting something new._
+### 🔁 Fresh Pull Requests
+
+- 🟣 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt/pull/2"><strong>fix(theme): restore dark surfaces on Learn docs</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • today • OPEN</sub>
+
 
 
 
 
 ### 🛠️ Latest Contributions
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • <strong>1 week ago</strong>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • <strong>today</strong>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>1 month ago</strong><br>
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
@@ -207,10 +211,10 @@ _No pull request activity just yet — busy crafting something new._
 - 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>3 months ago</strong><br>
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to your clipboard.</sub>
 
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_vim"><code>aaronedev/violet-void-theme_vim</code></a> • <strong>5 months ago</strong>
+
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_nvim"><code>aaronedev/violet-void-theme_nvim</code></a> • <strong>5 months ago</strong><br>
   <sub>Violet Void Neovim colorscheme with 70&#43; plugin integrations</sub>
-
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_vim"><code>aaronedev/violet-void-theme_vim</code></a> • <strong>5 months ago</strong>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-monorepo"><code>aaronedev/violet-void-monorepo</code></a> • <strong>5 months ago</strong><br>
   <sub>Violet Void Theme Monorepo - Central hub for all Violet Void theme projects</sub>
