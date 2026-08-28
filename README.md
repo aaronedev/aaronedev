@@ -193,7 +193,7 @@ Check discussion page or click badge above to see install instructions if u want
 ### 🔁 Fresh Pull Requests
 
 - 🟣 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt/pull/2"><strong>fix(theme): restore dark surfaces on Learn docs</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • today • OPEN</sub>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • 1 day ago • OPEN</sub>
 
 
 
@@ -201,7 +201,7 @@ Check discussion page or click badge above to see install instructions if u want
 
 ### 🛠️ Latest Contributions
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • <strong>today</strong>
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • <strong>1 day ago</strong>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>1 month ago</strong><br>
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use those colors for my whole OS, and it&#39;s🔥</sub>
