@@ -232,7 +232,7 @@ _No pull request activity just yet — busy crafting something new._
 <!--START_SECTION:waka-->
 **🐱 My Github Data** 
 
-> 🏆 18,342 Contributions in the Year 2026
+> 🏆 18,382 Contributions in the Year 2026
  > 
 > 📦 2.5 MB Used in Github's Storage 
  > 
@@ -271,28 +271,28 @@ Sunday       145 commits    █████░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   60 hrs 19 mins      ████████████████░░░░░░░░░   65.91% 
-Markdown                 5 hrs 35 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   6.1% 
-Other                    4 hrs 37 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.06% 
-Lua                      3 hrs 15 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.56% 
-JavaScript               2 hrs 41 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   2.94%
+Python                   46 hrs 34 mins      ███████████████░░░░░░░░░░   61.86% 
+Markdown                 5 hrs 5 mins        █░░░░░░░░░░░░░░░░░░░░░░░░   6.75% 
+Other                    3 hrs 54 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.2% 
+Lua                      3 hrs 15 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   4.32% 
+JavaScript               2 hrs 41 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.58%
 
 🔥 Editors: 
-Neovim                   46 hrs 31 mins      ████████████░░░░░░░░░░░░░   50.83% 
-Codex Vscode             32 hrs 45 mins      █████████░░░░░░░░░░░░░░░░   35.79% 
-Opencode Cli             8 hrs 39 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   9.46% 
-Vim                      3 hrs 31 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.85% 
-Codex Exec               3 mins              ░░░░░░░░░░░░░░░░░░░░░░░░░   0.06%
+Neovim                   42 hrs 38 mins      ██████████████░░░░░░░░░░░   56.64% 
+Codex Vscode             20 hrs 49 mins      ███████░░░░░░░░░░░░░░░░░░   27.65% 
+Opencode Cli             8 hrs 12 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   10.91% 
+Vim                      3 hrs 33 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   4.73% 
+Codex Exec               3 mins              ░░░░░░░░░░░░░░░░░░░░░░░░░   0.07%
 
 🐱‍💻 Projects: 
-dotfiles                 45 hrs 16 mins      ████████████░░░░░░░░░░░░░   49.47% 
-fixer-id-2f8446          14 hrs 31 mins      ████░░░░░░░░░░░░░░░░░░░░░   15.88% 
-read-that                11 hrs 59 mins      ███░░░░░░░░░░░░░░░░░░░░░░   13.1% 
-codex-pr-flow-pr336-remed3 hrs 44 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   4.09% 
-violet-void-theme_chatgpt2 hrs 39 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   2.91%
+dotfiles                 41 hrs 36 mins      █████████████░░░░░░░░░░░░   55.25% 
+fixer-id-2f8446          14 hrs 31 mins      ████░░░░░░░░░░░░░░░░░░░░░   19.3% 
+codex-pr-flow-pr336-remed3 hrs 44 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   4.97% 
+violet-void-theme_chatgpt2 hrs 39 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.54% 
+pr336-five-findings-9d   2 hrs 21 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   3.13%
 
 💻 Operating System: 
-Linux                    91 hrs 31 mins      █████████████████████████   100.0%
+Linux                    75 hrs 17 mins      █████████████████████████   100.0%
 
 ```
 
@@ -309,7 +309,7 @@ Python                   4 repos             █░░░░░░░░░░�
 
 
 
- Last Updated on 29/08/2026
+ Last Updated on 30/08/2026
 <!--END_SECTION:waka-->
 
 
