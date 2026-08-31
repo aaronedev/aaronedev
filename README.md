@@ -230,6 +230,86 @@ _No pull request activity just yet — busy crafting something new._
   <summary>Click to expand the latest metrics</summary>
 
 <!--START_SECTION:waka-->
+**🐱 My Github Data** 
+
+> 🏆 18,441 Contributions in the Year 2026
+ > 
+> 📦 2.5 MB Used in Github's Storage 
+ > 
+> 💼 Opted to Hire
+ > 
+> 📜 94 Public Repositories 
+ > 
+> 🔑 164 Private Repositories  
+ > 
+**I'm an Early 🐤** 
+
+```text
+🌞 Morning    187 commits    ███████░░░░░░░░░░░░░░░░░░   30.06% 
+🌆 Daytime    222 commits    █████████░░░░░░░░░░░░░░░░   35.69% 
+🌃 Evening    186 commits    ███████░░░░░░░░░░░░░░░░░░   29.9% 
+🌙 Night      27 commits     █░░░░░░░░░░░░░░░░░░░░░░░░   4.34%
+
+```
+📅 **I'm Most Productive on Monday** 
+
+```text
+Monday       180 commits    ███████░░░░░░░░░░░░░░░░░░   28.94% 
+Tuesday      32 commits     █░░░░░░░░░░░░░░░░░░░░░░░░   5.14% 
+Wednesday    37 commits     █░░░░░░░░░░░░░░░░░░░░░░░░   5.95% 
+Thursday     85 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.67% 
+Friday       51 commits     ██░░░░░░░░░░░░░░░░░░░░░░░   8.2% 
+Saturday     92 commits     ███░░░░░░░░░░░░░░░░░░░░░░   14.79% 
+Sunday       145 commits    █████░░░░░░░░░░░░░░░░░░░░   23.31%
+
+```
+
+
+📊 **This Week I Spent My Time On** 
+
+```text
+⌚︎ Time Zone: Europe/Berlin
+
+💬 Programming Languages: 
+Python                   64 hrs 2 mins       ████████████████░░░░░░░░░   67.4% 
+Markdown                 5 hrs 50 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   6.15% 
+Lua                      4 hrs 11 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   4.41% 
+Other                    3 hrs 48 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   4.0% 
+JavaScript               2 hrs 48 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   2.96%
+
+🔥 Editors: 
+Neovim                   42 hrs 47 mins      ███████████░░░░░░░░░░░░░░   45.04% 
+Codex Vscode             24 hrs 6 mins       ██████░░░░░░░░░░░░░░░░░░░   25.37% 
+Opencode Cli             14 hrs 21 mins      ███░░░░░░░░░░░░░░░░░░░░░░   15.12% 
+Vim                      13 hrs 41 mins      ███░░░░░░░░░░░░░░░░░░░░░░   14.41% 
+Codex Exec               3 mins              ░░░░░░░░░░░░░░░░░░░░░░░░░   0.05%
+
+🐱‍💻 Projects: 
+dotfiles                 40 hrs 25 mins      ██████████░░░░░░░░░░░░░░░   42.55% 
+fixer-id-2f8446          18 hrs 42 mins      █████░░░░░░░░░░░░░░░░░░░░   19.7% 
+pr336-shipping           15 hrs 8 mins       ████░░░░░░░░░░░░░░░░░░░░░   15.95% 
+codex-pr-flow-pr336-remed6 hrs 19 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   6.66% 
+controller-correction-ad73 hrs 39 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.86%
+
+💻 Operating System: 
+Linux                    95 hrs              █████████████████████████   100.0%
+
+```
+
+**I Mostly Code in Shell** 
+
+```text
+Shell                    26 repos            ██████████░░░░░░░░░░░░░░░   41.94% 
+Lua                      9 repos             ███░░░░░░░░░░░░░░░░░░░░░░   14.52% 
+TypeScript               7 repos             ██░░░░░░░░░░░░░░░░░░░░░░░   11.29% 
+CSS                      6 repos             ██░░░░░░░░░░░░░░░░░░░░░░░   9.68% 
+Python                   4 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   6.45%
+
+```
+
+
+
+ Last Updated on 31/08/2026
 <!--END_SECTION:waka-->
 
 
