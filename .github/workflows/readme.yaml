@@ -24,14 +24,10 @@ jobs:
         fetch-depth: 0
     - name: Sync main
       run: git pull --ff-only origin main
-    # README_ACTIVITY_GITHUB_PAT is a GitHub PAT that can read aaronedev +
-    # Violet-Void + bauerstischfinder (private included). Not a personal
-    # all-purpose GH_TOKEN. Not GITHUB_TOKEN.
-    # README_WAKATIME_API_KEY is the WakaTime API key for profile stats only.
     - name: Render README
       env:
-        README_ACTIVITY_GITHUB_PAT: ${{ secrets.README_ACTIVITY_GITHUB_PAT }}
-        README_WAKATIME_API_KEY: ${{ secrets.README_WAKATIME_API_KEY }}
+        README_ACTIVITY_GITHUB_PAT: ${{ secrets.GH_TOKEN }}
+        README_WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
       run: python3 scripts/render_readme.py
     - name: Commit and push updates
       env:
