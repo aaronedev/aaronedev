@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.wakatime_stats import (  # noqa: E402
+    WAKA_SECTION_MARKER,
     WakaCollectionError,
     default_http,
     render,
@@ -148,6 +149,34 @@ class WakaRetrieveTest(unittest.TestCase):
 
 
 class WakaRenderTest(unittest.TestCase):
+    def test_remote_display_text_is_one_line_and_cannot_inject_fences(self) -> None:
+        payload = _stats_payload()
+        payload["data"]["timezone"] = "Europe/Berlin\n```\nINJECTED-TIMEZONE"
+        for key in ("languages", "editors", "operating_systems"):
+            payload["data"][key][0]["name"] = "valid\n```\nINJECTED-NAME"
+            payload["data"][key][0]["text"] = "3 hrs\n```\nINJECTED-DURATION"
+        payload["data"]["languages"].append(
+            {"name": "\n\t", "text": "ignored", "percent": 1}
+        )
+
+        def http(url, *, method="GET", headers=None, json_body=None):
+            return {"status": 200, "json": payload}
+
+        markdown = render(retrieve(http, api_key="waka-secret"))
+        self.assertTrue(markdown.startswith(WAKA_SECTION_MARKER + "\n"))
+        self.assertEqual(markdown.count("```"), 2)
+        self.assertNotIn("\n```\nINJECTED", markdown)
+        self.assertNotIn("```\nINJECTED", markdown)
+        self.assertIn("valid ''' INJECTED-NAME", markdown)
+        self.assertNotIn("ignored", markdown)
+
+    def test_normal_fixture_render_is_stable_after_marker(self) -> None:
+        def http(url, *, method="GET", headers=None, json_body=None):
+            return {"status": 200, "json": _stats_payload()}
+
+        markdown = render(retrieve(http, api_key="waka-secret"))
+        self.assertEqual(markdown, render(retrieve(http, api_key="waka-secret")))
+        self.assertEqual(markdown.count(WAKA_SECTION_MARKER), 1)
     def test_canary_project_names_are_not_emitted(self) -> None:
         def http(url, *, method="GET", headers=None, json_body=None):
             return {"status": 200, "json": _stats_payload(include_canary_project=True)}
@@ -213,6 +242,14 @@ class WakaRenderTest(unittest.TestCase):
         self.assertIn("Morning", with_timing)
         self.assertIn("Most Productive on Monday", with_timing)
         self.assertIn("█", with_timing)
+
+        bounded = render(
+            stats,
+            commit_hours={"morning": 10, "daytime": 2, "evening": 1, "night": 0},
+            commit_weekdays={"Monday": 1},
+            contribution_repos_bounded=True,
+        )
+        self.assertIn("top 100 contribution repositories", bounded)
 
     def test_render_is_deterministic(self) -> None:
         def http(url, *, method="GET", headers=None, json_body=None):

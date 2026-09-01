@@ -29,6 +29,7 @@ from scripts.render_readme import (  # noqa: E402
     main,
     render_readme,
 )
+from scripts.wakatime_stats import WAKA_SECTION_MARKER, render as render_waka  # noqa: E402
 
 CANARY_VV = "Violet-Void/private-client-project"
 CANARY_BF = "bauerstischfinder/top-secret-acquisition"
@@ -184,6 +185,53 @@ def _section(text: str, start: str, end: str) -> str:
 
 
 class RenderReadmeTest(unittest.TestCase):
+    def test_github_failure_preserves_tagged_waka_even_when_waka_succeeds(self) -> None:
+        previous_waka = "\n" + render_waka(
+            {"timezone": "Europe/Berlin", "languages": [], "editors": [], "operating_systems": []}
+        )
+        existing = TEMPLATE.replace(
+            f"{WAKA_START}\n{WAKA_END}", f"{WAKA_START}{previous_waka}{WAKA_END}"
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _write_repo(Path(tmp), readme=existing)
+            waka_path = root / "waka.json"
+            waka_path.write_text(json.dumps(_waka_fixture()), encoding="utf-8")
+            code = main(["--repo-root", str(root), "--fixture-waka", str(waka_path)], environ={})
+            self.assertEqual(code, EXIT_COLLECTOR_FAILED)
+            readme = (root / "README.md").read_text(encoding="utf-8")
+            self.assertEqual(_section(readme, WAKA_START, WAKA_END), previous_waka)
+
+    def test_waka_failure_preserves_only_tagged_current_section(self) -> None:
+        previous_waka = f"\n{WAKA_SECTION_MARKER}\nTAGGED-PREVIOUS-WAKA\n"
+        existing = TEMPLATE.replace(
+            f"{WAKA_START}\n{WAKA_END}", f"{WAKA_START}{previous_waka}{WAKA_END}"
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _write_repo(Path(tmp), readme=existing)
+            activity_path = root / "activity.json"
+            activity_path.write_text(json.dumps(_activity_fixture()), encoding="utf-8")
+            code = main(
+                ["--repo-root", str(root), "--fixture-activity", str(activity_path)],
+                environ={},
+            )
+            self.assertEqual(code, EXIT_COLLECTOR_FAILED)
+            readme = (root / "README.md").read_text(encoding="utf-8")
+            self.assertEqual(_section(readme, WAKA_START, WAKA_END), previous_waka)
+
+    def test_github_failure_rejects_legacy_waka_even_when_waka_succeeds(self) -> None:
+        legacy_waka = "\n**Projects:**\n- legacy-private-project\n"
+        existing = TEMPLATE.replace(
+            f"{WAKA_START}\n{WAKA_END}", f"{WAKA_START}{legacy_waka}{WAKA_END}"
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _write_repo(Path(tmp), readme=existing)
+            waka_path = root / "waka.json"
+            waka_path.write_text(json.dumps(_waka_fixture()), encoding="utf-8")
+            code = main(["--repo-root", str(root), "--fixture-waka", str(waka_path)], environ={})
+            self.assertEqual(code, EXIT_COLLECTOR_FAILED)
+            readme = (root / "README.md").read_text(encoding="utf-8")
+            self.assertEqual(_section(readme, WAKA_START, WAKA_END), WAKA_FALLBACK)
+
     def test_zero_result_success_uses_empty_strings_not_fallback(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = _write_repo(Path(tmp))
@@ -351,6 +399,9 @@ class RenderReadmeTest(unittest.TestCase):
             self.assertIn("🔒 Private activity:", readme)
             self.assertIn("Python", readme)
             self.assertNotIn("Projects:", readme)
+            waka = _section(readme, WAKA_START, WAKA_END)
+            self.assertEqual(waka.count(WAKA_SECTION_MARKER), 1)
+            self.assertEqual(waka.count("```"), 2)
 
     def test_double_fixture_render_is_byte_identical(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

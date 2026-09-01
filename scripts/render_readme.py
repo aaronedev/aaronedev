@@ -29,6 +29,7 @@ from scripts.readme_config import (
     WAKA_START,
 )
 from scripts.wakatime_stats import (
+    WAKA_SECTION_MARKER,
     WakaCollectionError,
     default_http as waka_http,
     render as render_waka,
@@ -64,6 +65,17 @@ def _wrap_new(markdown: str) -> str:
     if not body.endswith("\n"):
         body += "\n"
     return body
+
+
+def _safe_previous_waka(existing: str) -> str:
+    # The version marker is the ownership boundary; legacy text cannot be safely inferred.
+    previous = extract_section(existing, WAKA_START, WAKA_END)
+    if previous is not None and (
+        previous.startswith(WAKA_SECTION_MARKER)
+        or previous.startswith("\n" + WAKA_SECTION_MARKER)
+    ):
+        return previous
+    return WAKA_FALLBACK
 
 
 def _atomic_write(path: Path, text: str) -> None:
@@ -114,10 +126,15 @@ def _load_json(path: Path) -> dict:
 def _collect_activity(
     fixture: Path | None,
     environ: Mapping[str, str],
-) -> tuple[str, dict[str, int] | None, dict[str, int] | None]:
+) -> tuple[str, dict[str, int] | None, dict[str, int] | None, bool]:
     if fixture is not None:
         model: ActivityModel = privacy_reduce(normalize(_load_json(fixture)))
-        return render_activity(model), model.commit_hours, model.commit_weekdays
+        return (
+            render_activity(model),
+            model.commit_hours,
+            model.commit_weekdays,
+            model.contribution_repos_bounded,
+        )
     token = (
         environ.get("README_ACTIVITY_GITHUB_PAT")
         or environ.get("GH_TOKEN")
@@ -126,7 +143,12 @@ def _collect_activity(
     if not token:
         raise ActivityCollectionError("missing README_ACTIVITY_GITHUB_PAT")
     model = privacy_reduce(normalize(retrieve_activity(github_http, token)))
-    return render_activity(model), model.commit_hours, model.commit_weekdays
+    return (
+        render_activity(model),
+        model.commit_hours,
+        model.commit_weekdays,
+        model.contribution_repos_bounded,
+    )
 
 
 def _collect_waka(
@@ -134,6 +156,7 @@ def _collect_waka(
     environ: Mapping[str, str],
     commit_hours: dict[str, int] | None,
     commit_weekdays: dict[str, int] | None,
+    contribution_repos_bounded: bool = False,
 ) -> str:
     if fixture is not None:
         payload = _load_json(fixture)
@@ -143,14 +166,20 @@ def _collect_waka(
 
         stats = retrieve_waka(http, api_key="fixture")
         return render_waka(
-            stats, commit_hours=commit_hours, commit_weekdays=commit_weekdays
+            stats,
+            commit_hours=commit_hours,
+            commit_weekdays=commit_weekdays,
+            contribution_repos_bounded=contribution_repos_bounded,
         )
     api_key = environ.get("README_WAKATIME_API_KEY") or environ.get("WAKATIME_API_KEY")
     if not api_key:
         raise WakaCollectionError("missing README_WAKATIME_API_KEY")
     stats = retrieve_waka(waka_http, api_key)
     return render_waka(
-        stats, commit_hours=commit_hours, commit_weekdays=commit_weekdays
+        stats,
+        commit_hours=commit_hours,
+        commit_weekdays=commit_weekdays,
+        contribution_repos_bounded=contribution_repos_bounded,
     )
 
 
@@ -173,22 +202,36 @@ def main(
     failed = False
     commit_hours = None
     commit_weekdays = None
+    contribution_repos_bounded = False
+    activity_succeeded = False
     try:
-        activity_md, commit_hours, commit_weekdays = _collect_activity(
-            args.fixture_activity, env
-        )
+        (
+            activity_md,
+            commit_hours,
+            commit_weekdays,
+            contribution_repos_bounded,
+        ) = _collect_activity(args.fixture_activity, env)
         activity_inner = _wrap_new(activity_md)
+        activity_succeeded = True
     except (ActivityCollectionError, OSError, ValueError, json.JSONDecodeError):
         failed = True
         previous = extract_section(existing, ACTIVITY_START, ACTIVITY_END)
         activity_inner = previous if previous is not None else ACTIVITY_FALLBACK
 
     try:
-        waka_md = _collect_waka(args.fixture_waka, env, commit_hours, commit_weekdays)
+        if not activity_succeeded:
+            raise WakaCollectionError("GitHub activity collection failed")
+        waka_md = _collect_waka(
+            args.fixture_waka,
+            env,
+            commit_hours,
+            commit_weekdays,
+            contribution_repos_bounded,
+        )
         waka_inner = _wrap_new(waka_md)
     except (WakaCollectionError, OSError, ValueError, json.JSONDecodeError):
         failed = True
-        waka_inner = WAKA_FALLBACK
+        waka_inner = _safe_previous_waka(existing)
 
     render_readme(
         root,

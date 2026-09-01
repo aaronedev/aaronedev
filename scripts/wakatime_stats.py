@@ -13,6 +13,7 @@ from scripts.http_json import HttpJsonTransportError, request_json
 
 WAKA_URL = "https://wakatime.com/api/v1/users/current/stats/last_7_days"
 BAR_WIDTH = 25
+WAKA_SECTION_MARKER = "<!-- waka-section:v1 -->"
 WEEKDAYS = (
     "Monday",
     "Tuesday",
@@ -55,7 +56,10 @@ def _top_entries(items: Any, limit: int = 5) -> list[dict[str, Any]]:
         return []
     cleaned: list[dict[str, Any]] = []
     for item in items:
-        if not isinstance(item, dict) or not item.get("name"):
+        if not isinstance(item, dict):
+            continue
+        name = _safe_line(item.get("name"))
+        if not name:
             continue
         try:
             percent = float(item.get("percent") or 0)
@@ -63,13 +67,17 @@ def _top_entries(items: Any, limit: int = 5) -> list[dict[str, Any]]:
             percent = 0.0
         cleaned.append(
             {
-                "name": str(item["name"]),
-                "text": str(item.get("text") or ""),
+                "name": name,
+                "text": _safe_line(item.get("text")),
                 "percent": percent,
             }
         )
     cleaned.sort(key=lambda entry: (-entry["percent"], entry["name"]))
     return cleaned[:limit]
+
+
+def _safe_line(value: Any) -> str:
+    return " ".join(str(value or "").replace("`", "'").split())
 
 
 def retrieve(http: HttpCallable, api_key: str) -> dict[str, Any]:
@@ -88,7 +96,7 @@ def retrieve(http: HttpCallable, api_key: str) -> dict[str, Any]:
         raise WakaCollectionError("WakaTime returned an unexpected payload")
     data = payload["data"]
     return {
-        "timezone": str(data.get("timezone") or ""),
+        "timezone": _safe_line(data.get("timezone")),
         "languages": _top_entries(data.get("languages")),
         "editors": _top_entries(data.get("editors")),
         "operating_systems": _top_entries(data.get("operating_systems")),
@@ -107,7 +115,10 @@ def _fmt_percent(percent: float) -> str:
 
 
 def _row(name: str, text: str, percent: float) -> str:
-    return f"{name:<24} {text:<18} {_bar(percent)}   {_fmt_percent(percent)}"
+    return (
+        f"{_safe_line(name):<24} {_safe_line(text):<18} "
+        f"{_bar(percent)}   {_fmt_percent(percent)}"
+    )
 
 
 def _count_row(label: str, count: int, percent: float) -> str:
@@ -125,8 +136,9 @@ def render(
     stats: dict[str, Any],
     commit_hours: dict[str, int] | None = None,
     commit_weekdays: dict[str, int] | None = None,
+    contribution_repos_bounded: bool = False,
 ) -> str:
-    lines: list[str] = []
+    lines: list[str] = [WAKA_SECTION_MARKER, ""]
     if commit_hours:
         morning = int(commit_hours.get("morning") or 0)
         daytime = int(commit_hours.get("daytime") or 0)
@@ -163,10 +175,14 @@ def render(
         lines.append("```")
         lines.append("")
 
+    if contribution_repos_bounded and (commit_hours or commit_weekdays):
+        lines.append("ℹ️ GitHub contribution timing is based on the top 100 contribution repositories.")
+        lines.append("")
+
     lines.append("📊 **This Week I Spent My Time On**")
     lines.append("")
     lines.append("```text")
-    timezone = stats.get("timezone") or ""
+    timezone = _safe_line(stats.get("timezone"))
     if timezone:
         lines.append(f"⌚︎ Time Zone: {timezone}")
         lines.append("")

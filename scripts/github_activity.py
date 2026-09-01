@@ -17,6 +17,7 @@ from scripts.readme_config import (
     ALLOWED_OWNERS,
     AUTHOR_LOGIN,
     CONTRIB_LIMIT,
+    CONTRIB_REPO_LIMIT,
     MAX_HISTORY_PAGES,
     MAX_PR_PAGES,
     PAGE_SIZE,
@@ -70,7 +71,7 @@ query($login: String!) {
     contributionsCollection {
       startedAt
       endedAt
-      commitContributionsByRepository(maxRepositories: 100) {
+      commitContributionsByRepository(maxRepositories: {CONTRIB_REPO_LIMIT}) {
         contributions { totalCount }
         repository {
           nameWithOwner
@@ -83,7 +84,7 @@ query($login: String!) {
     }
   }
 }
-"""
+""".replace("{CONTRIB_REPO_LIMIT}", str(CONTRIB_REPO_LIMIT))
 
 HISTORY_QUERY = """
 query(
@@ -143,6 +144,7 @@ class ActivityModel:
     private_commit_count: int | None
     commit_hours: dict[str, int] | None = None
     commit_weekdays: dict[str, int] | None = None
+    contribution_repos_bounded: bool = False
 
 
 def default_http(
@@ -247,7 +249,8 @@ def _split_name_with_owner(name_with_owner: str) -> tuple[str, str] | None:
     return owner, name
 
 
-def _allowlisted_public_repos(*groups: list[dict[str, Any]]) -> list[str]:
+def _allowlisted_timing_repos(*groups: list[dict[str, Any]]) -> list[str]:
+    """Use proven public/private entries from the bounded response; no extra repo query."""
     names: list[str] = []
     seen: set[str] = set()
     for group in groups:
@@ -260,7 +263,7 @@ def _allowlisted_public_repos(*groups: list[dict[str, Any]]) -> list[str]:
                 not isinstance(name, str)
                 or name in seen
                 or _owner_login(repo) not in ALLOWED_OWNERS
-                or repo.get("isPrivate") is not False
+                or repo.get("isPrivate") not in {False, True}
             ):
                 continue
             seen.add(name)
@@ -370,7 +373,8 @@ def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
     until = collection.get("endedAt")
     if not isinstance(since, str) or not isinstance(until, str):
         raise ActivityCollectionError("GitHub contribution window is unavailable")
-    history_repos = _allowlisted_public_repos(pull_requests, contributions)
+    # A public-only timing list would undercount known private contributions.
+    history_repos = _allowlisted_timing_repos(pull_requests, contributions)
     commit_dates_by_repo = _collect_commit_dates(
         http, token, author_id, history_repos, since, until
     )
@@ -379,6 +383,7 @@ def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
         "contributions": contributions,
         "commit_dates": [date for dates in commit_dates_by_repo.values() for date in dates],
         "commit_dates_by_repo": commit_dates_by_repo,
+        "contribution_repos_bounded": len(contributions) >= CONTRIB_REPO_LIMIT,
     }
 
 
@@ -435,11 +440,18 @@ def normalize(raw: dict[str, Any]) -> dict[str, Any]:
         for name, dates in raw_dates_by_repo.items():
             if isinstance(name, str) and isinstance(dates, list):
                 commit_dates_by_repo[name] = [date for date in dates if isinstance(date, str)]
+    raw_bounded = raw.get("contribution_repos_bounded")
+    contribution_repos_bounded = (
+        raw_bounded
+        if isinstance(raw_bounded, bool)
+        else len(normalized_contribs) >= CONTRIB_REPO_LIMIT
+    )
     return {
         "pull_requests": normalized_prs,
         "contributions": normalized_contribs,
         "commit_dates": commit_dates,
         "commit_dates_by_repo": commit_dates_by_repo,
+        "contribution_repos_bounded": contribution_repos_bounded,
     }
 
 
@@ -602,6 +614,7 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
         private_commit_count=private_commit_count if proven_private_commits else None,
         commit_hours=commit_hours,
         commit_weekdays=commit_weekdays,
+        contribution_repos_bounded=bool(normalized.get("contribution_repos_bounded")),
     )
 
 
@@ -673,13 +686,18 @@ def render(model: ActivityModel) -> str:
                 lines.append(f"  <sub>{description}</sub>")
             lines.append("")
 
+    if model.contribution_repos_bounded:
+        lines.append("_GitHub activity is based on the top 100 contribution repositories._")
+        lines.append("")
+
     private_parts: list[str] = []
     if model.private_pr_count:
         label = "pull request" if model.private_pr_count == 1 else "pull requests"
         private_parts.append(f"{model.private_pr_count} {label}")
     if model.private_commit_count:
         label = "commit" if model.private_commit_count == 1 else "commits"
-        private_parts.append(f"{model.private_commit_count} {label}")
+        prefix = "at least " if model.contribution_repos_bounded else ""
+        private_parts.append(f"{prefix}{model.private_commit_count} {label}")
     if private_parts:
         lines.append(f"🔒 Private activity: {' · '.join(private_parts)}")
         lines.append("")

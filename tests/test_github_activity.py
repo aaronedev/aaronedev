@@ -15,6 +15,7 @@ from scripts.readme_config import (  # noqa: E402
     ALLOWED_OWNERS,
     AUTHOR_LOGIN,
     CONTRIB_LIMIT,
+    CONTRIB_REPO_LIMIT,
     MAX_HISTORY_PAGES,
     MAX_PR_PAGES,
     PAGE_SIZE,
@@ -93,7 +94,12 @@ def _contrib(
 
 
 def _raw(
-    *, pull_requests=None, contributions=None, commit_dates=None, commit_dates_by_repo=None
+    *,
+    pull_requests=None,
+    contributions=None,
+    commit_dates=None,
+    commit_dates_by_repo=None,
+    contribution_repos_bounded=None,
 ) -> dict:
     payload = {
         "pull_requests": list(pull_requests or []),
@@ -103,6 +109,8 @@ def _raw(
         payload["commit_dates"] = list(commit_dates)
     if commit_dates_by_repo is not None:
         payload["commit_dates_by_repo"] = dict(commit_dates_by_repo)
+    if contribution_repos_bounded is not None:
+        payload["contribution_repos_bounded"] = contribution_repos_bounded
     return payload
 
 
@@ -116,6 +124,7 @@ class ConfigContractTest(unittest.TestCase):
         self.assertEqual(PROFILE_REPO, "aaronedev/aaronedev")
         self.assertEqual(PR_LIMIT, 8)
         self.assertEqual(CONTRIB_LIMIT, 10)
+        self.assertEqual(CONTRIB_REPO_LIMIT, 100)
         self.assertEqual(MAX_PR_PAGES, 10)
         self.assertEqual(MAX_HISTORY_PAGES, 100)
         self.assertEqual(PAGE_SIZE, 100)
@@ -173,6 +182,17 @@ class NormalizeTest(unittest.TestCase):
             normalize(legacy_viewer_raw)["contributions"],
             [_contrib(owner="aaronedev", name="public-dotfiles", count=99)],
         )
+
+    def test_contribution_repo_bound_is_inferred_at_exact_api_limit(self) -> None:
+        entries = [
+            _contrib(owner="aaronedev", name=f"repo-{index}", count=1)
+            for index in range(CONTRIB_REPO_LIMIT)
+        ]
+        bounded = normalize(_raw(contributions=entries))
+        unbounded = normalize(_raw(contributions=entries[:-1]))
+
+        self.assertTrue(bounded["contribution_repos_bounded"])
+        self.assertFalse(unbounded["contribution_repos_bounded"])
 
 
 class PrivacyReduceTest(unittest.TestCase):
@@ -437,6 +457,26 @@ class PrivacyReduceTest(unittest.TestCase):
         self.assertEqual(model.commit_hours["night"], 1)
         self.assertEqual(model.commit_weekdays["Monday"], 1)
 
+    def test_bounded_private_commits_are_conservative_and_private_dates_feed_timing(
+        self,
+    ) -> None:
+        owner, name = CANARY_VV.split("/", 1)
+        raw = _raw(
+            contributions=[_contrib(owner=owner, name=name, count=4, is_private=True)],
+            commit_dates=["2026-01-04T23:30:00Z"],
+            commit_dates_by_repo={CANARY_VV: ["2026-01-04T23:30:00Z"]},
+            contribution_repos_bounded=True,
+        )
+        model = privacy_reduce(normalize(raw))
+        markdown = render(model)
+
+        self.assertTrue(model.contribution_repos_bounded)
+        self.assertEqual(model.commit_hours["night"], 1)
+        self.assertEqual(model.commit_weekdays["Monday"], 1)
+        self.assertIn("top 100 contribution repositories", markdown)
+        self.assertIn("at least 4 commits", markdown)
+        self.assertNotIn(CANARY_VV, markdown)
+
     def test_description_truncated_to_120(self) -> None:
         description = "x" * 200
         markdown = _rendered_from_raw(
@@ -457,6 +497,44 @@ class PrivacyReduceTest(unittest.TestCase):
 
 
 class RetrievePaginationTest(unittest.TestCase):
+    def test_retrieve_marks_exact_contribution_repository_limit_as_bounded(self) -> None:
+        contributions = [
+            _contrib(owner="aaronedev", name=f"repo-{index}", count=1)
+            for index in range(CONTRIB_REPO_LIMIT)
+        ]
+        queries: list[str] = []
+
+        def http(url, *, method="GET", headers=None, json_body=None):
+            query = (json_body or {}).get("query", "")
+            queries.append(query)
+            if "pullRequests" in query:
+                return {
+                    "status": 200,
+                    "json": {"data": {"user": {"pullRequests": {"nodes": [], "pageInfo": {"hasNextPage": False}}}}},
+                }
+            return {
+                "status": 200,
+                "json": {
+                    "data": {
+                        "viewer": {"login": AUTHOR_LOGIN},
+                        "user": {
+                            "id": "UID",
+                            "contributionsCollection": {
+                                "startedAt": "2026-08-01T00:00:00Z",
+                                "endedAt": "2026-08-31T00:00:00Z",
+                                "commitContributionsByRepository": contributions,
+                            },
+                        },
+                    }
+                },
+            }
+
+        with mock.patch("scripts.github_activity._collect_commit_dates", return_value={}):
+            raw = retrieve(http, token="token-value")
+
+        self.assertTrue(raw["contribution_repos_bounded"])
+        self.assertTrue(any("maxRepositories: 100" in query for query in queries))
+
     def test_private_pr_after_public_limit_is_counted(self) -> None:
         public_prs = [
             _pr_node(
@@ -888,6 +966,12 @@ class RetrievePaginationTest(unittest.TestCase):
                                             name="public-dotfiles",
                                             count=2,
                                         ),
+                                        _contrib(
+                                            owner="Violet-Void",
+                                            name="private-timing-only",
+                                            count=1,
+                                            is_private=True,
+                                        ),
                                     ]
                                 },
                             },
@@ -909,13 +993,7 @@ class RetrievePaginationTest(unittest.TestCase):
                                     "target": {
                                         "history": {
                                             "nodes": [
-                                                {
-                                                    "committedDate": (
-                                                        "2026-08-20T08:00:00Z"
-                                                        if after is None
-                                                        else "2026-08-21T08:00:00Z"
-                                                    )
-                                                }
+                                                {"committedDate": "2026-01-04T23:30:00Z"}
                                             ],
                                             "pageInfo": {
                                                 "hasNextPage": after is None,
@@ -932,6 +1010,7 @@ class RetrievePaginationTest(unittest.TestCase):
 
         raw = retrieve(http, token="token-value")
         self.assertIn("aaronedev/public-dotfiles", queried_repos)
+        self.assertIn("Violet-Void/private-timing-only", queried_repos)
         self.assertNotIn(f"{UNRELATED_OWNER}/noise", queried_repos)
         self.assertNotIn(CANARY_VV, queried_repos)
         self.assertNotIn(CANARY_BF, queried_repos)
@@ -941,8 +1020,12 @@ class RetrievePaginationTest(unittest.TestCase):
         self.assertEqual(history_variables[1]["after"], "history-page-2")
         self.assertEqual(
             raw["commit_dates_by_repo"]["aaronedev/public-dotfiles"],
-            ["2026-08-20T08:00:00Z", "2026-08-21T08:00:00Z"],
+            ["2026-01-04T23:30:00Z", "2026-01-04T23:30:00Z"],
         )
+        model = privacy_reduce(normalize(raw))
+        self.assertEqual(model.commit_hours["night"], 4)
+        self.assertEqual(model.commit_weekdays["Monday"], 4)
+        self.assertNotIn("private-timing-only", render(model))
 
 
 class RenderModelTest(unittest.TestCase):
