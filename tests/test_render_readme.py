@@ -455,6 +455,11 @@ class RenderReadmeTest(unittest.TestCase):
                 )
             self.assertEqual(code, EXIT_OK)
             self.assertEqual(renderer.call_count, 1)
+            self.assertIn(
+                "aaronedev/public-demo",
+                renderer.call_args.kwargs["activity_markdown"],
+            )
+            self.assertIn("Python", renderer.call_args.kwargs["waka_markdown"])
 
 
 if __name__ == "__main__":

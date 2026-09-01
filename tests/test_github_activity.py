@@ -125,6 +125,56 @@ class ConfigContractTest(unittest.TestCase):
         self.assertIn("bauerstischfinder", ALLOWED_OWNERS)
 
 
+class NormalizeTest(unittest.TestCase):
+    def test_direct_graphql_contributions_prefer_user_and_support_legacy_viewer(
+        self,
+    ) -> None:
+        contribution = {
+            "contributions": {"totalCount": 3},
+            "repository": _contrib(
+                owner="aaronedev", name="public-dotfiles", count=0
+            )["repository"],
+        }
+        legacy_contribution = {
+            "contributions": {"totalCount": 99},
+            "repository": _contrib(
+                owner="aaronedev", name="public-dotfiles", count=0
+            )["repository"],
+        }
+        user_raw = {
+            "data": {
+                "user": {
+                    "contributionsCollection": {
+                        "commitContributionsByRepository": [contribution],
+                    }
+                },
+                "viewer": {
+                    "contributionsCollection": {
+                        "commitContributionsByRepository": [legacy_contribution],
+                    }
+                },
+            }
+        }
+        legacy_viewer_raw = {
+            "data": {
+                "viewer": {
+                    "contributionsCollection": {
+                        "commitContributionsByRepository": [legacy_contribution],
+                    }
+                }
+            }
+        }
+
+        self.assertEqual(
+            normalize(user_raw)["contributions"],
+            [_contrib(owner="aaronedev", name="public-dotfiles", count=3)],
+        )
+        self.assertEqual(
+            normalize(legacy_viewer_raw)["contributions"],
+            [_contrib(owner="aaronedev", name="public-dotfiles", count=99)],
+        )
+
+
 class PrivacyReduceTest(unittest.TestCase):
     def test_public_repo_for_each_allowed_owner_is_included(self) -> None:
         pull_requests = []

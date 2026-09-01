@@ -19,6 +19,14 @@ class HttpJsonTest(unittest.TestCase):
             with self.assertRaises(HttpJsonTransportError):
                 request_json("https://example.test")
 
+    def test_read_timeout_has_a_shared_exception_type(self) -> None:
+        response = mock.MagicMock()
+        response.__enter__.return_value = response
+        response.read.side_effect = TimeoutError("timed out")
+        with mock.patch("scripts.http_json.urlopen", return_value=response):
+            with self.assertRaises(HttpJsonTransportError):
+                request_json("https://example.test")
+
     def test_json_body_and_response_are_normalized(self) -> None:
         response = mock.MagicMock()
         response.status = 200

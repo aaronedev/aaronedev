@@ -33,7 +33,7 @@ def request_json(
             raw = exc.read()
         except OSError:
             raw = b""
-    except URLError as exc:
+    except (URLError, TimeoutError) as exc:
         raise HttpJsonTransportError("HTTP request failed") from exc
     try:
         parsed = json.loads(raw.decode("utf-8")) if raw else {}

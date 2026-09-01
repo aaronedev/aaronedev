@@ -407,10 +407,11 @@ def normalize(raw: dict[str, Any]) -> dict[str, Any]:
         ).get("nodes") or []
     contributions = raw.get("contributions")
     if contributions is None:
-        contributions = (
-            ((raw.get("data") or {}).get("viewer") or {}).get("contributionsCollection")
-            or {}
-        ).get("commitContributionsByRepository") or []
+        data = raw.get("data") or {}
+        collection = ((data.get("user") or {}).get("contributionsCollection"))
+        if collection is None:
+            collection = ((data.get("viewer") or {}).get("contributionsCollection"))
+        contributions = (collection or {}).get("commitContributionsByRepository") or []
     normalized_prs = [item for item in pull_requests if isinstance(item, dict)]
     normalized_contribs: list[dict[str, Any]] = []
     for item in contributions:
