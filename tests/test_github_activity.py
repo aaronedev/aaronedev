@@ -473,7 +473,11 @@ class PrivacyReduceTest(unittest.TestCase):
         self.assertTrue(model.contribution_repos_bounded)
         self.assertEqual(model.commit_hours["night"], 1)
         self.assertEqual(model.commit_weekdays["Monday"], 1)
-        self.assertIn("top 100 contribution repositories", markdown)
+        self.assertIn(
+            f"Commit contribution totals are based on the top {CONTRIB_REPO_LIMIT} "
+            "contribution repositories.",
+            markdown,
+        )
         self.assertIn("at least 4 commits", markdown)
         self.assertNotIn(CANARY_VV, markdown)
 
@@ -497,6 +501,110 @@ class PrivacyReduceTest(unittest.TestCase):
 
 
 class RetrievePaginationTest(unittest.TestCase):
+    def test_prs_use_the_contribution_window_and_stop_after_an_older_page(self) -> None:
+        in_window_public = _pr_node(
+            owner="aaronedev",
+            name="windowed-public",
+            title="in window public",
+            url="https://github.com/aaronedev/windowed-public/pull/1",
+            created_at="2026-08-31T00:00:00Z",
+        )
+        in_window_private = _pr_node(
+            owner="Violet-Void",
+            name="windowed-private",
+            title="in window private",
+            url="https://github.com/Violet-Void/windowed-private/pull/2",
+            created_at="2026-08-01T00:00:00Z",
+            is_private=True,
+        )
+        newer = _pr_node(
+            owner="aaronedev",
+            name="newer",
+            title="too new",
+            url="https://github.com/aaronedev/newer/pull/3",
+            created_at="2026-09-01T00:00:01Z",
+        )
+        malformed = _pr_node(
+            owner="aaronedev",
+            name="malformed",
+            title="malformed date",
+            url="https://github.com/aaronedev/malformed/pull/4",
+            created_at="not-a-date",
+        )
+        older = _pr_node(
+            owner="aaronedev",
+            name="older",
+            title="too old",
+            url="https://github.com/aaronedev/older/pull/5",
+            created_at="2026-07-31T23:59:59Z",
+        )
+        queries: list[str] = []
+        pr_calls = 0
+
+        def http(url, *, method="GET", headers=None, json_body=None):
+            nonlocal pr_calls
+            query = (json_body or {}).get("query", "")
+            queries.append(query)
+            if "commitContributionsByRepository" in query:
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "viewer": {"login": AUTHOR_LOGIN},
+                            "user": {
+                                "id": "UID",
+                                "contributionsCollection": {
+                                    "startedAt": "2026-08-01T00:00:00Z",
+                                    "endedAt": "2026-08-31T00:00:00Z",
+                                    "commitContributionsByRepository": [
+                                        _contrib(
+                                            owner="Violet-Void",
+                                            name="windowed-private",
+                                            count=5,
+                                            is_private=True,
+                                        )
+                                    ],
+                                },
+                            },
+                        }
+                    },
+                }
+            if "pullRequests" in query:
+                pr_calls += 1
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "user": {
+                                "pullRequests": {
+                                    "nodes": [
+                                        newer,
+                                        in_window_public,
+                                        in_window_private,
+                                        malformed,
+                                        older,
+                                    ],
+                                    "pageInfo": {
+                                        "hasNextPage": True,
+                                        "endCursor": "should-not-be-used",
+                                    },
+                                }
+                            }
+                        }
+                    },
+                }
+            raise AssertionError(f"unexpected query: {query}")
+
+        with mock.patch("scripts.github_activity._collect_commit_dates", return_value={}):
+            raw = retrieve(http, token="token-value")
+
+        self.assertIn("commitContributionsByRepository", queries[0])
+        self.assertEqual(pr_calls, 1)
+        self.assertEqual(raw["pull_requests"], [in_window_public, in_window_private])
+        model = privacy_reduce(normalize(raw))
+        self.assertEqual(model.private_pr_count, 1)
+        self.assertEqual(model.private_commit_count, 5)
+
     def test_retrieve_marks_exact_contribution_repository_limit_as_bounded(self) -> None:
         contributions = [
             _contrib(owner="aaronedev", name=f"repo-{index}", count=1)

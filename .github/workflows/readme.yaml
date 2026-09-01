@@ -33,41 +33,43 @@ jobs:
       run: python3 scripts/render_readme.py
     - name: Commit and push updates
       env:
+        README_ACTIVITY_GITHUB_PAT: ${{ secrets.GH_TOKEN }}
+        README_WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |-
         set -euo pipefail
 
-        if git diff --quiet HEAD -- README.md; then
-          echo "README already up to date."
-          exit 0
-        fi
-
         git config user.name "readme-scribe 🤖"
         git config user.email "actions@github.com"
 
-        git add README.md
-        git commit -m "chore: update README from template"
+        if ! git diff --quiet HEAD -- README.md; then
+          git add README.md
+          git commit -m "chore: update README from template"
+        fi
 
         if ! git pull --rebase --autostash --strategy-option=theirs origin main; then
           echo "Rebase failed, aligning with latest origin/main" >&2
           git rebase --abort || true
           git fetch origin main
-          rendered_readme="$(mktemp)"
-          trap 'rm -f "$rendered_readme"' EXIT
-          cp README.md "$rendered_readme"
           git reset --hard origin/main
-          cp "$rendered_readme" README.md
+        fi
 
-          if git diff --quiet origin/main -- README.md; then
-            echo "Template already matches remote after recovery. Nothing to push."
-            exit 0
-          fi
+        set +e
+        python3 scripts/render_readme.py
+        rerender_status=$?
+        set -e
 
+        if ! git diff --quiet HEAD -- README.md; then
           git add README.md
-          git commit -m "chore: update README from template"
+          if git diff --quiet HEAD origin/main; then
+            git commit -m "chore: update README from template"
+          else
+            git commit --amend --no-edit
+          fi
         fi
 
         git push origin HEAD:main
+        exit "$rerender_status"
     - name: Fail when README rendering failed
       if: steps.render-readme.outcome == 'failure'
       run: exit 1

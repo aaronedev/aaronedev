@@ -19,6 +19,7 @@ from scripts.wakatime_stats import (  # noqa: E402
     render,
     retrieve,
 )
+from scripts.readme_config import CONTRIB_REPO_LIMIT  # noqa: E402
 from scripts.http_json import HttpJsonTransportError  # noqa: E402
 
 CANARY_VV = "Violet-Void/private-client-project"
@@ -249,7 +250,11 @@ class WakaRenderTest(unittest.TestCase):
             commit_weekdays={"Monday": 1},
             contribution_repos_bounded=True,
         )
-        self.assertIn("top 100 contribution repositories", bounded)
+        self.assertIn(
+            f"GitHub contribution timing uses the top {CONTRIB_REPO_LIMIT} "
+            "contribution repositories plus eligible pull-request repositories.",
+            bounded,
+        )
 
     def test_render_is_deterministic(self) -> None:
         def http(url, *, method="GET", headers=None, json_body=None):

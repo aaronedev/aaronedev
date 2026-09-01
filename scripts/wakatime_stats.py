@@ -10,6 +10,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from scripts.http_json import HttpJsonTransportError, request_json
+from scripts.readme_config import CONTRIB_REPO_LIMIT
 
 WAKA_URL = "https://wakatime.com/api/v1/users/current/stats/last_7_days"
 BAR_WIDTH = 25
@@ -176,7 +177,11 @@ def render(
         lines.append("")
 
     if contribution_repos_bounded and (commit_hours or commit_weekdays):
-        lines.append("ℹ️ GitHub contribution timing is based on the top 100 contribution repositories.")
+        lines.append(
+            "ℹ️ GitHub contribution timing uses the top "
+            f"{CONTRIB_REPO_LIMIT} contribution repositories plus eligible "
+            "pull-request repositories."
+        )
         lines.append("")
 
     lines.append("📊 **This Week I Spent My Time On**")

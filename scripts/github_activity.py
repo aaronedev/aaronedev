@@ -325,6 +325,28 @@ def _collect_commit_dates(
 
 
 def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
+    contrib_payload = _graphql(http, token, CONTRIB_QUERY, {"login": AUTHOR_LOGIN})
+    data = contrib_payload.get("data") or {}
+    viewer = data.get("viewer") or {}
+    viewer_login = viewer.get("login") if isinstance(viewer, dict) else None
+    if not isinstance(viewer_login, str) or viewer_login.casefold() != AUTHOR_LOGIN.casefold():
+        raise ActivityCollectionError("GitHub viewer does not match configured author")
+    author = data.get("user") or {}
+    collection = author.get("contributionsCollection") if isinstance(author, dict) else None
+    if not isinstance(collection, dict):
+        raise ActivityCollectionError("GitHub author contribution collection is unavailable")
+    raw_contribs = collection.get("commitContributionsByRepository") or []
+    contributions = [item for item in raw_contribs if isinstance(item, dict)]
+    author_id = author.get("id") if isinstance(author.get("id"), str) else None
+    if not author_id:
+        raise ActivityCollectionError("GitHub author ID is unavailable")
+    since = collection.get("startedAt")
+    until = collection.get("endedAt")
+    window_start = _parse_dt(since) if isinstance(since, str) else None
+    window_end = _parse_dt(until) if isinstance(until, str) else None
+    if window_start is None or window_end is None or window_start > window_end:
+        raise ActivityCollectionError("GitHub contribution window is unavailable")
+
     pull_requests: list[dict[str, Any]] = []
     after: str | None = None
     seen_cursors: set[str] = set()
@@ -338,10 +360,19 @@ def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
         user = ((payload.get("data") or {}).get("user")) or {}
         connection = user.get("pullRequests") or {}
         nodes = connection.get("nodes") or []
+        older_node_seen = False
         for node in nodes:
-            if isinstance(node, dict):
+            created_at = node.get("createdAt") if isinstance(node, dict) else None
+            created = _parse_dt(created_at) if isinstance(created_at, str) else None
+            if created is None:
+                continue
+            if window_start <= created <= window_end:
                 pull_requests.append(node)
+            elif created < window_start:
+                older_node_seen = True
         page_info = connection.get("pageInfo") or {}
+        if older_node_seen:
+            break
         if not page_info.get("hasNextPage"):
             break
         cursor = page_info.get("endCursor")
@@ -352,27 +383,6 @@ def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
     else:
         raise ActivityCollectionError("GitHub pull request pagination exceeded page limit")
 
-    contrib_payload = _graphql(http, token, CONTRIB_QUERY, {"login": AUTHOR_LOGIN})
-    data = contrib_payload.get("data") or {}
-    viewer = data.get("viewer") or {}
-    viewer_login = viewer.get("login") if isinstance(viewer, dict) else None
-    if not isinstance(viewer_login, str) or viewer_login.casefold() != AUTHOR_LOGIN.casefold():
-        raise ActivityCollectionError("GitHub viewer does not match configured author")
-    author = data.get("user") or {}
-    collection = author.get("contributionsCollection") if isinstance(author, dict) else None
-    if not isinstance(collection, dict):
-        raise ActivityCollectionError("GitHub author contribution collection is unavailable")
-    raw_contribs = collection.get(
-        "commitContributionsByRepository"
-    ) or []
-    contributions = [item for item in raw_contribs if isinstance(item, dict)]
-    author_id = author.get("id") if isinstance(author.get("id"), str) else None
-    if not author_id:
-        raise ActivityCollectionError("GitHub author ID is unavailable")
-    since = collection.get("startedAt")
-    until = collection.get("endedAt")
-    if not isinstance(since, str) or not isinstance(until, str):
-        raise ActivityCollectionError("GitHub contribution window is unavailable")
     # A public-only timing list would undercount known private contributions.
     history_repos = _allowlisted_timing_repos(pull_requests, contributions)
     commit_dates_by_repo = _collect_commit_dates(
@@ -687,7 +697,10 @@ def render(model: ActivityModel) -> str:
             lines.append("")
 
     if model.contribution_repos_bounded:
-        lines.append("_GitHub activity is based on the top 100 contribution repositories._")
+        lines.append(
+            "_Commit contribution totals are based on the top "
+            f"{CONTRIB_REPO_LIMIT} contribution repositories._"
+        )
         lines.append("")
 
     private_parts: list[str] = []

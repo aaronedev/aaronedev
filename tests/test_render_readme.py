@@ -185,7 +185,7 @@ def _section(text: str, start: str, end: str) -> str:
 
 
 class RenderReadmeTest(unittest.TestCase):
-    def test_github_failure_preserves_tagged_waka_even_when_waka_succeeds(self) -> None:
+    def test_github_failure_preserves_tagged_waka_when_waka_data_is_available(self) -> None:
         previous_waka = "\n" + render_waka(
             {"timezone": "Europe/Berlin", "languages": [], "editors": [], "operating_systems": []}
         )
@@ -218,7 +218,7 @@ class RenderReadmeTest(unittest.TestCase):
             readme = (root / "README.md").read_text(encoding="utf-8")
             self.assertEqual(_section(readme, WAKA_START, WAKA_END), previous_waka)
 
-    def test_github_failure_rejects_legacy_waka_even_when_waka_succeeds(self) -> None:
+    def test_github_failure_rejects_legacy_waka_when_waka_data_is_available(self) -> None:
         legacy_waka = "\n**Projects:**\n- legacy-private-project\n"
         existing = TEMPLATE.replace(
             f"{WAKA_START}\n{WAKA_END}", f"{WAKA_START}{legacy_waka}{WAKA_END}"
