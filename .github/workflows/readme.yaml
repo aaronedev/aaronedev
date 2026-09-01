@@ -52,13 +52,18 @@ jobs:
           echo "Rebase failed, aligning with latest origin/main" >&2
           git rebase --abort || true
           git fetch origin main
-          git reset --soft origin/main
+          rendered_readme="$(mktemp)"
+          trap 'rm -f "$rendered_readme"' EXIT
+          cp README.md "$rendered_readme"
+          git reset --hard origin/main
+          cp "$rendered_readme" README.md
 
-          if git diff --cached --quiet; then
-            echo "Template already matches remote after soft reset. Nothing to push."
+          if git diff --quiet origin/main -- README.md; then
+            echo "Template already matches remote after recovery. Nothing to push."
             exit 0
           fi
 
+          git add README.md
           git commit -m "chore: update README from template"
         fi
 
