@@ -150,3 +150,6 @@ github/workflows/wakatime.yaml
 .env*
 /tests/__pycache__
 /scripts/__pycache__
+
+# Local Codex Desktop environment; canonical copy lives in a secret Gist.
+/.codex/environments/environment.toml
