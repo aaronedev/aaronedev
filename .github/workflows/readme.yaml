@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   update:
-    runs-on: ${{ fromJSON(vars.CI_CHEAP_RUNNER_LABELS || vars.CI_RUNNER_LABELS || '["self-hosted","Linux","X64","aed-ci"]') }}
+    runs-on: ${{ fromJSON(vars.OPS_SECRET_RUNNER_LABELS || '["self-hosted","Linux","X64","aed-ops"]') }}
     permissions:
       contents: write
     defaults:
