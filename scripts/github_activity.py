@@ -1,16 +1,13 @@
 from __future__ import annotations
 
 import html
-import json
-import re
 import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
-from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
-from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
@@ -20,14 +17,16 @@ from scripts.readme_config import (
     ALLOWED_OWNERS,
     AUTHOR_LOGIN,
     CONTRIB_LIMIT,
+    MAX_HISTORY_PAGES,
     MAX_PR_PAGES,
     PAGE_SIZE,
+    PROFILE_TIMEZONE,
     PR_LIMIT,
     PROFILE_REPO,
 )
+from scripts.http_json import HttpJsonTransportError, request_json
 
 GRAPHQL_URL = "https://api.github.com/graphql"
-_TAG_RE = re.compile(r"<[^>]*>")
 WEEKDAYS = (
     "Monday",
     "Tuesday",
@@ -62,10 +61,15 @@ query($login: String!, $first: Int!, $after: String) {
 """
 
 CONTRIB_QUERY = """
-query {
+query($login: String!) {
   viewer {
+    login
+  }
+  user(login: $login) {
     id
     contributionsCollection {
+      startedAt
+      endedAt
       commitContributionsByRepository(maxRepositories: 100) {
         contributions { totalCount }
         repository {
@@ -82,12 +86,18 @@ query {
 """
 
 HISTORY_QUERY = """
-query($owner: String!, $name: String!, $authorId: ID!) {
+query(
+  $owner: String!, $name: String!, $authorId: ID!, $since: GitTimestamp!,
+  $until: GitTimestamp!, $after: String
+) {
   repository(owner: $owner, name: $name) {
     defaultBranchRef {
       target {
         ... on Commit {
-          history(first: 100, author: {id: $authorId}) {
+          history(
+            first: 100, after: $after, author: {id: $authorId}, since: $since, until: $until
+          ) {
+            pageInfo { hasNextPage endCursor }
             nodes { committedDate }
           }
         }
@@ -122,13 +132,15 @@ class PublicContrib:
     repo_name: str
     count: int
     description: str | None
+    latest_at: str | None
 
 
 @dataclass
 class ActivityModel:
     public_prs: list[PublicPR]
     public_contribs: list[PublicContrib]
-    private_count: int | None
+    private_pr_count: int | None
+    private_commit_count: int | None
     commit_hours: dict[str, int] | None = None
     commit_weekdays: dict[str, int] | None = None
 
@@ -140,29 +152,10 @@ def default_http(
     headers: dict[str, str] | None = None,
     json_body: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    request_headers = dict(headers or {})
-    data = None
-    if json_body is not None:
-        data = json.dumps(json_body).encode("utf-8")
-        request_headers.setdefault("Content-Type", "application/json")
-    request = Request(url, data=data, headers=request_headers, method=method)
     try:
-        with urlopen(request, timeout=30) as response:
-            raw = response.read()
-            status = getattr(response, "status", 200)
-    except HTTPError as exc:
-        status = exc.code
-        try:
-            raw = exc.read()
-        except OSError:
-            raw = b""
-    except URLError as exc:
+        return request_json(url, method=method, headers=headers, json_body=json_body)
+    except HttpJsonTransportError as exc:
         raise ActivityCollectionError("GitHub request failed") from exc
-    try:
-        parsed = json.loads(raw.decode("utf-8")) if raw else {}
-    except (UnicodeDecodeError, json.JSONDecodeError):
-        parsed = {}
-    return {"status": status, "json": parsed}
 
 
 def _graphql(
@@ -289,31 +282,54 @@ def _allowlisted_public_repos(*groups: list[dict[str, Any]]) -> list[str]:
 def _collect_commit_dates(
     http: HttpCallable,
     token: str,
-    author_id: str | None,
+    author_id: str,
     repos: list[str],
-) -> list[str]:
-    if not author_id:
-        return []
-    dates: list[str] = []
+    since: str,
+    until: str,
+) -> dict[str, list[str]]:
+    dates_by_repo: dict[str, list[str]] = {}
     for name_with_owner in repos:
         parts = _split_name_with_owner(name_with_owner)
         if parts is None:
             continue
         owner, name = parts
-        payload = _graphql(
-            http,
-            token,
-            HISTORY_QUERY,
-            {"owner": owner, "name": name, "authorId": author_id},
-        )
-        repository = ((payload.get("data") or {}).get("repository")) or {}
-        history = ((repository.get("defaultBranchRef") or {}).get("target") or {}).get(
-            "history"
-        ) or {}
-        for node in history.get("nodes") or []:
-            if isinstance(node, dict) and isinstance(node.get("committedDate"), str):
-                dates.append(node["committedDate"])
-    return dates
+        after: str | None = None
+        seen_cursors: set[str] = set()
+        repo_dates: list[str] = []
+        for _page in range(MAX_HISTORY_PAGES):
+            payload = _graphql(
+                http,
+                token,
+                HISTORY_QUERY,
+                {
+                    "owner": owner,
+                    "name": name,
+                    "authorId": author_id,
+                    "since": since,
+                    "until": until,
+                    "after": after,
+                },
+            )
+            repository = ((payload.get("data") or {}).get("repository")) or {}
+            history = (
+                ((repository.get("defaultBranchRef") or {}).get("target") or {}).get("history")
+                or {}
+            )
+            for node in history.get("nodes") or []:
+                if isinstance(node, dict) and isinstance(node.get("committedDate"), str):
+                    repo_dates.append(node["committedDate"])
+            page_info = history.get("pageInfo") or {}
+            if not page_info.get("hasNextPage"):
+                break
+            cursor = page_info.get("endCursor")
+            if not isinstance(cursor, str) or not cursor or cursor in seen_cursors:
+                raise ActivityCollectionError("GitHub commit history pagination is incomplete")
+            seen_cursors.add(cursor)
+            after = cursor
+        else:
+            raise ActivityCollectionError("GitHub commit history exceeded page limit")
+        dates_by_repo[name_with_owner] = repo_dates
+    return dates_by_repo
 
 
 def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
@@ -342,19 +358,36 @@ def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
         if not after:
             break
 
-    contrib_payload = _graphql(http, token, CONTRIB_QUERY)
-    viewer = ((contrib_payload.get("data") or {}).get("viewer")) or {}
-    raw_contribs = (viewer.get("contributionsCollection") or {}).get(
+    contrib_payload = _graphql(http, token, CONTRIB_QUERY, {"login": AUTHOR_LOGIN})
+    data = contrib_payload.get("data") or {}
+    viewer = data.get("viewer") or {}
+    viewer_login = viewer.get("login") if isinstance(viewer, dict) else None
+    if not isinstance(viewer_login, str) or viewer_login.casefold() != AUTHOR_LOGIN.casefold():
+        raise ActivityCollectionError("GitHub viewer does not match configured author")
+    author = data.get("user") or {}
+    collection = author.get("contributionsCollection") if isinstance(author, dict) else None
+    if not isinstance(collection, dict):
+        raise ActivityCollectionError("GitHub author contribution collection is unavailable")
+    raw_contribs = collection.get(
         "commitContributionsByRepository"
     ) or []
     contributions = [item for item in raw_contribs if isinstance(item, dict)]
-    author_id = viewer.get("id") if isinstance(viewer.get("id"), str) else None
+    author_id = author.get("id") if isinstance(author.get("id"), str) else None
+    if not author_id:
+        raise ActivityCollectionError("GitHub author ID is unavailable")
+    since = collection.get("startedAt")
+    until = collection.get("endedAt")
+    if not isinstance(since, str) or not isinstance(until, str):
+        raise ActivityCollectionError("GitHub contribution window is unavailable")
     history_repos = _allowlisted_public_repos(pull_requests, contributions)
-    commit_dates = _collect_commit_dates(http, token, author_id, history_repos)
+    commit_dates_by_repo = _collect_commit_dates(
+        http, token, author_id, history_repos, since, until
+    )
     return {
         "pull_requests": pull_requests,
         "contributions": contributions,
-        "commit_dates": commit_dates,
+        "commit_dates": [date for dates in commit_dates_by_repo.values() for date in dates],
+        "commit_dates_by_repo": commit_dates_by_repo,
     }
 
 
@@ -404,10 +437,17 @@ def normalize(raw: dict[str, Any]) -> dict[str, Any]:
     commit_dates = [
         item for item in (raw.get("commit_dates") or []) if isinstance(item, str)
     ]
+    commit_dates_by_repo: dict[str, list[str]] = {}
+    raw_dates_by_repo = raw.get("commit_dates_by_repo") or {}
+    if isinstance(raw_dates_by_repo, dict):
+        for name, dates in raw_dates_by_repo.items():
+            if isinstance(name, str) and isinstance(dates, list):
+                commit_dates_by_repo[name] = [date for date in dates if isinstance(date, str)]
     return {
         "pull_requests": normalized_prs,
         "contributions": normalized_contribs,
         "commit_dates": commit_dates,
+        "commit_dates_by_repo": commit_dates_by_repo,
     }
 
 
@@ -435,6 +475,12 @@ def _hour_bucket(hour: int) -> str:
 def _aggregates(
     commit_dates: list[str],
 ) -> tuple[dict[str, int] | None, dict[str, int] | None]:
+    try:
+        profile_timezone = ZoneInfo(PROFILE_TIMEZONE)
+    except ZoneInfoNotFoundError as exc:
+        raise ActivityCollectionError(
+            f"invalid profile timezone: {PROFILE_TIMEZONE}"
+        ) from exc
     if not commit_dates:
         return None, None
     hours = {"morning": 0, "daytime": 0, "evening": 0, "night": 0}
@@ -444,15 +490,18 @@ def _aggregates(
         parsed = _parse_dt(value)
         if parsed is None:
             continue
+        local = parsed.astimezone(profile_timezone)
         found = True
-        hours[_hour_bucket(parsed.hour)] += 1
-        weekdays[WEEKDAYS[parsed.weekday()]] += 1
+        hours[_hour_bucket(local.hour)] += 1
+        weekdays[WEEKDAYS[local.weekday()]] += 1
     if not found:
         return None, None
     return hours, weekdays
 
 
-def _sort_ts(value: str) -> float:
+def _sort_ts(value: str | None) -> float:
+    if not value:
+        return 0.0
     parsed = _parse_dt(value)
     return parsed.timestamp() if parsed else 0.0
 
@@ -460,8 +509,10 @@ def _sort_ts(value: str) -> float:
 def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
     public_prs: list[PublicPR] = []
     seen_pr_urls: set[str] = set()
-    private_count = 0
-    proven_private = False
+    private_pr_count = 0
+    private_commit_count = 0
+    proven_private_prs = False
+    proven_private_commits = False
 
     for node in normalized.get("pull_requests") or []:
         repo = node.get("repository") if isinstance(node, dict) else None
@@ -471,8 +522,8 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
         if owner not in ALLOWED_OWNERS:
             continue
         if repo.get("isPrivate") is True:
-            proven_private = True
-            private_count += 1
+            proven_private_prs = True
+            private_pr_count += 1
             continue
         if repo.get("isPrivate") is not False:
             continue
@@ -509,8 +560,8 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
         except (TypeError, ValueError):
             count_int = 0
         if repo.get("isPrivate") is True:
-            proven_private = True
-            private_count += count_int if count_int > 0 else 1
+            proven_private_commits = True
+            private_commit_count += max(count_int, 0)
             continue
         if repo.get("isPrivate") is not False:
             continue
@@ -520,27 +571,43 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
         if not _has_required_contrib_fields(entry):
             continue
         description = repo.get("description")
+        repo_dates = (normalized.get("commit_dates_by_repo") or {}).get(str(name), [])
+        latest_at = max(
+            (date for date in repo_dates if _parse_dt(date) is not None),
+            key=_sort_ts,
+            default=None,
+        )
         existing = contribs_by_name.get(str(name))
         if existing is not None:
             existing.count += count_int
+            if _sort_ts(latest_at) > _sort_ts(existing.latest_at):
+                existing.latest_at = latest_at
             continue
         contribs_by_name[str(name)] = PublicContrib(
             repo_url=str(repo["url"]),
             repo_name=str(name),
             count=count_int,
             description=str(description) if description else None,
+            latest_at=latest_at,
         )
 
     public_prs.sort(key=lambda item: (-_sort_ts(item.created_at), item.url))
     public_prs = public_prs[:PR_LIMIT]
     public_contribs = list(contribs_by_name.values())
-    public_contribs.sort(key=lambda item: (-item.count, item.repo_name))
+    public_contribs.sort(
+        key=lambda item: (
+            item.latest_at is None,
+            -_sort_ts(item.latest_at),
+            item.repo_name,
+        )
+    )
     public_contribs = public_contribs[:CONTRIB_LIMIT]
     commit_hours, commit_weekdays = _aggregates(normalized.get("commit_dates") or [])
     return ActivityModel(
         public_prs=public_prs,
         public_contribs=public_contribs,
-        private_count=private_count if proven_private else None,
+        private_pr_count=private_pr_count if proven_private_prs else None,
+        private_commit_count=private_commit_count if proven_private_commits else None,
         commit_hours=commit_hours,
         commit_weekdays=commit_weekdays,
     )
@@ -549,7 +616,7 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
 def _clean_text(value: str | None, *, limit: int | None = None) -> str:
     if not value:
         return ""
-    text = _TAG_RE.sub("", value)
+    text = value
     if limit is not None and len(text) > limit:
         text = text[:limit]
     return html.escape(text, quote=True)
@@ -580,11 +647,11 @@ def render(model: ActivityModel) -> str:
             title = _clean_text(pr.title)
             emoji = _state_emoji(pr.state)
             lines.append(
-                f'- {emoji} <a href="{pr.url}"><strong>{title}</strong></a><br>'
+                f'- {emoji} <a href="{html.escape(pr.url, quote=True)}"><strong>{title}</strong></a><br>'
             )
             lines.append(
                 "  <sub>"
-                f'<a href="{pr.repo_url}"><code>{html.escape(pr.repo_name, quote=True)}</code></a>'
+                f'<a href="{html.escape(pr.repo_url, quote=True)}"><code>{html.escape(pr.repo_name, quote=True)}</code></a>'
                 f" • {_iso_date(pr.created_at)} • {html.escape(pr.state, quote=True)}"
                 "</sub>"
             )
@@ -604,8 +671,9 @@ def render(model: ActivityModel) -> str:
             label = "commit" if contrib.count == 1 else "commits"
             lines.append(
                 "- 🔗 "
-                f'<a href="{contrib.repo_url}"><code>{html.escape(contrib.repo_name, quote=True)}</code></a>'
+                f'<a href="{html.escape(contrib.repo_url, quote=True)}"><code>{html.escape(contrib.repo_name, quote=True)}</code></a>'
                 f" • <strong>{contrib.count} {label}</strong>"
+                + (f" • {_iso_date(contrib.latest_at)}" if contrib.latest_at else "")
             )
             description = _clean_text(contrib.description, limit=120)
             if description:
@@ -613,7 +681,14 @@ def render(model: ActivityModel) -> str:
                 lines.append(f"  <sub>{description}</sub>")
             lines.append("")
 
-    if model.private_count and model.private_count > 0:
-        lines.append(f"🔒 Private activity: {model.private_count} contributions")
+    private_parts: list[str] = []
+    if model.private_pr_count:
+        label = "pull request" if model.private_pr_count == 1 else "pull requests"
+        private_parts.append(f"{model.private_pr_count} {label}")
+    if model.private_commit_count:
+        label = "commit" if model.private_commit_count == 1 else "commits"
+        private_parts.append(f"{model.private_commit_count} {label}")
+    if private_parts:
+        lines.append(f"🔒 Private activity: {' · '.join(private_parts)}")
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"

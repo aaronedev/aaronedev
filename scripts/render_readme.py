@@ -5,6 +5,7 @@ import json
 import os
 import sys
 import tempfile
+import stat
 from pathlib import Path
 from typing import Mapping
 
@@ -67,10 +68,13 @@ def _wrap_new(markdown: str) -> str:
 
 def _atomic_write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    existing_mode = stat.S_IMODE(path.stat().st_mode) if path.exists() else None
     handle, tmp_name = tempfile.mkstemp(
         prefix=".readme-", suffix=".tmp", dir=str(path.parent)
     )
     try:
+        if existing_mode is not None:
+            os.fchmod(handle, existing_mode)
         with os.fdopen(handle, "w", encoding="utf-8", newline="\n") as tmp:
             tmp.write(text)
         os.replace(tmp_name, path)
@@ -187,10 +191,12 @@ def main(
         previous = extract_section(existing, WAKA_START, WAKA_END)
         waka_inner = previous if previous is not None else WAKA_FALLBACK
 
-    template = (root / "templates" / "README.md.tpl").read_text(encoding="utf-8")
-    text = replace_section(template, ACTIVITY_START, ACTIVITY_END, activity_inner)
-    text = replace_section(text, WAKA_START, WAKA_END, waka_inner)
-    _atomic_write(output, text)
+    render_readme(
+        root,
+        activity_markdown=activity_inner,
+        waka_markdown=waka_inner,
+        output=output,
+    )
     return EXIT_COLLECTOR_FAILED if failed else EXIT_OK
 
 

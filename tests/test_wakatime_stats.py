@@ -6,6 +6,7 @@ import sys
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -13,9 +14,11 @@ if str(ROOT) not in sys.path:
 
 from scripts.wakatime_stats import (  # noqa: E402
     WakaCollectionError,
+    default_http,
     render,
     retrieve,
 )
+from scripts.http_json import HttpJsonTransportError  # noqa: E402
 
 CANARY_VV = "Violet-Void/private-client-project"
 CANARY_BF = "bauerstischfinder/top-secret-acquisition"
@@ -127,6 +130,21 @@ class WakaRetrieveTest(unittest.TestCase):
 
         with self.assertRaises(WakaCollectionError):
             retrieve(http, api_key="waka-secret")
+
+    def test_accepted_stale_payload_is_renderable(self) -> None:
+        def http(url, *, method="GET", headers=None, json_body=None):
+            return {"status": 202, "json": _stats_payload()}
+
+        stats = retrieve(http, api_key="waka-secret")
+        self.assertEqual(stats["timezone"], "Europe/Berlin")
+
+    def test_default_http_translates_shared_transport_error(self) -> None:
+        with mock.patch(
+            "scripts.wakatime_stats.request_json",
+            side_effect=HttpJsonTransportError("transport"),
+        ):
+            with self.assertRaises(WakaCollectionError):
+                default_http("https://example.test")
 
 
 class WakaRenderTest(unittest.TestCase):

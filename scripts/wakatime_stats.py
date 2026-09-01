@@ -1,16 +1,15 @@
 from __future__ import annotations
 
 import base64
-import json
 import sys
 from pathlib import Path
 from typing import Any, Callable
-from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
 
 _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
+
+from scripts.http_json import HttpJsonTransportError, request_json
 
 WAKA_URL = "https://wakatime.com/api/v1/users/current/stats/last_7_days"
 BAR_WIDTH = 25
@@ -45,29 +44,10 @@ def default_http(
     headers: dict[str, str] | None = None,
     json_body: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    request_headers = dict(headers or {})
-    data = None
-    if json_body is not None:
-        data = json.dumps(json_body).encode("utf-8")
-        request_headers.setdefault("Content-Type", "application/json")
-    request = Request(url, data=data, headers=request_headers, method=method)
     try:
-        with urlopen(request, timeout=30) as response:
-            raw = response.read()
-            status = getattr(response, "status", 200)
-    except HTTPError as exc:
-        status = exc.code
-        try:
-            raw = exc.read()
-        except OSError:
-            raw = b""
-    except URLError as exc:
+        return request_json(url, method=method, headers=headers, json_body=json_body)
+    except HttpJsonTransportError as exc:
         raise WakaCollectionError("WakaTime request failed") from exc
-    try:
-        parsed = json.loads(raw.decode("utf-8")) if raw else {}
-    except (UnicodeDecodeError, json.JSONDecodeError):
-        parsed = {}
-    return {"status": status, "json": parsed}
 
 
 def _top_entries(items: Any, limit: int = 5) -> list[dict[str, Any]]:
@@ -101,7 +81,7 @@ def retrieve(http: HttpCallable, api_key: str) -> dict[str, Any]:
     }
     response = http(WAKA_URL, method="GET", headers=headers, json_body=None)
     status = response.get("status")
-    if status != 200:
+    if status not in {200, 202}:
         raise WakaCollectionError(f"WakaTime request failed with HTTP {status}")
     payload = response.get("json")
     if not isinstance(payload, dict) or not isinstance(payload.get("data"), dict):

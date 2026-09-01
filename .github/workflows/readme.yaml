@@ -25,6 +25,8 @@ jobs:
     - name: Sync main
       run: git pull --ff-only origin main
     - name: Render README
+      id: render-readme
+      continue-on-error: true
       env:
         README_ACTIVITY_GITHUB_PAT: ${{ secrets.GH_TOKEN }}
         README_WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
@@ -61,3 +63,6 @@ jobs:
         fi
 
         git push origin HEAD:main
+    - name: Fail when README rendering failed
+      if: steps.render-readme.outcome == 'failure'
+      run: exit 1

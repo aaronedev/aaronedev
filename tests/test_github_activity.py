@@ -15,8 +15,10 @@ from scripts.readme_config import (  # noqa: E402
     ALLOWED_OWNERS,
     AUTHOR_LOGIN,
     CONTRIB_LIMIT,
+    MAX_HISTORY_PAGES,
     MAX_PR_PAGES,
     PAGE_SIZE,
+    PROFILE_TIMEZONE,
     PR_LIMIT,
     PROFILE_REPO,
 )
@@ -26,7 +28,9 @@ from scripts.github_activity import (  # noqa: E402
     privacy_reduce,
     render,
     retrieve,
+    default_http,
 )
+from scripts.http_json import HttpJsonTransportError  # noqa: E402
 
 CANARY_VV = "Violet-Void/private-client-project"
 CANARY_BF = "bauerstischfinder/top-secret-acquisition"
@@ -88,13 +92,17 @@ def _contrib(
     return {"contributionCount": count, "repository": repository}
 
 
-def _raw(*, pull_requests=None, contributions=None, commit_dates=None) -> dict:
+def _raw(
+    *, pull_requests=None, contributions=None, commit_dates=None, commit_dates_by_repo=None
+) -> dict:
     payload = {
         "pull_requests": list(pull_requests or []),
         "contributions": list(contributions or []),
     }
     if commit_dates is not None:
         payload["commit_dates"] = list(commit_dates)
+    if commit_dates_by_repo is not None:
+        payload["commit_dates_by_repo"] = dict(commit_dates_by_repo)
     return payload
 
 
@@ -109,7 +117,9 @@ class ConfigContractTest(unittest.TestCase):
         self.assertEqual(PR_LIMIT, 8)
         self.assertEqual(CONTRIB_LIMIT, 10)
         self.assertEqual(MAX_PR_PAGES, 10)
+        self.assertEqual(MAX_HISTORY_PAGES, 100)
         self.assertEqual(PAGE_SIZE, 100)
+        self.assertEqual(PROFILE_TIMEZONE, "Europe/Berlin")
         self.assertIn("aaronedev", ALLOWED_OWNERS)
         self.assertIn("Violet-Void", ALLOWED_OWNERS)
         self.assertIn("bauerstischfinder", ALLOWED_OWNERS)
@@ -175,7 +185,7 @@ class PrivacyReduceTest(unittest.TestCase):
         self.assertNotIn("secret client work", markdown)
         self.assertNotIn(CANARY_VV, buf.getvalue())
         self.assertIn("🔒 Private activity:", markdown)
-        self.assertRegex(markdown, r"🔒 Private activity: \d+ contributions")
+        self.assertIn("🔒 Private activity: 1 pull request · 4 commits", markdown)
 
     def test_private_bauerstischfinder_canary_is_aggregate_only(self) -> None:
         owner, name = CANARY_BF.split("/", 1)
@@ -198,7 +208,7 @@ class PrivacyReduceTest(unittest.TestCase):
         self.assertNotIn("top-secret-acquisition", markdown)
         self.assertNotIn("acquisition notes", markdown)
         self.assertNotIn(CANARY_BF, buf.getvalue())
-        self.assertIn("🔒 Private activity:", markdown)
+        self.assertIn("🔒 Private activity: 1 pull request · 7 commits", markdown)
 
     def test_unrelated_owner_is_excluded(self) -> None:
         raw = _raw(
@@ -284,8 +294,9 @@ class PrivacyReduceTest(unittest.TestCase):
                 _pr_node(
                     owner="aaronedev",
                     name="public-dotfiles",
-                    title="<script>alert(1)</script>",
-                    url="https://github.com/aaronedev/public-dotfiles/pull/2",
+                    title="Array<T>",
+                    url='https://github.com/aaronedev/public-dotfiles/pull/2?x="quoted"',
+                    repo_url='https://github.com/aaronedev/public-dotfiles?x="quoted"',
                     description="<b>unclosed",
                 )
             ],
@@ -294,13 +305,15 @@ class PrivacyReduceTest(unittest.TestCase):
                     owner="aaronedev",
                     name="public-dotfiles",
                     count=1,
-                    description="<script>alert(1)</script>",
+                    description="Array<T> <script>alert(1)</script>",
                 )
             ],
         )
         markdown = _rendered_from_raw(raw)
-        self.assertNotIn("<script>", markdown)
-        self.assertNotIn("<b>", markdown)
+        self.assertIn("Array&lt;T&gt;", markdown)
+        self.assertIn("&lt;script&gt;", markdown)
+        self.assertIn("&lt;b&gt;unclosed", markdown)
+        self.assertIn("x=&quot;quoted&quot;", markdown)
         self.assertIn("alert(1)", markdown)
 
     def test_deterministic_ordering_and_tie_break(self) -> None:
@@ -336,6 +349,11 @@ class PrivacyReduceTest(unittest.TestCase):
                 _contrib(owner="aaronedev", name="alpha", count=5, description=None),
                 _contrib(owner="Violet-Void", name="theme", count=9, description=None),
             ],
+            commit_dates_by_repo={
+                "aaronedev/zeta": ["2026-08-19T12:00:00Z"],
+                "aaronedev/alpha": ["2026-08-20T12:00:00Z"],
+                "Violet-Void/theme": ["2026-08-22T12:00:00Z"],
+            },
         )
         markdown = _rendered_from_raw(raw)
         self.assertLess(markdown.index("newest"), markdown.index("later a"))
@@ -346,6 +364,28 @@ class PrivacyReduceTest(unittest.TestCase):
         self.assertLess(
             markdown.index("aaronedev/alpha"), markdown.index("aaronedev/zeta")
         )
+        self.assertIn("2026-08-22", markdown)
+
+    def test_missing_contribution_timestamp_sorts_last(self) -> None:
+        markdown = _rendered_from_raw(
+            _raw(
+                contributions=[
+                    _contrib(owner="aaronedev", name="dated", count=1),
+                    _contrib(owner="aaronedev", name="undated", count=100),
+                ],
+                commit_dates_by_repo={
+                    "aaronedev/dated": ["2026-08-22T12:00:00Z"],
+                },
+            )
+        )
+        self.assertLess(markdown.index("aaronedev/dated"), markdown.index("aaronedev/undated"))
+
+    def test_timezone_buckets_use_profile_timezone(self) -> None:
+        model = privacy_reduce(
+            normalize(_raw(commit_dates=["2026-01-04T23:30:00Z"]))
+        )
+        self.assertEqual(model.commit_hours["night"], 1)
+        self.assertEqual(model.commit_weekdays["Monday"], 1)
 
     def test_description_truncated_to_120(self) -> None:
         description = "x" * 200
@@ -437,12 +477,15 @@ class RetrievePaginationTest(unittest.TestCase):
                     "status": 200,
                     "json": {
                         "data": {
-                            "viewer": {
-                                "id": "VID",
+                            "viewer": {"login": AUTHOR_LOGIN},
+                            "user": {
+                                "id": "UID",
                                 "contributionsCollection": {
+                                    "startedAt": "2026-08-01T00:00:00Z",
+                                    "endedAt": "2026-08-31T00:00:00Z",
                                     "commitContributionsByRepository": []
                                 },
-                            }
+                            },
                         }
                     },
                 }
@@ -499,8 +542,66 @@ class RetrievePaginationTest(unittest.TestCase):
         self.assertNotIn("super-secret", seen["url"])
         self.assertEqual(seen["headers"]["Authorization"], "Bearer super-secret")
 
+    def test_author_mismatch_fails_closed(self) -> None:
+        def http(url, *, method="GET", headers=None, json_body=None):
+            query = (json_body or {}).get("query", "")
+            if "pullRequests" in query:
+                return {
+                    "status": 200,
+                    "json": {"data": {"user": {"pullRequests": {"nodes": [], "pageInfo": {"hasNextPage": False}}}}},
+                }
+            return {"status": 200, "json": {"data": {"viewer": {"login": "other"}, "user": {}}}}
+
+        with self.assertRaises(ActivityCollectionError):
+            retrieve(http, token="token-value")
+
+    def test_history_repeated_cursor_fails_closed(self) -> None:
+        calls = 0
+
+        def http(url, *, method="GET", headers=None, json_body=None):
+            nonlocal calls
+            query = (json_body or {}).get("query", "")
+            if "pullRequests" in query:
+                return {
+                    "status": 200,
+                    "json": {"data": {"user": {"pullRequests": {"nodes": [], "pageInfo": {"hasNextPage": False}}}}},
+                }
+            if "commitContributionsByRepository" in query:
+                return {
+                    "status": 200,
+                    "json": {"data": {"viewer": {"login": AUTHOR_LOGIN}, "user": {"id": "UID", "contributionsCollection": {"startedAt": "2026-08-01T00:00:00Z", "endedAt": "2026-08-31T00:00:00Z", "commitContributionsByRepository": [_contrib(owner="aaronedev", name="repo", count=1)]}}}},
+                }
+            calls += 1
+            return {"status": 200, "json": {"data": {"repository": {"defaultBranchRef": {"target": {"history": {"nodes": [], "pageInfo": {"hasNextPage": True, "endCursor": "repeat"}}}}}}}}
+
+        with self.assertRaises(ActivityCollectionError):
+            retrieve(http, token="token-value")
+        self.assertEqual(calls, 2)
+
+    def test_history_page_cap_fails_closed(self) -> None:
+        def http(url, *, method="GET", headers=None, json_body=None):
+            query = (json_body or {}).get("query", "")
+            if "pullRequests" in query:
+                return {"status": 200, "json": {"data": {"user": {"pullRequests": {"nodes": [], "pageInfo": {"hasNextPage": False}}}}}}
+            if "commitContributionsByRepository" in query:
+                return {"status": 200, "json": {"data": {"viewer": {"login": AUTHOR_LOGIN}, "user": {"id": "UID", "contributionsCollection": {"startedAt": "2026-08-01T00:00:00Z", "endedAt": "2026-08-31T00:00:00Z", "commitContributionsByRepository": [_contrib(owner="aaronedev", name="repo", count=1)]}}}}}
+            after = ((json_body or {}).get("variables") or {}).get("after") or "first"
+            return {"status": 200, "json": {"data": {"repository": {"defaultBranchRef": {"target": {"history": {"nodes": [], "pageInfo": {"hasNextPage": True, "endCursor": f"next-{after}"}}}}}}}}
+
+        with mock.patch("scripts.github_activity.MAX_HISTORY_PAGES", 2), self.assertRaises(ActivityCollectionError):
+            retrieve(http, token="token-value")
+
+    def test_default_http_translates_shared_transport_error(self) -> None:
+        with mock.patch(
+            "scripts.github_activity.request_json",
+            side_effect=HttpJsonTransportError("transport"),
+        ):
+            with self.assertRaises(ActivityCollectionError):
+                default_http("https://example.test")
+
     def test_commit_history_skips_non_allowlisted_repos(self) -> None:
         queried_repos = []
+        history_variables = []
 
         def http(url, *, method="GET", headers=None, json_body=None):
             query = (json_body or {}).get("query", "")
@@ -527,9 +628,12 @@ class RetrievePaginationTest(unittest.TestCase):
                     "status": 200,
                     "json": {
                         "data": {
-                            "viewer": {
-                                "id": "VID",
+                            "viewer": {"login": AUTHOR_LOGIN},
+                            "user": {
+                                "id": "UID",
                                 "contributionsCollection": {
+                                    "startedAt": "2026-08-01T00:00:00Z",
+                                    "endedAt": "2026-08-31T00:00:00Z",
                                     "commitContributionsByRepository": [
                                         _contrib(
                                             owner=UNRELATED_OWNER,
@@ -543,7 +647,7 @@ class RetrievePaginationTest(unittest.TestCase):
                                         ),
                                     ]
                                 },
-                            }
+                            },
                         }
                     },
                 }
@@ -551,6 +655,8 @@ class RetrievePaginationTest(unittest.TestCase):
                 queried_repos.append(
                     f"{variables.get('owner')}/{variables.get('name')}"
                 )
+                history_variables.append(variables)
+                after = variables.get("after")
                 return {
                     "status": 200,
                     "json": {
@@ -561,9 +667,17 @@ class RetrievePaginationTest(unittest.TestCase):
                                         "history": {
                                             "nodes": [
                                                 {
-                                                    "committedDate": "2026-08-20T08:00:00Z"
+                                                    "committedDate": (
+                                                        "2026-08-20T08:00:00Z"
+                                                        if after is None
+                                                        else "2026-08-21T08:00:00Z"
+                                                    )
                                                 }
-                                            ]
+                                            ],
+                                            "pageInfo": {
+                                                "hasNextPage": after is None,
+                                                "endCursor": "history-page-2" if after is None else None,
+                                            },
                                         }
                                     }
                                 }
@@ -573,11 +687,19 @@ class RetrievePaginationTest(unittest.TestCase):
                 }
             raise AssertionError(query)
 
-        retrieve(http, token="token-value")
+        raw = retrieve(http, token="token-value")
         self.assertIn("aaronedev/public-dotfiles", queried_repos)
         self.assertNotIn(f"{UNRELATED_OWNER}/noise", queried_repos)
         self.assertNotIn(CANARY_VV, queried_repos)
         self.assertNotIn(CANARY_BF, queried_repos)
+        self.assertEqual(history_variables[0]["authorId"], "UID")
+        self.assertEqual(history_variables[0]["since"], "2026-08-01T00:00:00Z")
+        self.assertEqual(history_variables[0]["until"], "2026-08-31T00:00:00Z")
+        self.assertEqual(history_variables[1]["after"], "history-page-2")
+        self.assertEqual(
+            raw["commit_dates_by_repo"]["aaronedev/public-dotfiles"],
+            ["2026-08-20T08:00:00Z", "2026-08-21T08:00:00Z"],
+        )
 
 
 class RenderModelTest(unittest.TestCase):
@@ -605,7 +727,8 @@ class RenderModelTest(unittest.TestCase):
         self.assertNotIn(CANARY_VV, blob)
         self.assertNotIn("private-client-project", blob)
         self.assertNotIn("secret", blob)
-        self.assertGreater(model.private_count, 0)
+        self.assertEqual(model.private_pr_count, 1)
+        self.assertEqual(model.private_commit_count, 2)
 
 
 if __name__ == "__main__":

@@ -24,6 +24,7 @@ from scripts.render_readme import (  # noqa: E402
     EXIT_COLLECTOR_FAILED,
     EXIT_OK,
     _collect_activity,
+    _atomic_write,
     main,
     render_readme,
 )
@@ -410,6 +411,38 @@ class RenderReadmeTest(unittest.TestCase):
             self.assertIn("WAKA-BODY", text)
             self.assertEqual(text.count(ACTIVITY_START), 1)
             self.assertEqual(text.count(WAKA_START), 1)
+
+    def test_atomic_write_preserves_existing_mode(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "README.md"
+            path.write_text("old", encoding="utf-8")
+            path.chmod(0o640)
+            _atomic_write(path, "new")
+            self.assertEqual(path.read_text(encoding="utf-8"), "new")
+            self.assertEqual(path.stat().st_mode & 0o777, 0o640)
+
+    def test_main_routes_selected_sections_through_render_readme(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _write_repo(Path(tmp))
+            activity_path = root / "activity.json"
+            waka_path = root / "waka.json"
+            activity_path.write_text(json.dumps(_activity_fixture()), encoding="utf-8")
+            waka_path.write_text(json.dumps(_waka_fixture()), encoding="utf-8")
+            with patch(
+                "scripts.render_readme.render_readme", wraps=render_readme
+            ) as renderer:
+                code = main(
+                    [
+                        "--repo-root",
+                        str(root),
+                        "--fixture-activity",
+                        str(activity_path),
+                        "--fixture-waka",
+                        str(waka_path),
+                    ]
+                )
+            self.assertEqual(code, EXIT_OK)
+            self.assertEqual(renderer.call_count, 1)
 
 
 if __name__ == "__main__":
