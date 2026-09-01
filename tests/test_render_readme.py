@@ -26,6 +26,7 @@ from scripts.render_readme import (  # noqa: E402
     WAKA_FALLBACK,
     _collect_activity,
     _atomic_write,
+    _safe_previous_waka,
     main,
     render_readme,
 )
@@ -170,6 +171,16 @@ def _waka_fixture() -> dict:
     }
 
 
+def _malicious_waka_fixture() -> dict:
+    fixture = _waka_fixture()
+    marker_text = "<!--START_SECTION:waka--> <!--END_SECTION:waka-->"
+    fixture["data"]["timezone"] = marker_text
+    for key in ("languages", "editors", "operating_systems"):
+        fixture["data"][key][0]["name"] = marker_text
+        fixture["data"][key][0]["text"] = marker_text
+    return fixture
+
+
 def _write_repo(tmp: Path, *, readme: str | None = None) -> Path:
     (tmp / "templates").mkdir()
     (tmp / "templates" / "README.md.tpl").write_text(TEMPLATE, encoding="utf-8")
@@ -185,6 +196,58 @@ def _section(text: str, start: str, end: str) -> str:
 
 
 class RenderReadmeTest(unittest.TestCase):
+    def test_malicious_waka_markers_preserve_the_complete_tagged_section(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _write_repo(Path(tmp))
+            activity_path = root / "activity.json"
+            waka_path = root / "waka.json"
+            activity_path.write_text(json.dumps(_activity_fixture()), encoding="utf-8")
+            waka_path.write_text(json.dumps(_malicious_waka_fixture()), encoding="utf-8")
+            args = [
+                "--repo-root",
+                str(root),
+                "--fixture-activity",
+                str(activity_path),
+                "--fixture-waka",
+                str(waka_path),
+            ]
+
+            self.assertEqual(main(args, environ={}), EXIT_OK)
+            readme = (root / "README.md").read_text(encoding="utf-8")
+            waka = _section(readme, WAKA_START, WAKA_END)
+            self.assertEqual(readme.count(WAKA_START), 1)
+            self.assertEqual(readme.count(WAKA_END), 1)
+            self.assertEqual(waka.count(WAKA_SECTION_MARKER), 1)
+            self.assertEqual(waka.count("```"), 2)
+            self.assertNotIn(WAKA_START, waka)
+            self.assertNotIn(WAKA_END, waka)
+            self.assertNotIn(CANARY_VV, waka)
+            self.assertNotIn(CANARY_BF, waka)
+            self.assertEqual(_safe_previous_waka(readme), waka)
+
+            self.assertEqual(
+                main(
+                    [
+                        "--repo-root",
+                        str(root),
+                        "--fixture-activity",
+                        str(activity_path),
+                    ],
+                    environ={},
+                ),
+                EXIT_COLLECTOR_FAILED,
+            )
+            preserved = (root / "README.md").read_text(encoding="utf-8")
+            preserved_waka = _section(preserved, WAKA_START, WAKA_END)
+            self.assertEqual(preserved_waka, waka)
+            self.assertEqual(preserved.count(WAKA_START), 1)
+            self.assertEqual(preserved.count(WAKA_END), 1)
+            self.assertEqual(preserved_waka.count("```"), 2)
+            self.assertNotIn(WAKA_START, preserved_waka)
+            self.assertNotIn(WAKA_END, preserved_waka)
+            self.assertNotIn(CANARY_VV, preserved_waka)
+            self.assertNotIn(CANARY_BF, preserved_waka)
+
     def test_github_failure_preserves_tagged_waka_when_waka_data_is_available(self) -> None:
         previous_waka = "\n" + render_waka(
             {"timezone": "Europe/Berlin", "languages": [], "editors": [], "operating_systems": []}

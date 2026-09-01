@@ -78,7 +78,11 @@ def _top_entries(items: Any, limit: int = 5) -> list[dict[str, Any]]:
 
 
 def _safe_line(value: Any) -> str:
-    return " ".join(str(value or "").replace("`", "'").split())
+    return (
+        " ".join(str(value or "").replace("`", "'").split())
+        .replace("<!--", "&lt;!--")
+        .replace("-->", "--&gt;")
+    )
 
 
 def retrieve(http: HttpCallable, api_key: str) -> dict[str, Any]:

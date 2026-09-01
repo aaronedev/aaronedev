@@ -171,6 +171,22 @@ class WakaRenderTest(unittest.TestCase):
         self.assertIn("valid ''' INJECTED-NAME", markdown)
         self.assertNotIn("ignored", markdown)
 
+    def test_remote_display_text_cannot_inject_readme_section_markers(self) -> None:
+        payload = _stats_payload()
+        marker_text = "<!--START_SECTION:waka--> <!--END_SECTION:waka-->"
+        payload["data"]["timezone"] = marker_text
+        for key in ("languages", "editors", "operating_systems"):
+            payload["data"][key][0]["name"] = marker_text
+            payload["data"][key][0]["text"] = marker_text
+
+        def http(url, *, method="GET", headers=None, json_body=None):
+            return {"status": 200, "json": payload}
+
+        markdown = render(retrieve(http, api_key="waka-secret"))
+        self.assertNotIn("<!--START_SECTION:waka-->", markdown)
+        self.assertNotIn("<!--END_SECTION:waka-->", markdown)
+        self.assertEqual(markdown.count("```"), 2)
+
     def test_normal_fixture_render_is_stable_after_marker(self) -> None:
         def http(url, *, method="GET", headers=None, json_body=None):
             return {"status": 200, "json": _stats_payload()}
