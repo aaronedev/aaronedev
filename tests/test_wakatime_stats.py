@@ -12,6 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from scripts.http_json import HttpJsonTransportError  # noqa: E402
+from scripts.readme_config import CONTRIB_REPO_LIMIT  # noqa: E402
 from scripts.wakatime_stats import (  # noqa: E402
     WAKA_SECTION_MARKER,
     WakaCollectionError,
@@ -19,8 +21,6 @@ from scripts.wakatime_stats import (  # noqa: E402
     render,
     retrieve,
 )
-from scripts.readme_config import CONTRIB_REPO_LIMIT  # noqa: E402
-from scripts.http_json import HttpJsonTransportError  # noqa: E402
 
 CANARY_VV = "Violet-Void/private-client-project"
 CANARY_BF = "bauerstischfinder/top-secret-acquisition"
