@@ -188,8 +188,7 @@ def main(
         waka_inner = _wrap_new(waka_md)
     except (WakaCollectionError, OSError, ValueError, json.JSONDecodeError):
         failed = True
-        previous = extract_section(existing, WAKA_START, WAKA_END)
-        waka_inner = previous if previous is not None else WAKA_FALLBACK
+        waka_inner = WAKA_FALLBACK
 
     render_readme(
         root,

@@ -208,17 +208,6 @@ def _public_http_url(value: Any) -> str | None:
     return value
 
 
-def _is_public_allowlisted_pr(node: dict[str, Any]) -> bool:
-    repo = node.get("repository") if isinstance(node, dict) else None
-    if not isinstance(repo, dict):
-        return False
-    return (
-        _owner_login(repo) in ALLOWED_OWNERS
-        and repo.get("isPrivate") is False
-        and _has_required_pr_fields(node)
-    )
-
-
 def _has_required_pr_fields(node: dict[str, Any]) -> bool:
     if not isinstance(node, dict):
         return False
@@ -334,8 +323,8 @@ def _collect_commit_dates(
 
 def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
     pull_requests: list[dict[str, Any]] = []
-    public_found = 0
     after: str | None = None
+    seen_cursors: set[str] = set()
     for _page in range(MAX_PR_PAGES):
         payload = _graphql(
             http,
@@ -349,14 +338,16 @@ def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
         for node in nodes:
             if isinstance(node, dict):
                 pull_requests.append(node)
-                if _is_public_allowlisted_pr(node):
-                    public_found += 1
         page_info = connection.get("pageInfo") or {}
-        if public_found >= PR_LIMIT or not page_info.get("hasNextPage"):
+        if not page_info.get("hasNextPage"):
             break
-        after = page_info.get("endCursor")
-        if not after:
-            break
+        cursor = page_info.get("endCursor")
+        if not isinstance(cursor, str) or not cursor or cursor in seen_cursors:
+            raise ActivityCollectionError("GitHub pull request pagination is incomplete")
+        seen_cursors.add(cursor)
+        after = cursor
+    else:
+        raise ActivityCollectionError("GitHub pull request pagination exceeded page limit")
 
     contrib_payload = _graphql(http, token, CONTRIB_QUERY, {"login": AUTHOR_LOGIN})
     data = contrib_payload.get("data") or {}

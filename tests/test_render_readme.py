@@ -23,6 +23,7 @@ from scripts.readme_config import (  # noqa: E402
 from scripts.render_readme import (  # noqa: E402
     EXIT_COLLECTOR_FAILED,
     EXIT_OK,
+    WAKA_FALLBACK,
     _collect_activity,
     _atomic_write,
     main,
@@ -263,9 +264,14 @@ class RenderReadmeTest(unittest.TestCase):
             )
             self.assertNotIn("_No public pull requests from allowed owners._", readme)
 
-    def test_waka_failure_preserves_previous_waka_bytes(self) -> None:
+    def test_waka_failure_replaces_legacy_private_section_with_fallback(self) -> None:
         previous_activity = "\nkept-activity\n"
-        previous_waka = "\nkept-waka\n"
+        previous_waka = (
+            "\n**Projects:**\n"
+            f"- {CANARY_VV}\n"
+            f"- {CANARY_BF}\n"
+            "- private project name\n"
+        )
         existing = TEMPLATE.replace(
             f"{ACTIVITY_START}\n{ACTIVITY_END}",
             f"{ACTIVITY_START}{previous_activity}{ACTIVITY_END}",
@@ -291,7 +297,13 @@ class RenderReadmeTest(unittest.TestCase):
             )
             self.assertEqual(code, EXIT_COLLECTOR_FAILED)
             readme = (root / "README.md").read_text(encoding="utf-8")
-            self.assertEqual(_section(readme, WAKA_START, WAKA_END), previous_waka)
+            waka = _section(readme, WAKA_START, WAKA_END)
+            self.assertEqual(waka, WAKA_FALLBACK)
+            self.assertIn(WAKA_FALLBACK, readme)
+            self.assertNotIn("Projects:", waka)
+            self.assertNotIn(CANARY_VV, waka)
+            self.assertNotIn(CANARY_BF, waka)
+            self.assertNotIn("private project name", waka)
 
     def test_missing_previous_section_uses_stable_fallback(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

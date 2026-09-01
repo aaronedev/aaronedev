@@ -407,6 +407,199 @@ class PrivacyReduceTest(unittest.TestCase):
 
 
 class RetrievePaginationTest(unittest.TestCase):
+    def test_private_pr_after_public_limit_is_counted(self) -> None:
+        public_prs = [
+            _pr_node(
+                owner="aaronedev",
+                name="public-dotfiles",
+                title=f"public {number}",
+                url=f"https://github.com/aaronedev/public-dotfiles/pull/{number}",
+            )
+            for number in range(1, PR_LIMIT + 1)
+        ]
+        owner, name = CANARY_VV.split("/", 1)
+        private_pr = _pr_node(
+            owner=owner,
+            name=name,
+            title="private after public limit",
+            url=f"https://github.com/{CANARY_VV}/pull/9",
+            is_private=True,
+        )
+        pr_cursors: list[str | None] = []
+
+        def http(url, *, method="GET", headers=None, json_body=None):
+            query = (json_body or {}).get("query", "")
+            variables = (json_body or {}).get("variables") or {}
+            if "pullRequests" in query:
+                after = variables.get("after")
+                pr_cursors.append(after)
+                if after is None:
+                    nodes = public_prs
+                    page_info = {"hasNextPage": True, "endCursor": "page-two"}
+                elif after == "page-two":
+                    nodes = [private_pr]
+                    page_info = {"hasNextPage": False, "endCursor": None}
+                else:
+                    raise AssertionError(f"unexpected PR cursor: {after}")
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "user": {"pullRequests": {"nodes": nodes, "pageInfo": page_info}}
+                        }
+                    },
+                }
+            if "commitContributionsByRepository" in query:
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "viewer": {"login": AUTHOR_LOGIN},
+                            "user": {
+                                "id": "UID",
+                                "contributionsCollection": {
+                                    "startedAt": "2026-08-01T00:00:00Z",
+                                    "endedAt": "2026-08-31T00:00:00Z",
+                                    "commitContributionsByRepository": [],
+                                },
+                            },
+                        }
+                    },
+                }
+            if "history" in query:
+                return {"status": 200, "json": {"data": {"repository": None}}}
+            raise AssertionError(f"unexpected query: {query}")
+
+        model = privacy_reduce(normalize(retrieve(http, token="token-value")))
+        self.assertEqual(pr_cursors, [None, "page-two"])
+        self.assertEqual(model.private_pr_count, 1)
+
+    def test_pr_missing_continuation_cursor_fails_closed(self) -> None:
+        def http(url, *, method="GET", headers=None, json_body=None):
+            query = (json_body or {}).get("query", "")
+            if "commitContributionsByRepository" in query:
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "viewer": {"login": AUTHOR_LOGIN},
+                            "user": {
+                                "id": "UID",
+                                "contributionsCollection": {
+                                    "startedAt": "2026-08-01T00:00:00Z",
+                                    "endedAt": "2026-08-31T00:00:00Z",
+                                    "commitContributionsByRepository": [],
+                                },
+                            },
+                        }
+                    },
+                }
+            return {
+                "status": 200,
+                "json": {
+                    "data": {
+                        "user": {
+                            "pullRequests": {
+                                "nodes": [],
+                                "pageInfo": {"hasNextPage": True, "endCursor": None},
+                            }
+                        }
+                    }
+                },
+            }
+
+        with self.assertRaises(ActivityCollectionError):
+            retrieve(http, token="token-value")
+
+    def test_pr_repeated_continuation_cursor_fails_closed(self) -> None:
+        calls = 0
+
+        def http(url, *, method="GET", headers=None, json_body=None):
+            nonlocal calls
+            query = (json_body or {}).get("query", "")
+            if "pullRequests" in query:
+                calls += 1
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "user": {
+                                "pullRequests": {
+                                    "nodes": [],
+                                    "pageInfo": {
+                                        "hasNextPage": True,
+                                        "endCursor": "repeat",
+                                    },
+                                }
+                            }
+                        }
+                    },
+                }
+            return {
+                "status": 200,
+                "json": {
+                    "data": {
+                        "viewer": {"login": AUTHOR_LOGIN},
+                        "user": {
+                            "id": "UID",
+                            "contributionsCollection": {
+                                "startedAt": "2026-08-01T00:00:00Z",
+                                "endedAt": "2026-08-31T00:00:00Z",
+                                "commitContributionsByRepository": [],
+                            },
+                        },
+                    }
+                },
+            }
+
+        with self.assertRaises(ActivityCollectionError):
+            retrieve(http, token="token-value")
+        self.assertEqual(calls, 2)
+
+    def test_pr_page_cap_fails_closed(self) -> None:
+        def http(url, *, method="GET", headers=None, json_body=None):
+            query = (json_body or {}).get("query", "")
+            if "commitContributionsByRepository" in query:
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "viewer": {"login": AUTHOR_LOGIN},
+                            "user": {
+                                "id": "UID",
+                                "contributionsCollection": {
+                                    "startedAt": "2026-08-01T00:00:00Z",
+                                    "endedAt": "2026-08-31T00:00:00Z",
+                                    "commitContributionsByRepository": [],
+                                },
+                            },
+                        }
+                    },
+                }
+            variables = (json_body or {}).get("variables") or {}
+            after = variables.get("after") or "first"
+            return {
+                "status": 200,
+                "json": {
+                    "data": {
+                        "user": {
+                            "pullRequests": {
+                                "nodes": [],
+                                "pageInfo": {
+                                    "hasNextPage": True,
+                                    "endCursor": f"next-{after}",
+                                },
+                            }
+                        }
+                    }
+                },
+            }
+
+        with mock.patch("scripts.github_activity.MAX_PR_PAGES", 2), self.assertRaises(
+            ActivityCollectionError
+        ):
+            retrieve(http, token="token-value")
+
     def test_allowlisted_pr_on_later_page_is_included(self) -> None:
         allowlisted = _pr_node(
             owner="aaronedev",
