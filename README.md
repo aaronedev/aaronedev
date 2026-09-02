@@ -1,3 +1,4 @@
+<!--START_SECTION:profile-->
 <p align="center">
   <a href="https://github.com/aaronedev">
     <img src="./assets/violet-void-theme_bubblez_16.png" alt="Violet Void theme bubbles artwork" width="640" />
@@ -180,8 +181,10 @@ These are the main colors for **Violet Void**, including the core palette and th
 [![templates/README.md.tpl](https://img.shields.io/badge/templates-README.md.tpl-2ea44f?logo=github&labelColor=161b22)](https://github.com/aaronedev/aaronedev/discussions/7)
 
 Check discussion page or click badge above to see install instructions if u want to automate the profile as I did.
+Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 ---
+<!--END_SECTION:profile-->
 
 ## ⭐ Recent activity
 

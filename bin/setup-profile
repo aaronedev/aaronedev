@@ -1,0 +1,854 @@
+#!/usr/bin/env bash
+#
+# Plan-first wizard template for manual setup, migration, cutover, and recovery.
+# Generated wizards are authored by an agent and executed by an operator.
+#
+# Adapted from Matt Pocock's wizard template:
+# https://github.com/mattpocock/skills/tree/main/skills/engineering/wizard
+# Copyright (c) 2026 Matt Pocock. Licensed under the MIT License; see LICENSE.
+#
+# Everything above the "STAGES" marker is the wizard library. Keep it unchanged
+# in generated wizards; author only the procedure below the marker.
+
+set -Eeuo pipefail
+umask 077
+
+# ──────────────────────────────────────────────────────────────────────────
+# Wizard library
+# ──────────────────────────────────────────────────────────────────────────
+
+if [[ -t 1 ]] && command -v tput >/dev/null 2>&1 &&
+  [[ "$(tput colors 2>/dev/null || printf '0')" -ge 8 ]]; then
+  BOLD=$(tput bold)
+  DIM=$(tput dim)
+  RESET=$(tput sgr0)
+  BLUE=$(tput setaf 4)
+  GREEN=$(tput setaf 2)
+  YELLOW=$(tput setaf 3)
+  RED=$(tput setaf 1)
+else
+  BOLD=""
+  DIM=""
+  RESET=""
+  BLUE=""
+  GREEN=""
+  YELLOW=""
+  RED=""
+fi
+
+MODE="plan"
+FORWARD_STAGES=0
+ROLLBACK_STAGES=0
+TOTAL_STAGES=0
+_STAGE_INDEX=0
+_STAGE_ID=""
+_STAGE_TITLE=""
+_STAGE_RISK=""
+_STAGE_CONFIRMED=0
+_STAGE_HAS_ROLLBACK=0
+_STAGE_HAS_POINT_OF_NO_RETURN=0
+_STATE_READY=0
+WIZARD_ID="replace-me"
+WIZARD_TITLE="Replace this wizard title"
+ENV_FILE="${ENV_FILE:-.env}"
+STATE_BASE="${XDG_STATE_HOME:-${HOME}/.local/state}/agent-wizards"
+STATE_DIR=""
+JOURNAL_FILE=""
+COMPLETED_STAGES=()
+ROLLBACK_NOTES=()
+BACKED_UP_KEYS=()
+SKIPPED=()
+
+usage() {
+  cat <<'USAGE'
+Usage: wizard [--plan|--dry-run|--apply|--rollback|--status]
+
+  --plan, --dry-run  Show requirements, stages, commands, verification, and
+                     rollback without prompting or changing state. Default.
+  --apply            Execute the forward procedure with confirmation gates.
+  --rollback         Execute the authored rollback procedure explicitly.
+  --status           Show the secret-free execution journal, if it exists.
+  -h, --help         Show this help.
+USAGE
+}
+
+fail() {
+  if ((_STATE_READY == 1)); then
+    _journal "failed" || true
+  fi
+  printf '%sERROR:%s %s\n' "$RED" "$RESET" "$*" >&2
+  exit 1
+}
+
+warn() {
+  printf '  %s⚠ %s%s\n' "$YELLOW" "$*" "$RESET"
+}
+
+note() {
+  printf '  %s%s%s\n' "$DIM" "$*" "$RESET"
+}
+
+say() {
+  printf '  %s\n' "$*"
+}
+
+step() {
+  printf '  %s•%s %s\n' "$BLUE" "$RESET" "$*"
+}
+
+_parse_args() {
+  while (($#)); do
+    case "$1" in
+      --plan | --dry-run)
+        MODE="plan"
+        ;;
+      --apply)
+        MODE="apply"
+        ;;
+      --rollback)
+        MODE="rollback"
+        ;;
+      --status)
+        MODE="status"
+        ;;
+      -h | --help)
+        usage
+        exit 0
+        ;;
+      *)
+        usage >&2
+        fail "unknown argument: $1"
+        ;;
+    esac
+    shift
+  done
+}
+
+_configure_state_paths() {
+  [[ "$WIZARD_ID" =~ ^[a-z0-9][a-z0-9._-]*$ ]] ||
+    fail "WIZARD_ID must use lowercase letters, digits, dot, underscore, or dash"
+  STATE_DIR="${WIZARD_STATE_DIR:-${STATE_BASE}/${WIZARD_ID}}"
+  JOURNAL_FILE="${STATE_DIR}/journal.tsv"
+}
+
+_require_authored() {
+  if [[ "$MODE" != "plan" && "$MODE" != "status" ]]; then
+    [[ "$WIZARD_ID" != "replace-me" ]] ||
+      fail "replace WIZARD_ID and author the stages before using --${MODE}"
+    [[ "$WIZARD_TITLE" != "Replace this wizard title" ]] ||
+      fail "replace WIZARD_TITLE before using --${MODE}"
+  fi
+}
+
+_init_state() {
+  ((_STATE_READY == 0)) || return 0
+  mkdir -p "$STATE_DIR/backups"
+  if [[ ! -f "$JOURNAL_FILE" ]]; then
+    printf 'ts\tmode\tstage\tresult\n' >"$JOURNAL_FILE"
+  fi
+  _STATE_READY=1
+}
+
+_journal() {
+  [[ "$MODE" == "apply" || "$MODE" == "rollback" ]] || return 0
+  _init_state
+  local result="$1"
+  printf '%s\t%s\t%s\t%s\n' \
+    "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+    "$MODE" \
+    "${_STAGE_ID:-none}" \
+    "$result" >>"$JOURNAL_FILE"
+}
+
+_clear() {
+  [[ -t 1 ]] || return 0
+  if command -v tput >/dev/null 2>&1; then
+    tput clear
+  else
+    printf '\033[2J\033[3J\033[H'
+  fi
+}
+
+banner() {
+  _STAGE_INDEX=0
+  _clear
+  printf '\n%s%s  %s%s\n' "$BOLD" "$BLUE" "$WIZARD_TITLE" "$RESET"
+  printf '%s  mode: %s · %s stages%s\n\n' \
+    "$DIM" "$MODE" "$TOTAL_STAGES" "$RESET"
+  if [[ "$MODE" == "plan" ]]; then
+    note "Plan only: no prompts, files, commands, remote writes, or state changes."
+  fi
+}
+
+stage() {
+  local id="$1" title="$2" risk="$3"
+  [[ "$id" =~ ^[a-z0-9][a-z0-9._-]*$ ]] || fail "invalid stage id: $id"
+  case "$risk" in
+    read-only | reversible | conditional | irreversible) ;;
+    *) fail "stage $id has invalid risk class: $risk" ;;
+  esac
+
+  _STAGE_INDEX=$((_STAGE_INDEX + 1))
+  ((_STAGE_INDEX <= TOTAL_STAGES)) ||
+    fail "procedure has more stages than declared (${TOTAL_STAGES})"
+  _STAGE_ID="$id"
+  _STAGE_TITLE="$title"
+  _STAGE_RISK="$risk"
+  _STAGE_CONFIRMED=0
+  _STAGE_HAS_ROLLBACK=0
+  _STAGE_HAS_POINT_OF_NO_RETURN=0
+
+  printf '\n%s%s▸ Stage %s/%s · %s%s\n' \
+    "$BOLD" "$BLUE" "$_STAGE_INDEX" "$TOTAL_STAGES" "$title" "$RESET"
+  printf '  %srisk:%s %s · %sid:%s %s\n' \
+    "$DIM" "$RESET" "$risk" "$DIM" "$RESET" "$id"
+  _journal "started"
+}
+
+requirement() {
+  printf '  %srequirement:%s %s\n' "$BOLD" "$RESET" "$*"
+}
+
+rollback_note() {
+  local text="$*"
+  [[ -n "$text" ]] || fail "rollback_note requires text"
+  _STAGE_HAS_ROLLBACK=1
+  ROLLBACK_NOTES+=("${_STAGE_ID}: ${text}")
+  printf '  %srollback:%s %s\n' "$YELLOW" "$RESET" "$text"
+}
+
+point_of_no_return() {
+  local text="$*"
+  [[ "$_STAGE_RISK" == "irreversible" ]] ||
+    fail "point_of_no_return is valid only for an irreversible stage"
+  [[ -n "$text" ]] || fail "point_of_no_return requires text"
+  _STAGE_HAS_POINT_OF_NO_RETURN=1
+  printf '  %spoint of no return:%s %s\n' "$RED" "$RESET" "$text"
+}
+
+_shell_join() {
+  local quoted=() item
+  for item in "$@"; do
+    printf -v item '%q' "$item"
+    quoted+=("$item")
+  done
+  printf '%s' "${quoted[*]}"
+}
+
+confirm() {
+  local question="$1" reply=""
+  printf '  %s? %s [y/N] %s' "$YELLOW" "$question" "$RESET"
+  read -r reply || true
+  [[ "$reply" =~ ^[Yy]$ ]]
+}
+
+_confirm_irreversible() {
+  local reply=""
+  printf '  %s! Type the stage id %q to cross the point of no return: %s' \
+    "$RED" "$_STAGE_ID" "$RESET"
+  read -r reply || true
+  [[ "$reply" == "$_STAGE_ID" ]]
+}
+
+_ensure_mutation_allowed() {
+  [[ "$MODE" == "apply" || "$MODE" == "rollback" ]] || return 0
+  [[ -n "$_STAGE_ID" ]] || fail "state change attempted outside a stage"
+  [[ "$_STAGE_RISK" != "read-only" ]] ||
+    fail "stage $_STAGE_ID is read-only but attempted a state change"
+
+  if [[ "$MODE" == "apply" ]]; then
+    case "$_STAGE_RISK" in
+      reversible | conditional)
+        ((_STAGE_HAS_ROLLBACK == 1)) ||
+          fail "stage $_STAGE_ID must declare rollback_note before mutation"
+        ;;
+      irreversible)
+        ((_STAGE_HAS_POINT_OF_NO_RETURN == 1)) ||
+          fail "stage $_STAGE_ID must declare point_of_no_return before mutation"
+        ;;
+    esac
+  fi
+
+  ((_STAGE_CONFIRMED == 0)) || return 0
+  if [[ "$_STAGE_RISK" == "irreversible" ]]; then
+    _confirm_irreversible || fail "irreversible stage not confirmed"
+  else
+    confirm "Proceed with ${MODE} stage ${_STAGE_ID}?" ||
+      fail "stage $_STAGE_ID was not confirmed"
+  fi
+  _STAGE_CONFIRMED=1
+}
+
+run_change() {
+  local label="$1"
+  shift
+  (($#)) || fail "run_change requires a command"
+  if [[ "$MODE" == "plan" ]]; then
+    printf '  %swould run:%s %s — %s\n' \
+      "$DIM" "$RESET" "$(_shell_join "$@")" "$label"
+    return 0
+  fi
+  _ensure_mutation_allowed
+  printf '  %s→%s %s\n' "$BLUE" "$RESET" "$label"
+  "$@"
+  printf '  %s✓%s %s\n' "$GREEN" "$RESET" "$label"
+}
+
+verify_cmd() {
+  local label="$1"
+  shift
+  (($#)) || fail "verify_cmd requires a command"
+  if [[ "$MODE" == "plan" ]]; then
+    printf '  %swould verify:%s %s — %s\n' \
+      "$DIM" "$RESET" "$(_shell_join "$@")" "$label"
+    return 0
+  fi
+  printf '  %s?%s %s\n' "$BLUE" "$RESET" "$label"
+  "$@"
+  printf '  %s✓ verified%s %s\n' "$GREEN" "$RESET" "$label"
+}
+
+manual_change() {
+  local text="$*"
+  if [[ "$MODE" == "plan" ]]; then
+    printf '  %swould ask operator:%s %s\n' "$DIM" "$RESET" "$text"
+    return 0
+  fi
+  _ensure_mutation_allowed
+  step "$text"
+  printf '  %sPress Enter after completing the step.%s ' "$DIM" "$RESET"
+  read -r _ || true
+}
+
+open_url() {
+  local url="$1"
+  local opener=""
+  if [[ "$MODE" == "plan" ]]; then
+    printf '  %swould open:%s %s\n' "$DIM" "$RESET" "$url"
+    return 0
+  fi
+  if command -v wslview >/dev/null 2>&1; then
+    opener="wslview"
+  elif command -v explorer.exe >/dev/null 2>&1; then
+    opener="explorer.exe"
+  elif command -v xdg-open >/dev/null 2>&1; then
+    opener="xdg-open"
+  elif command -v open >/dev/null 2>&1; then
+    opener="open"
+  else
+    warn "could not open a browser; visit manually: $url"
+    return 0
+  fi
+  printf '  %s↗ opening%s %s\n' "$GREEN" "$RESET" "$url"
+  "$opener" "$url" >/dev/null 2>&1 ||
+    warn "could not open a browser; visit manually: $url"
+}
+
+_existing_env() {
+  local key="$1"
+  [[ -f "$ENV_FILE" ]] || return 1
+  awk -F= -v key="$key" '$1 == key { sub(/^[^=]*=/, ""); value=$0 } END { if (value != "") print value; else exit 1 }' \
+    "$ENV_FILE"
+}
+
+ask() {
+  local key="$1" prompt="$2" current="" input=""
+  [[ "$key" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]] || fail "invalid variable name: $key"
+  if [[ "$MODE" == "plan" ]]; then
+    printf -v "$key" '%s' ""
+    printf '  %swould capture:%s %s — %s\n' "$DIM" "$RESET" "$key" "$prompt"
+    return 0
+  fi
+  current=$(_existing_env "$key" || true)
+  if [[ -n "$current" ]]; then
+    printf '  %s%s%s %s[Enter keeps current]%s ' \
+      "$BOLD" "$prompt" "$RESET" "$DIM" "$RESET"
+  else
+    printf '  %s%s%s ' "$BOLD" "$prompt" "$RESET"
+  fi
+  read -r input || true
+  [[ -z "$input" && -n "$current" ]] && input="$current"
+  [[ "$input" != *$'\n'* && "$input" != *$'\r'* ]] || fail "$key contains a newline"
+  printf -v "$key" '%s' "$input"
+}
+
+ask_secret() {
+  local key="$1" prompt="$2" current="" input=""
+  [[ "$key" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]] || fail "invalid variable name: $key"
+  if [[ "$MODE" == "plan" ]]; then
+    printf -v "$key" '%s' ""
+    printf '  %swould capture secret:%s %s — %s\n' \
+      "$DIM" "$RESET" "$key" "$prompt"
+    return 0
+  fi
+  current=$(_existing_env "$key" || true)
+  if [[ -n "$current" ]]; then
+    printf '  %s%s%s %s[Enter keeps current]%s ' \
+      "$BOLD" "$prompt" "$RESET" "$DIM" "$RESET"
+  else
+    printf '  %s%s%s ' "$BOLD" "$prompt" "$RESET"
+  fi
+  read -rs input || true
+  printf '\n'
+  [[ -z "$input" && -n "$current" ]] && input="$current"
+  [[ "$input" != *$'\n'* && "$input" != *$'\r'* ]] || fail "$key contains a newline"
+  printf -v "$key" '%s' "$input"
+}
+
+_backup_key_seen() {
+  local wanted="$1" item
+  for item in "${BACKED_UP_KEYS[@]}"; do
+    [[ "$item" == "$wanted" ]] && return 0
+  done
+  return 1
+}
+
+backup_file() {
+  local path="$1" key="$2" backup absent
+  [[ "$key" =~ ^[A-Za-z0-9._-]+$ ]] || fail "invalid backup key: $key"
+  if [[ "$MODE" == "plan" ]]; then
+    printf '  %swould back up:%s %s as %s\n' "$DIM" "$RESET" "$path" "$key"
+    return 0
+  fi
+  _ensure_mutation_allowed
+  _backup_key_seen "$key" && return 0
+  _init_state
+  backup="${STATE_DIR}/backups/${key}.backup"
+  absent="${STATE_DIR}/backups/${key}.absent"
+  if [[ -e "$backup" || -e "$absent" ]]; then
+    BACKED_UP_KEYS+=("$key")
+    note "kept existing first-run backup for $key"
+    return 0
+  fi
+  if [[ -e "$path" ]]; then
+    [[ -f "$path" && ! -L "$path" ]] || fail "backup source must be a regular file: $path"
+    cp -p "$path" "$backup"
+    chmod 600 "$backup"
+    note "backed up $path to $backup"
+  else
+    : >"$absent"
+    note "recorded that $path did not exist before this wizard"
+  fi
+  BACKED_UP_KEYS+=("$key")
+}
+
+restore_file() {
+  local path="$1" key="$2" backup absent
+  [[ "$MODE" == "rollback" ]] || fail "restore_file is allowed only in --rollback mode"
+  _ensure_mutation_allowed
+  _init_state
+  backup="${STATE_DIR}/backups/${key}.backup"
+  absent="${STATE_DIR}/backups/${key}.absent"
+  if [[ -f "$backup" ]]; then
+    mkdir -p "$(dirname "$path")"
+    cp -p "$backup" "$path"
+    printf '  %s✓ restored%s %s\n' "$GREEN" "$RESET" "$path"
+  elif [[ -f "$absent" ]]; then
+    [[ ! -d "$path" ]] || fail "refusing to remove directory during file rollback: $path"
+    rm -f "$path"
+    printf '  %s✓ removed%s %s (absent before apply)\n' "$GREEN" "$RESET" "$path"
+  else
+    fail "no backup record for key $key in $STATE_DIR"
+  fi
+}
+
+write_env() {
+  local key="$1" value="$2" tmp
+  [[ "$key" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]] || fail "invalid env key: $key"
+  [[ "$value" != *$'\n'* && "$value" != *$'\r'* ]] || fail "$key contains a newline"
+  if [[ "$MODE" == "plan" ]]; then
+    printf '  %swould write:%s %s → %s (value hidden)\n' \
+      "$DIM" "$RESET" "$key" "$ENV_FILE"
+    return 0
+  fi
+  _ensure_mutation_allowed
+  backup_file "$ENV_FILE" "env-file"
+  mkdir -p "$(dirname "$ENV_FILE")"
+  [[ -e "$ENV_FILE" ]] || : >"$ENV_FILE"
+  [[ -f "$ENV_FILE" && ! -L "$ENV_FILE" ]] || fail "ENV_FILE must be a regular file: $ENV_FILE"
+  tmp=$(mktemp)
+  awk -F= -v key="$key" '$1 != key' "$ENV_FILE" >"$tmp"
+  printf '%s=%s\n' "$key" "$value" >>"$tmp"
+  cp "$tmp" "$ENV_FILE"
+  rm -f "$tmp"
+  printf '  %s✓ wrote%s %s → %s\n' "$GREEN" "$RESET" "$key" "$ENV_FILE"
+}
+
+set_secret() {
+  local name="$1" value="$2"
+  [[ "$name" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]] || fail "invalid secret name: $name"
+  if [[ "$MODE" == "plan" ]]; then
+    printf '  %swould set GitHub secret:%s %s (value hidden)\n' "$DIM" "$RESET" "$name"
+    return 0
+  fi
+  _ensure_mutation_allowed
+  command -v gh >/dev/null 2>&1 || fail "gh is required to set GitHub secret $name"
+  gh auth status >/dev/null 2>&1 || fail "gh is not authenticated"
+  printf '%s' "$value" | gh secret set "$name" >/dev/null
+  printf '  %s✓ set%s GitHub secret %s\n' "$GREEN" "$RESET" "$name"
+}
+
+set_var() {
+  local name="$1" value="$2"
+  [[ "$name" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]] || fail "invalid variable name: $name"
+  if [[ "$MODE" == "plan" ]]; then
+    printf '  %swould set GitHub variable:%s %s\n' "$DIM" "$RESET" "$name"
+    return 0
+  fi
+  _ensure_mutation_allowed
+  command -v gh >/dev/null 2>&1 || fail "gh is required to set GitHub variable $name"
+  gh auth status >/dev/null 2>&1 || fail "gh is not authenticated"
+  gh variable set "$name" --body "$value" >/dev/null
+  printf '  %s✓ set%s GitHub variable %s\n' "$GREEN" "$RESET" "$name"
+}
+
+complete_stage() {
+  [[ -n "$_STAGE_ID" ]] || fail "complete_stage called outside a stage"
+  COMPLETED_STAGES+=("$_STAGE_ID")
+  if [[ "$MODE" == "plan" ]]; then
+    printf '  %s✓ stage planned%s %s\n' "$GREEN" "$RESET" "$_STAGE_TITLE"
+  else
+    _journal "completed"
+    printf '  %s✓ stage complete%s %s\n' "$GREEN" "$RESET" "$_STAGE_TITLE"
+  fi
+}
+
+_print_rollback_notes() {
+  ((${#ROLLBACK_NOTES[@]})) || return 0
+  printf '\n%sRollback notes%s\n' "$BOLD" "$RESET"
+  local item
+  for item in "${ROLLBACK_NOTES[@]}"; do
+    printf '  - %s\n' "$item"
+  done
+}
+
+finish() {
+  ((_STAGE_INDEX == TOTAL_STAGES)) ||
+    fail "declared ${TOTAL_STAGES} stages but visited ${_STAGE_INDEX}"
+  if [[ "$MODE" == "apply" || "$MODE" == "rollback" ]]; then
+    _journal "procedure-completed"
+  fi
+  printf '\n%s%s✓ %s finished%s\n' "$BOLD" "$GREEN" "$MODE" "$RESET"
+  if ((${#COMPLETED_STAGES[@]})); then
+    if [[ "$MODE" == "plan" ]]; then
+      note "planned stages: ${COMPLETED_STAGES[*]}"
+    else
+      note "completed stages: ${COMPLETED_STAGES[*]}"
+    fi
+  fi
+  _print_rollback_notes
+  if [[ "$MODE" == "apply" || "$MODE" == "rollback" ]]; then
+    note "state directory: $STATE_DIR (journal is secret-free; backups may contain protected values)"
+  fi
+  if ((${#SKIPPED[@]})); then
+    warn "still requires manual completion:"
+    local item
+    for item in "${SKIPPED[@]}"; do
+      note "  - $item"
+    done
+  fi
+  printf '\n'
+}
+
+status() {
+  if [[ ! -f "$JOURNAL_FILE" ]]; then
+    say "No journal exists for $WIZARD_ID."
+    return 0
+  fi
+  cat "$JOURNAL_FILE"
+}
+
+_on_error() {
+  local status_code=$?
+  trap - ERR
+  printf '\n%sERROR:%s stage %s failed with status %s\n' \
+    "$RED" "$RESET" "${_STAGE_ID:-none}" "$status_code" >&2
+  _journal "failed:${status_code}" || true
+  _print_rollback_notes >&2 || true
+  if ((_STATE_READY == 1)); then
+    note "state retained at $STATE_DIR"
+  fi
+  exit "$status_code"
+}
+
+_on_signal() {
+  local signal="$1" status_code="$2"
+  trap - INT TERM
+  printf '\n%sINTERRUPTED:%s received %s during stage %s\n' \
+    "$YELLOW" "$RESET" "$signal" "${_STAGE_ID:-none}" >&2
+  _journal "interrupted:${signal}" || true
+  _print_rollback_notes >&2 || true
+  exit "$status_code"
+}
+
+_assert_apply_state_reusable() {
+  local mode result
+  [[ "$MODE" == "apply" && -f "$JOURNAL_FILE" ]] || return 0
+  while IFS=$'\t' read -r _ mode _ result; do
+    if [[ "$mode" == "apply" && "$result" == "procedure-completed" ]]; then
+      fail "a completed apply already uses $STATE_DIR; choose a fresh WIZARD_STATE_DIR before applying again"
+    fi
+  done <"$JOURNAL_FILE"
+}
+
+unconfigured() {
+  fail "unconfigured placeholder: $*"
+}
+
+run_selected_procedure() {
+  _configure_state_paths
+  _require_authored
+  _assert_apply_state_reusable
+  case "$MODE" in
+    plan | apply)
+      forward_procedure
+      ;;
+    rollback)
+      rollback_procedure
+      ;;
+    status)
+      status
+      ;;
+  esac
+}
+
+_parse_args "$@"
+trap _on_error ERR
+trap '_on_signal INT 130' INT
+trap '_on_signal TERM 143' TERM
+
+# ──────────────────────────────────────────────────────────────────────────
+# STAGES: author this section only.
+#
+# Replace WIZARD_ID, WIZARD_TITLE, both stage counts, forward_procedure, and
+# rollback_procedure. Keep rollback stages in reverse dependency order.
+# ──────────────────────────────────────────────────────────────────────────
+
+WIZARD_ID="fork-profile-setup"
+WIZARD_TITLE="Fork profile setup"
+FORWARD_STAGES=5
+ROLLBACK_STAGES=1
+
+REPO_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+CONFIG_PATH="${REPO_ROOT}/scripts/readme_config.py"
+TEMPLATE_PATH="${REPO_ROOT}/templates/README.md.tpl"
+README_PATH="${REPO_ROOT}/README.md"
+WORKFLOW_PATH="${REPO_ROOT}/.github/workflows/readme.yaml"
+REPO_SLUG=""
+DISPLAY_NAME=""
+GITHUB_LOGIN=""
+WHAT_I_BUILD=""
+INTRO=""
+FOCUS_ITEMS=""
+HELP_ITEMS=""
+PROFILE_TIMEZONE=""
+PROJECT_OWNERS=""
+USE_UBUNTU_RUNNER="no"
+COPILOT_ELECT=""
+
+require_command() {
+  local command_name="$1"
+  command -v "$command_name" >/dev/null 2>&1 ||
+    fail "required command is unavailable: ${command_name}"
+}
+
+verify_origin_fork() {
+  local origin_url normalized_origin is_fork parent
+  origin_url="$(git -C "$REPO_ROOT" remote get-url origin)" ||
+    fail "the checked-out repository has no origin remote"
+  REPO_SLUG="$(cd "$REPO_ROOT" && gh repo view --json nameWithOwner --jq .nameWithOwner)" ||
+    fail "could not resolve origin as a GitHub repository"
+  normalized_origin="${origin_url%.git}"
+  case "$normalized_origin" in
+    "git@github.com:${REPO_SLUG}" | "https://github.com/${REPO_SLUG}" | "ssh://git@github.com/${REPO_SLUG}")
+      ;;
+    *)
+      fail "gh repository identity does not match the checked-out origin"
+      ;;
+  esac
+  is_fork="$(cd "$REPO_ROOT" && gh repo view --json isFork,parent --jq .isFork)" ||
+    fail "could not inspect fork metadata for origin"
+  parent="$(cd "$REPO_ROOT" && gh repo view --json parent --jq '.parent.nameWithOwner // empty')" ||
+    fail "could not inspect fork parent metadata"
+  [[ "$is_fork" == "true" && -n "$parent" ]] ||
+    fail "refusing to apply: origin must be a GitHub fork"
+}
+
+preflight_guard() {
+  [[ "$MODE" == "apply" ]] || return 0
+  require_command git
+  require_command gh
+  require_command python3
+  gh auth status >/dev/null 2>&1 || fail "gh is not authenticated"
+  verify_origin_fork
+}
+
+profile_check_args() {
+  local -a command=(
+    python3 "$REPO_ROOT/scripts/profile_setup.py" --check
+    --repo-root "$REPO_ROOT"
+    --display-name "$DISPLAY_NAME"
+    --github-login "$GITHUB_LOGIN"
+    --what-i-build "$WHAT_I_BUILD"
+    --intro "$INTRO"
+    --focus "$FOCUS_ITEMS"
+    --help-areas "$HELP_ITEMS"
+    --timezone "$PROFILE_TIMEZONE"
+    --owners "$PROJECT_OWNERS"
+  )
+  [[ "$USE_UBUNTU_RUNNER" == "yes" ]] && command+=(--ubuntu-runner)
+  "${command[@]}"
+}
+
+apply_profile_files() {
+  local -a command=(
+    python3 "$REPO_ROOT/scripts/profile_setup.py" --apply
+    --repo-root "$REPO_ROOT"
+    --display-name "$DISPLAY_NAME"
+    --github-login "$GITHUB_LOGIN"
+    --what-i-build "$WHAT_I_BUILD"
+    --intro "$INTRO"
+    --focus "$FOCUS_ITEMS"
+    --help-areas "$HELP_ITEMS"
+    --timezone "$PROFILE_TIMEZONE"
+    --owners "$PROJECT_OWNERS"
+  )
+  [[ "$USE_UBUNTU_RUNNER" == "yes" ]] && command+=(--ubuntu-runner)
+  "${command[@]}"
+}
+
+render_profile_readme() {
+  local status_code=0
+  if [[ "$MODE" == "plan" ]]; then
+    run_change "Render README activity sections" python3 "$REPO_ROOT/scripts/render_readme.py"
+    return 0
+  fi
+  _ensure_mutation_allowed
+  printf '  %s→%s Render README activity sections\n' "$BLUE" "$RESET"
+  python3 "$REPO_ROOT/scripts/render_readme.py" || status_code=$?
+  case "$status_code" in
+    0)
+      printf '  %s✓%s Rendered README activity sections\n' "$GREEN" "$RESET"
+      ;;
+    2)
+      warn "activity collection was unavailable; the prior dynamic sections were preserved"
+      ;;
+    *)
+      return "$status_code"
+      ;;
+  esac
+}
+
+copilot_prompt() {
+  printf '%s\n' \
+    "Draft one concise, public-safe GitHub profile intro for ${DISPLAY_NAME} (@${GITHUB_LOGIN})." \
+    "They build: ${WHAT_I_BUILD}." \
+    "Return only a single plain-text sentence. Do not include credentials, private project details, or Markdown markers."
+}
+
+maybe_offer_copilot() {
+  local prompt
+  prompt="$(copilot_prompt)"
+  say "Copilot drafting is optional. This repository cannot grant Copilot Free or credits."
+  say "Availability and allowance belong to your Copilot plan. The generated prompt follows:"
+  printf '\n%s\n\n' "$prompt"
+  ask COPILOT_ELECT "Run the optional Copilot CLI prompt? [yes/NO]"
+  if [[ ! "$COPILOT_ELECT" =~ ^([Yy]|[Yy][Ee][Ss])$ ]]; then
+    SKIPPED+=("Optional Copilot drafting was declined; use the printed prompt manually if wanted.")
+    return 0
+  fi
+  if ! gh copilot --help >/dev/null 2>&1; then
+    warn "gh copilot is unavailable. No download was attempted; use the printed prompt manually."
+    SKIPPED+=("Optional Copilot drafting requires a user-installed gh copilot command.")
+    return 0
+  fi
+  point_of_no_return "Running Copilot may consume your personal allowance or download data. This cannot be revoked here."
+  run_change "Run optional Copilot text prompt" gh copilot -p "$prompt"
+}
+
+manual_github_setup() {
+  local slug="${REPO_SLUG:-<fork-owner>/<fork-repository>}"
+  point_of_no_return "Manual secret, browser, and Actions settings changes cannot be rolled back by this wizard."
+  manual_change "Open or visit the Actions secrets page. Configure your own GH_TOKEN and optional WAKATIME_API_KEY; never paste them into this wizard."
+  open_url "https://github.com/${slug}/settings/secrets/actions"
+  manual_change "Enable Actions Read and write workflow permissions, then open the README workflow. Do not run it until your settings are ready."
+  open_url "https://github.com/${slug}/settings/actions"
+  open_url "https://github.com/${slug}/actions/workflows/readme.yaml"
+  SKIPPED+=("Run the Update README workflow manually after configuring your own credentials and permissions.")
+}
+
+forward_procedure() {
+  TOTAL_STAGES="$FORWARD_STAGES"
+  banner
+  preflight_guard
+
+  stage "preflight" "Verify this checkout is a GitHub fork" "read-only"
+  requirement "git, gh, python3, authenticated gh, and an origin GitHub fork are required."
+  verify_cmd "git is available" require_command git
+  verify_cmd "gh is available" require_command gh
+  verify_cmd "python3 is available" require_command python3
+  verify_cmd "gh is authenticated" gh auth status
+  verify_cmd "origin is an authoritative GitHub fork" verify_origin_fork
+  complete_stage
+
+  stage "answers" "Capture profile answers" "read-only"
+  requirement "Use public one-line answers only. Profile markers and credentials are rejected."
+  ask DISPLAY_NAME "Display name:"
+  ask GITHUB_LOGIN "GitHub login:"
+  ask WHAT_I_BUILD "What do you build?"
+  ask INTRO "Optional one-line intro (blank generates one):"
+  ask FOCUS_ITEMS "Optional semicolon-separated focus items (blank uses defaults):"
+  ask HELP_ITEMS "Optional semicolon-separated help areas (blank uses defaults):"
+  ask PROFILE_TIMEZONE "IANA timezone, for example Europe/Berlin:"
+  ask PROJECT_OWNERS "Optional semicolon-separated project owners (blank uses your login):"
+  ask USE_UBUNTU_RUNNER "Use ubuntu-latest instead of this repo's private runner labels? [yes/NO]"
+  case "$USE_UBUNTU_RUNNER" in
+    [Yy] | [Yy][Ee][Ss]) USE_UBUNTU_RUNNER="yes" ;;
+    *) USE_UBUNTU_RUNNER="no" ;;
+  esac
+  verify_cmd "Validate profile answers and bounded file targets" profile_check_args
+  complete_stage
+
+  stage "copilot" "Offer optional Copilot text drafting" "irreversible"
+  requirement "Copilot remains opt-in, plan-limited, and receives no tool permissions or credentials."
+  maybe_offer_copilot
+  complete_stage
+
+  stage "apply-profile" "Back up and apply the starter profile" "reversible"
+  requirement "Back up the current profile files before replacing only the bounded static section."
+  rollback_note "Run --rollback with the same WIZARD_STATE_DIR to restore workflow, README, template, then config."
+  backup_file "$CONFIG_PATH" "readme-config"
+  backup_file "$TEMPLATE_PATH" "readme-template"
+  backup_file "$README_PATH" "readme-output"
+  backup_file "$WORKFLOW_PATH" "readme-workflow"
+  run_change "Apply validated starter profile" apply_profile_files
+  render_profile_readme
+  verify_cmd "Verify bounded profile files without writing" python3 "$REPO_ROOT/scripts/profile_setup.py" --check --repo-root "$REPO_ROOT"
+  complete_stage
+
+  stage "github-setup" "Finish manual GitHub configuration" "irreversible"
+  requirement "Configure credentials and Actions permissions manually; this wizard never reads, stores, or triggers them."
+  manual_github_setup
+  complete_stage
+
+  finish
+}
+
+rollback_procedure() {
+  TOTAL_STAGES="$ROLLBACK_STAGES"
+  banner
+
+  stage "restore-profile" "Restore backed-up profile files" "reversible"
+  requirement "Use the state directory created by the matching apply run."
+  rollback_note "This restores only local file backups. It cannot revoke Copilot allowance, browser activity, or GitHub secret changes made manually."
+  run_change "Restore workflow" restore_file "$WORKFLOW_PATH" "readme-workflow"
+  run_change "Restore generated README" restore_file "$README_PATH" "readme-output"
+  run_change "Restore README template" restore_file "$TEMPLATE_PATH" "readme-template"
+  run_change "Restore profile config" restore_file "$CONFIG_PATH" "readme-config"
+  verify_cmd "Verify restored profile boundaries" python3 "$REPO_ROOT/scripts/profile_setup.py" --check --repo-root "$REPO_ROOT"
+  complete_stage
+
+  finish
+}
+
+run_selected_procedure
