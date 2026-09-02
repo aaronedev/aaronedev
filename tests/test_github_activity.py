@@ -125,7 +125,7 @@ class ConfigContractTest(unittest.TestCase):
         self.assertEqual(PR_LIMIT, 8)
         self.assertEqual(CONTRIB_LIMIT, 10)
         self.assertEqual(CONTRIB_REPO_LIMIT, 100)
-        self.assertEqual(MAX_PR_PAGES, 10)
+        self.assertEqual(MAX_PR_PAGES, 100)
         self.assertEqual(MAX_HISTORY_PAGES, 100)
         self.assertEqual(PAGE_SIZE, 100)
         self.assertEqual(PROFILE_TIMEZONE, "Europe/Berlin")
@@ -501,6 +501,74 @@ class PrivacyReduceTest(unittest.TestCase):
 
 
 class RetrievePaginationTest(unittest.TestCase):
+    def test_pr_pagination_reaches_older_boundary_after_more_than_ten_pages(
+        self,
+    ) -> None:
+        pr_calls = 0
+
+        def http(url, *, method="GET", headers=None, json_body=None):
+            nonlocal pr_calls
+            query = (json_body or {}).get("query", "")
+            if "commitContributionsByRepository" in query:
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "viewer": {"login": AUTHOR_LOGIN},
+                            "user": {
+                                "id": "UID",
+                                "contributionsCollection": {
+                                    "startedAt": "2026-08-01T00:00:00Z",
+                                    "endedAt": "2026-08-31T00:00:00Z",
+                                    "commitContributionsByRepository": [],
+                                },
+                            },
+                        }
+                    },
+                }
+            if "pullRequests" in query:
+                pr_calls += 1
+                if pr_calls <= 11:
+                    node = _pr_node(
+                        owner=UNRELATED_OWNER,
+                        name=f"noise-{pr_calls}",
+                        title=f"in-window {pr_calls}",
+                        url=f"https://github.com/{UNRELATED_OWNER}/noise-{pr_calls}/pull/1",
+                        created_at="2026-08-20T12:00:00Z",
+                    )
+                    cursor = f"page-{pr_calls}"
+                else:
+                    node = _pr_node(
+                        owner=UNRELATED_OWNER,
+                        name="older",
+                        title="older boundary",
+                        url=f"https://github.com/{UNRELATED_OWNER}/older/pull/1",
+                        created_at="2026-07-31T23:59:59Z",
+                    )
+                    cursor = "unused"
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "user": {
+                                "pullRequests": {
+                                    "nodes": [node],
+                                    "pageInfo": {
+                                        "hasNextPage": True,
+                                        "endCursor": cursor,
+                                    },
+                                }
+                            }
+                        }
+                    },
+                }
+            raise AssertionError(f"unexpected query: {query}")
+
+        raw = retrieve(http, token="token-value")
+
+        self.assertEqual(pr_calls, 12)
+        self.assertEqual(len(raw["pull_requests"]), 11)
+
     def test_prs_use_the_contribution_window_and_stop_after_an_older_page(self) -> None:
         in_window_public = _pr_node(
             owner="aaronedev",
