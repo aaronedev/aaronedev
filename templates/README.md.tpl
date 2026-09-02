@@ -4,6 +4,12 @@
   </a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/aaronedev/figmix">
+    <img src="./assets/generated/profile-hero.png" alt="AARON DEV in a Violet Void figmix profile banner" width="640" />
+  </a>
+</p>
+
 <h1 align="center">Aaron / aaronedev</h1>
 
 <p align="center">
