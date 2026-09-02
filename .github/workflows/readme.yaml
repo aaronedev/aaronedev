@@ -19,76 +19,57 @@ jobs:
       run:
         shell: bash
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
       with:
         fetch-depth: 0
     - name: Sync main
       run: git pull --ff-only origin main
     - name: Render README
-      uses: muesli/readme-scribe@master
+      id: render-readme
+      continue-on-error: true
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN && secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
-      with:
-        template: templates/README.md.tpl
-        writeTo: README.md
-    - name: Ensure WakaTime markers
-      run: |
-        python3 - <<'PY'
-        from pathlib import Path
-
-        path = Path("README.md")
-        text = path.read_text()
-        start = "<!--START_SECTION:waka-->"
-        end = "<!--END_SECTION:waka-->"
-
-        if start in text and end in text:
-            raise SystemExit(0)
-
-        needle = "### ✨ WakaTime stats ✨\n<details>\n  <summary>Click to expand the latest metrics</summary>\n"
-        replacement = f"{needle}\n{start}\n{end}\n"
-
-        if needle not in text:
-            raise SystemExit("Unable to find WakaTime details block in README.md")
-
-        path.write_text(text.replace(needle, replacement, 1))
-        PY
-    - name: Inject WakaTime metrics
-      uses: anmol098/waka-readme-stats@v4
-      with:
-        WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        SHOW_PROFILE_VIEWS: "False"
-        SHOW_LINES_OF_CODE: "False"
-        SHOW_LOC_CHART: "False"
+        README_ACTIVITY_GITHUB_PAT: ${{ secrets.GH_TOKEN }}
+        README_WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+      run: python3 scripts/render_readme.py
     - name: Commit and push updates
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN && secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+        README_ACTIVITY_GITHUB_PAT: ${{ secrets.GH_TOKEN }}
+        README_WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |-
         set -euo pipefail
-
-        if git diff --quiet HEAD -- README.md; then
-          echo "README already up to date."
-          exit 0
-        fi
 
         git config user.name "readme-scribe 🤖"
         git config user.email "actions@github.com"
 
-        git add README.md
-        git commit -m "chore: update README from template"
-
-        if ! git pull --rebase --autostash --strategy-option=ours origin main; then
-          echo "Rebase failed, aligning with latest origin/main" >&2
-          git rebase --abort || true
-          git fetch origin main
-          git reset --soft origin/main
-
-          if git diff --cached --quiet; then
-            echo "Template already matches remote after soft reset. Nothing to push."
-            exit 0
-          fi
-
+        if ! git diff --quiet HEAD -- README.md; then
+          git add README.md
           git commit -m "chore: update README from template"
         fi
 
+        if ! git pull --rebase --autostash --strategy-option=theirs origin main; then
+          echo "Rebase failed, aligning with latest origin/main" >&2
+          git rebase --abort || true
+          git fetch origin main
+          git reset --hard origin/main
+        fi
+
+        set +e
+        python3 scripts/render_readme.py
+        rerender_status=$?
+        set -e
+
+        if ! git diff --quiet HEAD -- README.md; then
+          git add README.md
+          if git diff --quiet HEAD origin/main; then
+            git commit -m "chore: update README from template"
+          else
+            git commit --amend --no-edit
+          fi
+        fi
+
         git push origin HEAD:main
+        exit "$rerender_status"
+    - name: Fail when README rendering failed
+      if: steps.render-readme.outcome == 'failure'
+      run: exit 1
