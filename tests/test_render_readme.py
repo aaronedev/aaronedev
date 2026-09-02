@@ -34,6 +34,17 @@ from scripts.wakatime_stats import WAKA_SECTION_MARKER, render as render_waka  #
 
 CANARY_VV = "Violet-Void/private-client-project"
 CANARY_BF = "bauerstischfinder/top-secret-acquisition"
+STATS_CARD_URL = (
+    "https://github-stats-extended.vercel.app/api?username=aaronedev&show_icons=true&"
+    "hide_border=true&count_private=true&bg_color=111%2C082421%2C0D1117&"
+    "title_color=7c60d1&text_color=f0f0f5&icon_color=319e8d&border_color=131313&"
+    "border_radius=10"
+)
+TOP_LANGUAGES_URL = (
+    "https://github-stats-extended.vercel.app/api/top-langs/?username=aaronedev&"
+    "layout=compact&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&"
+    "text_color=f0f0f5&hide_border=true&border_radius=10&border_color=131313"
+)
 
 TEMPLATE = """# profile
 
@@ -196,6 +207,14 @@ def _section(text: str, start: str, end: str) -> str:
 
 
 class RenderReadmeTest(unittest.TestCase):
+    def test_profile_uses_supported_github_stats_cards(self) -> None:
+        for path in (ROOT / "templates" / "README.md.tpl", ROOT / "README.md"):
+            profile = path.read_text(encoding="utf-8")
+            self.assertEqual(profile.count("https://github-stats-extended.vercel.app"), 2)
+            self.assertEqual(profile.count(STATS_CARD_URL), 1)
+            self.assertEqual(profile.count(TOP_LANGUAGES_URL), 1)
+            self.assertNotIn("https://github-readme-stats.vercel.app", profile)
+
     def test_malicious_waka_markers_preserve_the_complete_tagged_section(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = _write_repo(Path(tmp))
