@@ -688,6 +688,24 @@ def _iso_date(value: str) -> str:
     return value[:10] if len(value) >= 10 else value
 
 
+def _render_contribution_items(
+    lines: list[str], contribs: list[PublicContrib]
+) -> None:
+    for contrib in contribs:
+        label = "commit" if contrib.count == 1 else "commits"
+        lines.append(
+            "- 🔗 "
+            f'<a href="{html.escape(contrib.repo_url, quote=True)}"><code>{html.escape(contrib.repo_name, quote=True)}</code></a>'
+            f" • <strong>{contrib.count} {label}</strong>"
+            + (f" • {_iso_date(contrib.latest_at)}" if contrib.latest_at else "")
+        )
+        description = _clean_text(contrib.description, limit=120)
+        if description:
+            lines.append("  <br>")
+            lines.append(f"  <sub>{description}</sub>")
+        lines.append("")
+
+
 def render(model: ActivityModel) -> str:
     lines: list[str] = ["### 🔁 Fresh Pull Requests", ""]
     if not model.public_prs:
@@ -718,19 +736,7 @@ def render(model: ActivityModel) -> str:
         lines.append("_No public commits from allowed owners._")
         lines.append("")
     else:
-        for contrib in model.public_contribs:
-            label = "commit" if contrib.count == 1 else "commits"
-            lines.append(
-                "- 🔗 "
-                f'<a href="{html.escape(contrib.repo_url, quote=True)}"><code>{html.escape(contrib.repo_name, quote=True)}</code></a>'
-                f" • <strong>{contrib.count} {label}</strong>"
-                + (f" • {_iso_date(contrib.latest_at)}" if contrib.latest_at else "")
-            )
-            description = _clean_text(contrib.description, limit=120)
-            if description:
-                lines.append("  <br>")
-                lines.append(f"  <sub>{description}</sub>")
-            lines.append("")
+        _render_contribution_items(lines, model.public_contribs)
 
     lines.append("### 🤝 Contributions to Other Organizations")
     lines.append("")
@@ -738,19 +744,7 @@ def render(model: ActivityModel) -> str:
         lines.append("_No public commits to other organizations._")
         lines.append("")
     else:
-        for contrib in model.external_org_contribs:
-            label = "commit" if contrib.count == 1 else "commits"
-            lines.append(
-                "- 🔗 "
-                f'<a href="{html.escape(contrib.repo_url, quote=True)}"><code>{html.escape(contrib.repo_name, quote=True)}</code></a>'
-                f" • <strong>{contrib.count} {label}</strong>"
-                + (f" • {_iso_date(contrib.latest_at)}" if contrib.latest_at else "")
-            )
-            description = _clean_text(contrib.description, limit=120)
-            if description:
-                lines.append("  <br>")
-                lines.append(f"  <sub>{description}</sub>")
-            lines.append("")
+        _render_contribution_items(lines, model.external_org_contribs)
 
     if model.contribution_repos_bounded:
         lines.append(
