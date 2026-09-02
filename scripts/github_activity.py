@@ -53,7 +53,7 @@ query($login: String!, $first: Int!, $after: String) {
           isPrivate
           url
           description
-          owner { login }
+          owner { login __typename }
         }
       }
     }
@@ -85,6 +85,32 @@ query($login: String!) {
   }
 }
 """.replace("{CONTRIB_REPO_LIMIT}", str(CONTRIB_REPO_LIMIT))
+
+ISSUE_CONTRIB_QUERY = """
+query($login: String!, $first: Int!, $after: String) {
+  user(login: $login) {
+    contributionsCollection {
+      issueContributions(first: $first, after: $after, orderBy: {direction: DESC}) {
+        pageInfo { hasNextPage endCursor }
+        nodes {
+          occurredAt
+          isRestricted
+          issue {
+            url
+            repository {
+              nameWithOwner
+              isPrivate
+              url
+              description
+              owner { login __typename }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+"""
 
 HISTORY_QUERY = """
 query(
@@ -137,10 +163,21 @@ class PublicContrib:
 
 
 @dataclass
+class PublicExternalActivity:
+    repo_url: str
+    repo_name: str
+    description: str | None
+    commit_count: int = 0
+    pull_request_count: int = 0
+    issue_count: int = 0
+    latest_at: str | None = None
+
+
+@dataclass
 class ActivityModel:
     public_prs: list[PublicPR]
     public_contribs: list[PublicContrib]
-    external_org_contribs: list[PublicContrib]
+    external_org_activities: list[PublicExternalActivity]
     private_pr_count: int | None
     private_commit_count: int | None
     commit_hours: dict[str, int] | None = None
@@ -238,16 +275,44 @@ def _has_required_pr_fields(node: dict[str, Any]) -> bool:
     )
 
 
+def _has_required_repo_fields(repo: dict[str, Any]) -> bool:
+    return bool(
+        repo.get("nameWithOwner")
+        and _public_http_url(repo.get("url"))
+        and _owner_login(repo)
+    )
+
+
 def _has_required_contrib_fields(entry: dict[str, Any]) -> bool:
     if not isinstance(entry, dict):
         return False
     repo = entry.get("repository")
     if not isinstance(repo, dict):
         return False
+    return _has_required_repo_fields(repo)
+
+
+def _has_required_issue_contrib_fields(entry: dict[str, Any]) -> bool:
+    if not isinstance(entry, dict) or not isinstance(entry.get("occurredAt"), str):
+        return False
+    issue = entry.get("issue")
+    if not isinstance(issue, dict):
+        return False
+    repo = issue.get("repository")
     return bool(
-        repo.get("nameWithOwner")
-        and _public_http_url(repo.get("url"))
-        and _owner_login(repo)
+        _public_http_url(issue.get("url"))
+        and isinstance(repo, dict)
+        and _has_required_repo_fields(repo)
+    )
+
+
+def _is_public_external_organization(repo: dict[str, Any]) -> bool:
+    owner = _owner_login(repo)
+    return bool(
+        owner is not None
+        and owner not in ALLOWED_OWNERS
+        and repo.get("isPrivate") is False
+        and _owner_typename(repo) == "Organization"
     )
 
 
@@ -278,10 +343,16 @@ def _timing_repos(*groups: list[dict[str, Any]]) -> list[str]:
             owner = _owner_login(repo)
             is_private = repo.get("isPrivate")
             is_allowlisted = owner in ALLOWED_OWNERS and is_private in {False, True}
+            is_contribution = (
+                "contributionCount" in item or "contributions" in item
+            )
             is_public_external_organization = (
-                is_private is False
-                and _owner_typename(repo) == "Organization"
-                and _has_required_contrib_fields(item)
+                _is_public_external_organization(repo)
+                and (
+                    _has_required_contrib_fields(item)
+                    if is_contribution
+                    else _has_required_pr_fields(item)
+                )
             )
             if not (is_allowlisted or is_public_external_organization):
                 continue
@@ -343,6 +414,47 @@ def _collect_commit_dates(
     return dates_by_repo
 
 
+def _retrieve_issue_contributions(
+    http: HttpCallable,
+    token: str,
+) -> list[dict[str, Any]]:
+    issue_contributions: list[dict[str, Any]] = []
+    after: str | None = None
+    seen_cursors: set[str] = set()
+    for _page in range(MAX_PR_PAGES):
+        payload = _graphql(
+            http,
+            token,
+            ISSUE_CONTRIB_QUERY,
+            {"login": AUTHOR_LOGIN, "first": PAGE_SIZE, "after": after},
+        )
+        user = ((payload.get("data") or {}).get("user")) or {}
+        collection = user.get("contributionsCollection") if isinstance(user, dict) else None
+        if not isinstance(collection, dict):
+            raise ActivityCollectionError("GitHub issue contribution collection is unavailable")
+        connection = collection.get("issueContributions")
+        if not isinstance(connection, dict):
+            raise ActivityCollectionError("GitHub issue contributions are unavailable")
+        nodes = connection.get("nodes")
+        page_info = connection.get("pageInfo")
+        if not isinstance(nodes, list) or not isinstance(page_info, dict):
+            raise ActivityCollectionError("GitHub issue contributions are unavailable")
+        issue_contributions.extend(item for item in nodes if isinstance(item, dict))
+        has_next_page = page_info.get("hasNextPage")
+        if not isinstance(has_next_page, bool):
+            raise ActivityCollectionError("GitHub issue contribution pagination is unavailable")
+        if not has_next_page:
+            break
+        cursor = page_info.get("endCursor")
+        if not isinstance(cursor, str) or not cursor or cursor in seen_cursors:
+            raise ActivityCollectionError("GitHub issue contribution pagination is incomplete")
+        seen_cursors.add(cursor)
+        after = cursor
+    else:
+        raise ActivityCollectionError("GitHub issue contribution pagination exceeded page limit")
+    return issue_contributions
+
+
 def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
     contrib_payload = _graphql(http, token, CONTRIB_QUERY, {"login": AUTHOR_LOGIN})
     data = contrib_payload.get("data") or {}
@@ -365,6 +477,8 @@ def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
     window_end = _parse_dt(until) if isinstance(until, str) else None
     if window_start is None or window_end is None or window_start > window_end:
         raise ActivityCollectionError("GitHub contribution window is unavailable")
+
+    issue_contributions = _retrieve_issue_contributions(http, token)
 
     pull_requests: list[dict[str, Any]] = []
     after: str | None = None
@@ -410,6 +524,7 @@ def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
     return {
         "pull_requests": pull_requests,
         "contributions": contributions,
+        "issue_contributions": issue_contributions,
         "commit_dates": [date for dates in commit_dates_by_repo.values() for date in dates],
         "commit_dates_by_repo": commit_dates_by_repo,
         "contribution_repos_bounded": len(contributions) >= CONTRIB_REPO_LIMIT,
@@ -446,7 +561,19 @@ def normalize(raw: dict[str, Any]) -> dict[str, Any]:
         if collection is None:
             collection = ((data.get("viewer") or {}).get("contributionsCollection"))
         contributions = (collection or {}).get("commitContributionsByRepository") or []
+    issue_contributions = raw.get("issue_contributions")
+    if issue_contributions is None:
+        data = raw.get("data") or {}
+        collection = ((data.get("user") or {}).get("contributionsCollection"))
+        issue_contributions = (collection or {}).get("issueContributions") or {}
+        if isinstance(issue_contributions, dict):
+            issue_contributions = issue_contributions.get("nodes") or []
+    if not isinstance(issue_contributions, list):
+        issue_contributions = []
     normalized_prs = [item for item in pull_requests if isinstance(item, dict)]
+    normalized_issue_contribs = [
+        item for item in issue_contributions if isinstance(item, dict)
+    ]
     normalized_contribs: list[dict[str, Any]] = []
     for item in contributions:
         if not isinstance(item, dict):
@@ -478,6 +605,7 @@ def normalize(raw: dict[str, Any]) -> dict[str, Any]:
     return {
         "pull_requests": normalized_prs,
         "contributions": normalized_contribs,
+        "issue_contributions": normalized_issue_contribs,
         "commit_dates": commit_dates,
         "commit_dates_by_repo": commit_dates_by_repo,
         "contribution_repos_bounded": contribution_repos_bounded,
@@ -539,48 +667,91 @@ def _sort_ts(value: str | None) -> float:
     return parsed.timestamp() if parsed else 0.0
 
 
+def _valid_timestamp(value: Any) -> str | None:
+    return value if isinstance(value, str) and _parse_dt(value) is not None else None
+
+
+def _add_external_activity(
+    activities_by_name: dict[str, PublicExternalActivity],
+    repo: dict[str, Any],
+    *,
+    count_field: str,
+    count: int,
+    occurred_at: str | None,
+) -> None:
+    if count <= 0:
+        return
+    name = str(repo["nameWithOwner"])
+    activity = activities_by_name.get(name)
+    if activity is None:
+        description = repo.get("description")
+        activity = PublicExternalActivity(
+            repo_url=str(repo["url"]),
+            repo_name=name,
+            description=str(description) if description else None,
+        )
+        activities_by_name[name] = activity
+    setattr(activity, count_field, getattr(activity, count_field) + count)
+    timestamp = _valid_timestamp(occurred_at)
+    if timestamp is not None and _sort_ts(timestamp) > _sort_ts(activity.latest_at):
+        activity.latest_at = timestamp
+
+
 def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
     public_prs: list[PublicPR] = []
     seen_pr_urls: set[str] = set()
+    seen_external_pr_urls: set[str] = set()
+    seen_external_issue_urls: set[str] = set()
     private_pr_count = 0
     private_commit_count = 0
     proven_private_prs = False
     proven_private_commits = False
+    external_org_activities_by_name: dict[str, PublicExternalActivity] = {}
 
     for node in normalized.get("pull_requests") or []:
         repo = node.get("repository") if isinstance(node, dict) else None
         if not isinstance(repo, dict):
             continue
         owner = _owner_login(repo)
-        if owner not in ALLOWED_OWNERS:
-            continue
-        if repo.get("isPrivate") is True:
-            proven_private_prs = True
-            private_pr_count += 1
-            continue
-        if repo.get("isPrivate") is not False:
-            continue
-        if not _has_required_pr_fields(node):
-            continue
-        url = node["url"]
-        if url in seen_pr_urls:
-            continue
-        seen_pr_urls.add(url)
-        description = repo.get("description")
-        public_prs.append(
-            PublicPR(
-                title=str(node["title"]),
-                url=str(url),
-                state=str(node["state"]),
-                created_at=str(node["createdAt"]),
-                repo_url=str(repo["url"]),
-                repo_name=str(repo["nameWithOwner"]),
-                description=str(description) if description else None,
+        if owner in ALLOWED_OWNERS:
+            if repo.get("isPrivate") is True:
+                proven_private_prs = True
+                private_pr_count += 1
+                continue
+            if repo.get("isPrivate") is not False:
+                continue
+            if not _has_required_pr_fields(node):
+                continue
+            url = node["url"]
+            if url in seen_pr_urls:
+                continue
+            seen_pr_urls.add(url)
+            description = repo.get("description")
+            public_prs.append(
+                PublicPR(
+                    title=str(node["title"]),
+                    url=str(url),
+                    state=str(node["state"]),
+                    created_at=str(node["createdAt"]),
+                    repo_url=str(repo["url"]),
+                    repo_name=str(repo["nameWithOwner"]),
+                    description=str(description) if description else None,
+                )
             )
-        )
+        elif _is_public_external_organization(repo) and _has_required_pr_fields(node):
+            url = str(node["url"])
+            if url in seen_external_pr_urls:
+                continue
+            seen_external_pr_urls.add(url)
+            _add_external_activity(
+                external_org_activities_by_name,
+                repo,
+                count_field="pull_request_count",
+                count=1,
+                occurred_at=str(node["createdAt"]),
+            )
 
     contribs_by_name: dict[str, PublicContrib] = {}
-    external_org_contribs_by_name: dict[str, PublicContrib] = {}
     for entry in normalized.get("contributions") or []:
         repo = entry.get("repository") if isinstance(entry, dict) else None
         if not isinstance(repo, dict):
@@ -599,10 +770,7 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
                 continue
             if repo.get("isPrivate") is not False:
                 continue
-        elif (
-            repo.get("isPrivate") is not False
-            or _owner_typename(repo) != "Organization"
-        ):
+        elif not _is_public_external_organization(repo):
             continue
         name = repo.get("nameWithOwner")
         if is_allowed_owner and name == PROFILE_REPO:
@@ -616,19 +784,48 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
             key=_sort_ts,
             default=None,
         )
-        target = contribs_by_name if is_allowed_owner else external_org_contribs_by_name
-        existing = target.get(str(name))
-        if existing is not None:
-            existing.count += count_int
-            if _sort_ts(latest_at) > _sort_ts(existing.latest_at):
-                existing.latest_at = latest_at
+        if is_allowed_owner:
+            existing = contribs_by_name.get(str(name))
+            if existing is not None:
+                existing.count += count_int
+                if _sort_ts(latest_at) > _sort_ts(existing.latest_at):
+                    existing.latest_at = latest_at
+                continue
+            contribs_by_name[str(name)] = PublicContrib(
+                repo_url=str(repo["url"]),
+                repo_name=str(name),
+                count=count_int,
+                description=str(description) if description else None,
+                latest_at=latest_at,
+            )
+        else:
+            _add_external_activity(
+                external_org_activities_by_name,
+                repo,
+                count_field="commit_count",
+                count=max(count_int, 0),
+                occurred_at=latest_at,
+            )
+
+    for entry in normalized.get("issue_contributions") or []:
+        if not isinstance(entry, dict) or entry.get("isRestricted") is not False:
             continue
-        target[str(name)] = PublicContrib(
-            repo_url=str(repo["url"]),
-            repo_name=str(name),
-            count=count_int,
-            description=str(description) if description else None,
-            latest_at=latest_at,
+        if not _has_required_issue_contrib_fields(entry):
+            continue
+        issue = entry["issue"]
+        repo = issue["repository"]
+        if not _is_public_external_organization(repo):
+            continue
+        url = str(issue["url"])
+        if url in seen_external_issue_urls:
+            continue
+        seen_external_issue_urls.add(url)
+        _add_external_activity(
+            external_org_activities_by_name,
+            repo,
+            count_field="issue_count",
+            count=1,
+            occurred_at=entry["occurredAt"],
         )
 
     public_prs.sort(key=lambda item: (-_sort_ts(item.created_at), item.url))
@@ -642,20 +839,20 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
         )
     )
     public_contribs = public_contribs[:CONTRIB_LIMIT]
-    external_org_contribs = list(external_org_contribs_by_name.values())
-    external_org_contribs.sort(
+    external_org_activities = list(external_org_activities_by_name.values())
+    external_org_activities.sort(
         key=lambda item: (
             item.latest_at is None,
             -_sort_ts(item.latest_at),
             item.repo_name,
         )
     )
-    external_org_contribs = external_org_contribs[:CONTRIB_LIMIT]
+    external_org_activities = external_org_activities[:CONTRIB_LIMIT]
     commit_hours, commit_weekdays = _aggregates(normalized.get("commit_dates") or [])
     return ActivityModel(
         public_prs=public_prs,
         public_contribs=public_contribs,
-        external_org_contribs=external_org_contribs,
+        external_org_activities=external_org_activities,
         private_pr_count=private_pr_count if proven_private_prs else None,
         private_commit_count=private_commit_count if proven_private_commits else None,
         commit_hours=commit_hours,
@@ -706,6 +903,31 @@ def _render_contribution_items(
         lines.append("")
 
 
+def _render_external_activity_items(
+    lines: list[str], activities: list[PublicExternalActivity]
+) -> None:
+    for activity in activities:
+        parts: list[str] = []
+        for count, singular, plural in (
+            (activity.commit_count, "commit", "commits"),
+            (activity.pull_request_count, "pull request", "pull requests"),
+            (activity.issue_count, "issue", "issues"),
+        ):
+            if count:
+                parts.append(f"{count} {singular if count == 1 else plural}")
+        lines.append(
+            "- 🔗 "
+            f'<a href="{html.escape(activity.repo_url, quote=True)}"><code>{html.escape(activity.repo_name, quote=True)}</code></a>'
+            f" • <strong>{' · '.join(parts)}</strong>"
+            + (f" • {_iso_date(activity.latest_at)}" if activity.latest_at else "")
+        )
+        description = _clean_text(activity.description, limit=120)
+        if description:
+            lines.append("  <br>")
+            lines.append(f"  <sub>{description}</sub>")
+        lines.append("")
+
+
 def render(model: ActivityModel) -> str:
     lines: list[str] = ["### 🔁 Fresh Pull Requests", ""]
     if not model.public_prs:
@@ -740,11 +962,11 @@ def render(model: ActivityModel) -> str:
 
     lines.append("### 🤝 Contributions to Other Organizations")
     lines.append("")
-    if not model.external_org_contribs:
+    if not model.external_org_activities:
         lines.append("_No public commits to other organizations._")
         lines.append("")
     else:
-        _render_contribution_items(lines, model.external_org_contribs)
+        _render_external_activity_items(lines, model.external_org_activities)
 
     if model.contribution_repos_bounded:
         lines.append(
