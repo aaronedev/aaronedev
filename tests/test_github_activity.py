@@ -80,6 +80,7 @@ def _contrib(
     description: str | None = "A public repository",
     repo_url: str | None = None,
     owner_login: str | None = None,
+    owner_type: str | None = None,
 ) -> dict:
     name_with_owner = f"{owner}/{name}"
     repository = {
@@ -89,7 +90,11 @@ def _contrib(
         "description": description,
     }
     if owner_login is not False:
-        repository["owner"] = {"login": owner if owner_login is None else owner_login}
+        repository["owner"] = {
+            "login": owner if owner_login is None else owner_login,
+        }
+        if owner_type is not None:
+            repository["owner"]["__typename"] = owner_type
     return {"contributionCount": count, "repository": repository}
 
 
@@ -196,6 +201,38 @@ class NormalizeTest(unittest.TestCase):
 
 
 class PrivacyReduceTest(unittest.TestCase):
+    def test_public_external_organization_contributions_have_a_separate_category(
+        self,
+    ) -> None:
+        markdown = _rendered_from_raw(
+            _raw(
+                contributions=[
+                    _contrib(
+                        owner="aaronedev",
+                        name="public-dotfiles",
+                        count=2,
+                    ),
+                    _contrib(
+                        owner="community-org",
+                        name="public-library",
+                        count=5,
+                        owner_type="Organization",
+                    ),
+                ]
+            )
+        )
+
+        owned_heading = "### 🛠️ Latest Contributions"
+        external_heading = "### 🤝 Contributions to Other Organizations"
+        self.assertIn(owned_heading, markdown)
+        self.assertIn(external_heading, markdown)
+        self.assertLess(markdown.index(owned_heading), markdown.index("aaronedev/public-dotfiles"))
+        self.assertLess(markdown.index(external_heading), markdown.index("community-org/public-library"))
+        self.assertNotIn(
+            "community-org/public-library",
+            markdown[markdown.index(owned_heading) : markdown.index(external_heading)],
+        )
+
     def test_public_repo_for_each_allowed_owner_is_included(self) -> None:
         pull_requests = []
         contributions = []
@@ -298,6 +335,47 @@ class PrivacyReduceTest(unittest.TestCase):
         self.assertNotIn(UNRELATED_OWNER, markdown)
         self.assertNotIn("unrelated pr", markdown)
         self.assertNotIn("random-repo", markdown)
+        self.assertNotIn("🔒 Private activity:", markdown)
+
+    def test_external_user_owned_contributions_are_excluded(self) -> None:
+        markdown = _rendered_from_raw(
+            _raw(
+                contributions=[
+                    _contrib(
+                        owner="outside-user",
+                        name="public-fork",
+                        count=7,
+                        owner_type="User",
+                    )
+                ]
+            )
+        )
+
+        self.assertNotIn("outside-user/public-fork", markdown)
+        self.assertNotIn("7 commits", markdown)
+
+    def test_external_private_organization_is_neither_rendered_nor_aggregated(
+        self,
+    ) -> None:
+        markdown = _rendered_from_raw(
+            _raw(
+                contributions=[
+                    _contrib(
+                        owner="external-private-org",
+                        name="confidential-work",
+                        count=7,
+                        is_private=True,
+                        description="do not expose this",
+                        owner_type="Organization",
+                    )
+                ]
+            )
+        )
+
+        self.assertNotIn("external-private-org/confidential-work", markdown)
+        self.assertNotIn("confidential-work", markdown)
+        self.assertNotIn("do not expose this", markdown)
+        self.assertNotIn("7 commits", markdown)
         self.assertNotIn("🔒 Private activity:", markdown)
 
     def test_profile_meta_repo_excluded_from_public_contribs(self) -> None:
@@ -449,6 +527,51 @@ class PrivacyReduceTest(unittest.TestCase):
             )
         )
         self.assertLess(markdown.index("aaronedev/dated"), markdown.index("aaronedev/undated"))
+
+    def test_external_organization_ordering_and_limit_are_independent(self) -> None:
+        raw = _raw(
+            contributions=[
+                _contrib(owner="aaronedev", name="owned-one", count=1),
+                _contrib(owner="aaronedev", name="owned-two", count=2),
+                _contrib(
+                    owner="outside-org",
+                    name="zeta",
+                    count=3,
+                    owner_type="Organization",
+                ),
+                _contrib(
+                    owner="outside-org",
+                    name="alpha",
+                    count=4,
+                    owner_type="Organization",
+                ),
+                _contrib(
+                    owner="outside-org",
+                    name="older",
+                    count=5,
+                    owner_type="Organization",
+                ),
+            ],
+            commit_dates_by_repo={
+                "aaronedev/owned-one": ["2026-08-22T12:00:00Z"],
+                "aaronedev/owned-two": ["2026-08-21T12:00:00Z"],
+                "outside-org/zeta": ["2026-08-22T12:00:00Z"],
+                "outside-org/alpha": ["2026-08-22T12:00:00Z"],
+                "outside-org/older": ["2026-08-21T12:00:00Z"],
+            },
+        )
+
+        with mock.patch("scripts.github_activity.CONTRIB_LIMIT", 2):
+            model = privacy_reduce(normalize(raw))
+
+        self.assertEqual(
+            [contrib.repo_name for contrib in model.public_contribs],
+            ["aaronedev/owned-one", "aaronedev/owned-two"],
+        )
+        self.assertEqual(
+            [contrib.repo_name for contrib in model.external_org_contribs],
+            ["outside-org/alpha", "outside-org/zeta"],
+        )
 
     def test_timezone_buckets_use_profile_timezone(self) -> None:
         model = privacy_reduce(
@@ -710,6 +833,9 @@ class RetrievePaginationTest(unittest.TestCase):
 
         self.assertTrue(raw["contribution_repos_bounded"])
         self.assertTrue(any("maxRepositories: 100" in query for query in queries))
+        self.assertTrue(
+            any("owner { login __typename }" in query for query in queries)
+        )
 
     def test_private_pr_after_public_limit_is_counted(self) -> None:
         public_prs = [
@@ -1096,7 +1222,7 @@ class RetrievePaginationTest(unittest.TestCase):
             with self.assertRaises(ActivityCollectionError):
                 default_http("https://example.test")
 
-    def test_commit_history_skips_non_allowlisted_repos(self) -> None:
+    def test_commit_history_includes_only_public_external_organizations(self) -> None:
         queried_repos = []
         history_variables = []
 
@@ -1136,6 +1262,20 @@ class RetrievePaginationTest(unittest.TestCase):
                                             owner=UNRELATED_OWNER,
                                             name="noise",
                                             count=4,
+                                            owner_type="User",
+                                        ),
+                                        _contrib(
+                                            owner="external-public-org",
+                                            name="public-library",
+                                            count=4,
+                                            owner_type="Organization",
+                                        ),
+                                        _contrib(
+                                            owner="external-private-org",
+                                            name="private-library",
+                                            count=4,
+                                            is_private=True,
+                                            owner_type="Organization",
                                         ),
                                         _contrib(
                                             owner="aaronedev",
@@ -1187,7 +1327,9 @@ class RetrievePaginationTest(unittest.TestCase):
         raw = retrieve(http, token="token-value")
         self.assertIn("aaronedev/public-dotfiles", queried_repos)
         self.assertIn("Violet-Void/private-timing-only", queried_repos)
+        self.assertIn("external-public-org/public-library", queried_repos)
         self.assertNotIn(f"{UNRELATED_OWNER}/noise", queried_repos)
+        self.assertNotIn("external-private-org/private-library", queried_repos)
         self.assertNotIn(CANARY_VV, queried_repos)
         self.assertNotIn(CANARY_BF, queried_repos)
         self.assertEqual(history_variables[0]["authorId"], "UID")
@@ -1199,9 +1341,10 @@ class RetrievePaginationTest(unittest.TestCase):
             ["2026-01-04T23:30:00Z", "2026-01-04T23:30:00Z"],
         )
         model = privacy_reduce(normalize(raw))
-        self.assertEqual(model.commit_hours["night"], 4)
-        self.assertEqual(model.commit_weekdays["Monday"], 4)
+        self.assertEqual(model.commit_hours["night"], 6)
+        self.assertEqual(model.commit_weekdays["Monday"], 6)
         self.assertNotIn("private-timing-only", render(model))
+        self.assertNotIn("private-library", render(model))
 
 
 class RenderModelTest(unittest.TestCase):

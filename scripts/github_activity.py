@@ -78,7 +78,7 @@ query($login: String!) {
           isPrivate
           url
           description
-          owner { login }
+          owner { login __typename }
         }
       }
     }
@@ -140,6 +140,7 @@ class PublicContrib:
 class ActivityModel:
     public_prs: list[PublicPR]
     public_contribs: list[PublicContrib]
+    external_org_contribs: list[PublicContrib]
     private_pr_count: int | None
     private_commit_count: int | None
     commit_hours: dict[str, int] | None = None
@@ -201,6 +202,16 @@ def _owner_login(repo: dict[str, Any] | None) -> str | None:
     return None
 
 
+def _owner_typename(repo: dict[str, Any] | None) -> str | None:
+    if not isinstance(repo, dict):
+        return None
+    owner = repo.get("owner")
+    if isinstance(owner, dict):
+        typename = owner.get("__typename")
+        return typename if isinstance(typename, str) and typename else None
+    return None
+
+
 def _public_http_url(value: Any) -> str | None:
     if not isinstance(value, str) or not value:
         return None
@@ -249,8 +260,8 @@ def _split_name_with_owner(name_with_owner: str) -> tuple[str, str] | None:
     return owner, name
 
 
-def _allowlisted_timing_repos(*groups: list[dict[str, Any]]) -> list[str]:
-    """Use proven public/private entries from the bounded response; no extra repo query."""
+def _timing_repos(*groups: list[dict[str, Any]]) -> list[str]:
+    """Use eligible bounded entries for timing without additional repository queries."""
     names: list[str] = []
     seen: set[str] = set()
     for group in groups:
@@ -262,9 +273,17 @@ def _allowlisted_timing_repos(*groups: list[dict[str, Any]]) -> list[str]:
             if (
                 not isinstance(name, str)
                 or name in seen
-                or _owner_login(repo) not in ALLOWED_OWNERS
-                or repo.get("isPrivate") not in {False, True}
             ):
+                continue
+            owner = _owner_login(repo)
+            is_private = repo.get("isPrivate")
+            is_allowlisted = owner in ALLOWED_OWNERS and is_private in {False, True}
+            is_public_external_organization = (
+                is_private is False
+                and _owner_typename(repo) == "Organization"
+                and _has_required_contrib_fields(item)
+            )
+            if not (is_allowlisted or is_public_external_organization):
                 continue
             seen.add(name)
             names.append(name)
@@ -384,7 +403,7 @@ def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
         raise ActivityCollectionError("GitHub pull request pagination exceeded page limit")
 
     # A public-only timing list would undercount known private contributions.
-    history_repos = _allowlisted_timing_repos(pull_requests, contributions)
+    history_repos = _timing_repos(pull_requests, contributions)
     commit_dates_by_repo = _collect_commit_dates(
         http, token, author_id, history_repos, since, until
     )
@@ -561,26 +580,32 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
         )
 
     contribs_by_name: dict[str, PublicContrib] = {}
+    external_org_contribs_by_name: dict[str, PublicContrib] = {}
     for entry in normalized.get("contributions") or []:
         repo = entry.get("repository") if isinstance(entry, dict) else None
         if not isinstance(repo, dict):
             continue
         owner = _owner_login(repo)
-        if owner not in ALLOWED_OWNERS:
-            continue
         count = entry.get("contributionCount")
         try:
             count_int = int(count) if count is not None else 0
         except (TypeError, ValueError):
             count_int = 0
-        if repo.get("isPrivate") is True:
-            proven_private_commits = True
-            private_commit_count += max(count_int, 0)
-            continue
-        if repo.get("isPrivate") is not False:
+        is_allowed_owner = owner in ALLOWED_OWNERS
+        if is_allowed_owner:
+            if repo.get("isPrivate") is True:
+                proven_private_commits = True
+                private_commit_count += max(count_int, 0)
+                continue
+            if repo.get("isPrivate") is not False:
+                continue
+        elif (
+            repo.get("isPrivate") is not False
+            or _owner_typename(repo) != "Organization"
+        ):
             continue
         name = repo.get("nameWithOwner")
-        if name == PROFILE_REPO:
+        if is_allowed_owner and name == PROFILE_REPO:
             continue
         if not _has_required_contrib_fields(entry):
             continue
@@ -591,13 +616,14 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
             key=_sort_ts,
             default=None,
         )
-        existing = contribs_by_name.get(str(name))
+        target = contribs_by_name if is_allowed_owner else external_org_contribs_by_name
+        existing = target.get(str(name))
         if existing is not None:
             existing.count += count_int
             if _sort_ts(latest_at) > _sort_ts(existing.latest_at):
                 existing.latest_at = latest_at
             continue
-        contribs_by_name[str(name)] = PublicContrib(
+        target[str(name)] = PublicContrib(
             repo_url=str(repo["url"]),
             repo_name=str(name),
             count=count_int,
@@ -616,10 +642,20 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
         )
     )
     public_contribs = public_contribs[:CONTRIB_LIMIT]
+    external_org_contribs = list(external_org_contribs_by_name.values())
+    external_org_contribs.sort(
+        key=lambda item: (
+            item.latest_at is None,
+            -_sort_ts(item.latest_at),
+            item.repo_name,
+        )
+    )
+    external_org_contribs = external_org_contribs[:CONTRIB_LIMIT]
     commit_hours, commit_weekdays = _aggregates(normalized.get("commit_dates") or [])
     return ActivityModel(
         public_prs=public_prs,
         public_contribs=public_contribs,
+        external_org_contribs=external_org_contribs,
         private_pr_count=private_pr_count if proven_private_prs else None,
         private_commit_count=private_commit_count if proven_private_commits else None,
         commit_hours=commit_hours,
@@ -683,6 +719,26 @@ def render(model: ActivityModel) -> str:
         lines.append("")
     else:
         for contrib in model.public_contribs:
+            label = "commit" if contrib.count == 1 else "commits"
+            lines.append(
+                "- 🔗 "
+                f'<a href="{html.escape(contrib.repo_url, quote=True)}"><code>{html.escape(contrib.repo_name, quote=True)}</code></a>'
+                f" • <strong>{contrib.count} {label}</strong>"
+                + (f" • {_iso_date(contrib.latest_at)}" if contrib.latest_at else "")
+            )
+            description = _clean_text(contrib.description, limit=120)
+            if description:
+                lines.append("  <br>")
+                lines.append(f"  <sub>{description}</sub>")
+            lines.append("")
+
+    lines.append("### 🤝 Contributions to Other Organizations")
+    lines.append("")
+    if not model.external_org_contribs:
+        lines.append("_No public commits to other organizations._")
+        lines.append("")
+    else:
+        for contrib in model.external_org_contribs:
             label = "commit" if contrib.count == 1 else "commits"
             lines.append(
                 "- 🔗 "
