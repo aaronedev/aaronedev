@@ -54,8 +54,12 @@ def _pr_node(
     is_private: bool = False,
     description: str | None = "A public repository",
     repo_url: str | None = None,
+    owner_type: str | None = None,
 ) -> dict:
     name_with_owner = f"{owner}/{name}"
+    repo_owner = {"login": owner}
+    if owner_type is not None:
+        repo_owner["__typename"] = owner_type
     return {
         "title": title,
         "url": url,
@@ -66,7 +70,7 @@ def _pr_node(
             "isPrivate": is_private,
             "url": repo_url or f"https://github.com/{name_with_owner}",
             "description": description,
-            "owner": {"login": owner},
+            "owner": repo_owner,
         },
     }
 
@@ -98,10 +102,43 @@ def _contrib(
     return {"contributionCount": count, "repository": repository}
 
 
+def _issue_contribution(
+    *,
+    owner: str,
+    name: str,
+    occurred_at: str = "2026-08-21T12:00:00Z",
+    is_private: bool = False,
+    is_restricted: bool = False,
+    description: str | None = "A public repository",
+    repo_url: str | None = None,
+    issue_url: str | None = None,
+    owner_type: str | None = None,
+) -> dict:
+    name_with_owner = f"{owner}/{name}"
+    repo_owner = {"login": owner}
+    if owner_type is not None:
+        repo_owner["__typename"] = owner_type
+    return {
+        "occurredAt": occurred_at,
+        "isRestricted": is_restricted,
+        "issue": {
+            "url": issue_url or f"https://github.com/{name_with_owner}/issues/1",
+            "repository": {
+                "nameWithOwner": name_with_owner,
+                "isPrivate": is_private,
+                "url": repo_url or f"https://github.com/{name_with_owner}",
+                "description": description,
+                "owner": repo_owner,
+            },
+        },
+    }
+
+
 def _raw(
     *,
     pull_requests=None,
     contributions=None,
+    issue_contributions=None,
     commit_dates=None,
     commit_dates_by_repo=None,
     contribution_repos_bounded=None,
@@ -109,6 +146,7 @@ def _raw(
     payload = {
         "pull_requests": list(pull_requests or []),
         "contributions": list(contributions or []),
+        "issue_contributions": list(issue_contributions or []),
     }
     if commit_dates is not None:
         payload["commit_dates"] = list(commit_dates)
@@ -201,6 +239,39 @@ class NormalizeTest(unittest.TestCase):
 
 
 class PrivacyReduceTest(unittest.TestCase):
+    def test_external_organization_pr_and_issue_without_commit_bucket_render_once(
+        self,
+    ) -> None:
+        pull_request = _pr_node(
+            owner="community-org",
+            name="public-library",
+            title="public contribution",
+            url="https://github.com/community-org/public-library/pull/1",
+            description="public <library>",
+            owner_type="Organization",
+        )
+        issue_contribution = _issue_contribution(
+            owner="community-org",
+            name="public-library",
+            issue_url="https://github.com/community-org/public-library/issues/1",
+            owner_type="Organization",
+        )
+        markdown = _rendered_from_raw(
+            _raw(
+                pull_requests=[pull_request, dict(pull_request)],
+                issue_contributions=[issue_contribution, dict(issue_contribution)],
+            )
+        )
+
+        external_heading = "### 🤝 Contributions to Other Organizations"
+        self.assertIn(external_heading, markdown)
+        self.assertEqual(
+            markdown.count("<code>community-org/public-library</code>"), 1
+        )
+        self.assertIn("1 pull request", markdown)
+        self.assertIn("1 issue", markdown)
+        self.assertIn("public &lt;library&gt;", markdown)
+
     def test_public_external_organization_contributions_have_a_separate_category(
         self,
     ) -> None:
@@ -231,6 +302,43 @@ class PrivacyReduceTest(unittest.TestCase):
         self.assertNotIn(
             "community-org/public-library",
             markdown[markdown.index(owned_heading) : markdown.index(external_heading)],
+        )
+
+    def test_external_organization_activity_combines_commit_pr_and_issue_counts(
+        self,
+    ) -> None:
+        markdown = _rendered_from_raw(
+            _raw(
+                pull_requests=[
+                    _pr_node(
+                        owner="community-org",
+                        name="public-library",
+                        title="public contribution",
+                        url="https://github.com/community-org/public-library/pull/1",
+                        owner_type="Organization",
+                    )
+                ],
+                contributions=[
+                    _contrib(
+                        owner="community-org",
+                        name="public-library",
+                        count=1,
+                        owner_type="Organization",
+                    )
+                ],
+                issue_contributions=[
+                    _issue_contribution(
+                        owner="community-org",
+                        name="public-library",
+                        issue_url="https://github.com/community-org/public-library/issues/1",
+                        owner_type="Organization",
+                    )
+                ],
+            )
+        )
+
+        self.assertIn(
+            "<strong>1 commit · 1 pull request · 1 issue</strong>", markdown
         )
 
     def test_public_repo_for_each_allowed_owner_is_included(self) -> None:
@@ -354,6 +462,34 @@ class PrivacyReduceTest(unittest.TestCase):
         self.assertNotIn("outside-user/public-fork", markdown)
         self.assertNotIn("7 commits", markdown)
 
+    def test_external_user_prs_and_issues_are_excluded(self) -> None:
+        markdown = _rendered_from_raw(
+            _raw(
+                pull_requests=[
+                    _pr_node(
+                        owner="outside-user",
+                        name="public-fork",
+                        title="do not show",
+                        url="https://github.com/outside-user/public-fork/pull/1",
+                        owner_type="User",
+                    )
+                ],
+                issue_contributions=[
+                    _issue_contribution(
+                        owner="outside-user",
+                        name="public-fork",
+                        issue_url="https://github.com/outside-user/public-fork/issues/1",
+                        owner_type="User",
+                    )
+                ],
+            )
+        )
+
+        self.assertNotIn("outside-user/public-fork", markdown)
+        self.assertNotIn("do not show", markdown)
+        self.assertNotIn("1 pull request", markdown)
+        self.assertNotIn("1 issue", markdown)
+
     def test_external_private_organization_is_neither_rendered_nor_aggregated(
         self,
     ) -> None:
@@ -376,6 +512,47 @@ class PrivacyReduceTest(unittest.TestCase):
         self.assertNotIn("confidential-work", markdown)
         self.assertNotIn("do not expose this", markdown)
         self.assertNotIn("7 commits", markdown)
+        self.assertNotIn("🔒 Private activity:", markdown)
+
+    def test_external_private_and_restricted_issues_do_not_leak_metadata(self) -> None:
+        markdown = _rendered_from_raw(
+            _raw(
+                pull_requests=[
+                    _pr_node(
+                        owner="private-org",
+                        name="confidential-issue-tracker",
+                        title="private pull request title",
+                        url="https://github.com/private-org/confidential-issue-tracker/pull/1",
+                        is_private=True,
+                        owner_type="Organization",
+                    )
+                ],
+                issue_contributions=[
+                    _issue_contribution(
+                        owner="private-org",
+                        name="confidential-issue-tracker",
+                        is_private=True,
+                        description="private issue description",
+                        issue_url="https://github.com/private-org/confidential-issue-tracker/issues/1",
+                        owner_type="Organization",
+                    ),
+                    _issue_contribution(
+                        owner="restricted-org",
+                        name="restricted-issue-tracker",
+                        is_restricted=True,
+                        description="restricted issue description",
+                        issue_url="https://github.com/restricted-org/restricted-issue-tracker/issues/1",
+                        owner_type="Organization",
+                    ),
+                ]
+            )
+        )
+
+        self.assertNotIn("private-org/confidential-issue-tracker", markdown)
+        self.assertNotIn("private pull request title", markdown)
+        self.assertNotIn("private issue description", markdown)
+        self.assertNotIn("restricted-org/restricted-issue-tracker", markdown)
+        self.assertNotIn("restricted issue description", markdown)
         self.assertNotIn("🔒 Private activity:", markdown)
 
     def test_profile_meta_repo_excluded_from_public_contribs(self) -> None:
@@ -569,7 +746,7 @@ class PrivacyReduceTest(unittest.TestCase):
             ["aaronedev/owned-one", "aaronedev/owned-two"],
         )
         self.assertEqual(
-            [contrib.repo_name for contrib in model.external_org_contribs],
+            [activity.repo_name for activity in model.external_org_activities],
             ["outside-org/alpha", "outside-org/zeta"],
         )
 
@@ -624,6 +801,16 @@ class PrivacyReduceTest(unittest.TestCase):
 
 
 class RetrievePaginationTest(unittest.TestCase):
+    def setUp(self) -> None:
+        self.issue_contribution_patcher = mock.patch(
+            "scripts.github_activity._retrieve_issue_contributions",
+            return_value=[],
+        )
+        self.issue_contribution_patcher.start()
+
+    def tearDown(self) -> None:
+        self.issue_contribution_patcher.stop()
+
     def test_pr_pagination_reaches_older_boundary_after_more_than_ten_pages(
         self,
     ) -> None:
@@ -1345,6 +1532,245 @@ class RetrievePaginationTest(unittest.TestCase):
         self.assertEqual(model.commit_weekdays["Monday"], 6)
         self.assertNotIn("private-timing-only", render(model))
         self.assertNotIn("private-library", render(model))
+
+    def test_pr_only_external_organization_does_not_query_commit_history(self) -> None:
+        queried_repos: list[str] = []
+        external_pr = _pr_node(
+            owner="external-public-org",
+            name="public-library",
+            title="public contribution",
+            url="https://github.com/external-public-org/public-library/pull/1",
+            owner_type="Organization",
+        )
+
+        def http(url, *, method="GET", headers=None, json_body=None):
+            query = (json_body or {}).get("query", "")
+            variables = (json_body or {}).get("variables") or {}
+            if "commitContributionsByRepository" in query:
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "viewer": {"login": AUTHOR_LOGIN},
+                            "user": {
+                                "id": "UID",
+                                "contributionsCollection": {
+                                    "startedAt": "2026-08-01T00:00:00Z",
+                                    "endedAt": "2026-08-31T00:00:00Z",
+                                    "commitContributionsByRepository": [],
+                                },
+                            },
+                        }
+                    },
+                }
+            if "pullRequests" in query:
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "user": {
+                                "pullRequests": {
+                                    "nodes": [external_pr],
+                                    "pageInfo": {"hasNextPage": False, "endCursor": None},
+                                }
+                            }
+                        }
+                    },
+                }
+            if "history" in query:
+                queried_repos.append(
+                    f"{variables.get('owner')}/{variables.get('name')}"
+                )
+                return {"status": 200, "json": {"data": {"repository": None}}}
+            raise AssertionError(f"unexpected query: {query}")
+
+        raw = retrieve(http, token="token-value")
+
+        self.assertEqual(queried_repos, [])
+        model = privacy_reduce(normalize(raw))
+        self.assertEqual(
+            [(item.repo_name, item.pull_request_count) for item in model.external_org_activities],
+            [("external-public-org/public-library", 1)],
+        )
+
+
+class IssueContributionRetrieveTest(unittest.TestCase):
+    @staticmethod
+    def _contribution_response() -> dict:
+        return {
+            "status": 200,
+            "json": {
+                "data": {
+                    "viewer": {"login": AUTHOR_LOGIN},
+                    "user": {
+                        "id": "UID",
+                        "contributionsCollection": {
+                            "startedAt": "2026-08-01T00:00:00Z",
+                            "endedAt": "2026-08-31T00:00:00Z",
+                            "commitContributionsByRepository": [],
+                        },
+                    },
+                }
+            },
+        }
+
+    def test_retrieve_collects_paginated_issue_contributions_and_queries_typenames(
+        self,
+    ) -> None:
+        first_issue = _issue_contribution(
+            owner="community-org",
+            name="public-library",
+            occurred_at="2026-08-20T12:00:00Z",
+            issue_url="https://github.com/community-org/public-library/issues/1",
+            owner_type="Organization",
+        )
+        second_issue = _issue_contribution(
+            owner="community-org",
+            name="public-library",
+            occurred_at="2026-08-19T12:00:00Z",
+            issue_url="https://github.com/community-org/public-library/issues/2",
+            owner_type="Organization",
+        )
+        queries: list[str] = []
+        issue_cursors: list[str | None] = []
+
+        def http(url, *, method="GET", headers=None, json_body=None):
+            query = (json_body or {}).get("query", "")
+            variables = (json_body or {}).get("variables") or {}
+            queries.append(query)
+            if "commitContributionsByRepository" in query:
+                return self._contribution_response()
+            if "issueContributions" in query:
+                after = variables.get("after")
+                issue_cursors.append(after)
+                if after is None:
+                    nodes = [first_issue]
+                    page_info = {"hasNextPage": True, "endCursor": "issue-page-2"}
+                elif after == "issue-page-2":
+                    nodes = [second_issue]
+                    page_info = {"hasNextPage": False, "endCursor": None}
+                else:
+                    raise AssertionError(f"unexpected issue cursor: {after}")
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "user": {
+                                "contributionsCollection": {
+                                    "issueContributions": {
+                                        "nodes": nodes,
+                                        "pageInfo": page_info,
+                                    }
+                                }
+                            }
+                        }
+                    },
+                }
+            if "pullRequests" in query:
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "user": {
+                                "pullRequests": {
+                                    "nodes": [],
+                                    "pageInfo": {"hasNextPage": False, "endCursor": None},
+                                }
+                            }
+                        }
+                    },
+                }
+            raise AssertionError(f"unexpected query: {query}")
+
+        with mock.patch("scripts.github_activity._collect_commit_dates", return_value={}):
+            raw = retrieve(http, token="token-value")
+
+        self.assertEqual(issue_cursors, [None, "issue-page-2"])
+        self.assertEqual(raw["issue_contributions"], [first_issue, second_issue])
+        self.assertEqual(normalize(raw)["issue_contributions"], [first_issue, second_issue])
+        pr_query = next(query for query in queries if "pullRequests" in query)
+        issue_query = next(query for query in queries if "issueContributions" in query)
+        self.assertIn("owner { login __typename }", pr_query)
+        self.assertIn("owner { login __typename }", issue_query)
+        self.assertIn(
+            "issueContributions(first: $first, after: $after, orderBy: {direction: DESC})",
+            issue_query,
+        )
+
+    def test_issue_contribution_collection_unavailable_fails_closed(self) -> None:
+        def http(url, *, method="GET", headers=None, json_body=None):
+            query = (json_body or {}).get("query", "")
+            if "commitContributionsByRepository" in query:
+                return self._contribution_response()
+            if "issueContributions" in query:
+                return {"status": 200, "json": {"data": {"user": {}}}}
+            raise AssertionError(f"unexpected query: {query}")
+
+        with self.assertRaises(ActivityCollectionError):
+            retrieve(http, token="token-value")
+
+    def test_issue_contribution_pagination_rejects_missing_cursor(self) -> None:
+        def http(url, *, method="GET", headers=None, json_body=None):
+            query = (json_body or {}).get("query", "")
+            if "commitContributionsByRepository" in query:
+                return self._contribution_response()
+            if "issueContributions" in query:
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "user": {
+                                "contributionsCollection": {
+                                    "issueContributions": {
+                                        "nodes": [],
+                                        "pageInfo": {
+                                            "hasNextPage": True,
+                                            "endCursor": None,
+                                        },
+                                    }
+                                }
+                            }
+                        }
+                    },
+                }
+            raise AssertionError(f"unexpected query: {query}")
+
+        with self.assertRaises(ActivityCollectionError):
+            retrieve(http, token="token-value")
+
+    def test_issue_contribution_pagination_rejects_repeated_cursor(self) -> None:
+        calls = 0
+
+        def http(url, *, method="GET", headers=None, json_body=None):
+            nonlocal calls
+            query = (json_body or {}).get("query", "")
+            if "commitContributionsByRepository" in query:
+                return self._contribution_response()
+            if "issueContributions" in query:
+                calls += 1
+                return {
+                    "status": 200,
+                    "json": {
+                        "data": {
+                            "user": {
+                                "contributionsCollection": {
+                                    "issueContributions": {
+                                        "nodes": [],
+                                        "pageInfo": {
+                                            "hasNextPage": True,
+                                            "endCursor": "repeat",
+                                        },
+                                    }
+                                }
+                            }
+                        }
+                    },
+                }
+            raise AssertionError(f"unexpected query: {query}")
+
+        with self.assertRaises(ActivityCollectionError):
+            retrieve(http, token="token-value")
+        self.assertEqual(calls, 2)
 
 
 class RenderModelTest(unittest.TestCase):
