@@ -565,6 +565,8 @@ def normalize(raw: dict[str, Any]) -> dict[str, Any]:
     if issue_contributions is None:
         data = raw.get("data") or {}
         collection = ((data.get("user") or {}).get("contributionsCollection"))
+        if collection is None:
+            collection = ((data.get("viewer") or {}).get("contributionsCollection"))
         issue_contributions = (collection or {}).get("issueContributions") or {}
         if isinstance(issue_contributions, dict):
             issue_contributions = issue_contributions.get("nodes") or []
