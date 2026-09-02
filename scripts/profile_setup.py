@@ -11,14 +11,27 @@ import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 
 _ROOT = Path(__file__).resolve().parent.parent
-PROFILE_START = "<!--START_SECTION:profile-->"
-PROFILE_END = "<!--END_SECTION:profile-->"
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
+from scripts.readme_config import (
+    ACTIVITY_END,
+    ACTIVITY_START,
+    PROFILE_END,
+    PROFILE_START,
+    WAKA_END,
+    WAKA_START,
+)
+
 _GITHUB_LOGIN = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$")
 _RUNS_ON = re.compile(r"^([ \t]*)runs-on:[^\n]*$", re.MULTILINE)
 _MARKER_TOKENS = ("<!--START_SECTION:", "<!--END_SECTION:", "PROFILE_START", "PROFILE_END")
+_NEUTRAL_ACTIVITY = "\n_Activity will appear after you run the README workflow._\n"
+_NEUTRAL_WAKA = "\n_WakaTime stats will appear after you run the README workflow._\n"
 
 
 class ProfileSetupError(ValueError):
@@ -69,6 +82,15 @@ def validate_one_line(value: str, field: str, *, required: bool = True) -> str:
     return cleaned
 
 
+def validate_timezone(value: str) -> str:
+    timezone = validate_one_line(value, "timezone")
+    try:
+        ZoneInfo(timezone)
+    except ZoneInfoNotFoundError as exc:
+        raise ProfileSetupError(f"timezone must be a valid IANA timezone: {timezone}") from exc
+    return timezone
+
+
 def parse_semicolon_items(value: str, field: str) -> tuple[str, ...]:
     if not value.strip():
         return ()
@@ -93,7 +115,7 @@ def validate_answers(answers: ProfileAnswers) -> ProfileAnswers:
     github_login = validate_github_login(answers.github_login)
     what_i_build = validate_one_line(answers.what_i_build, "what you build")
     intro = validate_one_line(answers.intro, "intro", required=False)
-    timezone = validate_one_line(answers.timezone, "timezone")
+    timezone = validate_timezone(answers.timezone)
     owners = answers.project_owners or (github_login,)
     validated_owners = tuple(validate_github_login(owner) for owner in owners)
     if github_login not in validated_owners:
@@ -195,6 +217,21 @@ def _replace_profile_section(text: str, profile: str) -> str:
     return text[:start_at] + profile + text[end_at + len(PROFILE_END) :]
 
 
+def _replace_bounded_section(text: str, start: str, end: str, inner: str) -> str:
+    if text.count(start) != 1 or text.count(end) != 1:
+        raise ProfileSetupError(f"expected exactly one bounded section: {start} / {end}")
+    start_at = text.find(start)
+    end_at = text.find(end)
+    if end_at < start_at:
+        raise ProfileSetupError(f"section markers are inverted: {start} / {end}")
+    return text[: start_at + len(start)] + inner + text[end_at:]
+
+
+def _neutralize_dynamic_sections(text: str) -> str:
+    text = _replace_bounded_section(text, ACTIVITY_START, ACTIVITY_END, _NEUTRAL_ACTIVITY)
+    return _replace_bounded_section(text, WAKA_START, WAKA_END, _NEUTRAL_WAKA)
+
+
 def _replace_runner(text: str) -> str:
     matches = list(_RUNS_ON.finditer(text))
     if len(matches) != 1:
@@ -221,6 +258,23 @@ def _atomic_write(path: Path, text: str) -> None:
         raise
 
 
+def _restore_file(path: Path, contents: bytes, mode: int) -> None:
+    descriptor, temporary = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".restore", dir=path.parent
+    )
+    try:
+        os.fchmod(descriptor, mode)
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(contents)
+        os.replace(temporary, path)
+    except Exception:
+        try:
+            os.unlink(temporary)
+        except OSError:
+            pass
+        raise
+
+
 def build_updates(paths: ProfilePaths, answers: ProfileAnswers) -> dict[Path, str]:
     answers = validate_answers(answers)
     config = _read_regular_file(paths.config)
@@ -230,6 +284,8 @@ def build_updates(paths: ProfilePaths, answers: ProfileAnswers) -> dict[Path, st
     profile = render_profile(answers)
     owner_values = ", ".join(json.dumps(owner) for owner in answers.project_owners)
     owners = f"({owner_values}{',' if len(answers.project_owners) == 1 else ''})"
+    template = _neutralize_dynamic_sections(_replace_profile_section(template, profile))
+    readme = _neutralize_dynamic_sections(_replace_profile_section(readme, profile))
     updates = {
         paths.config: _replace_assignment(
             _replace_assignment(
@@ -244,8 +300,8 @@ def build_updates(paths: ProfilePaths, answers: ProfileAnswers) -> dict[Path, st
             "PROFILE_TIMEZONE",
             json.dumps(answers.timezone),
         ),
-        paths.template: _replace_profile_section(template, profile),
-        paths.readme: _replace_profile_section(readme, profile),
+        paths.template: template,
+        paths.readme: readme,
     }
     if answers.use_ubuntu_runner:
         if paths.workflow is None:
@@ -256,8 +312,19 @@ def build_updates(paths: ProfilePaths, answers: ProfileAnswers) -> dict[Path, st
 
 def apply_profile_setup(paths: ProfilePaths, answers: ProfileAnswers) -> dict[Path, str]:
     updates = build_updates(paths, answers)
-    for path, text in updates.items():
-        _atomic_write(path, text)
+    originals = {
+        path: (path.read_bytes(), stat.S_IMODE(path.stat().st_mode)) for path in updates
+    }
+    try:
+        for path, text in updates.items():
+            _atomic_write(path, text)
+    except Exception:
+        for path, (contents, mode) in originals.items():
+            try:
+                _restore_file(path, contents, mode)
+            except OSError:
+                pass
+        raise
     return updates
 
 

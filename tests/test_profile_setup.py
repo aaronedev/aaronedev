@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import shutil
+import stat
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
+from scripts.readme_config import ACTIVITY_END, ACTIVITY_START, WAKA_END, WAKA_START
 from scripts.profile_setup import (
     PROFILE_END,
     PROFILE_START,
@@ -91,17 +94,33 @@ class ProfileSetupTest(unittest.TestCase):
                 original_template.split("<!--START_SECTION:profile-->", 1)[0],
             )
             self.assertEqual(
-                template_text.split("<!--END_SECTION:profile-->", 1)[1],
-                original_template.split("<!--END_SECTION:profile-->", 1)[1],
+                self._without_dynamic_sections(
+                    template_text.split("<!--END_SECTION:profile-->", 1)[1]
+                ),
+                self._without_dynamic_sections(
+                    original_template.split("<!--END_SECTION:profile-->", 1)[1]
+                ),
             )
             self.assertEqual(
                 readme_text.split("<!--START_SECTION:profile-->", 1)[0],
                 original_readme.split("<!--START_SECTION:profile-->", 1)[0],
             )
             self.assertEqual(
-                readme_text.split("<!--END_SECTION:profile-->", 1)[1],
-                original_readme.split("<!--END_SECTION:profile-->", 1)[1],
+                self._without_dynamic_sections(
+                    readme_text.split("<!--END_SECTION:profile-->", 1)[1]
+                ),
+                self._without_dynamic_sections(
+                    original_readme.split("<!--END_SECTION:profile-->", 1)[1]
+                ),
             )
+
+    @staticmethod
+    def _without_dynamic_sections(text: str) -> str:
+        for start, end in ((ACTIVITY_START, ACTIVITY_END), (WAKA_START, WAKA_END)):
+            start_at = text.index(start) + len(start)
+            end_at = text.index(end)
+            text = text[:start_at] + text[end_at:]
+        return text
 
     def test_defaults_and_html_escaping_are_safe(self) -> None:
         answers = validate_answers(
@@ -119,6 +138,73 @@ class ProfileSetupTest(unittest.TestCase):
         self.assertEqual(profile.count("\n- "), 7)
         self.assertIn("Build a small public project", profile)
         self.assertIn("Software design", profile)
+
+    def test_invalid_timezone_fails_before_writes(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            paths = self._paths(Path(temp_dir))
+            before = {path: path.read_bytes() for path in (paths.config, paths.template, paths.readme)}
+
+            with self.assertRaises(ProfileSetupError):
+                apply_profile_setup(paths, self._answers(timezone="Not/A_Timezone"))
+
+            self.assertEqual({path: path.read_bytes() for path in before}, before)
+
+    def test_apply_neutralizes_inherited_dynamic_sections(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            paths = self._paths(Path(temp_dir))
+            for path in (paths.template, paths.readme):
+                text = path.read_text(encoding="utf-8")
+                text = text.replace(
+                    f"{ACTIVITY_START}\n{ACTIVITY_END}",
+                    f"{ACTIVITY_START}\nupstream activity\n{ACTIVITY_END}",
+                )
+                text = text.replace(
+                    f"{WAKA_START}\n{WAKA_END}",
+                    f"{WAKA_START}\nupstream waka\n{WAKA_END}",
+                )
+                path.write_text(text, encoding="utf-8")
+
+            apply_profile_setup(paths, self._answers(use_ubuntu_runner=False))
+
+            for path in (paths.template, paths.readme):
+                text = path.read_text(encoding="utf-8")
+                self.assertNotIn("upstream activity", text)
+                self.assertNotIn("upstream waka", text)
+                self.assertIn("Activity will appear after you run the README workflow.", text)
+                self.assertIn("WakaTime stats will appear after you run the README workflow.", text)
+
+    def test_apply_restores_every_file_and_mode_when_a_write_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            paths = self._paths(Path(temp_dir))
+            targets = (paths.config, paths.template, paths.readme, paths.workflow)
+            for index, path in enumerate(targets):
+                path.chmod(0o600 + index)
+            before = {
+                path: (path.read_bytes(), stat.S_IMODE(path.stat().st_mode)) for path in targets
+            }
+            from scripts import profile_setup
+
+            original_write = profile_setup._atomic_write
+            writes = 0
+
+            def fail_second_write(path: Path, text: str) -> None:
+                nonlocal writes
+                writes += 1
+                if writes == 2:
+                    raise OSError("simulated write failure")
+                original_write(path, text)
+
+            with patch("scripts.profile_setup._atomic_write", side_effect=fail_second_write):
+                with self.assertRaises(OSError):
+                    apply_profile_setup(paths, self._answers())
+
+            self.assertEqual(
+                {
+                    path: (path.read_bytes(), stat.S_IMODE(path.stat().st_mode))
+                    for path in targets
+                },
+                before,
+            )
 
     def test_single_default_owner_stays_a_tuple(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

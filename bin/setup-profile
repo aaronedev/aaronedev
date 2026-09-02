@@ -125,10 +125,31 @@ _parse_args() {
 }
 
 _configure_state_paths() {
+  local state_hash
   [[ "$WIZARD_ID" =~ ^[a-z0-9][a-z0-9._-]*$ ]] ||
     fail "WIZARD_ID must use lowercase letters, digits, dot, underscore, or dash"
-  STATE_DIR="${WIZARD_STATE_DIR:-${STATE_BASE}/${WIZARD_ID}}"
+  CHECKOUT_ROOT="$(cd "$REPO_ROOT" && pwd -P)" ||
+    fail "could not resolve the checkout root"
+  state_hash="$(printf '%s' "$CHECKOUT_ROOT" | cksum)"
+  state_hash="${state_hash%% *}"
+  STATE_DIR="${WIZARD_STATE_DIR:-${STATE_BASE}/${WIZARD_ID}/${state_hash}}"
   JOURNAL_FILE="${STATE_DIR}/journal.tsv"
+  STATE_IDENTITY_FILE="${STATE_DIR}/checkout-identity.tsv"
+}
+
+_state_identity() {
+  local top_level common_dir
+  top_level="$(git -C "$REPO_ROOT" rev-parse --show-toplevel)" ||
+    fail "could not resolve the checked-out repository"
+  top_level="$(cd "$top_level" && pwd -P)" ||
+    fail "could not resolve the checked-out repository"
+  common_dir="$(git -C "$top_level" rev-parse --git-common-dir)" ||
+    fail "could not resolve repository metadata"
+  if [[ "$common_dir" != /* ]]; then
+    common_dir="$(cd "$top_level/$common_dir" && pwd -P)" ||
+      fail "could not resolve repository metadata"
+  fi
+  printf '%s\t%s\n' "$top_level" "$common_dir"
 }
 
 _require_authored() {
@@ -141,8 +162,23 @@ _require_authored() {
 }
 
 _init_state() {
+  local identity
   ((_STATE_READY == 0)) || return 0
+  identity="$(_state_identity)"
+  if [[ -e "$STATE_DIR" && ! -f "$STATE_IDENTITY_FILE" ]]; then
+    fail "state directory is missing checkout identity: $STATE_DIR"
+  fi
+  if [[ -f "$STATE_IDENTITY_FILE" ]]; then
+    [[ "$(cat "$STATE_IDENTITY_FILE")" == "$identity" ]] ||
+      fail "state directory belongs to another repository or checkout"
+  elif [[ "$MODE" == "rollback" ]]; then
+    fail "no state exists for this repository checkout"
+  fi
   mkdir -p "$STATE_DIR/backups"
+  if [[ ! -f "$STATE_IDENTITY_FILE" ]]; then
+    printf '%s\n' "$identity" >"$STATE_IDENTITY_FILE"
+    chmod 600 "$STATE_IDENTITY_FILE"
+  fi
   if [[ ! -f "$JOURNAL_FILE" ]]; then
     printf 'ts\tmode\tstage\tresult\n' >"$JOURNAL_FILE"
   fi
@@ -151,7 +187,7 @@ _init_state() {
 
 _journal() {
   [[ "$MODE" == "apply" || "$MODE" == "rollback" ]] || return 0
-  _init_state
+  [[ "$_STATE_READY" == "1" ]] || return 0
   local result="$1"
   printf '%s\t%s\t%s\t%s\n' \
     "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
@@ -674,6 +710,14 @@ verify_origin_fork() {
     fail "refusing to apply: origin must be a GitHub fork"
 }
 
+verify_profile_repository() {
+  local expected_slug actual_slug
+  expected_slug="${GITHUB_LOGIN,,}/${GITHUB_LOGIN,,}"
+  actual_slug="${REPO_SLUG,,}"
+  [[ "$actual_slug" == "$expected_slug" ]] ||
+    fail "refusing to apply: fork repository must be ${GITHUB_LOGIN}/${GITHUB_LOGIN}"
+}
+
 preflight_guard() {
   [[ "$MODE" == "apply" ]] || return 0
   require_command git
@@ -771,10 +815,11 @@ manual_github_setup() {
   point_of_no_return "Manual secret, browser, and Actions settings changes cannot be rolled back by this wizard."
   manual_change "Open or visit the Actions secrets page. Configure your own GH_TOKEN and optional WAKATIME_API_KEY; never paste them into this wizard."
   open_url "https://github.com/${slug}/settings/secrets/actions"
-  manual_change "Enable Actions Read and write workflow permissions, then open the README workflow. Do not run it until your settings are ready."
+  manual_change "Review the generated files, commit them, and push them to your fork before enabling or running the README workflow."
+  manual_change "Enable Actions Read and write workflow permissions, then open the README workflow. Do not run it until the generated files are committed and pushed."
   open_url "https://github.com/${slug}/settings/actions"
   open_url "https://github.com/${slug}/actions/workflows/readme.yaml"
-  SKIPPED+=("Run the Update README workflow manually after configuring your own credentials and permissions.")
+  SKIPPED+=("After reviewing, committing, and pushing the generated files, run the Update README workflow manually with your own credentials and permissions.")
 }
 
 forward_procedure() {
@@ -806,6 +851,7 @@ forward_procedure() {
     [Yy] | [Yy][Ee][Ss]) USE_UBUNTU_RUNNER="yes" ;;
     *) USE_UBUNTU_RUNNER="no" ;;
   esac
+  verify_cmd "fork repository matches the selected profile login" verify_profile_repository
   verify_cmd "Validate profile answers and bounded file targets" profile_check_args
   complete_stage
 
