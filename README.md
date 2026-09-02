@@ -197,8 +197,8 @@ Check discussion page or click badge above to see install instructions if u want
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
-- 🟣 <a href="https://github.com/aaronedev/aaronedev/pull/26"><strong>feat(profile): add figmix profile asset generator</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-02 • OPEN</sub>
+- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/26"><strong>feat(profile): add figmix profile asset generator</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-02 • MERGED</sub>
   <br>
   <sub>github profile aaronedev</sub>
 
@@ -207,8 +207,8 @@ Check discussion page or click badge above to see install instructions if u want
   <br>
   <sub>github profile aaronedev</sub>
 
-- 🟣 <a href="https://github.com/aaronedev/aaronedev/pull/24"><strong>fix(readme): include external organization activity</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-02 • OPEN</sub>
+- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/24"><strong>fix(readme): include external organization activity</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-02 • MERGED</sub>
   <br>
   <sub>github profile aaronedev</sub>
 
@@ -269,11 +269,25 @@ Check discussion page or click badge above to see install instructions if u want
 
 ### 🤝 Contributions to Other Organizations
 
-_No public commits to other organizations._
+- 🔗 <a href="https://github.com/anomalyco/opencode"><code>anomalyco/opencode</code></a> • <strong>2 issues</strong> • 2026-08-24
+  <br>
+  <sub>The open source coding agent.</sub>
+
+- 🔗 <a href="https://github.com/super-productivity/super-productivity"><code>super-productivity/super-productivity</code></a> • <strong>1 pull request · 1 issue</strong> • 2026-08-11
+  <br>
+  <sub>Super Productivity is an advanced todo list app with integrated Timeboxing and time tracking capabilities. It also comes</sub>
+
+- 🔗 <a href="https://github.com/hyprland-community/hyprland-autoname-workspaces"><code>hyprland-community/hyprland-autoname-workspaces</code></a> • <strong>1 pull request</strong> • 2025-10-20
+  <br>
+  <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz, @shivros] </sub>
+
+- 🔗 <a href="https://github.com/zen-browser/theme-store"><code>zen-browser/theme-store</code></a> • <strong>1 issue</strong> • 2025-09-03
+  <br>
+  <sub>🎨 Theme repository for @zen-browser!</sub>
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 2163 pull requests · at least 23571 commits
+🔒 Private activity: 2164 pull requests · at least 23575 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -288,9 +302,9 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6895 commits     ███████░░░░░░░░░░░░░░░░░░   27.26%
-🌆 Daytime    9823 commits     ██████████░░░░░░░░░░░░░░░   38.84%
-🌃 Evening    5912 commits     ██████░░░░░░░░░░░░░░░░░░░   23.37%
+🌞 Morning    6895 commits     ███████░░░░░░░░░░░░░░░░░░   27.25%
+🌆 Daytime    9821 commits     ██████████░░░░░░░░░░░░░░░   38.82%
+🌃 Evening    5922 commits     ██████░░░░░░░░░░░░░░░░░░░   23.41%
 🌙 Night      2663 commits     ███░░░░░░░░░░░░░░░░░░░░░░   10.53%
 
 ```
@@ -298,13 +312,13 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3717 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.7%
-Tuesday      3480 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.76%
-Wednesday    3293 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.02%
-Thursday     4394 commits     ████░░░░░░░░░░░░░░░░░░░░░   17.37%
-Friday       3480 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.76%
-Saturday     3275 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.95%
-Sunday       3654 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.45%
+Monday       3717 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.69%
+Tuesday      3479 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.75%
+Wednesday    3301 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.05%
+Thursday     4395 commits     ████░░░░░░░░░░░░░░░░░░░░░   17.37%
+Friday       3480 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.75%
+Saturday     3275 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.94%
+Sunday       3654 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.44%
 
 ```
 
@@ -316,21 +330,21 @@ Sunday       3654 commits     ████░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   61 hrs 5 mins      █████████████████░░░░░░░░   68.37%
-Markdown                 8 hrs 58 mins      ███░░░░░░░░░░░░░░░░░░░░░░   10.05%
-Other                    2 hrs 58 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.33%
-Lua                      2 hrs 47 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.13%
-JavaScript               2 hrs 46 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.11%
+Python                   51 hrs 58 mins     ████████████████░░░░░░░░░   63.21%
+Markdown                 9 hrs 28 mins      ███░░░░░░░░░░░░░░░░░░░░░░   11.53%
+Lua                      2 hrs 50 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.45%
+JavaScript               2 hrs 48 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.42%
+Other                    2 hrs 45 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.35%
 
 🔥 Editors: 
-Neovim                   32 hrs 37 mins     █████████░░░░░░░░░░░░░░░░   36.52%
-Codex Vscode             29 hrs 48 mins     ████████░░░░░░░░░░░░░░░░░   33.35%
-Vim                      15 hrs 47 mins     ████░░░░░░░░░░░░░░░░░░░░░   17.67%
-Opencode Cli             10 hrs 19 mins     ███░░░░░░░░░░░░░░░░░░░░░░   11.55%
-Codex CLI                45 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.85%
+Codex Vscode             29 hrs 40 mins     █████████░░░░░░░░░░░░░░░░   36.08%
+Neovim                   25 hrs 36 mins     ████████░░░░░░░░░░░░░░░░░   31.13%
+Vim                      15 hrs 56 mins     █████░░░░░░░░░░░░░░░░░░░░   19.38%
+Opencode Cli             10 hrs 12 mins     ███░░░░░░░░░░░░░░░░░░░░░░   12.42%
+Codex CLI                45 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.93%
 
 💻 Operating System: 
-Linux                    89 hrs 20 mins     █████████████████████████   100%
+Linux                    82 hrs 14 mins     █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
