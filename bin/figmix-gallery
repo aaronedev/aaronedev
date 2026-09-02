@@ -17,6 +17,11 @@ output_name=""
 source_path="${FIGMIX_BASH_SOURCE:-${DEFAULT_SOURCE_PATH}}"
 forward_args=()
 temporary_files=()
+combine_layouts=0
+max_variants=""
+
+readonly -a LAYOUT_ALIGNS=(top middle bottom)
+readonly -a LAYOUT_SPACES=(0 1 3 6)
 
 usage() {
   cat <<'EOF'
@@ -28,6 +33,8 @@ Bash module. Style arguments following -- are forwarded unchanged to the selecte
 Modes:
   --profile                    Render the fixed profile figmix word-split banner.
   --all                        Render every curated static feature axis.
+  --all-layouts                Render each static figmix split, box, alignment, and spacing axis.
+  --all-filters                Render each figmix TOIlet filter position plus an unfiltered control.
   --all-mixes                  Render every ordered curated two-sided figmix font pairing.
   --capture KIND               Capture one real function: figmix, toiletbox, or figletbox.
 
@@ -38,14 +45,20 @@ Options:
   --output-dir DIR             Generated artifact directory. Profile/capture default to the
                                repository's assets/generated path.
   --format FORMAT              text, png, or both (default: both).
+  --combine-layouts            With --all-mixes, render every finite split/box/align/spacing
+                               combination for each ordered font mix. Requires --max-variants.
+  --max-variants N             Required cap for --all-mixes --combine-layouts.
   --                           Forward all remaining real style arguments verbatim.
   --help                       Show this help.
 
 Live timer arguments (--timer, --heading, alarms, and related options) are refused in --capture:
 they do not terminate into a stable static artifact.
 
---all and --all-mixes can create broad galleries and require an explicit --output-dir. This avoids
-unexpected output when the command is run from a subdirectory.
+Broad gallery modes require an explicit --output-dir. This avoids unexpected output when the
+command is run from a subdirectory.
+
+--combine-layouts calculates the exact planned count from the source-owned curated arrays before
+sourcing or rendering and refuses work above --max-variants.
 
 Environment:
   FIGMIX_BASH_SOURCE           Explicit toiletbox_figletbox.sh source path.
@@ -103,6 +116,102 @@ shell_command() {
 slugify() {
   printf '%s' "$1" | tr '[:upper:] ' '[:lower:]-' | tr -cs 'a-z0-9._-' '-' | \
     sed -E 's/^-+//; s/-+$//'
+}
+
+has_multiple_words() {
+  [[ "${text}" =~ [^[:space:]][[:space:]]+[^[:space:]] ]]
+}
+
+character_split_count() {
+  local length=${#text}
+  if ((length > 1)); then
+    printf '%s\n' "$((length - 1))"
+  else
+    printf '0\n'
+  fi
+}
+
+# Count literal source-owned array entries without executing the module. This is deliberately
+# limited to the static declaration format used by the canonical module, and is only used for the
+# --combine-layouts safety preflight. The real module is still sourced before any actual capture.
+literal_array_count() {
+  local array_name="$1"
+  local line=""
+  local remainder=""
+  local content=""
+  local collecting=0
+  local character=""
+  local quote=""
+  local token_started=0
+  local count=0
+  local index=0
+
+  while IFS= read -r line || [[ -n "${line}" ]]; do
+    if ((collecting == 0)); then
+      line="${line#"${line%%[![:space:]]*}"}"
+      [[ "${line}" == "${array_name}"* ]] || continue
+      remainder="${line#"${array_name}"}"
+      remainder="${remainder#"${remainder%%[![:space:]]*}"}"
+      [[ "${remainder}" == =\(* ]] || continue
+      remainder="${remainder#=\(}"
+      collecting=1
+    else
+      remainder="${line}"
+    fi
+
+    if [[ "${remainder}" == *')'* ]]; then
+      content+="${remainder%%)*}"
+      break
+    fi
+    content+="${remainder}"$'\n'
+  done < "${source_path}"
+
+  ((collecting == 1)) || die "canonical source module does not declare array: ${array_name}"
+
+  for ((index = 0; index < ${#content}; index++)); do
+    character="${content:index:1}"
+    if [[ -n "${quote}" ]]; then
+      if [[ "${character}" == "${quote}" ]]; then
+        quote=""
+      fi
+      token_started=1
+      continue
+    fi
+
+    case "${character}" in
+      "'"|'"')
+        quote="${character}"
+        token_started=1
+        ;;
+      ' '|$'\t'|$'\n'|$'\r')
+        if ((token_started == 1)); then
+          ((count += 1))
+          token_started=0
+        fi
+        ;;
+      *) token_started=1 ;;
+    esac
+  done
+  ((token_started == 1)) && ((count += 1))
+  printf '%s\n' "${count}"
+}
+
+combined_layout_count() {
+  local figlet_count
+  local toilet_count
+  local box_count
+  local split_count
+  local font_mix_count
+
+  figlet_count="$(literal_array_count __banner_figlet_fonts)"
+  toilet_count="$(literal_array_count __banner_toilet_fonts)"
+  box_count="$(literal_array_count __banner_boxes)"
+  split_count="$(character_split_count)"
+  has_multiple_words && ((split_count += 1))
+  ((split_count > 0)) || die "--combine-layouts requires text with a non-empty split boundary"
+
+  font_mix_count=$(( (figlet_count + toilet_count) * (figlet_count + toilet_count) ))
+  printf '%s\n' "$((font_mix_count * split_count * (box_count + 1) * ${#LAYOUT_ALIGNS[@]} * ${#LAYOUT_SPACES[@]}))"
 }
 
 artifact_link() {
@@ -220,6 +329,61 @@ capture_engine_pair() {
     -H "${head_font}" -T "${tail_font}" --word "${text}"
 }
 
+capture_stable_layout_variant() {
+  local base_name="$1"
+  shift
+  capture_variant "${base_name}" \
+    figmix --head-engine toilet --tail-engine figlet -H future -T slant "$@" "${text}"
+}
+
+capture_all_layouts() {
+  local split_count
+  local split
+  local box
+  local align
+  local space
+
+  capture_stable_layout_variant figmix-layout-control --chars 1
+
+  split_count="$(character_split_count)"
+  for ((split = 1; split <= split_count; split++)); do
+    capture_stable_layout_variant "figmix-layout-chars-${split}" --chars "${split}"
+  done
+  if has_multiple_words; then
+    capture_stable_layout_variant figmix-layout-word --word
+  fi
+
+  for box in "${__banner_boxes[@]}"; do
+    capture_stable_layout_variant "figmix-layout-box-$(slugify "${box}")" --chars 1 --box "${box}"
+  done
+  capture_stable_layout_variant figmix-layout-no-box --chars 1 --no-box
+
+  for align in "${LAYOUT_ALIGNS[@]}"; do
+    capture_stable_layout_variant "figmix-layout-align-${align}" --chars 1 --align "${align}"
+  done
+  for space in "${LAYOUT_SPACES[@]}"; do
+    capture_stable_layout_variant "figmix-layout-space-${space}" --chars 1 --space "${space}"
+  done
+}
+
+capture_all_filters() {
+  local filter
+
+  capture_variant figmix-filter-control \
+    figmix --head-engine toilet --tail-engine toilet -H future -T smblock --word "${text}"
+  for filter in "${__banner_toilet_filters[@]}"; do
+    capture_variant "figmix-filter-head-$(slugify "${filter}")" \
+      figmix --head-engine toilet --tail-engine figlet -H future -T slant \
+      --head-filter "${filter}" --word "${text}"
+    capture_variant "figmix-filter-tail-$(slugify "${filter}")" \
+      figmix --head-engine figlet --tail-engine toilet -H slant -T smblock \
+      --tail-filter "${filter}" --word "${text}"
+    capture_variant "figmix-filter-shared-$(slugify "${filter}")" \
+      figmix --head-engine toilet --tail-engine toilet -H future -T smblock \
+      --filter "${filter}" --word "${text}"
+  done
+}
+
 capture_all() {
   local font
   local box
@@ -278,12 +442,68 @@ capture_all_mixes() {
 
       for head_font in "${head_fonts[@]}"; do
         for tail_font in "${tail_fonts[@]}"; do
-          capture_variant \
-            "figmix-mix-${head_engine}-${tail_engine}-$(slugify "${head_font}")-$(slugify "${tail_font}")" \
-            figmix --head-engine "${head_engine}" --tail-engine "${tail_engine}" \
-            -H "${head_font}" -T "${tail_font}" --word "${text}"
+          if ((combine_layouts == 1)); then
+            capture_font_mix_layouts "${head_engine}" "${tail_engine}" "${head_font}" "${tail_font}"
+          else
+            capture_variant \
+              "figmix-mix-${head_engine}-${tail_engine}-$(slugify "${head_font}")-$(slugify "${tail_font}")" \
+              figmix --head-engine "${head_engine}" --tail-engine "${tail_engine}" \
+              -H "${head_font}" -T "${tail_font}" --word "${text}"
+          fi
         done
       done
+    done
+  done
+}
+
+capture_font_mix_layouts() {
+  local head_engine="$1"
+  local tail_engine="$2"
+  local head_font="$3"
+  local tail_font="$4"
+  local split_count
+  local split
+
+  split_count="$(character_split_count)"
+  for ((split = 1; split <= split_count; split++)); do
+    capture_font_mix_layout_split "${head_engine}" "${tail_engine}" "${head_font}" "${tail_font}" \
+      "chars-${split}" --chars "${split}"
+  done
+  if has_multiple_words; then
+    capture_font_mix_layout_split "${head_engine}" "${tail_engine}" "${head_font}" "${tail_font}" \
+      word --word
+  fi
+}
+
+capture_font_mix_layout_split() {
+  local head_engine="$1"
+  local tail_engine="$2"
+  local head_font="$3"
+  local tail_font="$4"
+  local split_name="$5"
+  shift 5
+  local -a split_args=("$@")
+  local base_name="figmix-mix-${head_engine}-${tail_engine}-$(slugify "${head_font}")-$(slugify "${tail_font}")-${split_name}"
+  local box
+  local align
+  local space
+
+  for box in "${__banner_boxes[@]}"; do
+    for align in "${LAYOUT_ALIGNS[@]}"; do
+      for space in "${LAYOUT_SPACES[@]}"; do
+        capture_variant "${base_name}-box-$(slugify "${box}")-align-${align}-space-${space}" \
+          figmix --head-engine "${head_engine}" --tail-engine "${tail_engine}" \
+          -H "${head_font}" -T "${tail_font}" "${split_args[@]}" --box "${box}" \
+          --align "${align}" --space "${space}" "${text}"
+      done
+    done
+  done
+  for align in "${LAYOUT_ALIGNS[@]}"; do
+    for space in "${LAYOUT_SPACES[@]}"; do
+      capture_variant "${base_name}-no-box-align-${align}-space-${space}" \
+        figmix --head-engine "${head_engine}" --tail-engine "${tail_engine}" \
+        -H "${head_font}" -T "${tail_font}" "${split_args[@]}" --no-box \
+        --align "${align}" --space "${space}" "${text}"
     done
   done
 }
@@ -294,7 +514,7 @@ while [[ "$#" -gt 0 ]]; do
       usage
       exit 0
       ;;
-    --text|--output-dir|--format|--capture|--output-name)
+    --text|--output-dir|--format|--capture|--output-name|--max-variants)
       [[ "$#" -ge 2 ]] || die "$1 requires a value"
       case "$1" in
         --text) text="$2" ;;
@@ -309,12 +529,17 @@ while [[ "$#" -gt 0 ]]; do
           capture_kind="$2"
           ;;
         --output-name) output_name="$2" ;;
+        --max-variants) max_variants="$2" ;;
       esac
       shift 2
       ;;
-    --profile|--all|--all-mixes)
+    --profile|--all|--all-layouts|--all-filters|--all-mixes)
       [[ -z "${mode}" ]] || die "choose one mode"
       mode="${1#--}"
+      shift
+      ;;
+    --combine-layouts)
+      combine_layouts=1
       shift
       ;;
     --)
@@ -328,10 +553,18 @@ while [[ "$#" -gt 0 ]]; do
   esac
 done
 
-[[ -n "${mode}" ]] || die "choose --profile, --all, --all-mixes, or --capture"
+[[ -n "${mode}" ]] || \
+  die "choose --profile, --all, --all-layouts, --all-filters, --all-mixes, or --capture"
 [[ "${format}" == "text" || "${format}" == "png" || "${format}" == "both" ]] || \
   die "--format must be text, png, or both"
 [[ -r "${source_path}" ]] || die "canonical source module was not found: ${source_path}"
+
+if ((combine_layouts == 1)) && [[ "${mode}" != "all-mixes" ]]; then
+  die "--combine-layouts is only valid with --all-mixes"
+fi
+if [[ -n "${max_variants}" ]] && ((combine_layouts == 0)); then
+  die "--max-variants is only valid with --all-mixes --combine-layouts"
+fi
 
 case "${mode}" in
   profile)
@@ -341,9 +574,26 @@ case "${mode}" in
     [[ -n "${text}" ]] || die "--text is required"
     ((output_dir_explicit == 1)) || die "--output-dir is required for --all"
     ;;
+  all-layouts)
+    [[ -n "${text}" ]] || die "--text is required"
+    ((output_dir_explicit == 1)) || die "--output-dir is required for --all-layouts"
+    ;;
+  all-filters)
+    [[ -n "${text}" ]] || die "--text is required"
+    ((output_dir_explicit == 1)) || die "--output-dir is required for --all-filters"
+    ;;
   all-mixes)
     [[ -n "${text}" ]] || die "--text is required"
     ((output_dir_explicit == 1)) || die "--output-dir is required for --all-mixes"
+    if ((combine_layouts == 1)); then
+      [[ -n "${max_variants}" ]] || die "--max-variants is required with --combine-layouts"
+      [[ "${max_variants}" =~ ^[0-9]+$ ]] || die "--max-variants expects a non-negative integer"
+      (( ${#max_variants} <= 9 )) || die "--max-variants is too large"
+      planned_variants="$(combined_layout_count)"
+      if ((planned_variants > 10#${max_variants})); then
+        die "planned ${planned_variants} variants exceeds --max-variants ${max_variants}"
+      fi
+    fi
     ;;
   capture)
     validate_capture
@@ -377,9 +627,24 @@ case "${mode}" in
     write_manifest
     printf 'Generated curated figmix, toiletbox, and figletbox variants in %s\n' "${output_dir}"
     ;;
+  all-layouts)
+    capture_all_layouts
+    write_manifest
+    printf 'Generated figmix layout-axis variants in %s\n' "${output_dir}"
+    ;;
+  all-filters)
+    capture_all_filters
+    write_manifest
+    printf 'Generated figmix filter-position variants in %s\n' "${output_dir}"
+    ;;
   all-mixes)
     capture_all_mixes
     write_manifest
-    printf 'Generated every ordered curated figmix font mix in %s\n' "${output_dir}"
+    if ((combine_layouts == 1)); then
+      printf 'Generated %s capped figmix font-and-layout combinations in %s\n' \
+        "${planned_variants}" "${output_dir}"
+    else
+      printf 'Generated every ordered curated figmix font mix in %s\n' "${output_dir}"
+    fi
     ;;
 esac
