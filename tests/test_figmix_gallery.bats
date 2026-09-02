@@ -24,17 +24,33 @@ setup() {
     '__banner_toilet_fonts=(toilet-one toilet-two)' \
     '__banner_figlet_fonts=(figlet-one figlet-two)' \
     '__banner_boxes=(box-one box-two)' \
-    'figmix() { printf "FIGMIX:%s\\n" "$*"; }' \
-    'toiletbox() { printf "TOILETBOX:%s\\n" "$*"; }' \
-    'figletbox() { printf "FIGLETBOX:%s\\n" "$*"; }' > "${SOURCE_MODULE}"
+    '__banner_toilet_filters=(rainbow metal)' \
+    '__banner_default_font() {' \
+    '  case "$1/$2" in' \
+    "    figlet/head) printf '%s\\n' 'ANSI Shadow' ;;" \
+    "    figlet/tail) printf '%s\\n' small ;;" \
+    "    toilet/head) printf '%s\\n' bigmono12 ;;" \
+    "    toilet/tail) printf '%s\\n' smblock ;;" \
+    '  esac' \
+    '}' \
+    'record_argv() {' \
+    '  local name=$1' \
+    '  shift' \
+    '  printf "%s:" "$name"' \
+    '  printf " <%s>" "$@"' \
+    '  printf "\\n"' \
+    '}' \
+    'figmix() { record_argv FIGMIX "$@"; }' \
+    'toiletbox() { record_argv TOILETBOX "$@"; }' \
+    'figletbox() { record_argv FIGLETBOX "$@"; }' > "${SOURCE_MODULE}"
 }
 
-@test "help describes the dotfile-backed collection modes" {
+@test "help describes source-backed capture and exhaustive mix modes" {
   run "${SCRIPT}" --help
 
   [ "${status}" -eq 0 ]
-  [[ "${output}" == *"--profile"* ]]
-  [[ "${output}" == *"--all"* ]]
+  [[ "${output}" == *"--capture"* ]]
+  [[ "${output}" == *"--all-mixes"* ]]
   [[ "${output}" == *"FIGMIX_BASH_SOURCE"* ]]
 }
 
@@ -56,33 +72,94 @@ setup() {
   [ "${status}" -eq 0 ]
   [ -f "${OUTPUT_DIR}/profile-hero.txt" ]
   [ -f "${OUTPUT_DIR}/profile-hero.png" ]
-  [[ "$(<"${OUTPUT_DIR}/profile-hero.txt")" == "FIGMIX:--word -H slant -T small Aaron Dev" ]]
+  [[ "$(<"${OUTPUT_DIR}/profile-hero.txt")" == "FIGMIX: <--word> <-H> <slant> <-T> <small> <Aaron Dev>" ]]
   [[ "$(<"${ANSILOVE_LOG}")" == *"-o ${OUTPUT_DIR}/profile-hero.png"* ]]
 }
 
-@test "all uses source arrays and functions and records the exact commands" {
+@test "capture forwards a mixed figmix style verbatim and appends text only once" {
+  run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_BASH_SOURCE="${SOURCE_MODULE}" "${SCRIPT}" \
+    --capture figmix \
+    --text "AARON DEV" \
+    --output-name mixed \
+    --output-dir "${OUTPUT_DIR}" \
+    --format text \
+    -- --head-engine toilet --tail-engine figlet -H future -T slant \
+      --head-filter metal --word --space 5 --align bottom --box ansi-rounded
+
+  [ "${status}" -eq 0 ]
+  [[ "$(<"${OUTPUT_DIR}/mixed.txt")" == \
+    "FIGMIX: <--head-engine> <toilet> <--tail-engine> <figlet> <-H> <future> <-T> <slant> <--head-filter> <metal> <--word> <--space> <5> <--align> <bottom> <--box> <ansi-rounded> <AARON DEV>" ]]
+  [[ "$(<"${OUTPUT_DIR}/figmix-gallery-manifest.md")" == *"--head-engine toilet"* ]]
+}
+
+@test "capture with explicit figmix head and tail does not append text" {
+  run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_BASH_SOURCE="${SOURCE_MODULE}" "${SCRIPT}" \
+    --capture figmix \
+    --output-name explicit \
+    --output-dir "${OUTPUT_DIR}" \
+    --format text \
+    -- --head AARON --tail DEV --head-engine figlet --tail-engine toilet
+
+  [ "${status}" -eq 0 ]
+  [[ "$(<"${OUTPUT_DIR}/explicit.txt")" == \
+    "FIGMIX: <--head> <AARON> <--tail> <DEV> <--head-engine> <figlet> <--tail-engine> <toilet>" ]]
+}
+
+@test "capture forwards toiletbox box and filter arguments verbatim" {
+  run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_BASH_SOURCE="${SOURCE_MODULE}" "${SCRIPT}" \
+    --capture toiletbox \
+    --text "AARON DEV" \
+    --output-name toilet \
+    --output-dir "${OUTPUT_DIR}" \
+    --format text \
+    -- -f future -F rainbow --box ansi-heavy
+
+  [ "${status}" -eq 0 ]
+  [[ "$(<"${OUTPUT_DIR}/toilet.txt")" == \
+    "TOILETBOX: <-f> <future> <-F> <rainbow> <--box> <ansi-heavy> <AARON DEV>" ]]
+}
+
+@test "capture rejects live timer options because they cannot yield a stable asset" {
+  run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_BASH_SOURCE="${SOURCE_MODULE}" "${SCRIPT}" \
+    --capture figmix --text "Aaron" --output-name timer --format text -- --timer 5s
+
+  [ "${status}" -ne 0 ]
+  [[ "${output}" == *"timer options cannot be captured as static assets"* ]]
+}
+
+@test "all includes source fonts boxes filters and all four figmix engine pairings" {
   run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_BASH_SOURCE="${SOURCE_MODULE}" "${SCRIPT}" \
     --all \
     --text "Aaron Dev" \
     --output-dir "${OUTPUT_DIR}" \
-    --format both
+    --format text
 
   [ "${status}" -eq 0 ]
-  [ -f "${OUTPUT_DIR}/figmix-auto.txt" ]
-  [ -f "${OUTPUT_DIR}/figmix-word-split.txt" ]
-  [ -f "${OUTPUT_DIR}/figmix-toilet.txt" ]
   [ -f "${OUTPUT_DIR}/toiletbox-font-toilet-one.txt" ]
   [ -f "${OUTPUT_DIR}/toiletbox-box-box-two.txt" ]
+  [ -f "${OUTPUT_DIR}/toiletbox-filter-metal.txt" ]
   [ -f "${OUTPUT_DIR}/figletbox-font-figlet-two.txt" ]
-  [ -f "${OUTPUT_DIR}/figmix-gallery-manifest.md" ]
-  [[ "$(<"${OUTPUT_DIR}/figmix-auto.txt")" == "FIGMIX:--auto Aaron Dev" ]]
-  [[ "$(<"${OUTPUT_DIR}/figmix-toilet.txt")" == "FIGMIX:--toilet -H bigmono12 -T smblock Aaron Dev" ]]
-  [[ "$(<"${OUTPUT_DIR}/toiletbox-font-toilet-one.txt")" == "TOILETBOX:-f toilet-one Aaron Dev" ]]
-  [[ "$(<"${OUTPUT_DIR}/toiletbox-box-box-two.txt")" == "TOILETBOX:-b box-two Aaron Dev" ]]
-  [[ "$(<"${OUTPUT_DIR}/figletbox-font-figlet-two.txt")" == "FIGLETBOX:-f figlet-two Aaron Dev" ]]
-  [[ "$(<"${OUTPUT_DIR}/figmix-gallery-manifest.md")" == *"figmix --word -H slant -T small"* ]]
-  [[ "$(<"${OUTPUT_DIR}/figmix-gallery-manifest.md")" == *"toiletbox -f toilet-one"* ]]
-  [[ "$(<"${OUTPUT_DIR}/figmix-gallery-manifest.md")" == *"figletbox -f figlet-two"* ]]
-  [ -f "${OUTPUT_DIR}/figmix-toilet.png" ]
-  [[ "$(<"${ANSILOVE_LOG}")" == *"figmix-toilet.png"* ]]
+  [ -f "${OUTPUT_DIR}/figletbox-box-box-two.txt" ]
+  [ -f "${OUTPUT_DIR}/figmix-engine-toilet-figlet.txt" ]
+  [[ "$(<"${OUTPUT_DIR}/toiletbox-filter-metal.txt")" == "TOILETBOX: <-F> <metal> <Aaron Dev>" ]]
+  [[ "$(<"${OUTPUT_DIR}/figmix-engine-toilet-figlet.txt")" == \
+    "FIGMIX: <--head-engine> <toilet> <--tail-engine> <figlet> <-H> <bigmono12> <-T> <small> <--word> <Aaron Dev>" ]]
+  [[ "$(<"${OUTPUT_DIR}/figmix-gallery-manifest.md")" == *"figletbox -b box-two"* ]]
+}
+
+@test "all-mixes records every ordered source font pair across four real engine combinations" {
+  run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_BASH_SOURCE="${SOURCE_MODULE}" "${SCRIPT}" \
+    --all-mixes \
+    --text "Aaron Dev" \
+    --output-dir "${OUTPUT_DIR}" \
+    --format text
+
+  [ "${status}" -eq 0 ]
+  [ "$(find "${OUTPUT_DIR}" -name 'figmix-mix-*.txt' | wc -l | tr -d ' ')" -eq 16 ]
+  [ -f "${OUTPUT_DIR}/figmix-mix-figlet-figlet-figlet-one-figlet-two.txt" ]
+  [ -f "${OUTPUT_DIR}/figmix-mix-figlet-toilet-figlet-two-toilet-one.txt" ]
+  [ -f "${OUTPUT_DIR}/figmix-mix-toilet-figlet-toilet-two-figlet-one.txt" ]
+  [ -f "${OUTPUT_DIR}/figmix-mix-toilet-toilet-toilet-two-toilet-one.txt" ]
+  [[ "$(<"${OUTPUT_DIR}/figmix-mix-toilet-figlet-toilet-two-figlet-one.txt")" == \
+    "FIGMIX: <--head-engine> <toilet> <--tail-engine> <figlet> <-H> <toilet-two> <-T> <figlet-one> <--word> <Aaron Dev>" ]]
 }

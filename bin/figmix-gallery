@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Capture real dotfile banners as profile-ready plaintext and PNG artifacts.
+# Capture static artifacts from the canonical dotfile banner functions.
 set -Eeuo pipefail
 
 readonly DEFAULT_OUTPUT_DIR="assets/generated"
@@ -9,26 +9,40 @@ text=""
 output_dir="${DEFAULT_OUTPUT_DIR}"
 format="both"
 mode=""
+capture_kind=""
+output_name=""
 source_path="${FIGMIX_BASH_SOURCE:-${DEFAULT_SOURCE_PATH}}"
+forward_args=()
 temporary_files=()
 
 usage() {
   cat <<'EOF'
-Usage: figmix-gallery (--profile | --all) --text TEXT [options]
+Usage: figmix-gallery MODE --text TEXT [options]
 
-Capture real figmix, toiletbox, and figletbox output from the canonical Bash module.
+Capture static output from the real figmix, toiletbox, and figletbox functions in the canonical
+Bash module. Style arguments following -- are forwarded unchanged to the selected function.
+
+Modes:
+  --profile                    Render the fixed profile figmix word-split banner.
+  --all                        Render every curated static feature axis.
+  --all-mixes                  Render every ordered curated two-sided figmix font pairing.
+  --capture KIND               Capture one real function: figmix, toiletbox, or figletbox.
 
 Options:
-  --text TEXT          Banner text (required).
-  --output-dir DIR     Generated artifact directory (default: assets/generated).
-  --format FORMAT      text, png, or both (default: both).
-  --profile            Render the profile figmix word-split banner.
-  --all                Render every curated figmix, toiletbox, and figletbox variant.
-  --help               Show this help.
+  --text TEXT                  Positional banner text. Optional for figmix capture with --head
+                               or --tail; otherwise required.
+  --output-name NAME           Required base name for --capture artifacts.
+  --output-dir DIR             Generated artifact directory (default: assets/generated).
+  --format FORMAT              text, png, or both (default: both).
+  --                           Forward all remaining real style arguments verbatim.
+  --help                       Show this help.
+
+Live timer arguments (--timer, --heading, alarms, and related options) are refused in --capture:
+they do not terminate into a stable static artifact.
 
 Environment:
-  FIGMIX_BASH_SOURCE   Explicit toiletbox_figletbox.sh source path.
-  XDG_CONFIG_HOME      Used to resolve the default Bash source path.
+  FIGMIX_BASH_SOURCE           Explicit toiletbox_figletbox.sh source path.
+  XDG_CONFIG_HOME              Used to resolve the default Bash source path.
 
 PNG output uses ansilove to preserve the captured terminal artifact, including ANSI output.
 EOF
@@ -42,10 +56,9 @@ die() {
 cleanup() {
   local path
   for path in "${temporary_files[@]:-}"; do
-    if [[ -n "${path}" ]]; then
-      rm -f -- "${path}"
-    fi
+    [[ -n "${path}" ]] && rm -f -- "${path}"
   done
+  return 0
 }
 trap cleanup EXIT
 
@@ -57,12 +70,13 @@ require_module_contract() {
   local function_name
   local array_name
 
-  for function_name in figmix toiletbox figletbox; do
+  for function_name in figmix toiletbox figletbox __banner_default_font; do
     declare -F "${function_name}" >/dev/null || \
       die "canonical source module does not define function: ${function_name}"
   done
 
-  for array_name in __banner_toilet_fonts __banner_figlet_fonts __banner_boxes; do
+  for array_name in __banner_toilet_fonts __banner_figlet_fonts __banner_boxes \
+    __banner_toilet_filters; do
     declare -p "${array_name}" 2>/dev/null | grep -q '^declare -a' || \
       die "canonical source module does not define array: ${array_name}"
   done
@@ -100,11 +114,11 @@ capture_variant() {
   local base_name="$1"
   shift
   local command_text
-  command_text="$(shell_command "$@")"
   local temporary_text
   local text_path="${output_dir}/${base_name}.txt"
   local png_path="${output_dir}/${base_name}.png"
 
+  command_text="$(shell_command "$@")"
   temporary_text="$(mktemp "${output_dir}/.${base_name}.XXXXXX.txt")"
   temporary_files+=("${temporary_text}")
   "$@" > "${temporary_text}"
@@ -117,7 +131,7 @@ capture_variant() {
     ansilove -o "${png_path}" "${temporary_text}"
   fi
 
-  printf '%s\n' "${base_name}|${command_text}" >> "${manifest_rows}"
+  printf '%s|%s\n' "${base_name}" "${command_text}" >> "${manifest_rows}"
 }
 
 write_manifest() {
@@ -140,25 +154,163 @@ write_manifest() {
   } > "${manifest_path}"
 }
 
+has_figmix_explicit_side() {
+  local argument
+  for argument in "${forward_args[@]}"; do
+    [[ "${argument}" == "--head" || "${argument}" == "--tail" ]] && return 0
+  done
+  return 1
+}
+
+has_live_timer_option() {
+  local argument
+  for argument in "${forward_args[@]}"; do
+    case "${argument}" in
+      --timer|--heading|--heading-font|--alarm|--alarm-count|--no-boom|--no-alarm)
+        return 0
+        ;;
+    esac
+  done
+  return 1
+}
+
+validate_capture() {
+  case "${capture_kind}" in
+    figmix|toiletbox|figletbox) ;;
+    *) die "--capture expects figmix, toiletbox, or figletbox" ;;
+  esac
+
+  [[ -n "${output_name}" ]] || die "--output-name is required with --capture"
+  [[ "${output_name}" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]] || \
+    die "--output-name must contain only letters, numbers, dots, underscores, and hyphens"
+  has_live_timer_option && die "timer options cannot be captured as static assets"
+
+  if [[ "${capture_kind}" == "figmix" ]] && has_figmix_explicit_side; then
+    return
+  fi
+  [[ -n "${text}" ]] || die "--text is required for this capture"
+}
+
+capture_requested_variant() {
+  local -a command=("${capture_kind}" "${forward_args[@]}")
+
+  if [[ "${capture_kind}" != "figmix" ]] || ! has_figmix_explicit_side; then
+    command+=("${text}")
+  fi
+  capture_variant "${output_name}" "${command[@]}"
+}
+
+capture_engine_pair() {
+  local head_engine="$1"
+  local tail_engine="$2"
+  local head_font
+  local tail_font
+
+  head_font="$(__banner_default_font "${head_engine}" head)"
+  tail_font="$(__banner_default_font "${tail_engine}" tail)"
+  capture_variant "figmix-engine-${head_engine}-${tail_engine}" \
+    figmix --head-engine "${head_engine}" --tail-engine "${tail_engine}" \
+    -H "${head_font}" -T "${tail_font}" --word "${text}"
+}
+
+capture_all() {
+  local font
+  local box
+  local filter
+  local head_engine
+  local tail_engine
+
+  capture_variant figmix-auto figmix --auto "${text}"
+  capture_variant figmix-word-split figmix --word -H slant -T small "${text}"
+  capture_variant figmix-toilet figmix --toilet -H bigmono12 -T smblock "${text}"
+
+  for font in "${__banner_toilet_fonts[@]}"; do
+    capture_variant "toiletbox-font-$(slugify "${font}")" toiletbox -f "${font}" "${text}"
+  done
+  for box in "${__banner_boxes[@]}"; do
+    capture_variant "toiletbox-box-$(slugify "${box}")" toiletbox -b "${box}" "${text}"
+  done
+  for filter in "${__banner_toilet_filters[@]}"; do
+    capture_variant "toiletbox-filter-$(slugify "${filter}")" toiletbox -F "${filter}" "${text}"
+  done
+  for font in "${__banner_figlet_fonts[@]}"; do
+    capture_variant "figletbox-font-$(slugify "${font}")" figletbox -f "${font}" "${text}"
+  done
+  for box in "${__banner_boxes[@]}"; do
+    capture_variant "figletbox-box-$(slugify "${box}")" figletbox -b "${box}" "${text}"
+  done
+
+  for head_engine in figlet toilet; do
+    for tail_engine in figlet toilet; do
+      capture_engine_pair "${head_engine}" "${tail_engine}"
+    done
+  done
+}
+
+capture_all_mixes() {
+  local head_engine
+  local tail_engine
+  local head_font
+  local tail_font
+  local -a head_fonts=()
+  local -a tail_fonts=()
+
+  for head_engine in figlet toilet; do
+    if [[ "${head_engine}" == "figlet" ]]; then
+      head_fonts=("${__banner_figlet_fonts[@]}")
+    else
+      head_fonts=("${__banner_toilet_fonts[@]}")
+    fi
+
+    for tail_engine in figlet toilet; do
+      if [[ "${tail_engine}" == "figlet" ]]; then
+        tail_fonts=("${__banner_figlet_fonts[@]}")
+      else
+        tail_fonts=("${__banner_toilet_fonts[@]}")
+      fi
+
+      for head_font in "${head_fonts[@]}"; do
+        for tail_font in "${tail_fonts[@]}"; do
+          capture_variant \
+            "figmix-mix-${head_engine}-${tail_engine}-$(slugify "${head_font}")-$(slugify "${tail_font}")" \
+            figmix --head-engine "${head_engine}" --tail-engine "${tail_engine}" \
+            -H "${head_font}" -T "${tail_font}" --word "${text}"
+        done
+      done
+    done
+  done
+}
+
 while [[ "$#" -gt 0 ]]; do
   case "$1" in
     --help)
       usage
       exit 0
       ;;
-    --text|--output-dir|--format)
+    --text|--output-dir|--format|--capture|--output-name)
       [[ "$#" -ge 2 ]] || die "$1 requires a value"
       case "$1" in
         --text) text="$2" ;;
         --output-dir) output_dir="$2" ;;
         --format) format="$2" ;;
+        --capture)
+          [[ -z "${mode}" ]] || die "choose one mode"
+          mode="capture"
+          capture_kind="$2"
+          ;;
+        --output-name) output_name="$2" ;;
       esac
       shift 2
       ;;
-    --profile|--all)
-      [[ -z "${mode}" ]] || die "choose either --profile or --all"
+    --profile|--all|--all-mixes)
+      [[ -z "${mode}" ]] || die "choose one mode"
       mode="${1#--}"
       shift
+      ;;
+    --)
+      shift
+      forward_args=("$@")
+      break
       ;;
     *)
       die "unknown option: $1"
@@ -166,11 +318,19 @@ while [[ "$#" -gt 0 ]]; do
   esac
 done
 
-[[ -n "${text}" ]] || die "--text is required"
-[[ -n "${mode}" ]] || die "choose --profile or --all"
+[[ -n "${mode}" ]] || die "choose --profile, --all, --all-mixes, or --capture"
 [[ "${format}" == "text" || "${format}" == "png" || "${format}" == "both" ]] || \
   die "--format must be text, png, or both"
 [[ -r "${source_path}" ]] || die "canonical source module was not found: ${source_path}"
+
+case "${mode}" in
+  profile|all|all-mixes)
+    [[ -n "${text}" ]] || die "--text is required"
+    ;;
+  capture)
+    validate_capture
+    ;;
+esac
 
 mkdir -p "${output_dir}"
 if [[ "${format}" == "png" || "${format}" == "both" ]]; then
@@ -184,27 +344,24 @@ require_module_contract
 manifest_rows="$(mktemp "${output_dir}/.figmix-manifest.XXXXXX")"
 temporary_files+=("${manifest_rows}")
 
-if [[ "${mode}" == "profile" ]]; then
-  capture_variant profile-hero figmix --word -H slant -T small "${text}"
-  printf 'Generated profile-hero.%s in %s\n' "${format}" "${output_dir}"
-  exit 0
-fi
-
-capture_variant figmix-auto figmix --auto "${text}"
-capture_variant figmix-word-split figmix --word -H slant -T small "${text}"
-capture_variant figmix-toilet figmix --toilet -H bigmono12 -T smblock "${text}"
-
-for font in "${__banner_toilet_fonts[@]}"; do
-  capture_variant "toiletbox-font-$(slugify "${font}")" toiletbox -f "${font}" "${text}"
-done
-
-for box in "${__banner_boxes[@]}"; do
-  capture_variant "toiletbox-box-$(slugify "${box}")" toiletbox -b "${box}" "${text}"
-done
-
-for font in "${__banner_figlet_fonts[@]}"; do
-  capture_variant "figletbox-font-$(slugify "${font}")" figletbox -f "${font}" "${text}"
-done
-
-write_manifest
-printf 'Generated curated figmix, toiletbox, and figletbox variants in %s\n' "${output_dir}"
+case "${mode}" in
+  profile)
+    capture_variant profile-hero figmix --word -H slant -T small "${text}"
+    printf 'Generated profile-hero.%s in %s\n' "${format}" "${output_dir}"
+    ;;
+  capture)
+    capture_requested_variant
+    write_manifest
+    printf 'Generated %s.%s in %s\n' "${output_name}" "${format}" "${output_dir}"
+    ;;
+  all)
+    capture_all
+    write_manifest
+    printf 'Generated curated figmix, toiletbox, and figletbox variants in %s\n' "${output_dir}"
+    ;;
+  all-mixes)
+    capture_all_mixes
+    write_manifest
+    printf 'Generated every ordered curated figmix font mix in %s\n' "${output_dir}"
+    ;;
+esac
