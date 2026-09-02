@@ -1,0 +1,248 @@
+#!/usr/bin/env bash
+# Generate profile-ready FIGlet and TOIlet artwork with a Violet Void PNG treatment.
+set -Eeuo pipefail
+
+readonly DEFAULT_FONT_DIR="/usr/share/figlet"
+readonly DEFAULT_OUTPUT_DIR="assets/generated"
+
+text=""
+output_dir="${DEFAULT_OUTPUT_DIR}"
+output_name="figmix"
+engine="figlet"
+font="standard"
+layout="normal"
+format="both"
+all_fonts=false
+font_was_set=false
+
+usage() {
+  cat <<'EOF'
+Usage: figmix-gallery --text TEXT [options]
+
+Render FIGlet or TOIlet text as plaintext, a Violet Void PNG, or both.
+
+Options:
+  --text TEXT             Text to render (required).
+  --output-dir DIR        Directory for generated files (default: assets/generated).
+  --output-name NAME      Safe base filename (default: figmix).
+  --engine ENGINE         figlet or toilet (default: figlet).
+  --font FONT             Installed font name without .flf/.tlf (default: standard).
+  --layout LAYOUT         normal, kerning, full-width, smushing, or boxed.
+  --format FORMAT         text, png, or both (default: both).
+  --all-fonts             Render every compatible font and write a Markdown manifest.
+  --help                  Show this help.
+
+Environment:
+  FIGMIX_FONT_DIR         Font directory (default: /usr/share/figlet).
+  FIGMIX_FIGLET_BIN       FIGlet command (default: figlet).
+  FIGMIX_TOILET_BIN       TOIlet command (default: toilet).
+  FIGMIX_MAGICK_BIN       ImageMagick command (default: magick).
+EOF
+}
+
+die() {
+  printf 'figmix-gallery: %s\n' "$*" >&2
+  exit 1
+}
+
+require_command() {
+  local command_name="$1"
+  command -v "${command_name}" >/dev/null 2>&1 || die "required command not found: ${command_name}"
+}
+
+validate_output_name() {
+  [[ "${output_name}" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]] || \
+    die "--output-name must use only letters, digits, dots, underscores, and hyphens"
+}
+
+layout_arguments=()
+set_layout_arguments() {
+  layout_arguments=()
+
+  case "${layout}" in
+    normal)
+      layout_arguments=(-s)
+      ;;
+    kerning)
+      layout_arguments=(-k)
+      ;;
+    full-width)
+      layout_arguments=(-W)
+      ;;
+    smushing)
+      layout_arguments=(-S)
+      ;;
+    boxed)
+      [[ "${engine}" == "toilet" ]] || die "layout 'boxed' is only supported by toilet"
+      layout_arguments=(-s -F border)
+      ;;
+    *)
+      die "unsupported --layout '${layout}'; choose normal, kerning, full-width, smushing, or boxed"
+      ;;
+  esac
+}
+
+render_text() {
+  local selected_font="$1"
+  local destination="$2"
+  local renderer
+
+  if [[ "${engine}" == "figlet" ]]; then
+    renderer="${FIGMIX_FIGLET_BIN:-figlet}"
+  else
+    renderer="${FIGMIX_TOILET_BIN:-toilet}"
+  fi
+
+  "${renderer}" -d "${font_dir}" -f "${selected_font}" "${layout_arguments[@]}" "${text}" > "${destination}"
+}
+
+render_png() {
+  local source_text="$1"
+  local destination="$2"
+  local magick_bin="${FIGMIX_MAGICK_BIN:-magick}"
+
+  "${magick_bin}" \
+    -background '#0f0f0f' \
+    -fill '#fd7cff' \
+    -font 'DejaVu-Sans-Mono' \
+    -pointsize 28 \
+    -gravity center \
+    "label:@${source_text}" \
+    -bordercolor '#7c60d1' \
+    -border 16x14 \
+    "${destination}"
+}
+
+write_variant() {
+  local selected_font="$1"
+  local variant_name="$2"
+  local text_path="${output_dir}/${variant_name}.txt"
+  local png_path="${output_dir}/${variant_name}.png"
+  local temporary_text=""
+  local render_source="${text_path}"
+  local render_status=0
+
+  if [[ "${format}" == "text" || "${format}" == "both" ]]; then
+    render_text "${selected_font}" "${text_path}"
+  else
+    temporary_text="$(mktemp "${output_dir}/.${variant_name}.XXXXXX.txt")"
+    render_source="${temporary_text}"
+    render_text "${selected_font}" "${temporary_text}"
+  fi
+
+  if [[ "${format}" == "png" || "${format}" == "both" ]]; then
+    render_png "${render_source}" "${png_path}" || render_status=$?
+  fi
+
+  if [[ -n "${temporary_text}" ]]; then
+    rm -f "${temporary_text}"
+  fi
+
+  return "${render_status}"
+}
+
+write_manifest() {
+  local manifest_path="$1"
+  shift
+  local selected_font
+  local text_reference
+  local png_reference
+
+  {
+    printf '# figmix gallery\n\n'
+    printf 'Engine: `%s` · Layout: `%s` · Text: `%s`\n\n' "${engine}" "${layout}" "${text}"
+    printf '| Font | Plaintext | PNG |\n'
+    printf '| --- | --- | --- |\n'
+    for selected_font in "$@"; do
+      if [[ "${format}" == "png" ]]; then
+        text_reference='—'
+      else
+        text_reference="[${output_name}-${selected_font}.txt](${output_name}-${selected_font}.txt)"
+      fi
+
+      if [[ "${format}" == "text" ]]; then
+        png_reference='—'
+      else
+        png_reference="[${output_name}-${selected_font}.png](${output_name}-${selected_font}.png)"
+      fi
+
+      printf '| `%s` | %s | %s |\n' "${selected_font}" "${text_reference}" "${png_reference}"
+    done
+  } > "${manifest_path}"
+}
+
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    --help)
+      usage
+      exit 0
+      ;;
+    --text|--output-dir|--output-name|--engine|--font|--layout|--format)
+      [[ "$#" -ge 2 ]] || die "${1} requires a value"
+      case "$1" in
+        --text) text="$2" ;;
+        --output-dir) output_dir="$2" ;;
+        --output-name) output_name="$2" ;;
+        --engine) engine="$2" ;;
+        --font) font="$2"; font_was_set=true ;;
+        --layout) layout="$2" ;;
+        --format) format="$2" ;;
+      esac
+      shift 2
+      ;;
+    --all-fonts)
+      all_fonts=true
+      shift
+      ;;
+    *)
+      die "unknown option: $1"
+      ;;
+  esac
+done
+
+[[ -n "${text}" ]] || die "--text is required"
+[[ "${engine}" == "figlet" || "${engine}" == "toilet" ]] || \
+  die "unsupported --engine '${engine}'; choose figlet or toilet"
+[[ "${format}" == "text" || "${format}" == "png" || "${format}" == "both" ]] || \
+  die "unsupported --format '${format}'; choose text, png, or both"
+[[ "${all_fonts}" == false || "${font_was_set}" == false ]] || \
+  die "--all-fonts cannot be combined with --font"
+
+font_dir="${FIGMIX_FONT_DIR:-${DEFAULT_FONT_DIR}}"
+[[ -d "${font_dir}" ]] || die "font directory does not exist: ${font_dir}"
+validate_output_name
+mkdir -p "${output_dir}"
+
+if [[ "${engine}" == "figlet" ]]; then
+  extension='flf'
+  require_command "${FIGMIX_FIGLET_BIN:-figlet}"
+else
+  extension='tlf'
+  require_command "${FIGMIX_TOILET_BIN:-toilet}"
+fi
+
+if [[ "${format}" == "png" || "${format}" == "both" ]]; then
+  require_command "${FIGMIX_MAGICK_BIN:-magick}"
+fi
+
+set_layout_arguments
+
+if [[ "${all_fonts}" == true ]]; then
+  fonts=()
+  while IFS= read -r -d '' font_path; do
+    fonts+=("$(basename "${font_path}" ".${extension}")")
+  done < <(find "${font_dir}" -maxdepth 1 -type f -name "*.${extension}" -print0 | sort -z)
+
+  [[ "${#fonts[@]}" -gt 0 ]] || die "no .${extension} fonts found in ${font_dir}"
+
+  for selected_font in "${fonts[@]}"; do
+    write_variant "${selected_font}" "${output_name}-${selected_font}"
+  done
+  write_manifest "${output_dir}/${output_name}-manifest.md" "${fonts[@]}"
+  printf 'Generated %d %s variants in %s\n' "${#fonts[@]}" "${engine}" "${output_dir}"
+else
+  [[ -f "${font_dir}/${font}.${extension}" ]] || \
+    die "font '${font}' was not found in ${font_dir} as .${extension}"
+  write_variant "${font}" "${output_name}"
+  printf 'Generated %s.%s in %s\n' "${output_name}" "${format}" "${output_dir}"
+fi
