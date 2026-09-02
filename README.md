@@ -191,6 +191,11 @@ Check discussion page or click badge above to see install instructions if u want
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
+- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/22"><strong>fix(readme): restore GitHub stats cards</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-02 • MERGED</sub>
+  <br>
+  <sub>github profile aaronedev</sub>
+
 - 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/21"><strong>fix(readme): handle high-volume pull request history</strong></a><br>
   <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-02 • MERGED</sub>
   <br>
@@ -221,11 +226,6 @@ Check discussion page or click badge above to see install instructions if u want
 
 - 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/72"><strong>feat(archwiki): audit void theme visuals</strong></a><br>
   <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-07-21 • MERGED</sub>
-  <br>
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
-
-- ⚫ <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/65"><strong>Fix missing CSS variables and broken selectors</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-03-26 • CLOSED</sub>
   <br>
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
 
@@ -261,7 +261,7 @@ Check discussion page or click badge above to see install instructions if u want
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 2156 pull requests · at least 23545 commits
+🔒 Private activity: 2158 pull requests · at least 23550 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -276,9 +276,9 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6879 commits     ███████░░░░░░░░░░░░░░░░░░   27.24%
-🌆 Daytime    9804 commits     ██████████░░░░░░░░░░░░░░░   38.82%
-🌃 Evening    5910 commits     ██████░░░░░░░░░░░░░░░░░░░   23.4%
+🌞 Morning    6887 commits     ███████░░░░░░░░░░░░░░░░░░   27.26%
+🌆 Daytime    9804 commits     ██████████░░░░░░░░░░░░░░░   38.81%
+🌃 Evening    5910 commits     ██████░░░░░░░░░░░░░░░░░░░   23.39%
 🌙 Night      2663 commits     ███░░░░░░░░░░░░░░░░░░░░░░   10.54%
 
 ```
@@ -286,13 +286,13 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3717 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.72%
-Tuesday      3480 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.78%
-Wednesday    3256 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.89%
-Thursday     4394 commits     ████░░░░░░░░░░░░░░░░░░░░░   17.4%
-Friday       3480 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.78%
-Saturday     3275 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.97%
-Sunday       3654 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.47%
+Monday       3717 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.71%
+Tuesday      3480 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.77%
+Wednesday    3264 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.92%
+Thursday     4394 commits     ████░░░░░░░░░░░░░░░░░░░░░   17.39%
+Friday       3480 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.77%
+Saturday     3275 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.96%
+Sunday       3654 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.46%
 
 ```
 
