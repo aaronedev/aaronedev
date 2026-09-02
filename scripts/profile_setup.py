@@ -86,7 +86,7 @@ def validate_timezone(value: str) -> str:
     timezone = validate_one_line(value, "timezone")
     try:
         ZoneInfo(timezone)
-    except ZoneInfoNotFoundError as exc:
+    except (ZoneInfoNotFoundError, ValueError) as exc:
         raise ProfileSetupError(f"timezone must be a valid IANA timezone: {timezone}") from exc
     return timezone
 

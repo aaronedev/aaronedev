@@ -128,6 +128,47 @@ class ProfileWizardTest(unittest.TestCase):
             self.assertIn("fork repository must be other-login/other-login", result.stderr)
             self.assertFalse(state_dir.exists())
 
+    def test_apply_accepts_case_only_difference_between_origin_and_repository_slug(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            fake_bin = root / "fake-bin"
+            setup = root / "bin" / "setup-profile"
+            fake_bin.mkdir()
+            setup.parent.mkdir()
+            shutil.copy(WIZARD, setup)
+            setup.chmod(setup.stat().st_mode | stat.S_IXUSR)
+            self._fake_command(
+                fake_bin / "git",
+                "#!/usr/bin/env bash\n"
+                "if [[ \"$*\" == *'remote get-url origin'* ]]; then\n"
+                "  printf '%s\\n' 'https://github.com/Example/Example.git'\n"
+                "  exit 0\n"
+                "fi\n"
+                "exit 1\n",
+            )
+            self._fake_command(
+                fake_bin / "gh",
+                "#!/usr/bin/env bash\n"
+                "if [[ \"$1\" == auth ]]; then exit 0; fi\n"
+                "if [[ \"$*\" == *'nameWithOwner'* ]]; then printf '%s\\n' 'example/example'; exit 0; fi\n"
+                "if [[ \"$*\" == *'isFork'* ]]; then printf '%s\\n' 'true'; exit 0; fi\n"
+                "if [[ \"$*\" == *'parent'* ]]; then printf '%s\\n' 'upstream/profile'; exit 0; fi\n"
+                "exit 1\n",
+            )
+
+            result = subprocess.run(
+                [str(setup), "--apply"],
+                cwd=root,
+                input="Example Builder\nEXAMPLE\nTools\n\n\n\nEurope/Berlin\n\nno\n",
+                check=False,
+                capture_output=True,
+                text=True,
+                env={**os.environ, "PATH": f"{fake_bin}:{os.environ['PATH']}"},
+            )
+
+            self.assertNotIn("gh repository identity does not match", result.stderr)
+            self.assertIn("fork repository matches the selected profile login", result.stdout)
+
     def test_rollback_rejects_state_from_another_checkout(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
@@ -160,6 +201,82 @@ class ProfileWizardTest(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("state directory belongs to another repository or checkout", result.stderr)
             self.assertEqual(sentinel.read_text(encoding="utf-8"), "second checkout\n")
+
+    def test_rollback_restores_the_original_backup_mode(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            state_dir = root / "state"
+            fake_bin = root / "fake-bin"
+            fake_bin.mkdir()
+            self._profile_checkout(root)
+            subprocess.run(["git", "init", "--quiet", str(root)], check=True)
+            subprocess.run(
+                ["git", "-C", str(root), "remote", "add", "origin", "https://github.com/example/example.git"],
+                check=True,
+            )
+            self._fake_command(
+                fake_bin / "gh",
+                "#!/usr/bin/env bash\n"
+                "if [[ \"$1\" == auth ]]; then exit 0; fi\n"
+                "if [[ \"$*\" == *'nameWithOwner'* ]]; then printf '%s\\n' 'example/example'; exit 0; fi\n"
+                "if [[ \"$*\" == *'isFork'* ]]; then printf '%s\\n' 'true'; exit 0; fi\n"
+                "if [[ \"$*\" == *'parent'* ]]; then printf '%s\\n' 'upstream/profile'; exit 0; fi\n"
+                "exit 1\n",
+            )
+            self._fake_command(fake_bin / "xdg-open", "#!/usr/bin/env bash\nexit 0\n")
+            environment = {
+                **os.environ,
+                "PATH": f"{fake_bin}:{os.environ['PATH']}",
+                "WIZARD_STATE_DIR": str(state_dir),
+            }
+            readme = root / "README.md"
+            original_contents = readme.read_bytes()
+            original_mode = 0o644
+            readme.chmod(original_mode)
+            apply_input = (
+                "Example Builder\nexample\nTools\n\n\n\nEurope/Berlin\n\nno\n"
+                "no\ny\ngithub-setup\n\n\n\n"
+            )
+
+            apply = subprocess.run(
+                [str(root / "bin" / "setup-profile"), "--apply"],
+                cwd=root,
+                input=apply_input,
+                check=False,
+                capture_output=True,
+                text=True,
+                env=environment,
+            )
+            self.assertEqual(apply.returncode, 0, apply.stderr)
+            self.assertEqual((state_dir / "backups" / "readme-output.mode").read_text().strip(), "644")
+            self.assertEqual(
+                stat.S_IMODE((state_dir / "backups" / "readme-output.backup").stat().st_mode),
+                0o600,
+            )
+            readme.write_text("changed after apply\n", encoding="utf-8")
+            readme.chmod(0o600)
+
+            rollback = subprocess.run(
+                [str(root / "bin" / "setup-profile"), "--rollback"],
+                cwd=root,
+                input="y\n",
+                check=False,
+                capture_output=True,
+                text=True,
+                env=environment,
+            )
+
+            self.assertEqual(rollback.returncode, 0, rollback.stderr)
+            self.assertEqual(readme.read_bytes(), original_contents)
+            self.assertEqual(stat.S_IMODE(readme.stat().st_mode), original_mode)
+
+    @staticmethod
+    def _profile_checkout(root: Path) -> None:
+        shutil.copytree(ROOT / "scripts", root / "scripts")
+        shutil.copytree(ROOT / "templates", root / "templates")
+        shutil.copytree(ROOT / ".github", root / ".github")
+        shutil.copytree(ROOT / "bin", root / "bin")
+        shutil.copy(ROOT / "README.md", root / "README.md")
 
     @staticmethod
     def _fake_command(path: Path, contents: str) -> None:

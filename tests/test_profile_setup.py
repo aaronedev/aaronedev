@@ -144,8 +144,10 @@ class ProfileSetupTest(unittest.TestCase):
             paths = self._paths(Path(temp_dir))
             before = {path: path.read_bytes() for path in (paths.config, paths.template, paths.readme)}
 
-            with self.assertRaises(ProfileSetupError):
-                apply_profile_setup(paths, self._answers(timezone="Not/A_Timezone"))
+            for timezone in ("Not/A_Timezone", "Europe//Berlin"):
+                with self.subTest(timezone=timezone):
+                    with self.assertRaises(ProfileSetupError):
+                        apply_profile_setup(paths, self._answers(timezone=timezone))
 
             self.assertEqual({path: path.read_bytes() for path in before}, before)
 

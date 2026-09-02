@@ -440,7 +440,7 @@ _backup_key_seen() {
 }
 
 backup_file() {
-  local path="$1" key="$2" backup absent
+  local path="$1" key="$2" backup absent mode_file original_mode
   [[ "$key" =~ ^[A-Za-z0-9._-]+$ ]] || fail "invalid backup key: $key"
   if [[ "$MODE" == "plan" ]]; then
     printf '  %swould back up:%s %s as %s\n' "$DIM" "$RESET" "$path" "$key"
@@ -451,15 +451,22 @@ backup_file() {
   _init_state
   backup="${STATE_DIR}/backups/${key}.backup"
   absent="${STATE_DIR}/backups/${key}.absent"
+  mode_file="${STATE_DIR}/backups/${key}.mode"
   if [[ -e "$backup" || -e "$absent" ]]; then
+    if [[ -e "$backup" && ! -f "$mode_file" ]]; then
+      fail "backup is missing original mode metadata for $key"
+    fi
     BACKED_UP_KEYS+=("$key")
     note "kept existing first-run backup for $key"
     return 0
   fi
   if [[ -e "$path" ]]; then
     [[ -f "$path" && ! -L "$path" ]] || fail "backup source must be a regular file: $path"
+    original_mode="$(stat -c '%a' "$path")" || fail "could not record mode for $path"
     cp -p "$path" "$backup"
     chmod 600 "$backup"
+    printf '%s\n' "$original_mode" >"$mode_file"
+    chmod 600 "$mode_file"
     note "backed up $path to $backup"
   else
     : >"$absent"
@@ -469,15 +476,20 @@ backup_file() {
 }
 
 restore_file() {
-  local path="$1" key="$2" backup absent
+  local path="$1" key="$2" backup absent mode_file original_mode
   [[ "$MODE" == "rollback" ]] || fail "restore_file is allowed only in --rollback mode"
   _ensure_mutation_allowed
   _init_state
   backup="${STATE_DIR}/backups/${key}.backup"
   absent="${STATE_DIR}/backups/${key}.absent"
+  mode_file="${STATE_DIR}/backups/${key}.mode"
   if [[ -f "$backup" ]]; then
+    [[ -f "$mode_file" ]] || fail "backup is missing original mode metadata for $key"
+    original_mode="$(cat "$mode_file")"
+    [[ "$original_mode" =~ ^[0-7]{3,4}$ ]] || fail "backup has invalid original mode metadata for $key"
     mkdir -p "$(dirname "$path")"
-    cp -p "$backup" "$path"
+    cp "$backup" "$path"
+    chmod "$original_mode" "$path"
     printf '  %s✓ restored%s %s\n' "$GREEN" "$RESET" "$path"
   elif [[ -f "$absent" ]]; then
     [[ ! -d "$path" ]] || fail "refusing to remove directory during file rollback: $path"
@@ -689,19 +701,22 @@ require_command() {
 }
 
 verify_origin_fork() {
-  local origin_url normalized_origin is_fork parent
+  local origin_url normalized_origin origin_slug is_fork parent
   origin_url="$(git -C "$REPO_ROOT" remote get-url origin)" ||
     fail "the checked-out repository has no origin remote"
   REPO_SLUG="$(cd "$REPO_ROOT" && gh repo view --json nameWithOwner --jq .nameWithOwner)" ||
     fail "could not resolve origin as a GitHub repository"
   normalized_origin="${origin_url%.git}"
   case "$normalized_origin" in
-    "git@github.com:${REPO_SLUG}" | "https://github.com/${REPO_SLUG}" | "ssh://git@github.com/${REPO_SLUG}")
-      ;;
+    git@github.com:*) origin_slug="${normalized_origin#git@github.com:}" ;;
+    https://github.com/*) origin_slug="${normalized_origin#https://github.com/}" ;;
+    ssh://git@github.com/*) origin_slug="${normalized_origin#ssh://git@github.com/}" ;;
     *)
       fail "gh repository identity does not match the checked-out origin"
       ;;
   esac
+  [[ "${origin_slug,,}" == "${REPO_SLUG,,}" ]] ||
+    fail "gh repository identity does not match the checked-out origin"
   is_fork="$(cd "$REPO_ROOT" && gh repo view --json isFork,parent --jq .isFork)" ||
     fail "could not inspect fork metadata for origin"
   parent="$(cd "$REPO_ROOT" && gh repo view --json parent --jq '.parent.nameWithOwner // empty')" ||
