@@ -2,11 +2,14 @@
 # Capture static artifacts from the canonical dotfile banner functions.
 set -Eeuo pipefail
 
-readonly DEFAULT_OUTPUT_DIR="assets/generated"
+readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+readonly REPOSITORY_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd -P)"
+readonly DEFAULT_OUTPUT_DIR="${REPOSITORY_ROOT}/assets/generated"
 readonly DEFAULT_SOURCE_PATH="${XDG_CONFIG_HOME:-${HOME}/.config}/bash/source/toiletbox_figletbox.sh"
 
 text=""
 output_dir="${DEFAULT_OUTPUT_DIR}"
+output_dir_explicit=0
 format="both"
 mode=""
 capture_kind=""
@@ -32,13 +35,17 @@ Options:
   --text TEXT                  Positional banner text. Optional for figmix capture with --head
                                or --tail; otherwise required.
   --output-name NAME           Required base name for --capture artifacts.
-  --output-dir DIR             Generated artifact directory (default: assets/generated).
+  --output-dir DIR             Generated artifact directory. Profile/capture default to the
+                               repository's assets/generated path.
   --format FORMAT              text, png, or both (default: both).
   --                           Forward all remaining real style arguments verbatim.
   --help                       Show this help.
 
 Live timer arguments (--timer, --heading, alarms, and related options) are refused in --capture:
 they do not terminate into a stable static artifact.
+
+--all and --all-mixes can create broad galleries and require an explicit --output-dir. This avoids
+unexpected output when the command is run from a subdirectory.
 
 Environment:
   FIGMIX_BASH_SOURCE           Explicit toiletbox_figletbox.sh source path.
@@ -291,7 +298,10 @@ while [[ "$#" -gt 0 ]]; do
       [[ "$#" -ge 2 ]] || die "$1 requires a value"
       case "$1" in
         --text) text="$2" ;;
-        --output-dir) output_dir="$2" ;;
+        --output-dir)
+          output_dir="$2"
+          output_dir_explicit=1
+          ;;
         --format) format="$2" ;;
         --capture)
           [[ -z "${mode}" ]] || die "choose one mode"
@@ -324,8 +334,16 @@ done
 [[ -r "${source_path}" ]] || die "canonical source module was not found: ${source_path}"
 
 case "${mode}" in
-  profile|all|all-mixes)
+  profile)
     [[ -n "${text}" ]] || die "--text is required"
+    ;;
+  all)
+    [[ -n "${text}" ]] || die "--text is required"
+    ((output_dir_explicit == 1)) || die "--output-dir is required for --all"
+    ;;
+  all-mixes)
+    [[ -n "${text}" ]] || die "--text is required"
+    ((output_dir_explicit == 1)) || die "--output-dir is required for --all-mixes"
     ;;
   capture)
     validate_capture

@@ -16,6 +16,8 @@ TOIlet ANSI filters are preserved as emitted.
 - `ansilove` when generating PNG output.
 
 The generator has no network access and never copies, downloads, or forks the dotfiles functions.
+For `--profile` and a single `--capture`, the default output resolves to the repository's
+`assets/generated` directory, regardless of the caller's current directory.
 
 ## Regenerate the profile banner
 
@@ -87,6 +89,9 @@ every curated `figletbox` font and box; and the four canonical figmix engine pai
 figlet/figlet, figlet/toilet, toilet/figlet, and toilet/toilet. It writes
 `figmix-gallery-manifest.md`, recording the exact command for every artifact.
 
+`--all` requires `--output-dir` explicitly. This prevents a broad gallery from landing beside the
+current shell directory when the command is run from a subdirectory.
+
 ## Exhaustive ordered font mixes
 
 ```bash
@@ -101,7 +106,8 @@ FIGMIX_BASH_SOURCE=/home/psy/dotfiles/bash/.config/bash/source/toiletbox_figletb
 `--all-mixes` reads the source arrays at runtime and generates every ordered head/tail pair across
 all four engine combinations. Each capture is a real `figmix --head-engine ... --tail-engine ...
 -H ... -T ... --word` invocation. The output count grows roughly with the square of the curated
-font count, so it is intentionally on-demand and must not be committed as a full gallery.
+font count, so it is intentionally on-demand and must not be committed as a full gallery. Like
+`--all`, it requires an explicit `--output-dir` before the source module is even loaded.
 
 Keep broad galleries out of Git. Generate on demand, select the banner you want, then update only
 the single committed profile PNG.

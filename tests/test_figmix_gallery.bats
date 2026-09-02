@@ -6,6 +6,7 @@ setup() {
   export OUTPUT_DIR="${BATS_TEST_TMPDIR}/output"
   export SOURCE_MODULE="${BATS_TEST_TMPDIR}/toiletbox_figletbox.sh"
   export ANSILOVE_LOG="${BATS_TEST_TMPDIR}/ansilove.log"
+  export SOURCE_MARKER="${BATS_TEST_TMPDIR}/source-marker"
 
   mkdir -p "${FAKE_BIN}" "${OUTPUT_DIR}"
 
@@ -25,6 +26,7 @@ setup() {
     '__banner_figlet_fonts=(figlet-one figlet-two)' \
     '__banner_boxes=(box-one box-two)' \
     '__banner_toilet_filters=(rainbow metal)' \
+    '[[ -z ${SOURCE_MARKER:-} ]] || printf sourced > "${SOURCE_MARKER}"' \
     '__banner_default_font() {' \
     '  case "$1/$2" in' \
     "    figlet/head) printf '%s\\n' 'ANSI Shadow' ;;" \
@@ -51,6 +53,7 @@ setup() {
   [ "${status}" -eq 0 ]
   [[ "${output}" == *"--capture"* ]]
   [[ "${output}" == *"--all-mixes"* ]]
+  [[ "${output}" == *"require an explicit --output-dir"* ]]
   [[ "${output}" == *"FIGMIX_BASH_SOURCE"* ]]
 }
 
@@ -125,6 +128,28 @@ setup() {
 
   [ "${status}" -ne 0 ]
   [[ "${output}" == *"timer options cannot be captured as static assets"* ]]
+}
+
+@test "all refuses an implicit output path before sourcing the banner module" {
+  cd "${BATS_TEST_TMPDIR}"
+
+  run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_BASH_SOURCE="${SOURCE_MODULE}" \
+    SOURCE_MARKER="${SOURCE_MARKER}" "${SCRIPT}" --all --text "Aaron Dev" --format text
+
+  [ "${status}" -ne 0 ]
+  [[ "${output}" == *"--output-dir is required for --all"* ]]
+  [ ! -e "${SOURCE_MARKER}" ]
+}
+
+@test "all-mixes refuses an implicit output path before sourcing the banner module" {
+  cd "${BATS_TEST_TMPDIR}"
+
+  run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_BASH_SOURCE="${SOURCE_MODULE}" \
+    SOURCE_MARKER="${SOURCE_MARKER}" "${SCRIPT}" --all-mixes --text "Aaron Dev" --format text
+
+  [ "${status}" -ne 0 ]
+  [[ "${output}" == *"--output-dir is required for --all-mixes"* ]]
+  [ ! -e "${SOURCE_MARKER}" ]
 }
 
 @test "all includes source fonts boxes filters and all four figmix engine pairings" {
