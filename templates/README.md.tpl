@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/aaronedev/figmix">
-    <img src="./assets/generated/profile-hero.png" alt="AARON in a Violet Void FIGlet profile banner" width="640" />
+    <img src="./assets/generated/profile-hero.png" alt="AARON DEV in a Violet Void figmix profile banner" width="640" />
   </a>
 </p>
 

@@ -1,56 +1,57 @@
 # figmix gallery
 
-`bin/figmix-gallery` is the profile-owned composition layer for locally installed FIGlet,
-TOIlet, and ImageMagick. It renders one selected variant by default and can produce an
-on-demand gallery across the installed fonts for either engine.
+`bin/figmix-gallery` captures the real banner functions from the Bash dotfiles module; it does
+not reimplement FIGlet, TOIlet, boxes, or their curated choices. The default source is
+`${XDG_CONFIG_HOME:-$HOME/.config}/bash/source/toiletbox_figletbox.sh`. Set
+`FIGMIX_BASH_SOURCE` to point at another checked-out copy for development or testing.
+
+The sourced module owns the `figmix`, `toiletbox`, and `figletbox` functions and the curated
+`__banner_toilet_fonts`, `__banner_figlet_fonts`, and `__banner_boxes` arrays. PNG conversion uses
+`ansilove` on the captured terminal output, retaining the terminal artifact and TOIlet ANSI
+filters exactly as emitted.
 
 ## Prerequisites
 
-- `figlet`
-- `toilet`
-- ImageMagick 7 (`magick`)
-- FIGlet and TOIlet fonts in `/usr/share/figlet`, or in `FIGMIX_FONT_DIR`
+- The canonical `toiletbox_figletbox.sh` module and its normal local dependencies.
+- `ansilove` when generating PNG output.
 
-The generator does not download tools, fonts, or assets. It only uses local binaries and font
-files.
+The generator has no network access and does not copy, download, or fork the dotfiles functions.
 
-## Generate a profile asset
+## Regenerate the profile banner
 
 ```bash
-bin/figmix-gallery \
-  --text AARON \
+FIGMIX_BASH_SOURCE=/home/psy/dotfiles/bash/.config/bash/source/toiletbox_figletbox.sh \
+  bin/figmix-gallery \
+  --profile \
+  --text 'AARON DEV' \
   --output-dir assets/generated \
-  --output-name profile-hero \
-  --engine figlet \
-  --font slant \
-  --layout normal \
   --format png
 ```
 
-The profile README embeds `assets/generated/profile-hero.png` at a fixed repository path.
-GitHub profile READMEs render committed images; they do not run FIGlet, TOIlet, JavaScript, or
-dynamic HTML. Choose a variant, rerun the command, commit the replacement PNG, and GitHub will
-render the new static image.
-
-## Explore installed fonts
+`--profile` always captures this exact composition and writes the fixed `profile-hero` base name:
 
 ```bash
-FIGMIX_FONT_DIR=/usr/share/figlet bin/figmix-gallery \
-  --text AARON \
-  --output-dir /tmp/figmix-gallery \
-  --output-name aaron \
-  --engine figlet \
-  --layout smushing \
-  --format both \
-  --all-fonts
+figmix --word -H slant -T small 'AARON DEV'
 ```
 
-`--all-fonts` selects `.flf` files for FIGlet or `.tlf` files for TOIlet. It writes one variant
-per compatible font plus `<output-name>-manifest.md`, which links every generated plaintext and
-PNG file. Keep broad galleries out of Git; only commit the selected profile asset.
+The GitHub profile README displays the committed `assets/generated/profile-hero.png` at a fixed
+path. GitHub does not execute shell functions or dynamic HTML in a profile README: choose a real
+banner, regenerate the PNG, commit it, and GitHub will render the new static asset.
 
-## Layouts
+## Browse the curated collections
 
-`normal`, `kerning`, `full-width`, and `smushing` map to the engines' native layout flags.
-`boxed` is TOIlet-only and uses its `border` filter. Run `bin/figmix-gallery --help` for the
-complete CLI contract.
+```bash
+FIGMIX_BASH_SOURCE=/home/psy/dotfiles/bash/.config/bash/source/toiletbox_figletbox.sh \
+  bin/figmix-gallery \
+  --all \
+  --text 'AARON DEV' \
+  --output-dir /tmp/figmix-gallery \
+  --format both
+```
+
+`--all` captures the three real `figmix` demos (auto, word-split `slant` + `small`, and TOIlet
+`bigmono12` + `smblock`), every curated `toiletbox` font and box, and every curated `figletbox`
+font. It also writes `figmix-gallery-manifest.md` with each exact command and its artifacts.
+
+Keep broad galleries out of Git. Regenerate on demand, select the banner you want, then update the
+single committed profile PNG.

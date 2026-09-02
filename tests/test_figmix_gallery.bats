@@ -3,99 +3,86 @@
 setup() {
   export SCRIPT="${BATS_TEST_DIRNAME}/../bin/figmix-gallery"
   export FAKE_BIN="${BATS_TEST_TMPDIR}/bin"
-  export FONT_DIR="${BATS_TEST_TMPDIR}/fonts"
   export OUTPUT_DIR="${BATS_TEST_TMPDIR}/output"
+  export SOURCE_MODULE="${BATS_TEST_TMPDIR}/toiletbox_figletbox.sh"
+  export ANSILOVE_LOG="${BATS_TEST_TMPDIR}/ansilove.log"
 
-  mkdir -p "${FAKE_BIN}" "${FONT_DIR}" "${OUTPUT_DIR}"
-  touch "${FONT_DIR}/standard.flf" "${FONT_DIR}/ascii12.tlf"
+  mkdir -p "${FAKE_BIN}" "${OUTPUT_DIR}"
 
-  printf '%s\n' '#!/usr/bin/env bash' 'printf "FIGLET:%s\\n" "$*"' > "${FAKE_BIN}/figlet"
-  printf '%s\n' '#!/usr/bin/env bash' 'printf "TOILET:%s\\n" "$*"' > "${FAKE_BIN}/toilet"
-  printf '%s\n' '#!/usr/bin/env bash' 'output="${@: -1}"' 'printf "FAKE PNG\\n" > "${output}"' > "${FAKE_BIN}/magick"
-  chmod +x "${FAKE_BIN}/figlet" "${FAKE_BIN}/toilet" "${FAKE_BIN}/magick"
+  printf '%s\n' \
+    '#!/usr/bin/env bash' \
+    'output=""' \
+    'arguments="$*"' \
+    'while (($# > 0)); do' \
+    '  case "$1" in -o) output="$2"; shift 2 ;; *) input="$1"; shift ;; esac' \
+    'done' \
+    'printf "ansilove %s\\n" "${arguments}" >> "${ANSILOVE_LOG}"' \
+    'printf "FAKE PNG from %s\\n" "${input}" > "${output}"' > "${FAKE_BIN}/ansilove"
+  chmod +x "${FAKE_BIN}/ansilove"
+
+  printf '%s\n' \
+    '__banner_toilet_fonts=(toilet-one toilet-two)' \
+    '__banner_figlet_fonts=(figlet-one figlet-two)' \
+    '__banner_boxes=(box-one box-two)' \
+    'figmix() { printf "FIGMIX:%s\\n" "$*"; }' \
+    'toiletbox() { printf "TOILETBOX:%s\\n" "$*"; }' \
+    'figletbox() { printf "FIGLETBOX:%s\\n" "$*"; }' > "${SOURCE_MODULE}"
 }
 
-@test "help describes the gallery options" {
-  run env PATH="${FAKE_BIN}:${PATH}" "${SCRIPT}" --help
+@test "help describes the dotfile-backed collection modes" {
+  run "${SCRIPT}" --help
 
   [ "${status}" -eq 0 ]
-  [[ "${output}" == *"--all-fonts"* ]]
-  [[ "${output}" == *"--layout"* ]]
+  [[ "${output}" == *"--profile"* ]]
+  [[ "${output}" == *"--all"* ]]
+  [[ "${output}" == *"FIGMIX_BASH_SOURCE"* ]]
 }
 
-@test "text is required" {
-  run env PATH="${FAKE_BIN}:${PATH}" "${SCRIPT}" --format text
+@test "fails clearly when the canonical source module is unavailable" {
+  run env FIGMIX_BASH_SOURCE="${BATS_TEST_TMPDIR}/missing.sh" "${SCRIPT}" \
+    --profile --text "Aaron"
 
   [ "${status}" -ne 0 ]
-  [[ "${output}" == *"--text is required"* ]]
+  [[ "${output}" == *"canonical source module was not found"* ]]
 }
 
-@test "generates one text and PNG variant" {
-  run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_FONT_DIR="${FONT_DIR}" "${SCRIPT}" \
-    --text "Aaron" \
+@test "profile uses the exact figmix word-split composition and ansilove" {
+  run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_BASH_SOURCE="${SOURCE_MODULE}" "${SCRIPT}" \
+    --profile \
+    --text "Aaron Dev" \
     --output-dir "${OUTPUT_DIR}" \
-    --output-name "hero" \
-    --engine figlet \
-    --font standard \
-    --layout kerning \
     --format both
 
   [ "${status}" -eq 0 ]
-  [ -f "${OUTPUT_DIR}/hero.txt" ]
-  [ -f "${OUTPUT_DIR}/hero.png" ]
-  [[ "$(<"${OUTPUT_DIR}/hero.txt")" == *"FIGLET:"* ]]
-  [ "$(<"${OUTPUT_DIR}/hero.png")" = "FAKE PNG" ]
+  [ -f "${OUTPUT_DIR}/profile-hero.txt" ]
+  [ -f "${OUTPUT_DIR}/profile-hero.png" ]
+  [[ "$(<"${OUTPUT_DIR}/profile-hero.txt")" == "FIGMIX:--word -H slant -T small Aaron Dev" ]]
+  [[ "$(<"${ANSILOVE_LOG}")" == *"-o ${OUTPUT_DIR}/profile-hero.png"* ]]
 }
 
-@test "all-fonts only renders compatible fonts and records a manifest" {
-  touch "${FONT_DIR}/alpha.flf" "${FONT_DIR}/beta.flf" "${FONT_DIR}/ignore.tlf"
-
-  run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_FONT_DIR="${FONT_DIR}" "${SCRIPT}" \
-    --text "Aaron" \
+@test "all uses source arrays and functions and records the exact commands" {
+  run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_BASH_SOURCE="${SOURCE_MODULE}" "${SCRIPT}" \
+    --all \
+    --text "Aaron Dev" \
     --output-dir "${OUTPUT_DIR}" \
-    --output-name "gallery" \
-    --engine figlet \
-    --all-fonts \
-    --format text
+    --format both
 
   [ "${status}" -eq 0 ]
-  [ -f "${OUTPUT_DIR}/gallery-alpha.txt" ]
-  [ -f "${OUTPUT_DIR}/gallery-beta.txt" ]
-  [ -f "${OUTPUT_DIR}/gallery-manifest.md" ]
-  [[ "$(<"${OUTPUT_DIR}/gallery-manifest.md")" == *"gallery-alpha.txt"* ]]
-  [[ "$(<"${OUTPUT_DIR}/gallery-manifest.md")" != *"ignore"* ]]
-}
-
-@test "figlet rejects the TOIlet-only boxed layout" {
-  run env PATH="${FAKE_BIN}:${PATH}" "${SCRIPT}" \
-    --text "Aaron" \
-    --engine figlet \
-    --layout boxed
-
-  [ "${status}" -ne 0 ]
-  [[ "${output}" == *"only supported by toilet"* ]]
-}
-
-@test "TOIlet boxed layout uses its border filter" {
-  run env PATH="${FAKE_BIN}:${PATH}" FIGMIX_FONT_DIR="${FONT_DIR}" "${SCRIPT}" \
-    --text "Aaron" \
-    --output-dir "${OUTPUT_DIR}" \
-    --output-name "boxed" \
-    --engine toilet \
-    --font ascii12 \
-    --layout boxed \
-    --format text
-
-  [ "${status}" -eq 0 ]
-  [[ "$(<"${OUTPUT_DIR}/boxed.txt")" == *"TOILET:"* ]]
-  [[ "$(<"${OUTPUT_DIR}/boxed.txt")" == *"-F border"* ]]
-}
-
-@test "rejects an unknown engine" {
-  run env PATH="${FAKE_BIN}:${PATH}" "${SCRIPT}" \
-    --text "Aaron" \
-    --engine banner
-
-  [ "${status}" -ne 0 ]
-  [[ "${output}" == *"unsupported --engine 'banner'"* ]]
+  [ -f "${OUTPUT_DIR}/figmix-auto.txt" ]
+  [ -f "${OUTPUT_DIR}/figmix-word-split.txt" ]
+  [ -f "${OUTPUT_DIR}/figmix-toilet.txt" ]
+  [ -f "${OUTPUT_DIR}/toiletbox-font-toilet-one.txt" ]
+  [ -f "${OUTPUT_DIR}/toiletbox-box-box-two.txt" ]
+  [ -f "${OUTPUT_DIR}/figletbox-font-figlet-two.txt" ]
+  [ -f "${OUTPUT_DIR}/figmix-gallery-manifest.md" ]
+  [[ "$(<"${OUTPUT_DIR}/figmix-auto.txt")" == "FIGMIX:--auto Aaron Dev" ]]
+  [[ "$(<"${OUTPUT_DIR}/figmix-toilet.txt")" == "FIGMIX:--toilet -H bigmono12 -T smblock Aaron Dev" ]]
+  [[ "$(<"${OUTPUT_DIR}/toiletbox-font-toilet-one.txt")" == "TOILETBOX:-f toilet-one Aaron Dev" ]]
+  [[ "$(<"${OUTPUT_DIR}/toiletbox-box-box-two.txt")" == "TOILETBOX:-b box-two Aaron Dev" ]]
+  [[ "$(<"${OUTPUT_DIR}/figletbox-font-figlet-two.txt")" == "FIGLETBOX:-f figlet-two Aaron Dev" ]]
+  [[ "$(<"${OUTPUT_DIR}/figmix-gallery-manifest.md")" == *"figmix --word -H slant -T small"* ]]
+  [[ "$(<"${OUTPUT_DIR}/figmix-gallery-manifest.md")" == *"toiletbox -f toilet-one"* ]]
+  [[ "$(<"${OUTPUT_DIR}/figmix-gallery-manifest.md")" == *"figletbox -f figlet-two"* ]]
+  [ -f "${OUTPUT_DIR}/figmix-toilet.png" ]
+  [[ "$(<"${ANSILOVE_LOG}")" == *"figmix-toilet.png"* ]]
 }
