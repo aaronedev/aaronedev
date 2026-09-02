@@ -189,7 +189,79 @@ Check discussion page or click badge above to see install instructions if u want
   <summary><strong>Click to expand recent GitHub activity</strong></summary>
 
 <!--START_SECTION:activity-->
-_Activity temporarily unavailable._
+### 🔁 Fresh Pull Requests
+
+- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/21"><strong>fix(readme): handle high-volume pull request history</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-02 • MERGED</sub>
+  <br>
+  <sub>github profile aaronedev</sub>
+
+- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/20"><strong>ci(readme): remove Docker actions from README update</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-01 • MERGED</sub>
+  <br>
+  <sub>github profile aaronedev</sub>
+
+- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/19"><strong>ci(aaronedev): route README job to self-hosted ops runner</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-01 • MERGED</sub>
+  <br>
+  <sub>github profile aaronedev</sub>
+
+- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt/pull/2"><strong>fix(theme): restore dark surfaces on Learn docs</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • 2026-08-27 • MERGED</sub>
+
+- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/74"><strong>fix(theme): remove invalid emitted CSS</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-07-22 • MERGED</sub>
+  <br>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
+
+- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/73"><strong>fix(theme): emit valid advanced CSS</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-07-21 • MERGED</sub>
+  <br>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
+
+- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/72"><strong>feat(archwiki): audit void theme visuals</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-07-21 • MERGED</sub>
+  <br>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
+
+- ⚫ <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/65"><strong>Fix missing CSS variables and broken selectors</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-03-26 • CLOSED</sub>
+  <br>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
+
+### 🛠️ Latest Contributions
+
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • <strong>57 commits</strong> • 2026-08-28
+
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>1135 commits</strong> • 2026-07-22
+  <br>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
+
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_discord"><code>aaronedev/violet-void-theme_discord</code></a> • <strong>6 commits</strong> • 2026-06-08
+
+- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>32 commits</strong> • 2026-05-20
+  <br>
+  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to you</sub>
+
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_kitty"><code>aaronedev/violet-void-theme_kitty</code></a> • <strong>5 commits</strong> • 2026-03-20
+
+- 🔗 <a href="https://github.com/aaronedev/violet-void-monorepo"><code>aaronedev/violet-void-monorepo</code></a> • <strong>118 commits</strong> • 2026-03-20
+  <br>
+  <sub>Violet Void Theme Monorepo - Central hub for all Violet Void theme projects</sub>
+
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_fish"><code>aaronedev/violet-void-theme_fish</code></a> • <strong>5 commits</strong> • 2026-03-20
+
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_nvim"><code>aaronedev/violet-void-theme_nvim</code></a> • <strong>42 commits</strong> • 2026-03-20
+  <br>
+  <sub>Violet Void Neovim colorscheme with 70+ plugin integrations</sub>
+
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_crackboard"><code>aaronedev/violet-void-theme_crackboard</code></a> • <strong>6 commits</strong> • 2026-03-20
+
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_vim"><code>aaronedev/violet-void-theme_vim</code></a> • <strong>4 commits</strong> • 2026-03-20
+
+_Commit contribution totals are based on the top 100 contribution repositories._
+
+🔒 Private activity: 2156 pull requests · at least 23545 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -199,7 +271,56 @@ _Activity temporarily unavailable._
   <summary>Click to expand the latest metrics</summary>
 
 <!--START_SECTION:waka-->
-_WakaTime stats temporarily unavailable._
+<!-- waka-section:v1 -->
+
+**I'm an Early 🐤**
+
+```text
+🌞 Morning    6879 commits     ███████░░░░░░░░░░░░░░░░░░   27.24%
+🌆 Daytime    9804 commits     ██████████░░░░░░░░░░░░░░░   38.82%
+🌃 Evening    5910 commits     ██████░░░░░░░░░░░░░░░░░░░   23.4%
+🌙 Night      2663 commits     ███░░░░░░░░░░░░░░░░░░░░░░   10.54%
+
+```
+
+📅 **I'm Most Productive on Thursday**
+
+```text
+Monday       3717 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.72%
+Tuesday      3480 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.78%
+Wednesday    3256 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.89%
+Thursday     4394 commits     ████░░░░░░░░░░░░░░░░░░░░░   17.4%
+Friday       3480 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.78%
+Saturday     3275 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.97%
+Sunday       3654 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.47%
+
+```
+
+ℹ️ GitHub contribution timing uses the top 100 contribution repositories plus eligible pull-request repositories.
+
+📊 **This Week I Spent My Time On**
+
+```text
+⌚︎ Time Zone: Europe/Berlin
+
+💬 Programming Languages: 
+Python                   61 hrs 5 mins      █████████████████░░░░░░░░   68.37%
+Markdown                 8 hrs 58 mins      ███░░░░░░░░░░░░░░░░░░░░░░   10.05%
+Other                    2 hrs 58 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.33%
+Lua                      2 hrs 47 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.13%
+JavaScript               2 hrs 46 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.11%
+
+🔥 Editors: 
+Neovim                   32 hrs 37 mins     █████████░░░░░░░░░░░░░░░░   36.52%
+Codex Vscode             29 hrs 48 mins     ████████░░░░░░░░░░░░░░░░░   33.35%
+Vim                      15 hrs 47 mins     ████░░░░░░░░░░░░░░░░░░░░░   17.67%
+Opencode Cli             10 hrs 19 mins     ███░░░░░░░░░░░░░░░░░░░░░░   11.55%
+Codex CLI                45 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.85%
+
+💻 Operating System: 
+Linux                    89 hrs 20 mins     █████████████████████████   100%
+
+```
 <!--END_SECTION:waka-->
 
 </details>
