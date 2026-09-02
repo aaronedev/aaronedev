@@ -1533,7 +1533,7 @@ class RetrievePaginationTest(unittest.TestCase):
         self.assertNotIn("private-timing-only", render(model))
         self.assertNotIn("private-library", render(model))
 
-    def test_commit_history_includes_public_external_organization_prs(self) -> None:
+    def test_pr_only_external_organization_does_not_query_commit_history(self) -> None:
         queried_repos: list[str] = []
         external_pr = _pr_node(
             owner="external-public-org",
@@ -1584,9 +1584,14 @@ class RetrievePaginationTest(unittest.TestCase):
                 return {"status": 200, "json": {"data": {"repository": None}}}
             raise AssertionError(f"unexpected query: {query}")
 
-        retrieve(http, token="token-value")
+        raw = retrieve(http, token="token-value")
 
-        self.assertEqual(queried_repos, ["external-public-org/public-library"])
+        self.assertEqual(queried_repos, [])
+        model = privacy_reduce(normalize(raw))
+        self.assertEqual(
+            [(item.repo_name, item.pull_request_count) for item in model.external_org_activities],
+            [("external-public-org/public-library", 1)],
+        )
 
 
 class IssueContributionRetrieveTest(unittest.TestCase):

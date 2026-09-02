@@ -325,39 +325,28 @@ def _split_name_with_owner(name_with_owner: str) -> tuple[str, str] | None:
     return owner, name
 
 
-def _timing_repos(*groups: list[dict[str, Any]]) -> list[str]:
-    """Use eligible bounded entries for timing without additional repository queries."""
+def _timing_repos(contributions: list[dict[str, Any]]) -> list[str]:
+    """Use eligible bounded commit-contribution entries for timing."""
     names: list[str] = []
     seen: set[str] = set()
-    for group in groups:
-        for item in group:
-            repo = item.get("repository") if isinstance(item, dict) else None
-            if not isinstance(repo, dict):
-                continue
-            name = repo.get("nameWithOwner")
-            if (
-                not isinstance(name, str)
-                or name in seen
-            ):
-                continue
-            owner = _owner_login(repo)
-            is_private = repo.get("isPrivate")
-            is_allowlisted = owner in ALLOWED_OWNERS and is_private in {False, True}
-            is_contribution = (
-                "contributionCount" in item or "contributions" in item
-            )
-            is_public_external_organization = (
-                _is_public_external_organization(repo)
-                and (
-                    _has_required_contrib_fields(item)
-                    if is_contribution
-                    else _has_required_pr_fields(item)
-                )
-            )
-            if not (is_allowlisted or is_public_external_organization):
-                continue
-            seen.add(name)
-            names.append(name)
+    for item in contributions:
+        repo = item.get("repository") if isinstance(item, dict) else None
+        if not isinstance(repo, dict):
+            continue
+        name = repo.get("nameWithOwner")
+        if not isinstance(name, str) or name in seen:
+            continue
+        owner = _owner_login(repo)
+        is_private = repo.get("isPrivate")
+        is_allowlisted = owner in ALLOWED_OWNERS and is_private in {False, True}
+        is_public_external_organization = (
+            _is_public_external_organization(repo)
+            and _has_required_contrib_fields(item)
+        )
+        if not (is_allowlisted or is_public_external_organization):
+            continue
+        seen.add(name)
+        names.append(name)
     return names
 
 
@@ -517,7 +506,7 @@ def retrieve(http: HttpCallable, token: str) -> dict[str, Any]:
         raise ActivityCollectionError("GitHub pull request pagination exceeded page limit")
 
     # A public-only timing list would undercount known private contributions.
-    history_repos = _timing_repos(pull_requests, contributions)
+    history_repos = _timing_repos(contributions)
     commit_dates_by_repo = _collect_commit_dates(
         http, token, author_id, history_repos, since, until
     )
