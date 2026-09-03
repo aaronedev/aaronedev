@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import shutil
 import stat
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -282,11 +284,32 @@ class ProfileSetupTest(unittest.TestCase):
             }
 
             self.assertEqual(main(["--check", "--repo-root", str(root)]), 0)
-
             self.assertEqual(
                 {path: path.read_bytes() for path in before},
                 before,
             )
+
+    def test_check_does_not_execute_the_target_configuration_module(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            shutil.copytree(ROOT / "scripts", root / "scripts")
+            shutil.copytree(ROOT / "templates", root / "templates")
+            shutil.copytree(ROOT / ".github", root / ".github")
+            shutil.copy(ROOT / "README.md", root / "README.md")
+            config = root / "scripts" / "readme_config.py"
+            config.write_text(
+                'raise RuntimeError("target configuration was imported")\n' + config.read_text(),
+                encoding="utf-8",
+            )
+
+            result = subprocess.run(
+                [sys.executable, str(root / "scripts" / "profile_setup.py"), "--check", "--repo-root", str(root)],
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertEqual(result.returncode, 0, result.stderr)
 
 
 if __name__ == "__main__":

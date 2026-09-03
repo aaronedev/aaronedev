@@ -592,6 +592,14 @@ class PrivacyReduceTest(unittest.TestCase):
         self.assertNotIn(PROFILE_REPO, markdown)
         self.assertIn("aaronedev/public-dotfiles", markdown)
 
+    def test_case_variant_profile_repo_is_excluded_from_public_contribs(self) -> None:
+        owner, name = (part.upper() for part in PROFILE_REPO.split("/", 1))
+        markdown = _rendered_from_raw(
+            _raw(contributions=[_contrib(owner=owner, name=name, count=3)])
+        )
+
+        self.assertNotIn(f"{owner}/{name}", markdown)
+
     def test_unproven_private_owner_omits_aggregate(self) -> None:
         contrib = _contrib(
             owner="Violet-Void",

@@ -16,7 +16,8 @@ WIZARD = ROOT / "bin" / "setup-profile"
 class ProfileWizardTest(unittest.TestCase):
     def test_wizard_is_syntax_valid_and_has_authored_stages(self) -> None:
         subprocess.run(["bash", "-n", str(WIZARD)], check=True)
-        authored = WIZARD.read_text(encoding="utf-8").split(
+        source = WIZARD.read_text(encoding="utf-8")
+        authored = source.split(
             "# STAGES: author this section only.", 1
         )[1]
 
@@ -24,6 +25,8 @@ class ProfileWizardTest(unittest.TestCase):
         self.assertIn('WIZARD_TITLE="Fork profile setup"', authored)
         self.assertNotIn("Replace this", authored)
         self.assertNotIn("unconfigured", authored)
+        self.assertNotIn("stat -c", source)
+        self.assertNotIn(",,}", source)
 
     def test_plan_is_the_default_and_does_not_require_live_tools(self) -> None:
         result = subprocess.run(
@@ -152,6 +155,7 @@ class ProfileWizardTest(unittest.TestCase):
                 fake_bin / "gh",
                 "#!/usr/bin/env bash\n"
                 "if [[ \"$1\" == auth ]]; then exit 0; fi\n"
+                "if [[ \"$1\" == repo && \"$2\" == view ]]; then printf '%s\\n' \"$*\" >> \"$GH_CALLS\"; fi\n"
                 "if [[ \"$*\" == *'nameWithOwner'* ]]; then printf '%s\\n' 'example/example'; exit 0; fi\n"
                 "if [[ \"$*\" == *'isFork'* ]]; then printf '%s\\n' 'true'; exit 0; fi\n"
                 "if [[ \"$*\" == *'parent'* ]]; then printf '%s\\n' 'upstream/profile'; exit 0; fi\n"
@@ -178,6 +182,7 @@ class ProfileWizardTest(unittest.TestCase):
                     **os.environ,
                     "PATH": f"{fake_bin}:{os.environ['PATH']}",
                     "WIZARD_STATE_DIR": str(state_dir),
+                    "GH_CALLS": str(root / "gh-calls"),
                 },
             )
 
@@ -185,6 +190,15 @@ class ProfileWizardTest(unittest.TestCase):
             self.assertIn("fork repository matches the selected profile login", result.stdout)
             self.assertIn("runs-on: ubuntu-latest", (root / ".github" / "workflows" / "readme.yaml").read_text())
             self.assertIn("custom unmanaged content", readme.read_text(encoding="utf-8"))
+            self.assertEqual(
+                (root / "gh-calls").read_text(encoding="utf-8").splitlines(),
+                [
+                    "repo view Example/Example --json nameWithOwner --jq .nameWithOwner",
+                    "repo view Example/Example --json isFork,parent --jq .isFork",
+                    "repo view Example/Example --json parent --jq .parent.nameWithOwner // empty",
+                ]
+                * 2,
+            )
 
     def test_rollback_rejects_state_from_another_checkout(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -270,8 +284,10 @@ class ProfileWizardTest(unittest.TestCase):
                 stat.S_IMODE((state_dir / "backups" / "readme-output.backup").stat().st_mode),
                 0o600,
             )
-            readme.write_text("changed after apply\n", encoding="utf-8")
-            readme.chmod(0o600)
+            outside = root / "outside.txt"
+            outside.write_text("unchanged outside target\n", encoding="utf-8")
+            readme.unlink()
+            readme.symlink_to(outside)
 
             rollback = subprocess.run(
                 [str(root / "bin" / "setup-profile"), "--rollback"],
@@ -286,6 +302,7 @@ class ProfileWizardTest(unittest.TestCase):
             self.assertEqual(rollback.returncode, 0, rollback.stderr)
             self.assertEqual(readme.read_bytes(), original_contents)
             self.assertEqual(stat.S_IMODE(readme.stat().st_mode), original_mode)
+            self.assertEqual(outside.read_text(encoding="utf-8"), "unchanged outside target\n")
 
     @staticmethod
     def _profile_checkout(root: Path) -> None:

@@ -147,6 +147,10 @@ def _is_allowed_owner(owner: str | None) -> bool:
     return owner is not None and owner.casefold() in _ALLOWED_OWNER_CASEFOLDS
 
 
+def _is_profile_repo(name: str | None) -> bool:
+    return name is not None and name.casefold() == PROFILE_REPO.casefold()
+
+
 @dataclass
 class PublicPR:
     title: str
@@ -769,7 +773,7 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
         elif not _is_public_external_organization(repo):
             continue
         name = repo.get("nameWithOwner")
-        if is_allowed_owner and name == PROFILE_REPO:
+        if is_allowed_owner and _is_profile_repo(name):
             continue
         if not _has_required_contrib_fields(entry):
             continue

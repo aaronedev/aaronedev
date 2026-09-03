@@ -18,7 +18,7 @@ _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from scripts.readme_config import (
+from scripts.readme_markers import (
     ACTIVITY_END,
     ACTIVITY_START,
     PROFILE_END,
