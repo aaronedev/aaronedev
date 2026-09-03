@@ -148,7 +148,7 @@ def _is_allowed_owner(owner: str | None) -> bool:
 
 
 def _is_profile_repo(name: str | None) -> bool:
-    return name is not None and name.casefold() == PROFILE_REPO.casefold()
+    return isinstance(name, str) and name.casefold() == PROFILE_REPO.casefold()
 
 
 @dataclass
