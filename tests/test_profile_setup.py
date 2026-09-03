@@ -157,14 +157,14 @@ class ProfileSetupTest(unittest.TestCase):
             for path in (paths.template, paths.readme):
                 text = path.read_text(encoding="utf-8")
                 text = text.replace(
-                    f"{ACTIVITY_START}\n{ACTIVITY_END}",
-                    f"{ACTIVITY_START}\nupstream activity\n{ACTIVITY_END}",
+                text = text.replace(
+                    ACTIVITY_START,
+                    f"{ACTIVITY_START}\nupstream activity",
                 )
                 text = text.replace(
-                    f"{WAKA_START}\n{WAKA_END}",
-                    f"{WAKA_START}\nupstream waka\n{WAKA_END}",
+                    WAKA_START,
+                    f"{WAKA_START}\nupstream waka",
                 )
-                path.write_text(text, encoding="utf-8")
 
             apply_profile_setup(paths, self._answers(use_ubuntu_runner=False))
 
