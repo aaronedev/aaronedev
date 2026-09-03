@@ -1,0 +1,6 @@
+ACTIVITY_START = "<!--START_SECTION:activity-->"
+ACTIVITY_END = "<!--END_SECTION:activity-->"
+WAKA_START = "<!--START_SECTION:waka-->"
+WAKA_END = "<!--END_SECTION:waka-->"
+PROFILE_START = "<!--START_SECTION:profile-->"
+PROFILE_END = "<!--END_SECTION:profile-->"

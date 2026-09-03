@@ -140,6 +140,15 @@ class ActivityCollectionError(Exception):
 
 
 HttpCallable = Callable[..., dict[str, Any]]
+_ALLOWED_OWNER_CASEFOLDS = frozenset(owner.casefold() for owner in ALLOWED_OWNERS)
+
+
+def _is_allowed_owner(owner: str | None) -> bool:
+    return owner is not None and owner.casefold() in _ALLOWED_OWNER_CASEFOLDS
+
+
+def _is_profile_repo(name: str | None) -> bool:
+    return isinstance(name, str) and name.casefold() == PROFILE_REPO.casefold()
 
 
 @dataclass
@@ -310,7 +319,7 @@ def _is_public_external_organization(repo: dict[str, Any]) -> bool:
     owner = _owner_login(repo)
     return bool(
         owner is not None
-        and owner not in ALLOWED_OWNERS
+        and not _is_allowed_owner(owner)
         and repo.get("isPrivate") is False
         and _owner_typename(repo) == "Organization"
     )
@@ -338,7 +347,7 @@ def _timing_repos(contributions: list[dict[str, Any]]) -> list[str]:
             continue
         owner = _owner_login(repo)
         is_private = repo.get("isPrivate")
-        is_allowlisted = owner in ALLOWED_OWNERS and is_private in {False, True}
+        is_allowlisted = _is_allowed_owner(owner) and is_private in {False, True}
         is_public_external_organization = (
             _is_public_external_organization(repo)
             and _has_required_contrib_fields(item)
@@ -704,7 +713,7 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
         if not isinstance(repo, dict):
             continue
         owner = _owner_login(repo)
-        if owner in ALLOWED_OWNERS:
+        if _is_allowed_owner(owner):
             if repo.get("isPrivate") is True:
                 proven_private_prs = True
                 private_pr_count += 1
@@ -753,7 +762,7 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
             count_int = int(count) if count is not None else 0
         except (TypeError, ValueError):
             count_int = 0
-        is_allowed_owner = owner in ALLOWED_OWNERS
+        is_allowed_owner = _is_allowed_owner(owner)
         if is_allowed_owner:
             if repo.get("isPrivate") is True:
                 proven_private_commits = True
@@ -764,7 +773,7 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
         elif not _is_public_external_organization(repo):
             continue
         name = repo.get("nameWithOwner")
-        if is_allowed_owner and name == PROFILE_REPO:
+        if is_allowed_owner and _is_profile_repo(name):
             continue
         if not _has_required_contrib_fields(entry):
             continue
