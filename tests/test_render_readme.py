@@ -254,7 +254,7 @@ class RenderReadmeTest(unittest.TestCase):
                     ],
                     environ={},
                 ),
-                EXIT_COLLECTOR_FAILED,
+                EXIT_OK,
             )
             preserved = (root / "README.md").read_text(encoding="utf-8")
             preserved_waka = _section(preserved, WAKA_START, WAKA_END)
@@ -296,7 +296,7 @@ class RenderReadmeTest(unittest.TestCase):
                 ["--repo-root", str(root), "--fixture-activity", str(activity_path)],
                 environ={},
             )
-            self.assertEqual(code, EXIT_COLLECTOR_FAILED)
+            self.assertEqual(code, EXIT_OK)
             readme = (root / "README.md").read_text(encoding="utf-8")
             self.assertEqual(_section(readme, WAKA_START, WAKA_END), previous_waka)
 
@@ -425,7 +425,7 @@ class RenderReadmeTest(unittest.TestCase):
                 ],
                 environ=env,
             )
-            self.assertEqual(code, EXIT_COLLECTOR_FAILED)
+            self.assertEqual(code, EXIT_OK)
             readme = (root / "README.md").read_text(encoding="utf-8")
             waka = _section(readme, WAKA_START, WAKA_END)
             self.assertEqual(waka, WAKA_FALLBACK)

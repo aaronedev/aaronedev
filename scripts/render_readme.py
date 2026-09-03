@@ -199,7 +199,7 @@ def main(
     output = args.output or (root / "README.md")
     existing = output.read_text(encoding="utf-8") if output.exists() else ""
 
-    failed = False
+    activity_failed = False
     commit_hours = None
     commit_weekdays = None
     contribution_repos_bounded = False
@@ -214,7 +214,7 @@ def main(
         activity_inner = _wrap_new(activity_md)
         activity_succeeded = True
     except (ActivityCollectionError, OSError, ValueError, json.JSONDecodeError):
-        failed = True
+        activity_failed = True
         previous = extract_section(existing, ACTIVITY_START, ACTIVITY_END)
         activity_inner = previous if previous is not None else ACTIVITY_FALLBACK
 
@@ -230,7 +230,6 @@ def main(
         )
         waka_inner = _wrap_new(waka_md)
     except (WakaCollectionError, OSError, ValueError, json.JSONDecodeError):
-        failed = True
         waka_inner = _safe_previous_waka(existing)
 
     render_readme(
@@ -239,7 +238,7 @@ def main(
         waka_markdown=waka_inner,
         output=output,
     )
-    return EXIT_COLLECTOR_FAILED if failed else EXIT_OK
+    return EXIT_COLLECTOR_FAILED if activity_failed else EXIT_OK
 
 
 if __name__ == "__main__":

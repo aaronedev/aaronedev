@@ -139,6 +139,17 @@ class ProfileSetupTest(unittest.TestCase):
         self.assertIn("Build a small public project", profile)
         self.assertIn("Software design", profile)
 
+    def test_github_logins_are_canonicalized_before_writing_configuration(self) -> None:
+        answers = validate_answers(
+            self._answers(
+                github_login="EXAMPLE",
+                project_owners=("Example-Lab",),
+            )
+        )
+
+        self.assertEqual(answers.github_login, "example")
+        self.assertEqual(answers.project_owners, ("example", "example-lab"))
+
     def test_invalid_timezone_fails_before_writes(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             paths = self._paths(Path(temp_dir))
@@ -156,7 +167,6 @@ class ProfileSetupTest(unittest.TestCase):
             paths = self._paths(Path(temp_dir))
             for path in (paths.template, paths.readme):
                 text = path.read_text(encoding="utf-8")
-                text = text.replace(
                 text = text.replace(
                     ACTIVITY_START,
                     f"{ACTIVITY_START}\nupstream activity",

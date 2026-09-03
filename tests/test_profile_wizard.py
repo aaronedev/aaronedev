@@ -132,19 +132,21 @@ class ProfileWizardTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             fake_bin = root / "fake-bin"
-            setup = root / "bin" / "setup-profile"
+            state_dir = root / "state"
             fake_bin.mkdir()
-            setup.parent.mkdir()
-            shutil.copy(WIZARD, setup)
-            setup.chmod(setup.stat().st_mode | stat.S_IXUSR)
-            self._fake_command(
-                fake_bin / "git",
-                "#!/usr/bin/env bash\n"
-                "if [[ \"$*\" == *'remote get-url origin'* ]]; then\n"
-                "  printf '%s\\n' 'https://github.com/Example/Example.git'\n"
-                "  exit 0\n"
-                "fi\n"
-                "exit 1\n",
+            self._profile_checkout(root)
+            subprocess.run(["git", "init", "--quiet", str(root)], check=True)
+            subprocess.run(
+                [
+                    "git",
+                    "-C",
+                    str(root),
+                    "remote",
+                    "add",
+                    "origin",
+                    "https://github.com/Example/Example.git",
+                ],
+                check=True,
             )
             self._fake_command(
                 fake_bin / "gh",
@@ -155,19 +157,34 @@ class ProfileWizardTest(unittest.TestCase):
                 "if [[ \"$*\" == *'parent'* ]]; then printf '%s\\n' 'upstream/profile'; exit 0; fi\n"
                 "exit 1\n",
             )
+            self._fake_command(fake_bin / "xdg-open", "#!/usr/bin/env bash\nexit 0\n")
+            readme = root / "README.md"
+            readme.write_text(
+                readme.read_text(encoding="utf-8") + "\ncustom unmanaged content\n",
+                encoding="utf-8",
+            )
 
             result = subprocess.run(
-                [str(setup), "--apply"],
+                [str(root / "bin" / "setup-profile"), "--apply"],
                 cwd=root,
-                input="Example Builder\nEXAMPLE\nTools\n\n\n\nEurope/Berlin\n\nno\n",
+                input=(
+                    "Example Builder\nEXAMPLE\nTools\n\n\n\nEurope/Berlin\n\n\n"
+                    "no\ny\ngithub-setup\n\n\n\n"
+                ),
                 check=False,
                 capture_output=True,
                 text=True,
-                env={**os.environ, "PATH": f"{fake_bin}:{os.environ['PATH']}"},
+                env={
+                    **os.environ,
+                    "PATH": f"{fake_bin}:{os.environ['PATH']}",
+                    "WIZARD_STATE_DIR": str(state_dir),
+                },
             )
 
-            self.assertNotIn("gh repository identity does not match", result.stderr)
+            self.assertEqual(result.returncode, 0, result.stderr)
             self.assertIn("fork repository matches the selected profile login", result.stdout)
+            self.assertIn("runs-on: ubuntu-latest", (root / ".github" / "workflows" / "readme.yaml").read_text())
+            self.assertIn("custom unmanaged content", readme.read_text(encoding="utf-8"))
 
     def test_rollback_rejects_state_from_another_checkout(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

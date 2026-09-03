@@ -691,7 +691,7 @@ FOCUS_ITEMS=""
 HELP_ITEMS=""
 PROFILE_TIMEZONE=""
 PROJECT_OWNERS=""
-USE_UBUNTU_RUNNER="no"
+USE_UBUNTU_RUNNER="yes"
 COPILOT_ELECT=""
 
 require_command() {
@@ -776,28 +776,6 @@ apply_profile_files() {
   "${command[@]}"
 }
 
-render_profile_readme() {
-  local status_code=0
-  if [[ "$MODE" == "plan" ]]; then
-    run_change "Render README activity sections" python3 "$REPO_ROOT/scripts/render_readme.py"
-    return 0
-  fi
-  _ensure_mutation_allowed
-  printf '  %s→%s Render README activity sections\n' "$BLUE" "$RESET"
-  python3 "$REPO_ROOT/scripts/render_readme.py" || status_code=$?
-  case "$status_code" in
-    0)
-      printf '  %s✓%s Rendered README activity sections\n' "$GREEN" "$RESET"
-      ;;
-    2)
-      warn "activity collection was unavailable; the prior dynamic sections were preserved"
-      ;;
-    *)
-      return "$status_code"
-      ;;
-  esac
-}
-
 copilot_prompt() {
   printf '%s\n' \
     "Draft one concise, public-safe GitHub profile intro for ${DISPLAY_NAME} (@${GITHUB_LOGIN})." \
@@ -861,9 +839,9 @@ forward_procedure() {
   ask HELP_ITEMS "Optional semicolon-separated help areas (blank uses defaults):"
   ask PROFILE_TIMEZONE "IANA timezone, for example Europe/Berlin:"
   ask PROJECT_OWNERS "Optional semicolon-separated project owners (blank uses your login):"
-  ask USE_UBUNTU_RUNNER "Use ubuntu-latest instead of this repo's private runner labels? [yes/NO]"
+  ask USE_UBUNTU_RUNNER "Use ubuntu-latest instead of this repo's private runner labels? [YES/no]"
   case "$USE_UBUNTU_RUNNER" in
-    [Yy] | [Yy][Ee][Ss]) USE_UBUNTU_RUNNER="yes" ;;
+    "" | [Yy] | [Yy][Ee][Ss]) USE_UBUNTU_RUNNER="yes" ;;
     *) USE_UBUNTU_RUNNER="no" ;;
   esac
   verify_cmd "fork repository matches the selected profile login" verify_profile_repository
@@ -883,7 +861,6 @@ forward_procedure() {
   backup_file "$README_PATH" "readme-output"
   backup_file "$WORKFLOW_PATH" "readme-workflow"
   run_change "Apply validated starter profile" apply_profile_files
-  render_profile_readme
   verify_cmd "Verify bounded profile files without writing" python3 "$REPO_ROOT/scripts/profile_setup.py" --check --repo-root "$REPO_ROOT"
   complete_stage
 

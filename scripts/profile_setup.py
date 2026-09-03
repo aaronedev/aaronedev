@@ -66,7 +66,7 @@ def validate_github_login(value: str) -> str:
         or "--" in value
     ):
         raise ProfileSetupError("GitHub login must be 1-39 letters, digits, or hyphens")
-    return value
+    return value.lower()
 
 
 def validate_one_line(value: str, field: str, *, required: bool = True) -> str:
