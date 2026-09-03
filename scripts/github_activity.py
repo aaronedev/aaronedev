@@ -114,6 +114,11 @@ class ActivityCollectionError(Exception):
 
 
 HttpCallable = Callable[..., dict[str, Any]]
+_ALLOWED_OWNER_CASEFOLDS = frozenset(owner.casefold() for owner in ALLOWED_OWNERS)
+
+
+def _is_allowed_owner(owner: str | None) -> bool:
+    return owner is not None and owner.casefold() in _ALLOWED_OWNER_CASEFOLDS
 
 
 @dataclass
@@ -277,7 +282,7 @@ def _timing_repos(*groups: list[dict[str, Any]]) -> list[str]:
                 continue
             owner = _owner_login(repo)
             is_private = repo.get("isPrivate")
-            is_allowlisted = owner in ALLOWED_OWNERS and is_private in {False, True}
+            is_allowlisted = _is_allowed_owner(owner) and is_private in {False, True}
             is_public_external_organization = (
                 is_private is False
                 and _owner_typename(repo) == "Organization"
@@ -552,7 +557,7 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
         if not isinstance(repo, dict):
             continue
         owner = _owner_login(repo)
-        if owner not in ALLOWED_OWNERS:
+        if not _is_allowed_owner(owner):
             continue
         if repo.get("isPrivate") is True:
             proven_private_prs = True
@@ -591,7 +596,7 @@ def privacy_reduce(normalized: dict[str, Any]) -> ActivityModel:
             count_int = int(count) if count is not None else 0
         except (TypeError, ValueError):
             count_int = 0
-        is_allowed_owner = owner in ALLOWED_OWNERS
+        is_allowed_owner = _is_allowed_owner(owner)
         if is_allowed_owner:
             if repo.get("isPrivate") is True:
                 proven_private_commits = True

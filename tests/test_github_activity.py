@@ -261,6 +261,26 @@ class PrivacyReduceTest(unittest.TestCase):
             self.assertIn(PUBLIC_REPOS[owner], markdown)
             self.assertIn(f"{owner} public pr", markdown)
 
+    def test_case_variant_of_an_allowed_owner_is_included(self) -> None:
+        owner = "VIOLET-VOID"
+        name = "case-variant"
+        markdown = _rendered_from_raw(
+            _raw(
+                pull_requests=[
+                    _pr_node(
+                        owner=owner,
+                        name=name,
+                        title="case variant public pr",
+                        url=f"https://github.com/{owner}/{name}/pull/1",
+                    )
+                ],
+                contributions=[_contrib(owner=owner, name=name, count=3)],
+            )
+        )
+
+        self.assertIn(f"{owner}/{name}", markdown)
+        self.assertIn("case variant public pr", markdown)
+
     def test_private_violet_void_canary_is_aggregate_only(self) -> None:
         owner, name = CANARY_VV.split("/", 1)
         raw = _raw(
