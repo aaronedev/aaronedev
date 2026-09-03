@@ -205,8 +205,8 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <br>
   <sub>github profile aaronedev</sub>
 
-- 🟣 <a href="https://github.com/aaronedev/aaronedev/pull/25"><strong>feat(profile): add fork setup wizard</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-02 • OPEN</sub>
+- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/25"><strong>feat(profile): add fork setup wizard</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-02 • MERGED</sub>
   <br>
   <sub>github profile aaronedev</sub>
 
@@ -290,7 +290,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 2164 pull requests · at least 23575 commits
+🔒 Private activity: 2165 pull requests · at least 23580 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -305,23 +305,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6895 commits     ███████░░░░░░░░░░░░░░░░░░   27.25%
-🌆 Daytime    9821 commits     ██████████░░░░░░░░░░░░░░░   38.82%
-🌃 Evening    5922 commits     ██████░░░░░░░░░░░░░░░░░░░   23.41%
-🌙 Night      2663 commits     ███░░░░░░░░░░░░░░░░░░░░░░   10.53%
+🌞 Morning    6908 commits     ███████░░░░░░░░░░░░░░░░░░   27.29%
+🌆 Daytime    9822 commits     ██████████░░░░░░░░░░░░░░░   38.8%
+🌃 Evening    5924 commits     ██████░░░░░░░░░░░░░░░░░░░   23.4%
+🌙 Night      2663 commits     ███░░░░░░░░░░░░░░░░░░░░░░   10.52%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3717 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.69%
-Tuesday      3479 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.75%
-Wednesday    3301 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.05%
-Thursday     4395 commits     ████░░░░░░░░░░░░░░░░░░░░░   17.37%
+Monday       3717 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.68%
+Tuesday      3479 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.74%
+Wednesday    3304 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.05%
+Thursday     4408 commits     ████░░░░░░░░░░░░░░░░░░░░░   17.41%
 Friday       3480 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.75%
 Saturday     3275 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.94%
-Sunday       3654 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.44%
+Sunday       3654 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.43%
 
 ```
 
