@@ -284,13 +284,9 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <br>
   <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz, @shivros] </sub>
 
-- 🔗 <a href="https://github.com/zen-browser/theme-store"><code>zen-browser/theme-store</code></a> • <strong>1 issue</strong> • 2025-09-03
-  <br>
-  <sub>🎨 Theme repository for @zen-browser!</sub>
-
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 2195 pull requests · at least 23726 commits
+🔒 Private activity: 2200 pull requests · at least 22838 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -305,23 +301,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6974 commits     ███████░░░░░░░░░░░░░░░░░░   27.39%
-🌆 Daytime    9878 commits     ██████████░░░░░░░░░░░░░░░   38.8%
-🌃 Evening    5942 commits     ██████░░░░░░░░░░░░░░░░░░░   23.34%
-🌙 Night      2666 commits     ███░░░░░░░░░░░░░░░░░░░░░░   10.47%
+🌞 Morning    6542 commits     ███████░░░░░░░░░░░░░░░░░░   26.63%
+🌆 Daytime    9582 commits     ██████████░░░░░░░░░░░░░░░   39%
+🌃 Evening    5792 commits     ██████░░░░░░░░░░░░░░░░░░░   23.58%
+🌙 Night      2652 commits     ███░░░░░░░░░░░░░░░░░░░░░░   10.79%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3717 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.6%
-Tuesday      3479 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.66%
-Wednesday    3304 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.98%
-Thursday     4420 commits     ████░░░░░░░░░░░░░░░░░░░░░   17.36%
-Friday       3518 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.82%
-Saturday     3325 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.06%
-Sunday       3697 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.52%
+Monday       3607 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.68%
+Tuesday      3368 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.71%
+Wednesday    3120 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.7%
+Thursday     4367 commits     ████░░░░░░░░░░░░░░░░░░░░░   17.78%
+Friday       3386 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.78%
+Saturday     3213 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.08%
+Sunday       3507 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.27%
 
 ```
 
@@ -333,21 +329,21 @@ Sunday       3697 commits     ████░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   42 hrs 1 min       ██████████████░░░░░░░░░░░   54.4%
-Markdown                 13 hrs 18 mins     ████░░░░░░░░░░░░░░░░░░░░░   17.23%
-Bash                     4 hrs 44 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.13%
-Other                    4 hrs 9 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.38%
-JSON                     3 hrs 18 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.28%
+Python                   44 hrs             ██████████████░░░░░░░░░░░   56.2%
+Markdown                 13 hrs 3 mins      ████░░░░░░░░░░░░░░░░░░░░░   16.68%
+Other                    4 hrs 33 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.81%
+Bash                     4 hrs 14 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.42%
+JSON                     3 hrs 19 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.24%
 
 🔥 Editors: 
-Codex Vscode             36 hrs 35 mins     ████████████░░░░░░░░░░░░░   47.36%
-Neovim                   24 hrs 55 mins     ████████░░░░░░░░░░░░░░░░░   32.26%
-Opencode Cli             7 hrs 51 mins      ███░░░░░░░░░░░░░░░░░░░░░░   10.18%
-Vim                      7 hrs 7 mins       ██░░░░░░░░░░░░░░░░░░░░░░░   9.21%
-Codex CLI                45 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.99%
+Codex Vscode             40 hrs 14 mins     █████████████░░░░░░░░░░░░   51.38%
+Neovim                   25 hrs 34 mins     ████████░░░░░░░░░░░░░░░░░   32.66%
+Vim                      8 hrs 38 mins      ███░░░░░░░░░░░░░░░░░░░░░░   11.04%
+Opencode Cli             3 hrs 4 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.94%
+Codex CLI                45 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.97%
 
 💻 Operating System: 
-Linux                    77 hrs 15 mins     █████████████████████████   100%
+Linux                    78 hrs 18 mins     █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
