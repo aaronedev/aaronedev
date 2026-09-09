@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
-#
-# Plan-first wizard template for manual setup, migration, cutover, and recovery.
-# Generated wizards are authored by an agent and executed by an operator.
-#
-# Everything above the "STAGES" marker is the wizard library. Keep it unchanged
-# in generated wizards; author only the procedure below the marker.
 
 set -Eeuo pipefail
 umask 077
