@@ -3,10 +3,6 @@
 # Plan-first wizard template for manual setup, migration, cutover, and recovery.
 # Generated wizards are authored by an agent and executed by an operator.
 #
-# Adapted from Matt Pocock's wizard template:
-# https://github.com/mattpocock/skills/tree/main/skills/engineering/wizard
-# Copyright (c) 2026 Matt Pocock. Licensed under the MIT License; see LICENSE.
-#
 # Everything above the "STAGES" marker is the wizard library. Keep it unchanged
 # in generated wizards; author only the procedure below the marker.
 
