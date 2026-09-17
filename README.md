@@ -242,6 +242,10 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 ### 🛠️ Latest Contributions
 
+- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>32 commits</strong> • 2026-09-17
+  <br>
+  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to you</sub>
+
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • <strong>63 commits</strong> • 2026-09-10
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>1135 commits</strong> • 2026-07-22
@@ -249,10 +253,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_discord"><code>aaronedev/violet-void-theme_discord</code></a> • <strong>6 commits</strong> • 2026-06-08
-
-- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>31 commits</strong> • 2026-05-20
-  <br>
-  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to you</sub>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_kitty"><code>aaronedev/violet-void-theme_kitty</code></a> • <strong>5 commits</strong> • 2026-03-20
 
@@ -286,7 +286,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 2334 pull requests · at least 22760 commits
+🔒 Private activity: 2342 pull requests · at least 22791 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -301,23 +301,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6642 commits     ███████░░░░░░░░░░░░░░░░░░   27.11%
-🌆 Daytime    9516 commits     ██████████░░░░░░░░░░░░░░░   38.84%
-🌃 Evening    5703 commits     ██████░░░░░░░░░░░░░░░░░░░   23.28%
-🌙 Night      2641 commits     ███░░░░░░░░░░░░░░░░░░░░░░   10.78%
+🌞 Morning    6664 commits     ███████░░░░░░░░░░░░░░░░░░   27.17%
+🌆 Daytime    9524 commits     ██████████░░░░░░░░░░░░░░░   38.82%
+🌃 Evening    5702 commits     ██████░░░░░░░░░░░░░░░░░░░   23.24%
+🌙 Night      2641 commits     ███░░░░░░░░░░░░░░░░░░░░░░   10.77%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3607 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.72%
-Tuesday      3420 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.96%
-Wednesday    3109 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.69%
-Thursday     4415 commits     █████░░░░░░░░░░░░░░░░░░░░   18.02%
-Friday       3244 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.24%
-Saturday     3236 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.21%
-Sunday       3471 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.17%
+Monday       3605 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.7%
+Tuesday      3420 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.94%
+Wednesday    3118 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.71%
+Thursday     4438 commits     █████░░░░░░░░░░░░░░░░░░░░   18.09%
+Friday       3244 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.22%
+Saturday     3236 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.19%
+Sunday       3470 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.15%
 
 ```
 
@@ -329,21 +329,21 @@ Sunday       3471 commits     ████░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   19 hrs 16 mins     ████████░░░░░░░░░░░░░░░░░   32.73%
-Other                    10 hrs 44 mins     █████░░░░░░░░░░░░░░░░░░░░   18.24%
-Bash                     7 hrs 41 mins      ███░░░░░░░░░░░░░░░░░░░░░░   13.06%
-Lua                      5 hrs              ██░░░░░░░░░░░░░░░░░░░░░░░   8.51%
-Markdown                 3 hrs 34 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.06%
+Python                   23 hrs 59 mins     █████████░░░░░░░░░░░░░░░░   37.19%
+Other                    12 hrs 20 mins     █████░░░░░░░░░░░░░░░░░░░░   19.14%
+Bash                     6 hrs 1 min        ██░░░░░░░░░░░░░░░░░░░░░░░   9.33%
+Lua                      4 hrs 36 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   7.14%
+Markdown                 4 hrs 14 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.58%
 
 🔥 Editors: 
-Neovim                   34 hrs 23 mins     ███████████████░░░░░░░░░░   58.39%
-Codex Vscode             19 hrs             ████████░░░░░░░░░░░░░░░░░   32.27%
-Opencode Cli             3 hrs 41 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.28%
-Vim                      1 hr 37 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   2.77%
-Codex Exec               10 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.3%
+Neovim                   39 hrs 14 mins     ███████████████░░░░░░░░░░   60.8%
+Codex Vscode             20 hrs 43 mins     ████████░░░░░░░░░░░░░░░░░   32.12%
+Opencode Cli             2 hrs 45 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.27%
+Vim                      1 hr 37 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   2.53%
+Codex Exec               10 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.28%
 
 💻 Operating System: 
-Linux                    58 hrs 53 mins     █████████████████████████   100%
+Linux                    64 hrs 31 mins     █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
