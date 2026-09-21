@@ -286,7 +286,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 2384 pull requests · at least 22901 commits
+🔒 Private activity: 2387 pull requests · at least 21805 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -301,23 +301,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6704 commits     ███████░░░░░░░░░░░░░░░░░░   27.21%
-🌆 Daytime    9564 commits     ██████████░░░░░░░░░░░░░░░   38.81%
-🌃 Evening    5723 commits     ██████░░░░░░░░░░░░░░░░░░░   23.23%
-🌙 Night      2650 commits     ███░░░░░░░░░░░░░░░░░░░░░░   10.75%
+🌞 Morning    6483 commits     ███████░░░░░░░░░░░░░░░░░░   27.54%
+🌆 Daytime    9133 commits     ██████████░░░░░░░░░░░░░░░   38.8%
+🌃 Evening    5298 commits     ██████░░░░░░░░░░░░░░░░░░░   22.51%
+🌙 Night      2627 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.16%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3605 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.63%
-Tuesday      3420 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.88%
-Wednesday    3118 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.65%
-Thursday     4455 commits     █████░░░░░░░░░░░░░░░░░░░░   18.08%
-Friday       3292 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.36%
-Saturday     3264 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.25%
-Sunday       3487 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.15%
+Monday       3505 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.89%
+Tuesday      3320 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.1%
+Wednesday    3087 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.11%
+Thursday     4455 commits     █████░░░░░░░░░░░░░░░░░░░░   18.92%
+Friday       2968 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.61%
+Saturday     2784 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.83%
+Sunday       3422 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.54%
 
 ```
 
@@ -329,21 +329,21 @@ Sunday       3487 commits     ████░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   17 hrs 20 mins     ██████████░░░░░░░░░░░░░░░   40.51%
-Other                    5 hrs 17 mins      ███░░░░░░░░░░░░░░░░░░░░░░   12.35%
-Bash                     4 hrs 22 mins      ███░░░░░░░░░░░░░░░░░░░░░░   10.21%
-Markdown                 3 hrs 12 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   7.5%
-Lua                      2 hrs 22 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.53%
+Python                   15 hrs 35 mins     ██████████░░░░░░░░░░░░░░░   40.39%
+Other                    7 hrs 53 mins      █████░░░░░░░░░░░░░░░░░░░░   20.45%
+JavaScript               2 hrs 43 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   7.07%
+Markdown                 2 hrs 19 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.04%
+Bash                     1 hr 3 mins        █░░░░░░░░░░░░░░░░░░░░░░░░   2.76%
 
 🔥 Editors: 
-Neovim                   26 hrs 19 mins     ███████████████░░░░░░░░░░   61.52%
-Codex Vscode             12 hrs 56 mins     ████████░░░░░░░░░░░░░░░░░   30.25%
-Opencode Cli             2 hrs 30 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.87%
-Vim                      59 mins            █░░░░░░░░░░░░░░░░░░░░░░░░   2.3%
+Neovim                   26 hrs 48 mins     █████████████████░░░░░░░░   69.49%
+Codex Vscode             9 hrs 10 mins      ██████░░░░░░░░░░░░░░░░░░░   23.78%
+Opencode Cli             2 hrs 5 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.4%
+Vim                      29 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   1.26%
 Codex Exec               1 min              ░░░░░░░░░░░░░░░░░░░░░░░░░   0.06%
 
 💻 Operating System: 
-Linux                    42 hrs 47 mins     █████████████████████████   100%
+Linux                    38 hrs 35 mins     █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
