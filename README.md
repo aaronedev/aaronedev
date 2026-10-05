@@ -244,7 +244,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • <strong>64 commits</strong> • 2026-09-24
 
-- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>32 commits</strong> • 2026-09-17
+- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>31 commits</strong> • 2026-09-17
   <br>
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to you</sub>
 
@@ -286,7 +286,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 2732 pull requests · at least 20517 commits
+🔒 Private activity: 2739 pull requests · at least 20033 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -301,23 +301,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6381 commits     ███████░░░░░░░░░░░░░░░░░░   28.47%
-🌆 Daytime    8184 commits     █████████░░░░░░░░░░░░░░░░   36.51%
-🌃 Evening    5264 commits     ██████░░░░░░░░░░░░░░░░░░░   23.48%
-🌙 Night      2588 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.54%
+🌞 Morning    6206 commits     ███████░░░░░░░░░░░░░░░░░░   28.38%
+🌆 Daytime    7963 commits     █████████░░░░░░░░░░░░░░░░   36.42%
+🌃 Evening    5146 commits     ██████░░░░░░░░░░░░░░░░░░░   23.53%
+🌙 Night      2552 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.67%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3302 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.73%
-Tuesday      3278 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.62%
-Wednesday    3156 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.08%
-Thursday     3621 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.15%
-Friday       3008 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.42%
-Saturday     2891 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.9%
-Sunday       3161 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.1%
+Monday       3216 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.71%
+Tuesday      3188 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.58%
+Wednesday    3104 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.19%
+Thursday     3556 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.26%
+Friday       2889 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.21%
+Saturday     2860 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.08%
+Sunday       3054 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.97%
 
 ```
 
@@ -329,21 +329,21 @@ Sunday       3161 commits     ████░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   28 hrs 56 mins     ████████░░░░░░░░░░░░░░░░░   33.46%
-Markdown                 18 hrs 34 mins     █████░░░░░░░░░░░░░░░░░░░░   21.49%
-Other                    15 hrs 43 mins     █████░░░░░░░░░░░░░░░░░░░░   18.18%
-QML                      3 hrs 50 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.45%
-Bash                     2 hrs 55 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.39%
+Python                   29 hrs 23 mins     ████████░░░░░░░░░░░░░░░░░   31.28%
+Other                    21 hrs 1 min       ██████░░░░░░░░░░░░░░░░░░░   22.38%
+Markdown                 19 hrs 8 mins      █████░░░░░░░░░░░░░░░░░░░░   20.39%
+QML                      5 hrs 12 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.55%
+JSON                     2 hrs 52 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.05%
 
 🔥 Editors: 
-Neovim                   43 hrs 38 mins     █████████████░░░░░░░░░░░░   50.47%
-Codex Vscode             40 hrs 15 mins     ████████████░░░░░░░░░░░░░   46.55%
-Vim                      1 hr 41 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   1.95%
-Opencode Cli             52 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   1.01%
-Codex Exec               0 secs             ░░░░░░░░░░░░░░░░░░░░░░░░░   0.01%
+Codex Vscode             47 hrs 59 mins     █████████████░░░░░░░░░░░░   51.1%
+Neovim                   43 hrs 37 mins     ████████████░░░░░░░░░░░░░   46.45%
+Vim                      1 hr 30 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   1.61%
+Opencode Cli             47 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.84%
+Codex Exec               0 secs             ░░░░░░░░░░░░░░░░░░░░░░░░░   0%
 
 💻 Operating System: 
-Linux                    86 hrs 28 mins     █████████████████████████   100%
+Linux                    93 hrs 56 mins     █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
