@@ -200,6 +200,11 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
+- 🟣 <a href="https://github.com/aaronedev/hyprtasking/pull/1"><strong>fix(overview): preserve toggle shortcuts and reopen state</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/hyprtasking"><code>aaronedev/hyprtasking</code></a> • 2026-10-08 • OPEN</sub>
+  <br>
+  <sub>Powerful workspace management plugin, packed with features</sub>
+
 - 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/26"><strong>feat(profile): add figmix profile asset generator</strong></a><br>
   <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-02 • MERGED</sub>
   <br>
@@ -231,11 +236,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <sub>github profile aaronedev</sub>
 
 - 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/20"><strong>ci(readme): remove Docker actions from README update</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-01 • MERGED</sub>
-  <br>
-  <sub>github profile aaronedev</sub>
-
-- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/19"><strong>ci(aaronedev): route README job to self-hosted ops runner</strong></a><br>
   <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-01 • MERGED</sub>
   <br>
   <sub>github profile aaronedev</sub>
@@ -286,7 +286,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 2773 pull requests · at least 20148 commits
+🔒 Private activity: 2789 pull requests · at least 20215 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -301,23 +301,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6245 commits     ███████░░░░░░░░░░░░░░░░░░   28.37%
-🌆 Daytime    8019 commits     █████████░░░░░░░░░░░░░░░░   36.43%
-🌃 Evening    5183 commits     ██████░░░░░░░░░░░░░░░░░░░   23.55%
-🌙 Night      2566 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.66%
+🌞 Morning    6251 commits     ███████░░░░░░░░░░░░░░░░░░   28.3%
+🌆 Daytime    8078 commits     █████████░░░░░░░░░░░░░░░░   36.57%
+🌃 Evening    5183 commits     ██████░░░░░░░░░░░░░░░░░░░   23.47%
+🌙 Night      2575 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.66%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3220 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.63%
-Tuesday      3270 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.85%
-Wednesday    3140 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.26%
-Thursday     3557 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.16%
-Friday       2905 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.2%
-Saturday     2866 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.02%
-Sunday       3055 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.88%
+Monday       3220 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.58%
+Tuesday      3270 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.81%
+Wednesday    3145 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.24%
+Thursday     3626 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.42%
+Friday       2905 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.15%
+Saturday     2866 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.98%
+Sunday       3055 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.83%
 
 ```
 
@@ -329,21 +329,20 @@ Sunday       3055 commits     ███░░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Other                    42 hrs 16 mins     █████████░░░░░░░░░░░░░░░░   37.35%
-Python                   33 hrs 38 mins     ███████░░░░░░░░░░░░░░░░░░   29.73%
-Markdown                 14 hrs 35 mins     ███░░░░░░░░░░░░░░░░░░░░░░   12.9%
-QML                      6 hrs 17 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.56%
-Shell                    3 hrs 52 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.43%
+Other                    41 hrs 28 mins     █████████░░░░░░░░░░░░░░░░   37.51%
+Python                   30 hrs 58 mins     ███████░░░░░░░░░░░░░░░░░░   28.02%
+Markdown                 14 hrs 49 mins     ███░░░░░░░░░░░░░░░░░░░░░░   13.4%
+QML                      6 hrs 29 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.87%
+Shell                    4 hrs 35 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.16%
 
 🔥 Editors: 
-Codex Vscode             60 hrs 38 mins     █████████████░░░░░░░░░░░░   53.59%
-Neovim                   42 hrs 6 mins      █████████░░░░░░░░░░░░░░░░   37.22%
-Opencode Cli             8 hrs 17 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   7.33%
-Vim                      2 hrs 6 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   1.86%
-Codex Exec               0 secs             ░░░░░░░░░░░░░░░░░░░░░░░░░   0%
+Codex Vscode             57 hrs 23 mins     █████████████░░░░░░░░░░░░   51.91%
+Neovim                   43 hrs 30 mins     ██████████░░░░░░░░░░░░░░░   39.36%
+Opencode Cli             8 hrs 22 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   7.58%
+Vim                      1 hr 16 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   1.16%
 
 💻 Operating System: 
-Linux                    113 hrs 9 mins     █████████████████████████   100%
+Linux                    110 hrs 33 mins    █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
