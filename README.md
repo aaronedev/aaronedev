@@ -200,6 +200,16 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
+- 🟢 <a href="https://github.com/aaronedev/aaronsamuel/pull/3"><strong>feat(singularity): idle mouse becomes a black hole that swallows the page</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronsamuel"><code>aaronedev/aaronsamuel</code></a> • 2026-10-13 • MERGED</sub>
+  <br>
+  <sub>personal contact webpage</sub>
+
+- 🟣 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/86"><strong>Fix Vector menu alignment, wrapping, and dropdown state</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-13 • OPEN</sub>
+  <br>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
+
 - 🟣 <a href="https://github.com/aaronedev/hyprtasking/pull/1"><strong>fix(overview): preserve toggle shortcuts and reopen state</strong></a><br>
   <sub><a href="https://github.com/aaronedev/hyprtasking"><code>aaronedev/hyprtasking</code></a> • 2026-10-08 • OPEN</sub>
   <br>
@@ -230,17 +240,11 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <br>
   <sub>github profile aaronedev</sub>
 
-- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/21"><strong>fix(readme): handle high-volume pull request history</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-02 • MERGED</sub>
-  <br>
-  <sub>github profile aaronedev</sub>
-
-- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/20"><strong>ci(readme): remove Docker actions from README update</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-01 • MERGED</sub>
-  <br>
-  <sub>github profile aaronedev</sub>
-
 ### 🛠️ Latest Contributions
+
+- 🔗 <a href="https://github.com/aaronedev/aaronsamuel"><code>aaronedev/aaronsamuel</code></a> • <strong>8 commits</strong> • 2026-10-13
+  <br>
+  <sub>personal contact webpage</sub>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • <strong>64 commits</strong> • 2026-09-24
 
@@ -268,8 +272,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_crackboard"><code>aaronedev/violet-void-theme_crackboard</code></a> • <strong>6 commits</strong> • 2026-03-20
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_vim"><code>aaronedev/violet-void-theme_vim</code></a> • <strong>4 commits</strong> • 2026-03-20
-
 ### 🤝 Contributions to Other Organizations
 
 - 🔗 <a href="https://github.com/anomalyco/opencode"><code>anomalyco/opencode</code></a> • <strong>2 issues</strong> • 2026-08-24
@@ -286,7 +288,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 2810 pull requests · at least 19893 commits
+🔒 Private activity: 2824 pull requests · at least 19955 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -301,23 +303,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6100 commits     ███████░░░░░░░░░░░░░░░░░░   27.89%
-🌆 Daytime    7955 commits     █████████░░░░░░░░░░░░░░░░   36.37%
-🌃 Evening    5226 commits     ██████░░░░░░░░░░░░░░░░░░░   23.9%
-🌙 Night      2589 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.84%
+🌞 Morning    6155 commits     ███████░░░░░░░░░░░░░░░░░░   28%
+🌆 Daytime    7983 commits     █████████░░░░░░░░░░░░░░░░   36.32%
+🌃 Evening    5231 commits     ██████░░░░░░░░░░░░░░░░░░░   23.8%
+🌙 Night      2612 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.88%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3182 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.55%
-Tuesday      3277 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.98%
-Wednesday    3071 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.04%
-Thursday     3626 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.58%
-Friday       2867 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.11%
-Saturday     2830 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.94%
-Sunday       3017 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.8%
+Monday       3188 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.5%
+Tuesday      3365 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.31%
+Wednesday    3071 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.97%
+Thursday     3629 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.51%
+Friday       2874 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.07%
+Saturday     2830 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.87%
+Sunday       3024 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.76%
 
 ```
 
