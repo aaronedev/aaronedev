@@ -274,6 +274,10 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 ### 🤝 Contributions to Other Organizations
 
+- 🔗 <a href="https://github.com/material-extensions/material-icons-browser-extension"><code>material-extensions/material-icons-browser-extension</code></a> • <strong>1 pull request</strong> • 2026-10-15
+  <br>
+  <sub>Material Design icons for web browsers</sub>
+
 - 🔗 <a href="https://github.com/anomalyco/opencode"><code>anomalyco/opencode</code></a> • <strong>2 issues</strong> • 2026-08-24
   <br>
   <sub>The open source coding agent.</sub>
@@ -288,7 +292,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 2896 pull requests · at least 20419 commits
+🔒 Private activity: 2933 pull requests · at least 20615 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -303,23 +307,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6360 commits     ███████░░░░░░░░░░░░░░░░░░   28.07%
-🌆 Daytime    8206 commits     █████████░░░░░░░░░░░░░░░░   36.22%
-🌃 Evening    5382 commits     ██████░░░░░░░░░░░░░░░░░░░   23.76%
-🌙 Night      2707 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.95%
+🌞 Morning    6435 commits     ███████░░░░░░░░░░░░░░░░░░   28.15%
+🌆 Daytime    8278 commits     █████████░░░░░░░░░░░░░░░░   36.22%
+🌃 Evening    5431 commits     ██████░░░░░░░░░░░░░░░░░░░   23.76%
+🌙 Night      2712 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.87%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3208 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.16%
-Tuesday      3554 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.69%
-Wednesday    3461 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.28%
-Thursday     3651 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.12%
-Friday       2888 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.75%
-Saturday     2843 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.55%
-Sunday       3050 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.46%
+Monday       3208 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.04%
+Tuesday      3554 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.55%
+Wednesday    3526 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.43%
+Thursday     3787 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.57%
+Friday       2888 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.64%
+Saturday     2843 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.44%
+Sunday       3050 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.34%
 
 ```
 
@@ -331,21 +335,21 @@ Sunday       3050 commits     ███░░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   45 hrs 25 mins     ███████████░░░░░░░░░░░░░░   43.28%
-Other                    23 hrs 10 mins     ██████░░░░░░░░░░░░░░░░░░░   22.08%
-Markdown                 9 hrs 13 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   8.79%
-Lua                      4 hrs 6 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.92%
-JSON                     3 hrs 49 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.65%
+Python                   44 hrs 29 mins     ███████████░░░░░░░░░░░░░░   42.51%
+Other                    22 hrs 22 mins     █████░░░░░░░░░░░░░░░░░░░░   21.37%
+Markdown                 9 hrs 19 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   8.91%
+JavaScript               5 hrs 37 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.37%
+JSON                     4 hrs 40 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.46%
 
 🔥 Editors: 
-Codex Vscode             49 hrs 39 mins     ████████████░░░░░░░░░░░░░   47.32%
-Neovim                   37 hrs 5 mins      █████████░░░░░░░░░░░░░░░░   35.35%
-Opencode Cli             7 hrs 58 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   7.59%
-Vim                      5 hrs 55 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.64%
-Claude Code              3 hrs 1 min        █░░░░░░░░░░░░░░░░░░░░░░░░   2.88%
+Codex Vscode             52 hrs 22 mins     █████████████░░░░░░░░░░░░   50.03%
+Neovim                   31 hrs 50 mins     ████████░░░░░░░░░░░░░░░░░   30.43%
+Opencode Cli             7 hrs 19 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.99%
+Claude Code              6 hrs 9 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.88%
+Vim                      5 hrs 39 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.4%
 
 💻 Operating System: 
-Linux                    104 hrs 57 mins    █████████████████████████   100%
+Linux                    104 hrs 40 mins    █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
