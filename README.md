@@ -200,45 +200,45 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
+- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/16"><strong>chore: configure cubic reviews</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
+  <br>
+  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
+
+- ⚫ <a href="https://github.com/Violet-Void/wpaperd/pull/15"><strong>chore: configure cubic reviews</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • CLOSED</sub>
+  <br>
+  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
+
+- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/28"><strong>ci(readme): run the README update on GitHub-hosted runners</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-10-16 • MERGED</sub>
+  <br>
+  <sub>github profile aaronedev</sub>
+
+- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/14"><strong>fix(shaders): make dissolve, book-flip and dreamy compile</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
+  <br>
+  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
+
+- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/13"><strong>fix(picker): adopt a changed wallpaper pool on reload</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
+  <br>
+  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
+
+- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/12"><strong>fix(config): keep reloads working across atomic saves and symlinks</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
+  <br>
+  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
+
+- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/11"><strong>fix(render): restore mode uniforms when a reload swaps the transition</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
+  <br>
+  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
+
 - 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/8"><strong>Add native motion scene support with producer-authored animations</strong></a><br>
   <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-14 • MERGED</sub>
   <br>
   <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
-
-- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/7"><strong>build(install): Makefile, Arch package and install doctor</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-14 • MERGED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
-
-- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/6"><strong>feat(scene): render portable layered Orbit arrangements</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-13 • MERGED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
-
-- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/5"><strong>chore(codex): configure local Rust development environment</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-13 • MERGED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
-
-- 🟢 <a href="https://github.com/aaronedev/aaronsamuel/pull/3"><strong>feat(singularity): idle mouse becomes a black hole that swallows the page</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/aaronsamuel"><code>aaronedev/aaronsamuel</code></a> • 2026-10-13 • MERGED</sub>
-  <br>
-  <sub>personal contact webpage</sub>
-
-- 🟣 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/86"><strong>Fix Vector menu alignment, wrapping, and dropdown state</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-13 • OPEN</sub>
-  <br>
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
-
-- 🟣 <a href="https://github.com/aaronedev/hyprtasking/pull/1"><strong>fix(overview): preserve toggle shortcuts and reopen state</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/hyprtasking"><code>aaronedev/hyprtasking</code></a> • 2026-10-08 • OPEN</sub>
-  <br>
-  <sub>Powerful workspace management plugin, packed with features</sub>
-
-- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/26"><strong>feat(profile): add figmix profile asset generator</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-09-02 • MERGED</sub>
-  <br>
-  <sub>github profile aaronedev</sub>
 
 ### 🛠️ Latest Contributions
 
@@ -292,7 +292,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 3009 pull requests · at least 20799 commits
+🔒 Private activity: 3022 pull requests · at least 20812 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -307,22 +307,22 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6500 commits     ███████░░░░░░░░░░░░░░░░░░   28.16%
-🌆 Daytime    8365 commits     █████████░░░░░░░░░░░░░░░░   36.24%
-🌃 Evening    5500 commits     ██████░░░░░░░░░░░░░░░░░░░   23.83%
-🌙 Night      2716 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.77%
+🌞 Morning    6500 commits     ███████░░░░░░░░░░░░░░░░░░   28.14%
+🌆 Daytime    8365 commits     █████████░░░░░░░░░░░░░░░░   36.22%
+🌃 Evening    5516 commits     ██████░░░░░░░░░░░░░░░░░░░   23.88%
+🌙 Night      2716 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.76%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3208 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.9%
-Tuesday      3556 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.41%
-Wednesday    3537 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.32%
-Thursday     3874 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.78%
-Friday       3013 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.05%
-Saturday     2843 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.32%
+Monday       3208 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.89%
+Tuesday      3556 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.4%
+Wednesday    3537 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.31%
+Thursday     3874 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.77%
+Friday       3029 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.11%
+Saturday     2843 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.31%
 Sunday       3050 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.21%
 
 ```
