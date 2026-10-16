@@ -200,8 +200,8 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
-- 🟣 <a href="https://github.com/Violet-Void/wpaperd/pull/8"><strong>Add native motion scene support with producer-authored animations</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-14 • OPEN</sub>
+- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/8"><strong>Add native motion scene support with producer-authored animations</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-14 • MERGED</sub>
   <br>
   <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
 
@@ -292,7 +292,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 2947 pull requests · at least 20677 commits
+🔒 Private activity: 3000 pull requests · at least 20779 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -307,23 +307,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6436 commits     ███████░░░░░░░░░░░░░░░░░░   28.06%
-🌆 Daytime    8308 commits     █████████░░░░░░░░░░░░░░░░   36.22%
-🌃 Evening    5479 commits     ██████░░░░░░░░░░░░░░░░░░░   23.89%
-🌙 Night      2712 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.82%
+🌞 Morning    6500 commits     ███████░░░░░░░░░░░░░░░░░░   28.21%
+🌆 Daytime    8329 commits     █████████░░░░░░░░░░░░░░░░   36.15%
+🌃 Evening    5494 commits     ██████░░░░░░░░░░░░░░░░░░░   23.85%
+🌙 Night      2716 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.79%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3208 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.99%
-Tuesday      3554 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.5%
-Wednesday    3531 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.4%
-Thursday     3861 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.83%
-Friday       2888 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.59%
-Saturday     2843 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.4%
-Sunday       3050 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.3%
+Monday       3208 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.92%
+Tuesday      3556 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.43%
+Wednesday    3537 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.35%
+Thursday     3874 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.81%
+Friday       2971 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.9%
+Saturday     2843 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.34%
+Sunday       3050 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.24%
 
 ```
 
@@ -335,21 +335,21 @@ Sunday       3050 commits     ███░░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   44 hrs 29 mins     ███████████░░░░░░░░░░░░░░   42.51%
-Other                    22 hrs 22 mins     █████░░░░░░░░░░░░░░░░░░░░   21.37%
-Markdown                 9 hrs 19 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   8.91%
-JavaScript               5 hrs 37 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.37%
-JSON                     4 hrs 40 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.46%
+Python                   38 hrs 35 mins     ███████████░░░░░░░░░░░░░░   44.36%
+Other                    19 hrs 29 mins     ██████░░░░░░░░░░░░░░░░░░░   22.41%
+Markdown                 6 hrs 47 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   7.8%
+JavaScript               5 hrs 24 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.21%
+JSON                     3 hrs 44 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.31%
 
 🔥 Editors: 
-Codex Vscode             52 hrs 22 mins     █████████████░░░░░░░░░░░░   50.03%
-Neovim                   31 hrs 50 mins     ████████░░░░░░░░░░░░░░░░░   30.43%
-Opencode Cli             7 hrs 19 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.99%
-Claude Code              6 hrs 9 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.88%
-Vim                      5 hrs 39 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.4%
+Codex Vscode             42 hrs 12 mins     ████████████░░░░░░░░░░░░░   48.52%
+Neovim                   29 hrs 19 mins     ████████░░░░░░░░░░░░░░░░░   33.7%
+Claude Code              6 hrs 28 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   7.45%
+Opencode Cli             5 hrs 46 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.64%
+Vim                      1 hr 53 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   2.17%
 
 💻 Operating System: 
-Linux                    104 hrs 40 mins    █████████████████████████   100%
+Linux                    86 hrs 59 mins     █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
