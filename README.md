@@ -200,6 +200,16 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
+- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/19"><strong>test(nested): pool reload under pause, set and grouped outputs</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
+  <br>
+  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
+
+- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/17"><strong>build(arch): pin the PKGBUILD source to reviewed main</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
+  <br>
+  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
+
 - 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/16"><strong>chore: configure cubic reviews</strong></a><br>
   <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
   <br>
@@ -227,16 +237,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 - 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/12"><strong>fix(config): keep reloads working across atomic saves and symlinks</strong></a><br>
   <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
-
-- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/11"><strong>fix(render): restore mode uniforms when a reload swaps the transition</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
-
-- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/8"><strong>Add native motion scene support with producer-authored animations</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-14 • MERGED</sub>
   <br>
   <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
 
@@ -292,7 +292,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 3025 pull requests · at least 20818 commits
+🔒 Private activity: 3119 pull requests · at least 20952 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -307,23 +307,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6500 commits     ███████░░░░░░░░░░░░░░░░░░   28.13%
-🌆 Daytime    8365 commits     █████████░░░░░░░░░░░░░░░░   36.21%
-🌃 Evening    5522 commits     ██████░░░░░░░░░░░░░░░░░░░   23.9%
-🌙 Night      2716 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.76%
+🌞 Morning    6568 commits     ███████░░░░░░░░░░░░░░░░░░   28.27%
+🌆 Daytime    8400 commits     █████████░░░░░░░░░░░░░░░░   36.15%
+🌃 Evening    5545 commits     ██████░░░░░░░░░░░░░░░░░░░   23.86%
+🌙 Night      2724 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.72%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3208 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.89%
-Tuesday      3556 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.39%
-Wednesday    3537 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.31%
-Thursday     3874 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.77%
-Friday       3035 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.14%
-Saturday     2843 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.31%
-Sunday       3050 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.2%
+Monday       3211 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.82%
+Tuesday      3556 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.3%
+Wednesday    3537 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.22%
+Thursday     3874 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.67%
+Friday       3058 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.16%
+Saturday     2951 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.7%
+Sunday       3050 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.13%
 
 ```
 
@@ -335,21 +335,21 @@ Sunday       3050 commits     ███░░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   38 hrs 35 mins     ███████████░░░░░░░░░░░░░░   44.36%
-Other                    19 hrs 29 mins     ██████░░░░░░░░░░░░░░░░░░░   22.41%
-Markdown                 6 hrs 47 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   7.8%
-JavaScript               5 hrs 24 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.21%
-JSON                     3 hrs 44 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.31%
+Python                   28 hrs 30 mins     ██████████░░░░░░░░░░░░░░░   38.46%
+Other                    16 hrs 36 mins     ██████░░░░░░░░░░░░░░░░░░░   22.41%
+Markdown                 7 hrs 32 mins      ███░░░░░░░░░░░░░░░░░░░░░░   10.17%
+JavaScript               4 hrs 9 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.61%
+JSON                     3 hrs 34 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.83%
 
 🔥 Editors: 
-Codex Vscode             42 hrs 12 mins     ████████████░░░░░░░░░░░░░   48.52%
-Neovim                   29 hrs 19 mins     ████████░░░░░░░░░░░░░░░░░   33.7%
-Claude Code              6 hrs 28 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   7.45%
-Opencode Cli             5 hrs 46 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.64%
-Vim                      1 hr 53 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   2.17%
+Codex Vscode             33 hrs 29 mins     ███████████░░░░░░░░░░░░░░   45.18%
+Neovim                   20 hrs 44 mins     ███████░░░░░░░░░░░░░░░░░░   27.97%
+Claude Code              15 hrs 24 mins     █████░░░░░░░░░░░░░░░░░░░░   20.78%
+Opencode Cli             2 hrs 57 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.99%
+Bot                      1 hr 2 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.4%
 
 💻 Operating System: 
-Linux                    86 hrs 59 mins     █████████████████████████   100%
+Linux                    74 hrs 8 mins      █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
