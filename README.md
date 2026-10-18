@@ -200,6 +200,11 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
+- 🟣 <a href="https://github.com/Violet-Void/wpaperd/pull/20"><strong>chore(coderabbit): configure focused repository reviews</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-18 • OPEN</sub>
+  <br>
+  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
+
 - 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/19"><strong>test(nested): pool reload under pause, set and grouped outputs</strong></a><br>
   <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
   <br>
@@ -231,11 +236,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
 
 - 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/13"><strong>fix(picker): adopt a changed wallpaper pool on reload</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
-
-- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/12"><strong>fix(config): keep reloads working across atomic saves and symlinks</strong></a><br>
   <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
   <br>
   <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
@@ -292,7 +292,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 3130 pull requests · at least 21001 commits
+🔒 Private activity: 3171 pull requests · at least 21034 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -307,23 +307,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6568 commits     ███████░░░░░░░░░░░░░░░░░░   28.21%
-🌆 Daytime    8444 commits     █████████░░░░░░░░░░░░░░░░   36.26%
-🌃 Evening    5550 commits     ██████░░░░░░░░░░░░░░░░░░░   23.83%
-🌙 Night      2724 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.7%
+🌞 Morning    6594 commits     ███████░░░░░░░░░░░░░░░░░░   28.28%
+🌆 Daytime    8450 commits     █████████░░░░░░░░░░░░░░░░   36.24%
+🌃 Evening    5551 commits     ██████░░░░░░░░░░░░░░░░░░░   23.8%
+🌙 Night      2724 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.68%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3211 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.79%
-Tuesday      3556 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.27%
-Wednesday    3537 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.19%
-Thursday     3874 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.64%
-Friday       3058 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.13%
-Saturday     3000 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.88%
-Sunday       3050 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.1%
+Monday       3211 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.77%
+Tuesday      3556 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.25%
+Wednesday    3537 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.17%
+Thursday     3874 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.61%
+Friday       3058 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.11%
+Saturday     3001 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.87%
+Sunday       3082 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.22%
 
 ```
 
@@ -335,21 +335,21 @@ Sunday       3050 commits     ███░░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   28 hrs 30 mins     ██████████░░░░░░░░░░░░░░░   38.46%
-Other                    16 hrs 36 mins     ██████░░░░░░░░░░░░░░░░░░░   22.41%
-Markdown                 7 hrs 32 mins      ███░░░░░░░░░░░░░░░░░░░░░░   10.17%
-JavaScript               4 hrs 9 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   5.61%
-JSON                     3 hrs 34 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.83%
+Python                   27 hrs 51 mins     █████████░░░░░░░░░░░░░░░░   36.42%
+Other                    15 hrs 10 mins     █████░░░░░░░░░░░░░░░░░░░░   19.84%
+Markdown                 11 hrs 39 mins     ████░░░░░░░░░░░░░░░░░░░░░   15.25%
+JSON                     3 hrs 34 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.68%
+JavaScript               2 hrs 50 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.72%
 
 🔥 Editors: 
-Codex Vscode             33 hrs 29 mins     ███████████░░░░░░░░░░░░░░   45.18%
-Neovim                   20 hrs 44 mins     ███████░░░░░░░░░░░░░░░░░░   27.97%
-Claude Code              15 hrs 24 mins     █████░░░░░░░░░░░░░░░░░░░░   20.78%
-Opencode Cli             2 hrs 57 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.99%
-Bot                      1 hr 2 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.4%
+Codex Vscode             33 hrs 50 mins     ███████████░░░░░░░░░░░░░░   44.26%
+Claude Code              24 hrs 20 mins     ████████░░░░░░░░░░░░░░░░░   31.84%
+Neovim                   14 hrs 46 mins     █████░░░░░░░░░░░░░░░░░░░░   19.33%
+Opencode Cli             1 hr 56 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   2.55%
+Bot                      1 hr 2 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.36%
 
 💻 Operating System: 
-Linux                    74 hrs 8 mins      █████████████████████████   100%
+Linux                    76 hrs 28 mins     █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
