@@ -200,8 +200,8 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
-- 🟣 <a href="https://github.com/Violet-Void/wpaperd/pull/20"><strong>chore(coderabbit): configure focused repository reviews</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-18 • OPEN</sub>
+- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/20"><strong>chore(coderabbit): configure focused repository reviews</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-18 • MERGED</sub>
   <br>
   <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
 
@@ -250,7 +250,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • <strong>64 commits</strong> • 2026-09-24
 
-- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>31 commits</strong> • 2026-09-17
+- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>27 commits</strong> • 2026-09-17
   <br>
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to you</sub>
 
@@ -292,7 +292,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 3184 pull requests · at least 21056 commits
+🔒 Private activity: 3182 pull requests · at least 20522 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -307,23 +307,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6594 commits     ███████░░░░░░░░░░░░░░░░░░   28.25%
-🌆 Daytime    8468 commits     █████████░░░░░░░░░░░░░░░░   36.28%
-🌃 Evening    5555 commits     ██████░░░░░░░░░░░░░░░░░░░   23.8%
-🌙 Night      2724 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.67%
+🌞 Morning    6425 commits     ███████░░░░░░░░░░░░░░░░░░   28.18%
+🌆 Daytime    8252 commits     █████████░░░░░░░░░░░░░░░░   36.2%
+🌃 Evening    5404 commits     ██████░░░░░░░░░░░░░░░░░░░   23.71%
+🌙 Night      2715 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.91%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3211 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.76%
-Tuesday      3556 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.23%
-Wednesday    3537 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.15%
-Thursday     3874 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.6%
-Friday       3058 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.1%
-Saturday     3001 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.86%
-Sunday       3104 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.3%
+Monday       3158 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.85%
+Tuesday      3393 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.88%
+Wednesday    3415 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.98%
+Thursday     3833 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.81%
+Friday       2976 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.05%
+Saturday     2913 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.78%
+Sunday       3108 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.63%
 
 ```
 
@@ -335,21 +335,21 @@ Sunday       3104 commits     ███░░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   27 hrs 51 mins     █████████░░░░░░░░░░░░░░░░   36.42%
-Other                    15 hrs 10 mins     █████░░░░░░░░░░░░░░░░░░░░   19.84%
-Markdown                 11 hrs 39 mins     ████░░░░░░░░░░░░░░░░░░░░░   15.25%
-JSON                     3 hrs 34 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.68%
-JavaScript               2 hrs 50 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.72%
+Python                   25 hrs 13 mins     █████████░░░░░░░░░░░░░░░░   36.44%
+Other                    12 hrs 10 mins     ████░░░░░░░░░░░░░░░░░░░░░   17.59%
+Markdown                 11 hrs 49 mins     ████░░░░░░░░░░░░░░░░░░░░░   17.09%
+JavaScript               2 hrs 44 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.96%
+QML                      2 hrs 39 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.83%
 
 🔥 Editors: 
-Codex Vscode             33 hrs 50 mins     ███████████░░░░░░░░░░░░░░   44.26%
-Claude Code              24 hrs 20 mins     ████████░░░░░░░░░░░░░░░░░   31.84%
-Neovim                   14 hrs 46 mins     █████░░░░░░░░░░░░░░░░░░░░   19.33%
-Opencode Cli             1 hr 56 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   2.55%
-Bot                      1 hr 2 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.36%
+Codex Vscode             31 hrs 47 mins     ███████████░░░░░░░░░░░░░░   45.93%
+Claude Code              27 hrs 9 mins      ██████████░░░░░░░░░░░░░░░   39.24%
+Neovim                   8 hrs 4 mins       ███░░░░░░░░░░░░░░░░░░░░░░   11.67%
+Bot                      1 hr 2 mins        ░░░░░░░░░░░░░░░░░░░░░░░░░   1.5%
+Opencode Cli             34 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.82%
 
 💻 Operating System: 
-Linux                    76 hrs 28 mins     █████████████████████████   100%
+Linux                    69 hrs 13 mins     █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
