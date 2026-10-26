@@ -221,6 +221,16 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
+- 🟣 <a href="https://github.com/aaronedev/Gitako/pull/1"><strong>feat: add Material Icons companion mode for file tree</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/Gitako"><code>aaronedev/Gitako</code></a> • 2026-10-26 • OPEN</sub>
+  <br>
+  <sub>🐙 File tree extension for GitHub on Chrome &amp; Firefox &amp; Edge</sub>
+
+- 🟣 <a href="https://github.com/aaronedev/material-icons-browser-extension/pull/1"><strong>feat(github): use Material Icons mappings in Gitako companion tree</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/material-icons-browser-extension"><code>aaronedev/material-icons-browser-extension</code></a> • 2026-10-26 • OPEN</sub>
+  <br>
+  <sub>Material Design icons for web browsers</sub>
+
 - 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/20"><strong>chore(coderabbit): configure focused repository reviews</strong></a><br>
   <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-18 • MERGED</sub>
   <br>
@@ -250,16 +260,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-10-16 • MERGED</sub>
   <br>
   <sub>github profile aaronedev</sub>
-
-- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/14"><strong>fix(shaders): make dissolve, book-flip and dreamy compile</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
-
-- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/13"><strong>fix(picker): adopt a changed wallpaper pool on reload</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
 
 ### 🛠️ Latest Contributions
 
@@ -307,13 +307,9 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <br>
   <sub>Super Productivity is an advanced todo list app with integrated Timeboxing and time tracking capabilities. It also comes</sub>
 
-- 🔗 <a href="https://github.com/hyprland-community/hyprland-autoname-workspaces"><code>hyprland-community/hyprland-autoname-workspaces</code></a> • <strong>1 pull request</strong> • 2025-10-20
-  <br>
-  <sub>Hyprland autoname workspaces 🪟 [maintainers=@cyrinux,@maximbaz, @shivros] </sub>
-
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 3361 pull requests · at least 20787 commits
+🔒 Private activity: 3438 pull requests · at least 20597 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -328,23 +324,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6549 commits     ███████░░░░░░░░░░░░░░░░░░   28.38%
-🌆 Daytime    8362 commits     █████████░░░░░░░░░░░░░░░░   36.23%
-🌃 Evening    5448 commits     ██████░░░░░░░░░░░░░░░░░░░   23.61%
-🌙 Night      2720 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.79%
+🌞 Morning    6490 commits     ███████░░░░░░░░░░░░░░░░░░   28.33%
+🌆 Daytime    8286 commits     █████████░░░░░░░░░░░░░░░░   36.17%
+🌃 Evening    5430 commits     ██████░░░░░░░░░░░░░░░░░░░   23.71%
+🌙 Night      2700 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.79%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3164 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.71%
-Tuesday      3437 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.89%
-Wednesday    3458 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.98%
-Thursday     3879 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.81%
-Friday       3007 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.03%
-Saturday     2949 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.78%
-Sunday       3185 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.8%
+Monday       3185 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.9%
+Tuesday      3385 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.78%
+Wednesday    3431 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.98%
+Thursday     3869 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.89%
+Friday       2998 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.09%
+Saturday     2943 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.85%
+Sunday       3095 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.51%
 
 ```
 
@@ -356,21 +352,21 @@ Sunday       3185 commits     ███░░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   21 hrs 8 mins      ████████░░░░░░░░░░░░░░░░░   31.19%
-Markdown                 20 hrs 57 mins     ████████░░░░░░░░░░░░░░░░░   30.93%
-Other                    10 hrs 44 mins     ████░░░░░░░░░░░░░░░░░░░░░   15.85%
-QML                      4 hrs 22 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.45%
-Bash                     1 hr 57 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   2.89%
+Python                   18 hrs 44 mins     ███████░░░░░░░░░░░░░░░░░░   28.42%
+Markdown                 18 hrs 26 mins     ███████░░░░░░░░░░░░░░░░░░   27.99%
+Other                    15 hrs 47 mins     ██████░░░░░░░░░░░░░░░░░░░   23.96%
+QML                      1 hr 59 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.01%
+Bash                     1 hr 56 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   2.94%
 
 🔥 Editors: 
-Neovim                   29 hrs 36 mins     ███████████░░░░░░░░░░░░░░   43.69%
-Claude Code              28 hrs 38 mins     ███████████░░░░░░░░░░░░░░   42.27%
-Vim                      8 hrs 18 mins      ███░░░░░░░░░░░░░░░░░░░░░░   12.26%
-Unknown Editor           32 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.79%
-OpenCode                 16 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.41%
+Neovim                   35 hrs 48 mins     ██████████████░░░░░░░░░░░   54.32%
+Claude Code              21 hrs 2 mins      ████████░░░░░░░░░░░░░░░░░   31.93%
+Vim                      7 hrs 57 mins      ███░░░░░░░░░░░░░░░░░░░░░░   12.06%
+Unknown Editor           50 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   1.27%
+OpenCode                 16 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.42%
 
 💻 Operating System: 
-Linux                    67 hrs 45 mins     █████████████████████████   100%
+Linux                    65 hrs 55 mins     █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
