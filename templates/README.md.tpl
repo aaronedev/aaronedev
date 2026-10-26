@@ -17,7 +17,7 @@
 
 <p align="center">
   <a href="./docs/figfetti-profile.md">
-    <img src="./assets/generated/profile-hero.gif" alt="aaronedev in mixed Big Mono 12 and ANSI Shadow fonts with an animated Violet Void gradient" width="640" />
+    <img src="./assets/generated/profile-hero.gif" alt="violet-void in mixed Big Mono 12 and ANSI Shadow fonts with an animated Violet Void gradient" width="640" />
   </a>
 </p>
 

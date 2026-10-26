@@ -9,7 +9,7 @@
 
 ## Gallery
 
-![Static aaronedev header](../assets/generated/profile-hero.png)
+![Static violet-void header](../assets/generated/profile-hero.png)
 
 The profile header plays its color wave once, then stays on the final banner. This PNG is the
 static alternative. The animation changes colors while keeping the text and frame in place.
@@ -34,11 +34,11 @@ From the repository root:
 ```bash
 figfetti --no-config --mix big-mono-12 ansi-shadow --split 1 --gap 3 --align middle \
   --box rounded --filter void --crop \
-  --export assets/generated/profile-hero.png aaronedev
+  --export assets/generated/profile-hero.png violet-void
 
 figfetti --no-config --mix big-mono-12 ansi-shadow --split 1 --gap 3 --align middle \
   --box rounded --filter void --crop --animate wave --fps 12 --duration 3s \
-  --animate-delay 800 --export assets/generated/profile-hero.gif aaronedev
+  --animate-delay 800 --export assets/generated/profile-hero.gif violet-void
 
 figfetti --no-config --mix big-mono-12 ansi-shadow --caps --gap 3 --align middle \
   --box double --filter void-mint --crop \
