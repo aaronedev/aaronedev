@@ -1,4 +1,14 @@
 <!--START_SECTION:profile-->
+<h1 align="center">Aaron / aaronedev</h1>
+
+## TL;DR
+
+> [!NOTE]
+> I build Linux-first tools for desktop UX, terminal and editor workflows, local voice tools,
+> rootless dev environments, and agent-assisted coding.
+
+## Overview
+
 <p align="center">
   <a href="https://github.com/aaronedev">
     <img src="./assets/violet-void-theme_bubblez_16.png" alt="Violet Void theme bubbles artwork" width="640" />
@@ -6,15 +16,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/aaronedev/figmix">
-    <img src="./assets/generated/profile-hero.png" alt="AARON DEV in a Violet Void figmix profile banner" width="640" />
+  <a href="./docs/figfetti-profile.md">
+    <img src="./assets/generated/profile-hero.gif" alt="aaronedev in mixed Big Mono 12 and ANSI Shadow fonts with an animated Violet Void gradient" width="640" />
   </a>
-</p>
-
-<h1 align="center">Aaron / aaronedev</h1>
-
-<p align="center">
-  I build Linux-first tools for my own workflow: Hyprland and Quickshell desktop UX, Neovim and terminal ergonomics, rootless dev environments, local voice/transcription utilities, and agent-assisted coding setups.
 </p>
 
 <p align="center">
@@ -84,10 +88,27 @@
   </tbody>
 </table>
 
-<sub>★ <em>Terminal banners like this are the kind of thing I make with <a href="https://github.com/aaronedev/figmix">figmix</a>: mixed FIGlet/TOIlet styles for headers, timers, and little shell-native design moments.</em></sub>
+<sub>★ <em>These banners use <a href="./docs/figfetti-profile.md">FigFetti</a>: mixed FIGlet/TOIlet fonts, Violet Void gradients, frames, and native animated GIF/PNG exports. <a href="./docs/figfetti-profile.md">Recipes and static header</a>.</em></sub>
+
+<details>
+  <summary>More FigFetti mixes</summary>
+
+  <p align="center">
+    <img src="./assets/generated/figfetti-violet-void.png" alt="Violet Void mixing Big Mono 12 and ANSI Shadow at each capital with a mint gradient and double frame" width="640" />
+    <br />
+    <sub>Big Mono 12 + ANSI Shadow · capital-letter split · void-mint · double frame</sub>
+  </p>
+  <p align="center">
+    <img src="./assets/generated/figfetti-local-first.png" alt="Local First mixing Big Mono 12 and ANSI Shadow at each capital with an ember gradient and dashed frame" width="640" />
+    <br />
+    <sub>Big Mono 12 + ANSI Shadow · capital-letter split · void-ember · rounded dashed frame</sub>
+  </p>
+
+</details>
 
 ## Featured projects
 
+- [FigFetti](./docs/figfetti-profile.md) - native terminal banners with embedded FIGlet/TOIlet fonts, a live studio, saved styles, timers, gradients, and image exports. [Source](https://github.com/Violet-Void/figfetti) (access required).
 - <a href="https://github.com/aaronedev/violet-void-theme"><img src="https://img.shields.io/static/v1?label=&message=Violet%20Void%20Theme&color=7c60d1&labelColor=0f0f0f&style=flat&logo=github&logoColor=f0f0f5" alt="Violet Void Theme" /></a> - core color system for my desktop and web setup; expanding into app, website, terminal, and editor themes.
 - <a href="https://github.com/aaronedev/transcribe-that"><img src="https://img.shields.io/static/v1?label=&message=transcribe-that&color=319e8d&labelColor=0f0f0f&style=flat&logo=python&logoColor=ffffff" alt="transcribe-that" /></a> - local-first transcription tooling for Linux workflows.
 - <a href="https://github.com/aaronedev/read-that"><img src="https://img.shields.io/static/v1?label=&message=read-that&color=42ff97&labelColor=0f0f0f&style=flat&logo=python&logoColor=ffffff" alt="read-that" /></a> - local clipboard TTS with offline EN/DE voice switching and practical CLI controls.
