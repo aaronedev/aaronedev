@@ -38,7 +38,7 @@ figfetti --no-config --mix big-mono-12 ansi-shadow --split 1 --gap 3 --align mid
 
 figfetti --no-config --mix big-mono-12 ansi-shadow --split 1 --gap 3 --align middle \
   --box rounded --filter void --crop --animate wave --fps 12 --duration 3s \
-  --animate-delay 800 --export assets/generated/profile-hero.gif violet-void
+  --animate-delay 800 --export assets/generated/profile-violet-void.gif violet-void
 
 figfetti --no-config --mix big-mono-12 ansi-shadow --caps --gap 3 --align middle \
   --box double --filter void-mint --crop \
