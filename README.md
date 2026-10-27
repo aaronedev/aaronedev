@@ -221,15 +221,30 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
-- 🟣 <a href="https://github.com/aaronedev/Gitako/pull/1"><strong>feat: add Material Icons companion mode for file tree</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/Gitako"><code>aaronedev/Gitako</code></a> • 2026-10-26 • OPEN</sub>
+- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/94"><strong>fix(theme): restore pressed link colors</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
   <br>
-  <sub>🐙 File tree extension for GitHub on Chrome &amp; Firefox &amp; Edge</sub>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
 
-- 🟣 <a href="https://github.com/aaronedev/material-icons-browser-extension/pull/1"><strong>feat(github): use Material Icons mappings in Gitako companion tree</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/material-icons-browser-extension"><code>aaronedev/material-icons-browser-extension</code></a> • 2026-10-26 • OPEN</sub>
+- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/93"><strong>test(theme): verify mobile navigation activation</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
   <br>
-  <sub>Material Design icons for web browsers</sub>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
+
+- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/92"><strong>fix(theme): keep dropdown menus readable</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
+  <br>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
+
+- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/91"><strong>fix(theme): restore readable ArchWiki colors</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
+  <br>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
+
+- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/88"><strong>feat(theme): restore the backup void design</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
+  <br>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
 
 - 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/20"><strong>chore(coderabbit): configure focused repository reviews</strong></a><br>
   <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-18 • MERGED</sub>
@@ -246,22 +261,11 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <br>
   <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
 
-- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/16"><strong>chore: configure cubic reviews</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
-
-- ⚫ <a href="https://github.com/Violet-Void/wpaperd/pull/15"><strong>chore: configure cubic reviews</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • CLOSED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
-
-- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/28"><strong>ci(readme): run the README update on GitHub-hosted runners</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-10-16 • MERGED</sub>
-  <br>
-  <sub>github profile aaronedev</sub>
-
 ### 🛠️ Latest Contributions
+
+- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>1139 commits</strong> • 2026-10-27
+  <br>
+  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_crackboard"><code>aaronedev/violet-void-theme_crackboard</code></a> • <strong>7 commits</strong> • 2026-10-20
 
@@ -276,10 +280,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 - 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>27 commits</strong> • 2026-09-17
   <br>
   <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to you</sub>
-
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>1135 commits</strong> • 2026-07-22
-  <br>
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_kitty"><code>aaronedev/violet-void-theme_kitty</code></a> • <strong>5 commits</strong> • 2026-03-20
 
@@ -309,7 +309,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 3454 pull requests · at least 20629 commits
+🔒 Private activity: 3488 pull requests · at least 20661 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -324,23 +324,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6490 commits     ███████░░░░░░░░░░░░░░░░░░   28.29%
-🌆 Daytime    8286 commits     █████████░░░░░░░░░░░░░░░░   36.12%
-🌃 Evening    5467 commits     ██████░░░░░░░░░░░░░░░░░░░   23.83%
-🌙 Night      2700 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.77%
+🌞 Morning    6512 commits     ███████░░░░░░░░░░░░░░░░░░   28.33%
+🌆 Daytime    8296 commits     █████████░░░░░░░░░░░░░░░░   36.1%
+🌃 Evening    5475 commits     ██████░░░░░░░░░░░░░░░░░░░   23.82%
+🌙 Night      2700 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.75%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3222 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.04%
-Tuesday      3385 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.75%
-Wednesday    3431 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.95%
-Thursday     3869 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.86%
-Friday       2998 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.07%
-Saturday     2943 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.83%
-Sunday       3095 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.49%
+Monday       3230 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.05%
+Tuesday      3417 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.87%
+Wednesday    3431 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.93%
+Thursday     3869 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.83%
+Friday       2998 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.04%
+Saturday     2943 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.81%
+Sunday       3095 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.47%
 
 ```
 
@@ -352,21 +352,20 @@ Sunday       3095 commits     ███░░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Python                   18 hrs 44 mins     ███████░░░░░░░░░░░░░░░░░░   28.42%
-Markdown                 18 hrs 26 mins     ███████░░░░░░░░░░░░░░░░░░   27.99%
-Other                    15 hrs 47 mins     ██████░░░░░░░░░░░░░░░░░░░   23.96%
-QML                      1 hr 59 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.01%
-Bash                     1 hr 56 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   2.94%
+Other                    21 hrs 8 mins      ████████░░░░░░░░░░░░░░░░░   32.44%
+Python                   17 hrs 3 mins      ███████░░░░░░░░░░░░░░░░░░   26.16%
+Markdown                 15 hrs 40 mins     ██████░░░░░░░░░░░░░░░░░░░   24.03%
+QML                      2 hrs 39 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.08%
+Bash                     2 hrs 5 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.21%
 
 🔥 Editors: 
-Neovim                   35 hrs 48 mins     ██████████████░░░░░░░░░░░   54.32%
-Claude Code              21 hrs 2 mins      ████████░░░░░░░░░░░░░░░░░   31.93%
-Vim                      7 hrs 57 mins      ███░░░░░░░░░░░░░░░░░░░░░░   12.06%
-Unknown Editor           50 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   1.27%
-OpenCode                 16 mins            ░░░░░░░░░░░░░░░░░░░░░░░░░   0.42%
+Neovim                   42 hrs 29 mins     ████████████████░░░░░░░░░   65.17%
+Claude Code              13 hrs 45 mins     █████░░░░░░░░░░░░░░░░░░░░   21.1%
+Vim                      7 hrs 17 mins      ███░░░░░░░░░░░░░░░░░░░░░░   11.19%
+Unknown Editor           1 hr 39 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   2.55%
 
 💻 Operating System: 
-Linux                    65 hrs 55 mins     █████████████████████████   100%
+Linux                    65 hrs 11 mins     █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
