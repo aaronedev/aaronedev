@@ -221,6 +221,11 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
+- 🟣 <a href="https://github.com/aaronedev/aaronedev/pull/29"><strong>fix(profile): include more languages and public org repositories in stats</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-10-31 • OPEN</sub>
+  <br>
+  <sub>github profile aaronedev</sub>
+
 - 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/94"><strong>fix(theme): restore pressed link colors</strong></a><br>
   <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
   <br>
@@ -252,11 +257,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
 
 - 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/19"><strong>test(nested): pool reload under pause, set and grouped outputs</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
-
-- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/17"><strong>build(arch): pin the PKGBUILD source to reviewed main</strong></a><br>
   <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
   <br>
   <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
@@ -309,7 +309,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 3613 pull requests · at least 20854 commits
+🔒 Private activity: 3693 pull requests · at least 20952 commits
 <!--END_SECTION:activity-->
 
 </details>
@@ -324,23 +324,23 @@ _Commit contribution totals are based on the top 100 contribution repositories._
 **I'm an Early 🐤**
 
 ```text
-🌞 Morning    6573 commits     ███████░░░░░░░░░░░░░░░░░░   28.35%
-🌆 Daytime    8371 commits     █████████░░░░░░░░░░░░░░░░   36.11%
-🌃 Evening    5510 commits     ██████░░░░░░░░░░░░░░░░░░░   23.77%
-🌙 Night      2728 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.77%
+🌞 Morning    6616 commits     ███████░░░░░░░░░░░░░░░░░░   28.42%
+🌆 Daytime    8407 commits     █████████░░░░░░░░░░░░░░░░   36.11%
+🌃 Evening    5510 commits     ██████░░░░░░░░░░░░░░░░░░░   23.67%
+🌙 Night      2747 commits     ███░░░░░░░░░░░░░░░░░░░░░░   11.8%
 
 ```
 
 📅 **I'm Most Productive on Thursday**
 
 ```text
-Monday       3230 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.93%
-Tuesday      3440 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.84%
-Wednesday    3479 commits     ████░░░░░░░░░░░░░░░░░░░░░   15.01%
-Thursday     3905 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.84%
-Friday       3090 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.33%
-Saturday     2943 commits     ███░░░░░░░░░░░░░░░░░░░░░░   12.7%
-Sunday       3095 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.35%
+Monday       3230 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.87%
+Tuesday      3440 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.78%
+Wednesday    3479 commits     ████░░░░░░░░░░░░░░░░░░░░░   14.94%
+Thursday     3905 commits     ████░░░░░░░░░░░░░░░░░░░░░   16.77%
+Friday       3090 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.27%
+Saturday     3041 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.06%
+Sunday       3095 commits     ███░░░░░░░░░░░░░░░░░░░░░░   13.29%
 
 ```
 
@@ -352,21 +352,21 @@ Sunday       3095 commits     ███░░░░░░░░░░░░░�
 ⌚︎ Time Zone: Europe/Berlin
 
 💬 Programming Languages: 
-Other                    19 hrs 51 mins     ████████░░░░░░░░░░░░░░░░░   33.66%
-Python                   13 hrs 26 mins     ██████░░░░░░░░░░░░░░░░░░░   22.79%
-Markdown                 13 hrs 3 mins      ██████░░░░░░░░░░░░░░░░░░░   22.14%
-JavaScript               3 hrs 26 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.82%
-QML                      2 hrs 45 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   4.66%
+Other                    26 hrs 15 mins     ███████░░░░░░░░░░░░░░░░░░   29.39%
+Python                   23 hrs 59 mins     ███████░░░░░░░░░░░░░░░░░░   26.85%
+Markdown                 15 hrs 32 mins     ████░░░░░░░░░░░░░░░░░░░░░   17.39%
+JavaScript               5 hrs 26 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.09%
+QML                      3 hrs 24 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   3.82%
 
 🔥 Editors: 
-Neovim                   37 hrs 46 mins     ████████████████░░░░░░░░░   64.03%
-Claude Code              15 hrs 16 mins     ██████░░░░░░░░░░░░░░░░░░░   25.88%
-Vim                      3 hrs 49 mins      ██░░░░░░░░░░░░░░░░░░░░░░░   6.49%
-Unknown Editor           2 hrs 4 mins       █░░░░░░░░░░░░░░░░░░░░░░░░   3.52%
-Codex CLI                2 mins             ░░░░░░░░░░░░░░░░░░░░░░░░░   0.07%
+Neovim                   60 hrs 36 mins     █████████████████░░░░░░░░   67.84%
+Claude Code              21 hrs 58 mins     ██████░░░░░░░░░░░░░░░░░░░   24.59%
+Unknown Editor           4 hrs 53 mins      █░░░░░░░░░░░░░░░░░░░░░░░░   5.47%
+Vim                      1 hr 46 mins       ░░░░░░░░░░░░░░░░░░░░░░░░░   1.98%
+Antigravity              3 mins             ░░░░░░░░░░░░░░░░░░░░░░░░░   0.07%
 
 💻 Operating System: 
-Linux                    58 hrs 59 mins     █████████████████████████   100%
+Linux                    89 hrs 20 mins     █████████████████████████   100%
 
 ```
 <!--END_SECTION:waka-->
