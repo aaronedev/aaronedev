@@ -42,7 +42,8 @@ STATS_CARD_URL = (
 )
 TOP_LANGUAGES_URL = (
     "https://github-stats-extended.vercel.app/api/top-langs/?username=aaronedev&"
-    "layout=compact&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&"
+    "layout=compact&langs_count=20&role=OWNER,ORGANIZATION_MEMBER&"
+    "bg_color=111%2C082421%2C0D1117&title_color=7c60d1&"
     "text_color=f0f0f5&hide_border=true&border_radius=10&border_color=131313"
 )
 

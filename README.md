@@ -193,8 +193,9 @@ These are the main colors for **Violet Void**, including the core palette and th
 </div>
 
 <div>
-  <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=aaronedev&layout=compact&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&text_color=f0f0f5&hide_border=true&border_radius=10&border_color=131313" alt="Top Languages" />
+  <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=aaronedev&layout=compact&langs_count=20&role=OWNER,ORGANIZATION_MEMBER&bg_color=111%2C082421%2C0D1117&title_color=7c60d1&text_color=f0f0f5&hide_border=true&border_radius=10&border_color=131313" alt="Top Languages" />
 </div>
+<sub>Language statistics cover repositories accessible to the public card provider; private organization repositories are excluded.</sub>
 
 ## Contact
 - Matrix: <a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank">@aaronedev:matrix.org</a>
