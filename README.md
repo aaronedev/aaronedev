@@ -222,6 +222,11 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
+- 🟣 <a href="https://github.com/aaronedev/aaronedev/pull/30"><strong>feat(profile): replace personal GitHub cards with Violet-Void statistics</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-11-04 • OPEN</sub>
+  <br>
+  <sub>github profile aaronedev</sub>
+
 - 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/29"><strong>fix(profile): include more languages and public org repositories in stats</strong></a><br>
   <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-10-31 • MERGED</sub>
   <br>
@@ -254,11 +259,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 - 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/20"><strong>chore(coderabbit): configure focused repository reviews</strong></a><br>
   <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-18 • MERGED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
-
-- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/19"><strong>test(nested): pool reload under pause, set and grouped outputs</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-16 • MERGED</sub>
   <br>
   <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
 
@@ -310,7 +310,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 3828 pull requests · at least 20948 commits
+🔒 Private activity: 3838 pull requests · at least 20957 commits
 <!--END_SECTION:activity-->
 
 </details>
