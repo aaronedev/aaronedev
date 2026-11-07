@@ -40,6 +40,14 @@ class ReadmeWorkflowContractTest(unittest.TestCase):
         self.assertIn("git add README.md", commit_step)
         self.assertIn('exit "$rerender_status"', commit_step)
 
+    def test_organization_stats_fail_closed_and_are_committed(self) -> None:
+        workflow = WORKFLOW.read_text(encoding="utf-8")
+        self.assertEqual(workflow.count("README_ORG_STATS_TOKEN: ${{ secrets.GH_TOKEN }}"), 2)
+        self.assertEqual(workflow.count("python3 scripts/org_stats.py"), 2)
+        self.assertEqual(workflow.count("git add -- README.md assets/generated/violet-void-org-stats.svg assets/generated/violet-void-org-languages.svg"), 2)
+        self.assertIn('exit "$org_status"', workflow)
+        self.assertLess(workflow.index("python3 scripts/org_stats.py"), workflow.index("python3 scripts/render_readme.py"))
+
 
 if __name__ == "__main__":
     unittest.main()
