@@ -73,6 +73,28 @@ class OrgStatsTest(unittest.TestCase):
             for filename in ("violet-void-org-stats.svg", "violet-void-org-languages.svg"):
                 self.assertEqual((path / filename).read_text(), "KNOWN GOOD")
 
+    def test_fork_workflow_skips_private_org_access(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            for token in (None, "fork-token"):
+                env = {"GITHUB_REPOSITORY": "example-builder/example-builder"}
+                if token is not None:
+                    env["README_ORG_STATS_TOKEN"] = token
+                with patch("scripts.org_stats.urlopen") as request:
+                    self.assertEqual(main(["--output-dir", tmp], environ=env), 0)
+                request.assert_not_called()
+            self.assertEqual(list(Path(tmp).iterdir()), [])
+
+    def test_original_workflow_still_requires_org_token(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(
+                main(
+                    ["--output-dir", tmp],
+                    environ={"GITHUB_REPOSITORY": "aaronedev/aaronedev"},
+                ),
+                2,
+            )
+            self.assertEqual(list(Path(tmp).iterdir()), [])
+
     def test_unknown_language_escaped_and_aggregated(self):
         stats = Stats(2, 1, 1, 7, 2, {"Rust & <other>": 1, "Shell": 9})
         svg = render_languages(stats)
