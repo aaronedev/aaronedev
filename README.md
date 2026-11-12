@@ -261,6 +261,10 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 ### 🛠️ Latest Contributions
 
+- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>28 commits</strong> • 2026-11-12
+  <br>
+  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to you</sub>
+
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>1139 commits</strong> • 2026-10-27
   <br>
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
@@ -274,10 +278,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <sub>personal contact webpage</sub>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_chatgpt"><code>aaronedev/violet-void-theme_chatgpt</code></a> • <strong>64 commits</strong> • 2026-09-24
-
-- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>27 commits</strong> • 2026-09-17
-  <br>
-  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to you</sub>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_kitty"><code>aaronedev/violet-void-theme_kitty</code></a> • <strong>5 commits</strong> • 2026-03-20
 
@@ -307,7 +307,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 4142 pull requests · at least 21164 commits
+🔒 Private activity: 4147 pull requests · at least 21170 commits
 <!--END_SECTION:activity-->
 
 </details>
