@@ -219,8 +219,8 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
-- 🟣 <a href="https://github.com/aaronedev/aaronedev/pull/30"><strong>feat(profile): replace personal GitHub cards with Violet-Void statistics</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-11-04 • OPEN</sub>
+- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/30"><strong>feat(profile): replace personal GitHub cards with Violet-Void statistics</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-11-04 • MERGED</sub>
   <br>
   <sub>github profile aaronedev</sub>
 
@@ -307,7 +307,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 4099 pull requests · at least 21117 commits
+🔒 Private activity: 4130 pull requests · at least 21153 commits
 <!--END_SECTION:activity-->
 
 </details>
