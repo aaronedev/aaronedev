@@ -37,8 +37,32 @@ class ReadmeWorkflowContractTest(unittest.TestCase):
         self.assertLess(sync, rerender)
         self.assertLess(recovery_reset, rerender)
         self.assertLess(rerender, push)
-        self.assertIn("git add README.md", commit_step)
+        self.assertIn(
+            "git add -- README.md assets/generated/violet-void-org-stats.svg "
+            "assets/generated/violet-void-org-languages.svg",
+            commit_step,
+        )
         self.assertIn('exit "$rerender_status"', commit_step)
+
+    def test_organization_stats_fail_closed_and_are_committed(self) -> None:
+        workflow = WORKFLOW.read_text(encoding="utf-8")
+        self.assertEqual(workflow.count("README_ORG_STATS_TOKEN: ${{ secrets.GH_TOKEN }}"), 2)
+        self.assertEqual(workflow.count("python3 scripts/org_stats.py"), 2)
+        self.assertEqual(workflow.count("git add -- README.md assets/generated/violet-void-org-stats.svg assets/generated/violet-void-org-languages.svg"), 2)
+        self.assertIn('exit "$org_status"', workflow)
+        self.assertLess(workflow.index("python3 scripts/org_stats.py"), workflow.index("python3 scripts/render_readme.py"))
+
+        commit_step = workflow[
+            self._find_fragment(workflow, "- name: Commit and push updates") :
+        ]
+        fail_closed = self._find_fragment(
+            commit_step,
+            'if (( org_status != 0 )); then\n'
+            '          echo "Organization stats failed; refusing to publish partial data" >&2\n'
+            '          exit "$org_status"\n'
+            '        fi',
+        )
+        self.assertLess(fail_closed, self._find_fragment(commit_step, "git push origin HEAD:main"))
 
 
 if __name__ == "__main__":

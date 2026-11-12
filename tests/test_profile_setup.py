@@ -80,6 +80,9 @@ class ProfileSetupTest(unittest.TestCase):
             self.assertIn('runs-on: ubuntu-latest', workflow.read_text())
             template_text = template.read_text()
             readme_text = readme.read_text()
+            for text in (template_text, readme_text):
+                self.assertNotIn("violet-void-org-stats.svg", text)
+                self.assertNotIn("violet-void-org-languages.svg", text)
             self.assertIn("<h1 align=\"center\">Example Builder / example-builder</h1>", template_text)
             self.assertIn("## What I build", template_text)
             self.assertIn("## ⭐ Recent activity", template_text)

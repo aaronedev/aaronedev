@@ -24,16 +24,20 @@ jobs:
         fetch-depth: 0
     - name: Sync main
       run: git pull --ff-only origin main
-    - name: Render README
+    - name: Render README and organization stats
       id: render-readme
       continue-on-error: true
       env:
         README_ACTIVITY_GITHUB_PAT: ${{ secrets.GH_TOKEN }}
+        README_ORG_STATS_TOKEN: ${{ secrets.GH_TOKEN }}
         README_WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
-      run: python3 scripts/render_readme.py
+      run: |-
+        python3 scripts/org_stats.py
+        python3 scripts/render_readme.py
     - name: Commit and push updates
       env:
         README_ACTIVITY_GITHUB_PAT: ${{ secrets.GH_TOKEN }}
+        README_ORG_STATS_TOKEN: ${{ secrets.GH_TOKEN }}
         README_WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |-
@@ -42,8 +46,8 @@ jobs:
         git config user.name "readme-scribe 🤖"
         git config user.email "actions@github.com"
 
-        if ! git diff --quiet HEAD -- README.md; then
-          git add README.md
+        if ! git diff --quiet HEAD -- README.md assets/generated/violet-void-org-stats.svg assets/generated/violet-void-org-languages.svg; then
+          git add -- README.md assets/generated/violet-void-org-stats.svg assets/generated/violet-void-org-languages.svg
           git commit -m "chore: update README from template"
         fi
 
@@ -55,12 +59,19 @@ jobs:
         fi
 
         set +e
+        python3 scripts/org_stats.py
+        org_status=$?
         python3 scripts/render_readme.py
         rerender_status=$?
         set -e
 
-        if ! git diff --quiet HEAD -- README.md; then
-          git add README.md
+        if (( org_status != 0 )); then
+          echo "Organization stats failed; refusing to publish partial data" >&2
+          exit "$org_status"
+        fi
+
+        if ! git diff --quiet HEAD -- README.md assets/generated/violet-void-org-stats.svg assets/generated/violet-void-org-languages.svg; then
+          git add -- README.md assets/generated/violet-void-org-stats.svg assets/generated/violet-void-org-languages.svg
           if git diff --quiet HEAD origin/main; then
             git commit -m "chore: update README from template"
           else
