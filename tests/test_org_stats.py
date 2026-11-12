@@ -5,6 +5,8 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
+from urllib.error import URLError
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -63,7 +65,11 @@ class OrgStatsTest(unittest.TestCase):
             path = Path(tmp)
             for filename in ("violet-void-org-stats.svg", "violet-void-org-languages.svg"):
                 (path / filename).write_text("KNOWN GOOD", encoding="utf-8")
-            self.assertEqual(main(["--output-dir", str(path)], environ={}), 2)
+            with patch("scripts.org_stats.urlopen", side_effect=URLError("simulated outage")) as request:
+                self.assertEqual(
+                    main(["--output-dir", str(path)], environ={"README_ORG_STATS_TOKEN": "dummy-token"}), 2
+                )
+            request.assert_called_once()
             for filename in ("violet-void-org-stats.svg", "violet-void-org-languages.svg"):
                 self.assertEqual((path / filename).read_text(), "KNOWN GOOD")
 
