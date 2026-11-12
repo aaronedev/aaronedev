@@ -44,6 +44,13 @@ class ReadmeWorkflowContractTest(unittest.TestCase):
         )
         self.assertIn('exit "$rerender_status"', commit_step)
 
+    def test_refresh_runs_complete_before_replacement_and_have_a_timeout(self) -> None:
+        workflow = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn("concurrency:\n  group: readme-update\n", workflow)
+        self.assertIn("  cancel-in-progress: false\n", workflow)
+        job = workflow.split("\n  update:\n", 1)[1].split("\n    steps:\n", 1)[0]
+        self.assertIn("    timeout-minutes: 30\n", job)
+
     def test_organization_stats_fail_closed_and_are_committed(self) -> None:
         workflow = WORKFLOW.read_text(encoding="utf-8")
         self.assertEqual(workflow.count("README_ORG_STATS_TOKEN: ${{ secrets.GH_TOKEN }}"), 2)

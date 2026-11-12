@@ -9,10 +9,12 @@ name: Update README
   workflow_dispatch: {}
 concurrency:
   group: readme-update
-  cancel-in-progress: true
+  # Let the active refresh publish before the next scheduled or manual run starts.
+  cancel-in-progress: false
 jobs:
   update:
     runs-on: ubuntu-24.04 # Not ubuntu-latest: a self-hosted runner may advertise that label.
+    timeout-minutes: 30
     permissions:
       contents: write
     defaults:
