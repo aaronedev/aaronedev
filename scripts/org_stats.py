@@ -227,6 +227,12 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] | None = None
     parser.add_argument("--output-dir", type=Path, default=ROOT / "assets" / "generated")
     args = parser.parse_args(argv)
     env = os.environ if environ is None else environ
+    # GitHub Actions identifies the repository that owns the workflow. Fork
+    # setup replaces the organization cards, so forks must not need access
+    # to Violet-Void's private repositories to update their README.
+    workflow_repo = env.get("GITHUB_REPOSITORY", "")
+    if workflow_repo and workflow_repo.casefold() != "aaronedev/aaronedev":
+        return 0
     token = env.get("README_ORG_STATS_TOKEN")
     if not token:
         print("Missing README_ORG_STATS_TOKEN", file=sys.stderr)
