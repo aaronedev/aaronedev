@@ -219,6 +219,11 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
+- 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/31"><strong>fix(ci): stop overlapping README refreshes cancelling publication</strong></a><br>
+  <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-11-12 • MERGED</sub>
+  <br>
+  <sub>github profile aaronedev</sub>
+
 - 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/30"><strong>feat(profile): replace personal GitHub cards with Violet-Void statistics</strong></a><br>
   <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-11-04 • MERGED</sub>
   <br>
@@ -253,11 +258,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
   <br>
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
-
-- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/20"><strong>chore(coderabbit): configure focused repository reviews</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-10-18 • MERGED</sub>
-  <br>
-  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
 
 ### 🛠️ Latest Contributions
 
@@ -307,7 +307,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 4130 pull requests · at least 21153 commits
+🔒 Private activity: 4130 pull requests · at least 21154 commits
 <!--END_SECTION:activity-->
 
 </details>
