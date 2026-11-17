@@ -219,8 +219,8 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
-- 🟣 <a href="https://github.com/Violet-Void/wpaperd/pull/21"><strong>fix(arch): package Cargo-generated shell and man files</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-11-17 • OPEN</sub>
+- 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/21"><strong>fix(arch): package Cargo-generated shell and man files</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-11-17 • MERGED</sub>
   <br>
   <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
 
@@ -307,7 +307,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 4279 pull requests · at least 20901 commits
+🔒 Private activity: 4285 pull requests · at least 20906 commits
 <!--END_SECTION:activity-->
 
 </details>
