@@ -219,6 +219,11 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
+- 🟣 <a href="https://github.com/Violet-Void/wpaperd/pull/21"><strong>fix(arch): package Cargo-generated shell and man files</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-11-17 • OPEN</sub>
+  <br>
+  <sub>wpaperd optimizations for https://github.com/Violet-Void</sub>
+
 - 🟢 <a href="https://github.com/aaronedev/aaronedev/pull/31"><strong>fix(ci): stop overlapping README refreshes cancelling publication</strong></a><br>
   <sub><a href="https://github.com/aaronedev/aaronedev"><code>aaronedev/aaronedev</code></a> • 2026-11-12 • MERGED</sub>
   <br>
@@ -250,11 +255,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
 
 - 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/91"><strong>fix(theme): restore readable ArchWiki colors</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
-  <br>
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
-
-- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/88"><strong>feat(theme): restore the backup void design</strong></a><br>
   <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
   <br>
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
@@ -307,7 +307,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 4271 pull requests · at least 20884 commits
+🔒 Private activity: 4279 pull requests · at least 20901 commits
 <!--END_SECTION:activity-->
 
 </details>
