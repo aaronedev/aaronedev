@@ -303,7 +303,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 - 🔗 <a href="https://github.com/super-productivity/super-productivity"><code>super-productivity/super-productivity</code></a> • <strong>1 pull request · 1 issue</strong> • 2026-08-11
   <br>
-  <sub>Super Productivity is an advanced todo list app with integrated Timeboxing and time tracking capabilities. It also comes</sub>
+  <sub>A to-do list, time tracker and daily planner for focused personal work. Private, offline-first and open source.</sub>
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
