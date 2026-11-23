@@ -219,6 +219,21 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
+- 🟣 <a href="https://github.com/Violet-Void/hearth.nvim/pull/4"><strong>refactor(.github+lua+plugin+tests): rename crate and Lua module to he…</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/hearth.nvim"><code>Violet-Void/hearth.nvim</code></a> • 2026-11-23 • OPEN</sub>
+  <br>
+  <sub>Calm, procedural sound for Neovim: warm event sounds and ambient fire, wind and water. Built on player-one.nvim (MIT).</sub>
+
+- 🟣 <a href="https://github.com/Violet-Void/hearth.nvim/pull/2"><strong>feat: variation profiles, cursor-direction pitch, fzf sounds</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/hearth.nvim"><code>Violet-Void/hearth.nvim</code></a> • 2026-11-23 • OPEN</sub>
+  <br>
+  <sub>Calm, procedural sound for Neovim: warm event sounds and ambient fire, wind and water. Built on player-one.nvim (MIT).</sub>
+
+- 🟣 <a href="https://github.com/Violet-Void/hearth.nvim/pull/1"><strong>refactor: rename crate and Lua module to hearth</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/hearth.nvim"><code>Violet-Void/hearth.nvim</code></a> • 2026-11-23 • OPEN</sub>
+  <br>
+  <sub>Calm, procedural sound for Neovim: warm event sounds and ambient fire, wind and water. Built on player-one.nvim (MIT).</sub>
+
 - 🟢 <a href="https://github.com/Violet-Void/wpaperd/pull/21"><strong>fix(arch): package Cargo-generated shell and man files</strong></a><br>
   <sub><a href="https://github.com/Violet-Void/wpaperd"><code>Violet-Void/wpaperd</code></a> • 2026-11-17 • MERGED</sub>
   <br>
@@ -240,21 +255,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <sub>github profile aaronedev</sub>
 
 - 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/94"><strong>fix(theme): restore pressed link colors</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
-  <br>
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
-
-- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/93"><strong>test(theme): verify mobile navigation activation</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
-  <br>
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
-
-- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/92"><strong>fix(theme): keep dropdown menus readable</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
-  <br>
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
-
-- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/91"><strong>fix(theme): restore readable ArchWiki colors</strong></a><br>
   <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
   <br>
   <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
@@ -307,7 +307,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 4337 pull requests · at least 20993 commits
+🔒 Private activity: 4358 pull requests · at least 20592 commits
 <!--END_SECTION:activity-->
 
 </details>
