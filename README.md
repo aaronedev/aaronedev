@@ -219,18 +219,23 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 <!--START_SECTION:activity-->
 ### 🔁 Fresh Pull Requests
 
-- 🟣 <a href="https://github.com/Violet-Void/hearth.nvim/pull/4"><strong>refactor(.github+lua+plugin+tests): rename crate and Lua module to he…</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/hearth.nvim"><code>Violet-Void/hearth.nvim</code></a> • 2026-11-23 • OPEN</sub>
+- 🟣 <a href="https://github.com/Violet-Void/hearth.nvim/pull/5"><strong>fix(audio): never write stream errors to stderr and filter ALSA poll errno -4</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/hearth.nvim"><code>Violet-Void/hearth.nvim</code></a> • 2026-11-25 • OPEN</sub>
   <br>
   <sub>Calm, procedural sound for Neovim: warm event sounds and ambient fire, wind and water. Built on player-one.nvim (MIT).</sub>
 
-- 🟣 <a href="https://github.com/Violet-Void/hearth.nvim/pull/2"><strong>feat: variation profiles, cursor-direction pitch, fzf sounds</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/hearth.nvim"><code>Violet-Void/hearth.nvim</code></a> • 2026-11-23 • OPEN</sub>
+- 🟢 <a href="https://github.com/Violet-Void/hearth.nvim/pull/4"><strong>feat: hearth.nvim rename, config API, procedural ambience, and rodio 0.23 Wayland/X11 audio</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/hearth.nvim"><code>Violet-Void/hearth.nvim</code></a> • 2026-11-23 • MERGED</sub>
   <br>
   <sub>Calm, procedural sound for Neovim: warm event sounds and ambient fire, wind and water. Built on player-one.nvim (MIT).</sub>
 
-- 🟣 <a href="https://github.com/Violet-Void/hearth.nvim/pull/1"><strong>refactor: rename crate and Lua module to hearth</strong></a><br>
-  <sub><a href="https://github.com/Violet-Void/hearth.nvim"><code>Violet-Void/hearth.nvim</code></a> • 2026-11-23 • OPEN</sub>
+- ⚫ <a href="https://github.com/Violet-Void/hearth.nvim/pull/2"><strong>feat: variation profiles, cursor-direction pitch, fzf sounds</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/hearth.nvim"><code>Violet-Void/hearth.nvim</code></a> • 2026-11-23 • CLOSED</sub>
+  <br>
+  <sub>Calm, procedural sound for Neovim: warm event sounds and ambient fire, wind and water. Built on player-one.nvim (MIT).</sub>
+
+- ⚫ <a href="https://github.com/Violet-Void/hearth.nvim/pull/1"><strong>refactor: rename crate and Lua module to hearth</strong></a><br>
+  <sub><a href="https://github.com/Violet-Void/hearth.nvim"><code>Violet-Void/hearth.nvim</code></a> • 2026-11-23 • CLOSED</sub>
   <br>
   <sub>Calm, procedural sound for Neovim: warm event sounds and ambient fire, wind and water. Built on player-one.nvim (MIT).</sub>
 
@@ -254,12 +259,11 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
   <br>
   <sub>github profile aaronedev</sub>
 
-- 🟢 <a href="https://github.com/aaronedev/violet-void-theme_archwiki/pull/94"><strong>fix(theme): restore pressed link colors</strong></a><br>
-  <sub><a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • 2026-10-27 • MERGED</sub>
-  <br>
-  <sub>Dark Violet-Void theme using a consistent handcrafted color palette for a unified look across the OS and web. I use thos</sub>
-
 ### 🛠️ Latest Contributions
+
+- 🔗 <a href="https://github.com/Violet-Void/hearth.nvim"><code>Violet-Void/hearth.nvim</code></a> • <strong>4 commits</strong> • 2026-11-25
+  <br>
+  <sub>Calm, procedural sound for Neovim: warm event sounds and ambient fire, wind and water. Built on player-one.nvim (MIT).</sub>
 
 - 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>28 commits</strong> • 2026-11-12
   <br>
@@ -287,10 +291,6 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_fish"><code>aaronedev/violet-void-theme_fish</code></a> • <strong>5 commits</strong> • 2026-03-20
 
-- 🔗 <a href="https://github.com/aaronedev/violet-void-theme_nvim"><code>aaronedev/violet-void-theme_nvim</code></a> • <strong>42 commits</strong> • 2026-03-20
-  <br>
-  <sub>Violet Void Neovim colorscheme with 70+ plugin integrations</sub>
-
 ### 🤝 Contributions to Other Organizations
 
 - 🔗 <a href="https://github.com/material-extensions/material-icons-browser-extension"><code>material-extensions/material-icons-browser-extension</code></a> • <strong>1 pull request</strong> • 2026-10-15
@@ -307,7 +307,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 4383 pull requests · at least 20619 commits
+🔒 Private activity: 4397 pull requests · at least 20641 commits
 <!--END_SECTION:activity-->
 
 </details>
