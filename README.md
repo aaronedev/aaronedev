@@ -261,13 +261,13 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 ### 🛠️ Latest Contributions
 
+- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>29 commits</strong> • 2026-11-26
+  <br>
+  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to you</sub>
+
 - 🔗 <a href="https://github.com/Violet-Void/hearth.nvim"><code>Violet-Void/hearth.nvim</code></a> • <strong>4 commits</strong> • 2026-11-25
   <br>
   <sub>Calm, procedural sound for Neovim: warm event sounds and ambient fire, wind and water. Built on player-one.nvim (MIT).</sub>
-
-- 🔗 <a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker"><code>aaronedev/nerdfont-icon-rofi-picker</code></a> • <strong>28 commits</strong> • 2026-11-12
-  <br>
-  <sub>A simple rofi-based picker for nerd font icons. Browse through thousands of icons with fuzzy search and copy them to you</sub>
 
 - 🔗 <a href="https://github.com/aaronedev/violet-void-theme_archwiki"><code>aaronedev/violet-void-theme_archwiki</code></a> • <strong>1139 commits</strong> • 2026-10-27
   <br>
@@ -307,7 +307,7 @@ Run `bin/setup-profile --plan` in your fork for a guided starter profile.
 
 _Commit contribution totals are based on the top 100 contribution repositories._
 
-🔒 Private activity: 4402 pull requests · at least 20644 commits
+🔒 Private activity: 4437 pull requests · at least 20690 commits
 <!--END_SECTION:activity-->
 
 </details>
